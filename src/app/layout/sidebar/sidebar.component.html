@@ -1,0 +1,81 @@
+<div class="sidebar-column no-select">
+
+    <div class="sidebar-button shadow" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="onClick()" #menu>
+        <div style="display:flex;flex-direction: row; width: 100%;" *ngIf="!menuIsOpen" >
+            <fa-icon [icon]="faBars" style="font-size: 1.9em;"></fa-icon>
+        </div>
+        <div class="sidebar-expanded" *ngIf="menuIsOpen">
+            <div style="display:flex;flex-direction: row;  align-items: center; width: 100%; margin-bottom: 15px;">
+                <fa-icon [icon]="faBars" style="font-size: 1.9em;"></fa-icon>
+            </div>
+            <div [@appear]="'appear'">
+                <!-- <div class="sidebar-item" [routerLink]="'/calendar'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/flaticon/calendar.png"
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="sidebar-item-title">
+                        Calendar
+                    </div>
+                </div> -->
+                <!-- <div class="sidebar-item" [routerLink]="'/research'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/flaticon/search-1.png" 
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="sidebar-item-title">
+                        Research
+                    </div>
+                </div> -->
+                <div class="sidebar-item" [routerLink]="'/timeline'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/icons/timeline-icon.png" 
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="sidebar-item-title">
+                        Timeline
+                    </div>
+                </div>
+                <div class="sidebar-item" [routerLink]="'/earnings'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/flaticon/bar-chart-3.png" 
+                        style="width: 30px; height: 30px;">
+                        <!-- <fa-icon [icon]="faTableList"
+                            style="width: 30px; height: 30px; font-size:1.7em; color: rgb(91, 116, 91);"></fa-icon> -->
+                    </div>
+                    <div class="sidebar-item-title">
+                        Earnings
+                    </div>
+                </div>
+                <a class="sidebar-item" [routerLink]="'/ownership'"  [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/icons/ownership-2024-06-13.png" alt="ownership"
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="sidebar-item-title">
+                        Company Ownership
+                    </div>
+                </a>
+                <div class="sidebar-item" [routerLink]="'/social-media'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <img src="assets/flaticon/social-media.png" alt=""
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="sidebar-item-title">
+                        Social Media
+                    </div>
+                </div>
+                <div class="sidebar-item" [routerLink]="'/about'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <fa-icon [icon]="faCircleInfo"
+                            style="width: 30px; height: 30px; font-size:1.7em; color:rgb(155, 155, 155);"></fa-icon>
+                    </div>
+                    <div class="sidebar-item-title">
+                        About
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

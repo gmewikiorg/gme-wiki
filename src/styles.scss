@@ -1,1 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+  --main-family: 'Poppins', sans-serif;
+  // --color-bg: linear-gradient(180deg, #FFFFFF 0%, #AEC6DC 100%);
+
+  --color-special: rgb(147 23 107 / 100%);
+
+//   /* Controls the blob blur gradient colors within the main tag's svg */
+//   --top-right-blur-1: #20C6B7;
+//   --top-right-blur-2: #4D9ABF;
+//   --bttm-left-blur-1: #de3641;
+//   --bttm-left-blur-2: #e46b73;
+}
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--main-family);
+}
+
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Konqueror HTML */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+.shadow {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+
+
+
+.page-root{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  // margin: 5px;
+}
+
+.page-content{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  // padding: 5px;
+}
+
+
+
+@media (min-width:1200px){
+  .page-content{
+    display:flex;
+    flex-direction: column;
+    max-width: calc(100% - 400px);
+  }
+}
+
+
+
+.page-title{
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.page-subtitle{
+  color: rgb(51, 51, 51);
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.page-date{
+  padding-left: 5px;
+  padding-right: 5px;
+  color: gray;
+  margin-top: 10px;
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+.page-section{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%;
+}
+
+.section-heading{
+  font-weight: 550;
+  font-size: 1.3em;
+  margin-top: 20px;
+}
+
+
+.source-link-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 0.8em;
+  color: gray;
+  padding-right: 5px;
+}
+
+.quote-section{
+  border-radius: 5px;
+  background-color: rgb(240, 240, 240);
+  margin: 5px;
+  padding: 10px;
+  font-size: 1.1em;
+  display:flex;
+  flex-direction: column;
+}
+.quote-attribution{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 0.9em;
+}

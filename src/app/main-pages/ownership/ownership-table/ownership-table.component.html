@@ -1,0 +1,382 @@
+<div style="width: 100%;" *ngIf="!isMobile">
+    <div style="display:flex;justify-content: space-between; align-items: center;">
+        <div class="section-heading">
+            GME ownership table (as of {{lastUpdated}})
+        </div>
+        <div>
+            <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
+        </div>
+
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr class="top-row">
+                <td class="border-bottom">Held by</td>
+                <td colspan="2" class="border-bottom">Type</td>
+                <td class="border-bottom"> Shares</td>
+                <td class="border-bottom">% of issued shares</td>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td rowspan="3" class="border-bottom drs-row" *ngIf="!showSources">
+                    Held by registered holders with Computershare
+                </td>
+                <td rowspan="4" class="border-bottom drs-row" *ngIf="showSources">
+                    Held by registered holders with Computershare
+                    <div class="source">
+                        This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                    </div>
+                </td>
+                <td class="drs-row">DRS</td>
+                <td class="drs-row"></td>
+                <td class="number-cell drs-row">{{drsNumber}} M</td>
+                <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
+            </tr>
+            <tr>
+                <td class="dspp-row">
+                    DSPP
+                </td>
+                <td class="dspp-row"></td>
+                <td class="number-cell dspp-row">{{dsppNumber}} M</td>
+                <td class="number-cell dspp-row">{{percent(dsppNumber)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="4" class="drs-row source">
+
+                    Source: <br>
+
+                    82.4% DRS to 17.6% DSPP ratio of all registered shares, as provided by the <a
+                        href="https://www.drsgme.org/2024-stockholder-list-viewing" target="_blank">
+                        DRSGME.org viewing of the 2024 stockholder list, week of June 5, 2024
+                    </a>
+
+                </td>
+                <!-- <td>a</td>
+            <td>a</td> -->
+            </tr>
+            <tr>
+                <td class="border-bottom drs-row"></td>
+                <td class="border-bottom drs-row" style="font-weight: bold;">Total Registered</td>
+                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered}} M</td>
+                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{percent(totalRegistered)}} %
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="12" class="border-bottom-2 cede-row" *ngIf="!showSources">
+                    Held by Cede & Co on behalf of DTCC
+                </td>
+                <td rowspan="16" class="border-bottom-2 cede-row" *ngIf="showSources">
+                    Held by Cede & Co on behalf of DTCC
+                    <div *ngIf="showSources" class="source">
+                        This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="border-bottom insiders-row" *ngIf="!showSources">Insiders</td>
+                <td rowspan="5" class="border-bottom insiders-row" *ngIf="showSources">Insiders</td>
+                <td class="insiders-row">Ryan Cohen</td>
+                <td class="number-cell insiders-row">{{rcNumber}} M</td>
+                <td class="number-cell insiders-row">{{percent(rcNumber)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="insiders-row source">
+                    Source: <a
+                        href="https://www.sec.gov/Archives/edgar/data/1822844/000092189524001394/sc13da912128005_06112024.htm"
+                        target="_blank">
+                        sec.gov - Schedule 13D form
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="insiders-row">All other insiders</td>
+                <td class="number-cell insiders-row">{{otherInsiders}} M</td>
+                <td class="number-cell insiders-row">{{percent(otherInsiders)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="insiders-row source">
+                    Source: <a href="https://www.nasdaq.com/market-activity/stocks/gme/insider-activity"
+                        target="_blank">
+                        nasdaq.com - GME insider activity
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="border-bottom total insiders-row">Insiders Total</td>
+                <td class="number-cell border-bottom total insiders-row">{{insidersTotal.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total insiders-row">{{percent(insidersTotal)}} %</td>
+            </tr>
+            <tr>
+                <td class="rk-row"></td>
+                <td class="rk-row">Roaring Kitty</td>
+                <td class="number-cell rk-row">{{(rkNumber).toFixed(1)}} M</td>
+                <td class="number-cell rk-row">{{percent(rkNumber)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td class="rk-row"></td>
+                <td colspan="3" class="rk-row source">
+                    <!-- Source: <a href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
+                    target="_blank">
+                    GME YOLO update - June 13 2024 on Reddit
+                </a></td> -->
+
+                    <div>
+                        Source: <a
+                            href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
+                            target="_blank">
+                            GME YOLO update - June 13 2024 on Reddit
+
+                        </a>
+                    </div>
+                    <div>
+                        This position is credible as of June 13. However, it is entirely possible that RK could have at
+                        any
+                        time after June 13 changed this position without providing this information publicly.
+                    </div>
+            </tr>
+            <tr>
+                <td rowspan="5" class="border-bottom institutions-row">Institutions</td>
+                <td class="institutions-row">Vanguard Group Inc</td>
+                <td class="number-cell institutions-row">{{vanguard.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(vanguard)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">Blackrock Inc</td>
+                <td class="number-cell institutions-row">{{blackrock.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(blackrock)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">State Street Corporation</td>
+                <td class="number-cell institutions-row">{{statestreet.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(statestreet)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">All other institutional</td>
+                <td class="number-cell institutions-row">{{otherInst.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(otherInst)}} %</td>
+            </tr>
+            <tr>
+                <td class="border-bottom total institutions-row">Institutions Total</td>
+                <td class="number-cell border-bottom total institutions-row">{{instTotal.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total institutions-row">{{percent(instTotal)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td class="institutions-row"></td>
+                <td colspan="3" class="institutions-row source">
+                    Source: <a href="https://www.nasdaq.com/market-activity/stocks/gme/institutional-holdings"
+                        target="_blank">
+                        nasdaq.com - GME institutional holdings
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="border-bottom cede-row-2">Remainder</td>
+                <td class="border-bottom cede-row-2 total">Remainder total</td>
+                <td class="number-cell border-bottom total cede-row-2">{{(remainderTotal/ 1000000).toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total cede-row-2">{{percent(remainderTotal/ 1000000)}} %</td>
+            </tr>
+            <tr>
+                <td class="border-bottom-2 cede-row"></td>
+                <td class="border-bottom-2 cede-row" style="font-weight: bold;">Total held by Cede & Co</td>
+                <td class="border-bottom-2 number-cell cede-row" style="font-weight: bold;">{{(beneficial /
+                    1000000).toFixed(1)}} M</td>
+                <td class="border-bottom-2 number-cell cede-row" style="font-weight: bold;">{{percent(beneficial /
+                    1000000)}} %</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="total-row">Issued shares total</td>
+                <td class="number-cell total-row " style="min-width: 60px;">{{tso}} M</td>
+                <td class="number-cell total-row">100 %</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- MOBILE -->
+
+
+<div style="width: 100%;" *ngIf="isMobile">
+    <div style="display:flex;flex-direction: column;">
+        <div class="section-heading">
+            GME ownership table (as of {{lastUpdated}})
+        </div>
+        <div style="display:flex;flex-direction: row-reverse; padding: 5px;">
+            <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
+        </div>
+
+    </div>
+    <table class="data-table">
+
+        <thead>
+            <tr class="top-row">
+                <td class="border-bottom">Type</td>
+                <td class="border-bottom"> Shares</td>
+                <td class="border-bottom">% of issued shares</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td colspan="3" style="font-size:0.9em; padding-top:15px;padding-bottom: 15px;" class="drs-row">
+
+                    Held by <a style="font-weight: bold; color: #8f1795; text-decoration: none;"
+                        [routerLink]="'/drs'">registered holders</a> at Computershare
+                    <div class="source" *ngIf="showSources">
+                        This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                    </div>
+
+                    <div *ngIf="showSources">
+                        DRS versus DSPP information source: <br>
+
+                        82.4% DRS to 17.6% DSPP ratio of all registered shares, as provided by the <a
+                            href="https://www.drsgme.org/2024-stockholder-list-viewing" target="_blank">
+                            DRSGME.org viewing of the 2024 stockholder list, week of June 5, 2024
+                        </a>
+                    </div>
+
+
+                </td>
+
+
+            </tr>
+            <tr>
+                <!-- <td rowspan="3" class="border-bottom drs-row">
+                
+            </td> -->
+                <td class="drs-row">DRS</td>
+                <td class="number-cell drs-row">{{drsNumber}} M</td>
+                <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
+            </tr>
+            <tr>
+                <td class="dspp-row">DSPP</td>
+                <td class="number-cell dspp-row">{{dsppNumber}} M</td>
+                <td class="number-cell dspp-row">{{percent(dsppNumber)}} %</td>
+            </tr>
+            <tr>
+                <td class="border-bottom-2 drs-row" style="font-weight: bold;">Total Registered</td>
+                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{totalRegistered}} M</td>
+                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{percent(totalRegistered)}}
+                    %
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="3" style="font-size:0.9em; padding-top:15px;padding-bottom: 15px;" class="cede-row">
+
+                    Held by Cede & Co on behalf of the DTCC
+                    <div class="source" *ngIf="showSources">
+                        This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="insiders-row">Ryan Cohen</td>
+                <td class="number-cell insiders-row">{{rcNumber}} M</td>
+                <td class="number-cell insiders-row">{{percent(rcNumber)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="insiders-row source">
+                    Source: <a
+                        href="https://www.sec.gov/Archives/edgar/data/1822844/000092189524001394/sc13da912128005_06112024.htm"
+                        target="_blank">
+                        sec.gov - Schedule 13D form
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="insiders-row">All other insiders</td>
+                <td class="number-cell insiders-row">{{otherInsiders}} M</td>
+                <td class="number-cell insiders-row">{{percent(otherInsiders)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="insiders-row source">
+                    Source: <a href="https://www.nasdaq.com/market-activity/stocks/gme/insider-activity"
+                        target="_blank">
+                        nasdaq.com - GME insider activity
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="border-bottom total insiders-row">Insiders Total</td>
+                <td class="number-cell border-bottom total insiders-row">{{insidersTotal.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total insiders-row">{{percent(insidersTotal)}} %</td>
+            </tr>
+            <tr>
+                <td class="rk-row">Roaring Kitty</td>
+                <td class="number-cell rk-row">{{(rkNumber).toFixed(1)}} M</td>
+                <td class="number-cell rk-row">{{percent(rkNumber)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="rk-row source">
+                    <div>
+                        Source: <a
+                            href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
+                            target="_blank">
+                            GME YOLO update - June 13 2024 on Reddit
+
+                        </a>
+                    </div>
+                    <div>
+                        This position is credible as of June 13. However, it is entirely possible that RK could have at
+                        any
+                        time after June 13 changed this position without providing this information publicly.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="institutions-row">Vanguard Group Inc</td>
+                <td class="number-cell institutions-row">{{vanguard.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(vanguard)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">Blackrock Inc</td>
+                <td class="number-cell institutions-row">{{blackrock.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(blackrock)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">State Street Corporation</td>
+                <td class="number-cell institutions-row">{{statestreet.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(statestreet)}} %</td>
+            </tr>
+            <tr>
+                <td class="institutions-row">All other institutional</td>
+                <td class="number-cell institutions-row">{{otherInst.toFixed(1)}} M</td>
+                <td class="number-cell institutions-row">{{percent(otherInst)}} %</td>
+            </tr>
+            <tr>
+                <td class="border-bottom total institutions-row">Institutions Total</td>
+                <td class="number-cell border-bottom total institutions-row">{{instTotal.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total institutions-row">{{percent(instTotal)}} %</td>
+            </tr>
+            <tr *ngIf="showSources">
+                <td colspan="3" class="institutions-row source">
+                    Source: <a href="https://www.nasdaq.com/market-activity/stocks/gme/institutional-holdings"
+                        target="_blank">
+                        nasdaq.com - GME institutional holdings
+                    </a></td>
+            </tr>
+            <tr>
+                <td class="border-bottom cede-row-2 total">Remainder total</td>
+                <td class="number-cell border-bottom total cede-row-2">{{(remainderTotal/ 1000000).toFixed(1)}} M</td>
+                <td class="number-cell border-bottom total cede-row-2">{{percent(remainderTotal/ 1000000)}} %</td>
+            </tr>
+            <tr>
+                <td class="border-bottom-2 cede-row" style="font-weight: bold;">Total held by Cede & Co</td>
+                <td class="border-bottom-2 number-cell cede-row" style="font-weight: bold;">{{(beneficial /
+                    1000000).toFixed(1)}} M</td>
+                <td class="border-bottom-2 number-cell cede-row" style="font-weight: bold;">{{percent(beneficial /
+                    1000000)}} %</td>
+            </tr>
+            <tr>
+                <td class="total-row">Issued shares total</td>
+                <td class="number-cell total-row " style="min-width: 60px;">{{tso}} M</td>
+                <td class="number-cell total-row">100 %</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

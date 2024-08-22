@@ -1,0 +1,68 @@
+
+
+
+.source{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0.8em;
+    color: rgb(0, 0, 97);
+}
+
+
+
+.data-table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    border: 1px solid black;
+}
+td{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+.top-row{
+    font-weight: bold;
+
+}
+.number-cell{
+    text-align: right;
+}
+
+// .border-bottom{
+//     border-bottom: 1px solid black;
+// }
+.border-bottom-2{
+    border-bottom: 1px solid black;
+}
+.total{
+    font-size:0.85em;
+    font-weight: bold;
+}
+.total-row{
+    font-size: 1.0em;
+    font-weight: bold;
+    border-top: 1px solid black;
+}
+
+.drs-row{
+    background-color: #8f179552;
+}
+.dspp-row{
+    background-color: #a91cb05b;
+}
+.insiders-row{
+    background-color: #0066ff65;
+}
+.institutions-row{
+    background-color: #ff99004f;
+}
+.cede-row{
+    background-color: rgba(128, 128, 128, 0.103);
+}
+.cede-row-2{
+    background-color: rgba(128, 128, 128, 0.05);
+}
+.rk-row{
+    background-color: rgba(255, 0, 0, 0.301);
+    font-weight: 500;
+}

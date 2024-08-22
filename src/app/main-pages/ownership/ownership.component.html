@@ -1,0 +1,95 @@
+<div class="page-root" *ngIf="!isLoading">
+    <div class="page-content" style="width: 100%;">
+        <div class="page-title" stsyle="width:100%;">
+            GameStop Company Ownership
+        </div>
+        <div class="page-subtitle">
+            As of {{ lastUpdated }}
+        </div>
+
+        <div class="page-section" style="width: 100%; text-align: center;">
+            <p>As a publicly traded company, GameStop is unusual because a significant portion of all issued shares are owned by
+                <a style="font-weight: bold; color: #8f1795; text-decoration: none;"
+                    [routerLink]="'/drs'">registered</a> shareholders.
+            </p>
+        </div>
+
+        <div class="page-section"
+            style="padding:0px; width: 100%;" >
+            <div class="section-heading">
+                GME ownership pie chart
+            </div>
+            <!-- <div style="font-size:0.9em; color: gray">in millions of shares</div> -->
+            <app-ownership-chart style="width: 100%;display:flex;flex-direction:column;align-items: center;" *ngIf="isBrowser"></app-ownership-chart>
+        </div>
+
+
+
+
+        <div class="page-section" style="padding:0px;">
+            <app-ownership-table style="max-width: 100%; margin-top: 30px; "></app-ownership-table>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Held by registered holders at Computershare</div>
+            <P>All shares held with GameStop's transfer agent Computershare are <a style="font-weight: bold; color: #8f1795; text-decoration: none;"
+                [routerLink]="'/drs'">registered</a> in the name of the shareholder.
+
+            </P>
+            <!-- <ul>
+                <li>
+                    <b>DRS</b>
+                    <ul>
+                        <li>Registered in the name of the holder</li>
+                        <li>Held in book-entry form</li>
+                        <li>Held by record holders at Computershare</li>
+                        <li>Holding with DRS provides both title ownership and possession of shares</li>
+                    </ul>
+
+                </li>
+                <li>
+                    <b>DSPP</b>
+                    <ul>
+                        <li>Registered in the name of the holder</li>
+                        <li>Held in book-entry form</li>
+                        <li>Held by Dingo & Co (a nominee for Computershare)</li>
+                        <li>Holding with DSPP provides title ownership but not possession of shares</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Data for the DRS versus DSPP share counts is provided by GameStop but not made publicly available. GME
+                shareholders are able to view GameStop's stockholder list at GameStop headquarters, which does provide
+                information that distinguishes DRS versus DSPP shares.</p>
+            <p>
+                The DRS versus DSPP numbers in the chart are an approximation from the data obtained from the
+                <a href="https://www.drsgme.org/the-stockholder-list-summary" target="_blank"> 2023 viewing of the
+                    stockholder list</a>.
+            </p> -->
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Held by Cede & Co on behalf of the DTCC</div>
+            <p>All shares not held by registered holders are held by <a href="https://en.wikipedia.org/wiki/Cede_and_Company" target="_blank">Cede & Co</a> on behalf of the DTCC.
+                This includes all shares held in brokerage accounts by retail investors, insiders, institutions, mutual
+                funds, ETFs, and any other types of beneficial ownership.</p>
+        </div>
+<!-- 
+        <div class="page-section">
+            <div class="section-heading">Data source credit</div>
+            Data for this page was obtained from
+            <a href="https://www.computershared.net" target="_blank">computershared.net</a> and <a
+                href="https://www.drsgme.org/" target="_blank">DRSGME.org</a>.
+        </div> -->
+
+
+    </div>
+
+
+
+</div>
+
+
+<!-- <app-loading class="layout-root" style="justify-content: center;" *ngIf="isLoading"
+    [loadingMessage]="loadingMessage"></app-loading> -->
