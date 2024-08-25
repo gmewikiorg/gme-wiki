@@ -50,10 +50,8 @@ export class LoadingService {
   private _allDataImported: boolean = false;
 
   public async loadData$() {
-    console.log("loadData$()")
     this._dataIsLoading$.next(true);
     if (this._allDataImported === false) {
-      console.log("AllDataImported === false")
       await this._importData$();
       await this._updateChartData$();
       this._allDataImported = true;
@@ -62,7 +60,6 @@ export class LoadingService {
   }
 
   private async _importData$() {
-    console.log("_importData$()")
     this._dataIsLoading$.next(true);
     this._loadingMessage = 'Loading stuff...';
 

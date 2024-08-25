@@ -28,13 +28,14 @@ export class TimelineComponent {
   }
 
   private _isBrowser: boolean;
+  private _isLoading: boolean = true;
   public get isBrowser(): boolean { return this._isBrowser; }
 
   public get isMobile(): boolean { return this._sizeService.isMobile }
   public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
 
   public get isNarrow(): boolean { return this._sizeService.screenDimensions.width < 1050; }
-  public get isLoading(): boolean { return this._loadingService.dataIsLoading; }
+  public get isLoading(): boolean { return this._isLoading; }
   // public get isLoading(): boolean { return true; }
   public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
@@ -50,6 +51,7 @@ export class TimelineComponent {
     this._loadingService.loadingMessage = "Building chart...";
     if(this._isBrowser){
       await this._loadingService.loadData$();
+      this._isLoading = false;
     }else{
       // console.log("Not browser")
     }

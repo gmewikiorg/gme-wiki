@@ -13,17 +13,10 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 })
 export class EarningsChartComponent {
   constructor(private _sizeService: ScreenService) {
-
-    // Chart.unregister(ChartDataLabels);
-    // Chart.register(PieController, ArcElement, Tooltip, Legend);
-    // this._ownershipData = new OwnershipData();
-    // this.pieChartOptions = this._setPieChartOptions();
-    // this.pieChartData = this.ownershipData.chartData;
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend)
     this.barChartData = this._setData();
     this.barChartOptions = this._setOptions();
-
   }
 
   public barChartData: ChartConfiguration<'bar'>['data'];
@@ -31,7 +24,6 @@ export class EarningsChartComponent {
   public barChartLegend = false;
 
   ngOnInit(): void {
-
 
   }
 
@@ -87,7 +79,6 @@ export class EarningsChartComponent {
      * 
      */
     const width = this._sizeService.screenWidth;
-    console.log("WIDTH", width)
     return {
       labels: this._getSubsetArray(width, dataEntryCount, this.xAxisLabels),
       datasets: [
