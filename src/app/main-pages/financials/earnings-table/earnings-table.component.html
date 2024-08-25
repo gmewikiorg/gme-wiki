@@ -1,0 +1,139 @@
+<div class="table-root">
+    <div class="toolbar">
+        <div>
+            <button (click)="onClickQuartersYears('YEARS')" class="tool-button"
+                [ngClass]="{'selected-time': displayIsAnnual === true}">
+                Annual Results
+            </button>
+            <button (click)="onClickQuartersYears('QUARTERS')" class="tool-button"
+                [ngClass]="{'selected-time': displayIsQuarter === true}">
+                Quarterly Results
+            </button>
+
+        </div>
+        <!-- <div>
+            <button class="tool-button">
+                Notes
+                <fa-icon [icon]="faNoteSticky"></fa-icon>
+            </button>
+        </div> -->
+    </div>
+
+    <div style="max-width: 1200px;">
+        <table class="table">
+            <thead>
+                <tr style="font-weight: 500;" [style.fontSize]="fontSize">
+                    <!-- <td style="border-top: none;border-left:none;"></td> -->
+                    <td style="width: 70px;">Quarter</td>
+                    <!-- <td>Filing Date</td> -->
+                    <td *ngIf="columnCount >=7">Document Date</td>
+                    <td>Revenue<br>(billions)</td>
+                    <td>Net income<br>(millions)</td>
+                    <td *ngIf="columnCount >=5">Assets<br>(billions)</td>
+                    <td *ngIf="columnCount >=5">Liabilities<br>(billions)</td>
+                    <td>Stockholder Equity<br>(billions)</td>
+                    <td *ngIf="columnCount >=8">Earnings / Loss per share<br>$</td>
+                    <td *ngIf="columnCount >=9">DRS shares <br>% of issued shares</td>
+                    <!-- <td class="earnings-release-cell"></td> -->
+                </tr>
+            </thead>
+            <tbody *ngFor="let row of tableRows">
+                <tr *ngIf="row.showEarningsRelease && tableRows.indexOf(row) > 0" style="font-weight: 500;"
+                    [style.fontSize]="fontSize">
+                    <!-- <td style="border-top: none;border-left:none;"></td> -->
+                    <td style="width: 70px;">Quarter</td>
+                    <!-- <td>Filing Date</td> -->
+                    <td *ngIf="columnCount >=7">Document Date</td>
+                    <td>Revenue<br>(billions)</td>
+                    <td>Net income<br>(millions)</td>
+                    <td *ngIf="columnCount >=5">Assets<br>(billions)</td>
+                    <td *ngIf="columnCount >=5">Liabilities<br>(billions)</td>
+                    <td>Stockholder Equity<br>(billions)</td>
+                    <td *ngIf="columnCount >=8">Earnings / Loss per share<br>$</td>
+                    <td *ngIf="columnCount >=9">DRS shares <br>% of issued shares</td>
+                    <!-- <td class="earnings-release-cell"></td> -->
+                </tr>
+                <tr>
+                    <td>{{ row.earningsResult.reportingPeriod }} {{ trimmedYear(row.earningsResult.fiscalYear) }}</td>
+                    <!-- <td style="font-size: 0.8em;">{{ date(row.earningsResult.filingDateYYYYMMDD) }} </td> -->
+                    <td style="font-size: 0.8em;" *ngIf="columnCount >=7">{{ date(row.earningsResult.reportDateYYYYMMDD)
+                        }} </td>
+                    <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'REVENUE')">$ {{
+                        ((row.earningsResult.revenue)/1000000000).toFixed(1) }} </td>
+                    <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'NETINCOME')">$ {{
+                        ((row.earningsResult.netEarnings/1000000)).toFixed(0)}} </td>
+                    <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'ASSETS')" *ngIf="columnCount >=5">
+                        $ {{
+                        ((row.earningsResult.totalAssets)/1000000000).toFixed(1)}}</td>
+                    <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'LIABILITIES')"
+                        *ngIf="columnCount >=5">$ {{
+                        ((row.earningsResult.totalLiabilities)/1000000000).toFixed(1)}}</td>
+                    <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'EQUITY')">$ {{
+                        ((row.earningsResult.stockholdersEquity)/1000000000).toFixed(1)}}</td>
+                    <td *ngIf="columnCount >=8" [style.backgroundColor]="backgroundColor(row.earningsResult, 'EPS')">$
+                        {{row.earningsResult.netEPS.toFixed(2)}}</td>
+                    <td *ngIf="columnCount >=9" [style.backgroundColor]="backgroundColor(row.earningsResult, 'DRS')">{{
+                        ((row.earningsResult.drs /
+                        row.earningsResult.weightedAverageSharesOutstanding)*100).toFixed(1)}} %
+                    </td>
+                    <!-- <td class="earnings-release-cell">
+                        <button *ngIf="row.showEarningsRelease" class="earnings-button"
+                            (click)="row.clickEarningsRelease()">
+                            <fa-icon [icon]="faSquareMinus"></fa-icon>
+                        </button>
+                        <button *ngIf="!row.showEarningsRelease" class="earnings-button"
+                            (click)="row.clickEarningsRelease()">
+                            <fa-icon [icon]="faSquarePlus"></fa-icon>
+                        </button>
+                    </td> -->
+                </tr>
+                <!-- <tr *ngIf="row.showEarningsRelease">
+                    <td colspan="10" style="padding: 0px;">
+                        <div *ngIf="row.earningsRelease" class="earnings-content">
+                            <div class="earnings-top-bar">
+                                <a class="earnings-release-button" [href]="row.earningsResult.newsReleaseLink"
+                                    target="_blank">
+                                    <fa-icon [icon]="faLink" style="padding-right: 5px;"></fa-icon>
+                                    Earnings Release
+                                </a>
+                                <a class="earnings-release-button" [href]="row.earningsResult.tenQKformLink"
+                                    target="_blank">
+                                    <fa-icon [icon]="faFile" style="padding-right: 5px;"></fa-icon>
+                                    <span *ngIf="row.earningsResult.quarter !== 'Q4'">10-Q</span>
+                                    <span *ngIf="row.earningsResult.quarter === 'Q4'">10-K</span>
+                                </a>
+                            </div>
+                            <div *ngIf="row.earningsResult.sankeyImg !== ''" class="sankey-chart-container">
+                                <img [src]="row.earningsResult.sankeyImg" alt="" class="sankey-chart">
+                            </div>
+                            <div *ngIf="row.earningsRelease.summaryPoints.length > 0">
+                                Summary
+                                <ul *ngFor="let point of row.earningsRelease.summaryPoints">
+                                    <li>{{ point }}</li>
+                                </ul>
+                            </div>
+                            <div *ngIf="row.earningsRelease.quarterOverviewPoints.length > 0">
+                                Quarter Overview
+                                <ul *ngFor="let point of row.earningsRelease.quarterOverviewPoints">
+                                    <li>{{ point }}</li>
+                                </ul>
+                            </div>
+                            <div *ngIf="row.earningsRelease.yearOverviewPoints">
+                                Year Overview
+                                <ul *ngFor="let point of row.earningsRelease.yearOverviewPoints">
+                                    <li>{{ point }}</li>
+                                </ul>
+                            </div>
+                            <div *ngIf="row.earningsRelease.capitalAllocationPoints">
+                                Capital Allocation & Liquidity
+                                <ul *ngFor="let point of row.earningsRelease.capitalAllocationPoints">
+                                    <li>{{ point }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

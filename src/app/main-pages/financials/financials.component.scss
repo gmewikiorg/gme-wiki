@@ -1,0 +1,34 @@
+.financials-root{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    font-size: 1.4em;
+    margin: 15px;
+}
+
+.bar-chart{
+    border: 1px solid red;
+}
+
+
+.news-report{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 2em;
+    display:flex;
+    flex-direction: row;
+    align-items: top;
+}
+.news-report:hover{
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-special);
+}
+
+.earnings-chart-container{
+    width: 100%;
+}

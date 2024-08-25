@@ -1,0 +1,107 @@
+.table-root{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.table{
+    width: 100%;
+    // min-width: 600px;
+
+    border-collapse: collapse;
+}
+td{
+    border: 1px solid rgba(206, 206, 206, 0.5);
+    padding: 5px;
+}
+
+.toolbar{
+    margin-bottom: 15px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.tool-button{
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid rgb(255, 255, 255);
+    border-style: none;
+    background-color: white;
+}
+.tool-button:hover{
+    color: var(--color-special);
+    cursor: pointer;
+}
+
+
+
+.selected-time{
+    font-weight: 600;
+}
+
+.earnings-release-cell{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+.earnings-button{
+    border: 1px solid rgb(133, 133, 133);
+    border-style: none;
+    background-color: white;
+    font-size: 1.1em;
+    color: rgb(197, 197, 197);
+}
+.earnings-button:hover{
+    cursor: pointer;
+    color: var(--color-special);
+}
+
+.earnings-content{
+    max-height: 600px; 
+    overflow-y: scroll;
+    font-size:0.85em;
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
+    display:flex;
+    flex-direction: column;
+}
+
+.earnings-top-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.earnings-release-button{
+    border: 1px solid rgba(212, 212, 212, 0);
+    text-decoration: none;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 4px;
+}
+.earnings-release-button:hover{
+    text-decoration: none;
+    border: 1px solid rgb(212, 212, 212);
+}
+
+
+
+.sankey-chart-container{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sankey-chart{
+    min-width: 340px;
+    max-height: 550px;
+    border-radius: 10px;
+    border: 1px solid rgb(192, 192, 192);
+}

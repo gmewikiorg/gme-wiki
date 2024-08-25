@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { trigger, state, style, animate, transition, keyframes, } from '@angular/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoins, faChartLine, faChartPie, faSliders, faQuestion, faBars, faCircleInfo, faTableList, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { SettingsService } from '../../shared/services/settings.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -43,7 +44,7 @@ import { faCoins, faChartLine, faChartPie, faSliders, faQuestion, faBars, faCirc
 export class SidebarComponent {
 
   constructor(
-    // private _settingsService: SettingsService, 
+    private _settingsService: SettingsService, 
     private _router: Router, 
     // private _renderer: Renderer2, 
     // private _screenService: ScreenSizeService
@@ -57,8 +58,7 @@ export class SidebarComponent {
   public get faCircleInfo(): IconDefinition { return faCircleInfo; }
   public get faTableList(): IconDefinition { return faTableList; }
 
-  // public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
-  public get showAsList(): boolean { return false; }
+  public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
 
 
   

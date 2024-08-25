@@ -1,0 +1,57 @@
+<div class="container" >
+    <fa-icon [icon]="faTriangle" class="warning-icon"></fa-icon>
+    <div class="body-container">
+        <div class="no-select body" (click)="onClickContainer()">
+            This page needs to be expanded. <br>
+            <span class="contribute">Interested in contributing?</span> <br>
+        </div>
+
+        <div *ngIf="isExpanded" class="contact">
+
+            <div class="contact-item">
+                <div class="item-title">
+                    <img src="assets/icons/discord-icon.png" class="social-media-icon"
+                    alt="DRSyourGME Public Discord">Connect on Discord
+                </div>
+
+                <div>
+                    Join the
+                    <a href="https://mee6.xyz/i/xyGz2buGJR" target="_blank" class="community-button">
+
+                        The DRS Discord</a> and send a message to &#64;jersan
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="item-title">
+                    <img src="assets/icons/x-twitter-logo.png" class="social-media-icon" alt="gmetimline on X"> Connect on X
+                
+                </div>
+                <div>
+                    Send a message to
+                    <a href="https://x.com/gmetimeline" target="_blank" class="community-button">
+
+
+                        &#64;gmetimeline on X
+                    </a>
+                </div>
+
+            </div>
+            <div class="contact-item">
+                <div class="item-title">
+                    <img src="assets/icons/reddit-icon.png" class="social-media-icon" alt="r/gme_timeline"> Connect on Reddit
+                
+                </div>
+                <div>
+                    Make a post in 
+                    <a href="https://www.reddit.com/r/gme_timeline/" target="_blank" class="community-button">
+
+                        
+                        r/gme_timeline
+                    </a> or send a message to <a href="https://www.reddit.com/u/jersan" target="_blank" class="community-button">u/jersan</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

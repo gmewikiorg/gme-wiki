@@ -1,0 +1,24 @@
+.interview-section{
+    display:flex;
+    flex-direction: column;
+}
+.question-section{
+    margin-bottom: 25px;
+    padding: 5px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 5px;
+}
+.speaker-name{
+    font-size: 0.9em; 
+    font-weight: 550;
+}
+.speaker-text{
+    margin-bottom: 10px;
+}
+.opposite{
+    justify-self: flex-end;
+}
+
+.youtube-link{
+
+}

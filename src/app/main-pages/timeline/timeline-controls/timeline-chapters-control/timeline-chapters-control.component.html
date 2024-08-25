@@ -1,0 +1,29 @@
+<div style="display:flex;flex-direction: column; width: 100%;">
+
+
+    <div class="overview-button-container" *ngIf="showOverviewButton">
+        <button class="overview-button" (click)="onClickOverview()">Overview:  2020 to present</button>
+    </div>
+    <div *ngFor="let group of chaptersGroupedByYear" class="chapter-group">
+        <div class="year-container">
+            {{ group.year }}
+        </div>
+        <div *ngFor="let chapter of group.chapters" class="chapter no-select" (click)="onClickChapter(chapter)">
+            <div class="title">
+                {{ chapter.title }}
+            </div>
+            <div class="subtitle">
+                {{ chapter.subtitle }}
+            </div>
+        </div>
+    </div>
+
+    <!-- <div *ngFor="let chapter of chapters" class="chapter no-select" (click)="onClickChapter(chapter)">
+        <div class="title">
+            {{ chapter.title }}
+        </div>
+        <div class="subtitle">
+            {{ chapter.subtitle }}
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,31 @@
+export interface EarningsResultInterface {
+    fiscalYear: number;
+    filingDateYYYYMMDD: string;
+    reportDateYYYYMMDD: string;
+    revenue: number;
+    costOfSales: number;
+    grossProfit: number;
+    sga: number;
+    depreciationAmortization: number;
+    amortizationGoodWill: number;
+    goodwillImpairments: number;
+    assetImpairments: number;
+    gainOnSale: number;
+    mergerExpenses: number;
+    operatingExpenses: number;
+    otherLoss: number;
+    interestIncome: number;
+    debtExtinguishment: number;
+    mergerInterestExpense: number;
+    earningsBeforeIncomeTax: number;
+    incomeTaxExpense: number;
+    netEarnings: number;
+    netEPS: number;
+    weightedAverageSharesOutstanding: number;
+    totalAssets: number;
+    totalDebt: number;
+    totalLiabilities: number;
+    stockholdersEquity: number;
+    drs: number;
+    reportingPeriod: 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY';
+}

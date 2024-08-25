@@ -1,1 +1,41 @@
-<p>mobile-top-bar works!</p>
+<div class="mobile-top-bar-root no-select" (click)="onClickTopBar()">
+
+    <div class="mobile-menu-item" *ngIf="selectedMenuItem">
+        <div *ngIf="selectedMenuItem.iconOrImg === 'ICON'" class="menu-item-icon"><fa-icon
+                [icon]="selectedMenuItem.icon" *ngIf="selectedMenuItem.icon" style="font-size:1.5em;"></fa-icon></div>
+        <div *ngIf="selectedMenuItem.iconOrImg === 'IMAGE'" class="menu-item-icon" (click)="onClickImage()">
+            <img [src]="selectedMenuItem.imgSrc" style="width: 25px; height: 25px;">
+        </div>
+        <div class="menu-item-label" *ngIf="!isTimeline">
+            {{ selectedMenuItem.label }}
+        </div>
+        <div class="timeline-controls" *ngIf="isTimeline">
+            <app-timeline-controls></app-timeline-controls>
+        </div>
+    </div>
+    <div class="mobile-menu-item" *ngIf="!selectedMenuItem">
+        <div class="menu-item-icon"><fa-icon [icon]="faBars" style="font-size:1.5em;"></fa-icon></div>
+        <div class="menu-item-label">
+            Menu
+        </div>
+    </div>
+
+</div>
+    
+
+
+<div *ngIf="menuIsExpanded" class="expanded-menu shadow">
+    <div *ngFor="let item of mobileMenuItems" class="mobile-menu-item" [routerLink]="item.routerLink"
+        (click)="onClickMenuItem(item)">
+
+        <div *ngIf="item.iconOrImg === 'ICON'" class="menu-item-icon"><fa-icon [icon]="item.icon" *ngIf="item.icon"
+                style="font-size:1.5em;"></fa-icon></div>
+        <div *ngIf="item.iconOrImg === 'IMAGE'" class="menu-item-icon">
+            <img [src]="item.imgSrc" style="width: 25px; height: 25px;">
+        </div>
+
+        <div class="menu-item-label">
+            {{ item.label }}
+        </div>
+    </div>
+</div>

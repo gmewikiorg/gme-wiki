@@ -27,25 +27,20 @@ export class OwnershipComponent {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  private _isBrowser: boolean;
+    private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
 
   @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) { }
 
   public get isLoading(): boolean { return false; }
-    // public get isLoading(): boolean { return this._loadingService.dataIsLoading; }
-
-  // public get isMobile(): boolean { return this._screenService.isMobile; }
-
-  // public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
   public get lastUpdated(): string { 
     return dayjs((new OwnershipData()).lastUpdateYYYYMMDD).format('MMMM D, YYYY')
   }
 
   async ngOnInit() {
-    // await this._loadingService.loadData$();
+
   }
 
 

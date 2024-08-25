@@ -1,1 +1,22 @@
-<p>timeline works!</p>
+<div class="timeline-root" *ngIf="!isLoading">
+    <div class="container-grid" *ngIf="!isMobile && !showAsList">
+        <app-timeline-controls class="app-controls"></app-timeline-controls>
+        <app-timeline-items class="app-timeline-items"></app-timeline-items>
+        <app-timeline-chart class="app-chart" *ngIf="isBrowser"></app-timeline-chart>
+    </div>
+    <div class="list-view-grid" *ngIf="!isMobile && showAsList && !isNarrow">
+        <app-timeline-controls class="app-controls-list-view"></app-timeline-controls>
+        <app-timeline-items class="app-timeline-items-list-view"></app-timeline-items>
+        <app-timeline-chart class="app-chart-list-view" *ngIf="!isNarrow && isBrowser"></app-timeline-chart>
+    </div>
+    <div class="list-view-narrow" *ngIf="!isMobile && showAsList && isNarrow">
+        <app-timeline-controls class="app-controls-list-view-narrow"></app-timeline-controls>
+        <app-timeline-items class="app-timeline-items-list-view-narrow"></app-timeline-items>
+    </div>
+    <div class="mobile-container" *ngIf="isMobile">
+        <app-timeline-items class="app-timeline-items-mobile"></app-timeline-items>
+    </div>
+</div>
+
+
+<app-loading class="layout-root" style="justify-content: center;" *ngIf="isLoading" [loadingMessage]="loadingMessage"></app-loading>

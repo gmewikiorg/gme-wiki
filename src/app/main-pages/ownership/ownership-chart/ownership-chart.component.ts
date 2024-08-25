@@ -38,20 +38,9 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit{
 
 
   ngAfterViewInit(): void {
-
-
-
   }
 
   ngOnInit() {
-    
-    // await this._loadingService.loadData$();
-
-    
-    // Chart.unregister(ChartDataLabels);
-    
-
-    
   }
 
   private _setPieChartOptions(): ChartOptions<'pie'>{
@@ -61,6 +50,7 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit{
     // }
     const options: ChartOptions<'pie'> = {
       responsive: true,
+      maintainAspectRatio: false,
       animation: false,
       plugins: {
         datalabels: {

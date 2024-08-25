@@ -1,0 +1,63 @@
+.chapter{
+    background-color: rgba(247, 247, 247, 0);
+    border-radius:  5px;
+    margin-bottom: 3px;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    padding: 10px;
+    border: 1px solid rgba(231, 231, 231, 0);
+}
+
+.chapter:hover{
+    border: 1px solid var(--color-special);
+    cursor: pointer;
+    background-color: rgba(247, 247, 247, 0.8);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.chapter-group{
+    display:flex;flex-direction: column;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+.year-container{
+    display:flex;
+    flex-direction: row;
+    font-size: 0.9em;
+    padding-left: 10px;
+    // justify-content: center;
+}
+
+.title{
+    font-weight:600;
+    font-size: 0.95em;
+}
+.subtitle{
+    font-size: 0.75em;
+    color: gray;
+}
+
+.overview-button-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.overview-button{
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+    font-weight:600;
+    font-size: 0.9em;
+}
+.overview-button:hover{
+    border: 1px solid var(--color-special);
+    background-color: rgba(247, 247, 247, 0.8);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    cursor: pointer;
+}

@@ -1,0 +1,110 @@
+.item-root{
+    flex-grow: 2;
+    background-color: rgb(250, 250, 250);
+    display:flex;
+    flex-direction: column;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+.item-root:hover{
+    border: 1px solid var(--color-special);
+}
+
+.expanded{
+    background-color: red;
+    border: 1px solid blue;
+}
+
+.top-row{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bottom-row{
+    display:flex;
+    flex-direction: row;
+}
+
+.date{
+    font-size: 0.7em;
+    color: gray;
+    width: 75px;
+}
+.title{
+    font-size: 0.9em; 
+    display:flex;
+    flex-direction: row; 
+    flex-grow: 2; 
+    text-align: left;
+}
+.gme-price{
+    font-size: 0.7em;
+    color: green;
+}
+
+.link-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 3px;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.logo {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+}
+
+/* unvisited link */
+a:link {
+    color: rgb(196, 217, 255);
+}
+
+/* visited link */
+a:visited {
+    color: rgb(196, 217, 255);
+}
+
+/* mouse over link */
+a:hover {
+    color: #8ebf42;
+}
+
+/* selected link */
+a:active {
+    color: #800000;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.image {
+    max-height: 400px;
+    max-width: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.split-button {}
+
+
+.split-button:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: rgba(128, 0, 0, 1);
+}

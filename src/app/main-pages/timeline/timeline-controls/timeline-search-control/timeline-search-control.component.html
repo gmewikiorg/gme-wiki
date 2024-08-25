@@ -1,0 +1,81 @@
+<div class="search-root" *ngIf="searchValue.length === 0"  [ngClass]="{'search-root-mobile': isMobile}">
+    Search for something
+</div>
+
+<div class="search-root" *ngIf="searchValue.length > 0" [ngClass]="{'search-root-mobile': isMobile}">
+    <div class="top-result-bar" *ngIf="tagResults.length !== 1">
+        <div>
+            Search results for <span style="font-weight: bold;">{{ searchValue}}</span>
+        </div>
+        <div>
+            <button class="clear-search-button" (click)="onClickClearResultsFromChart()"
+                *ngIf="searchValue.length > 0">X</button>
+        </div>
+
+    </div>
+    <div class="search-results">
+        <div *ngIf="tagResults.length > 1">
+            Tag results
+            <div *ngFor="let result of tagResults" class="tag-result-container">
+                <div class="tag-result" (click)="onClickTagResult(result)">
+                    <div class="tag-result-display-name">
+                        {{ result.displayName }}
+                    </div>
+
+                    <div *ngIf="result.synonymMatch" class="tag-result-from-synonym">
+                        from {{ result.synonymMatch }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="tagResults.length === 1">
+            <div style="display:flex;flex-direction: row;justify-content: space-between;">
+                <div>
+                    <span style="font-size: 0.85em; color: rgb(70, 70, 70);">Results with tag: </span>
+                    <span style="font-weight: bold; color: rgb(0, 102, 255)">{{ tagResults[0].displayName}}</span>
+                </div>
+                <div>
+                    <button class="clear-search-button" (click)="onClickClearResultsFromChart()"
+                        *ngIf="searchValue.length > 0">X</button>
+                </div>
+            </div>
+            <div *ngFor="let event of tagResults[0].events" class="search-result">
+                <div style="min-width: 125px; ">
+                    {{ event.dateMMMDDYYYY}}
+                </div>
+                <div>
+                    {{event.title}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div style="display:flex;flex-direction: column;" *ngIf="tagResults.length === 1">
+        <div style="width: 100%; border-bottom: 1px solid gray; margin-top: 20px; margin-bottom: 20px;"></div>
+        <div style="display:flex;flex-direction: row; justify-content: space-between;">
+            <div style="font-size: 0.8em; color: gray;">
+                Apply search results to chart
+            </div>
+            <div style="display:flex;flex-direction: row;">
+                <button class="apply-results-button" (click)="onClickApplyResultsToChart()"  >Apply results</button>
+                <button class="apply-results-button" (click)="onClickClearResultsFromChart()" style="margin-left: 10px;">Clear
+                    results</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- <div *ngIf="ddResults.length > 0" >
+        <hr>
+        DD Results
+        <div style="max-height: 400px; overflow-y: auto;">
+            <div *ngFor="let ddResult of ddResults" class="dd-result-title" (click)="onClickDD(ddResult)">
+                {{ ddResult.title }}
+            </div>
+        </div>
+
+    </div> -->
+
+</div>

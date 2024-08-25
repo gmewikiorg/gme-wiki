@@ -1,1 +1,73 @@
-<p>financials works!</p>
+<div class="financials-root page-root">
+
+    <div class="page-title">
+        GameStop Income Statements
+    </div>
+    <div class="page-subtitle">
+        By fiscal year, 2005 to 2023
+    </div>
+
+    <div class="page-content">
+
+
+        <div class="page-section">
+            <div class="section-heading" style="margin-bottom: 10px;">Revenue and earnings by fiscal year chart</div>
+            <app-earnings-chart class="earnings-chart-container" *ngIf="isBrowser"></app-earnings-chart>
+            <div *ngIf="!isBrowser" style="height: 650px;"></div>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Earnings summary article</div>
+            <div style="font-size:0.9em;color:gray;">April 10, 2024</div>
+            <div class="news-report" [routerLink]="'/fy23-profitability'">
+                <img src="assets/icons/newspaper-icon.png" alt=""
+                    style="margin-right: 10px; margin-top: 12px;height: 30px; width: 30px;">
+                <div>
+                    In fiscal year 2023, GameStop was profitable for the first time in 6 years
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">GameStop 2024 annual meeting</div>
+            <p>
+                From <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">Ryan Cohen's statements on June 17</a> from GameStop's 2024 annual meeting:
+            </p>
+            <ul>
+                <li>"With respect to retail operations, we plan to continue reducing costs and focusing on
+                    profitability."</li>
+                <li>"This means a smaller network of stores with an expanded assortment of higher value items that fit
+                    into our trade-in model."</li>
+            </ul>
+        </div>
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Earnings table</div>
+            <app-earnings-table></app-earnings-table>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Data source</div>
+            <div >
+                <a
+                    href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
+                    target="_blank">
+                    GameStop 10-K filings - Google Sheets
+                </a>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+<!-- <app-loading class="layout-root" style="justify-content: center;" *ngIf="isLoading"
+    [loadingMessage]="loadingMessage"></app-loading> -->

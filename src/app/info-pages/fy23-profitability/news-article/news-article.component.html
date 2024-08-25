@@ -1,0 +1,33 @@
+<div class="news-article" *ngIf="article && article.isExpanded" [ngClass]="article.ngClass" [ngStyle]="{'cursor': !article.isExpanded ? 'pointer': ''}">
+    <div class="news-article-headline">
+        <div>{{article.title}}</div>
+        <div *ngIf="article.isExpanded" class="close-button" (click)="article.close()">
+            <fa-icon [icon]="faXMark"></fa-icon>
+        </div>
+    </div>
+    <div class="content" *ngIf="article.isExpanded">
+        <div class="news-article-date">
+            {{article.date}}, by <a [href]="article.urls[0]" target="_blank">{{ article.author }}</a> 
+        </div>
+        <div class="news-article-conclusions">
+            <!-- urls -->
+        </div>
+        <div>
+            <ul>
+                <li *ngFor="let summaryPoint of article.summary">
+                    {{ summaryPoint }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<div class="news-article slim" *ngIf="article && !article.isExpanded" [ngClass]="article.ngClass"  (click)="onClick(article)" [ngStyle]="{'cursor': !article.isExpanded ? 'pointer': ''}">
+    <div class="news-article-headline">
+        <div>{{article.title}}</div>
+    </div>
+    <div class="news-article-date" style="font-size:0.8em;">
+        {{article.date}}, by {{ article.author }}
+    </div>
+
+</div>

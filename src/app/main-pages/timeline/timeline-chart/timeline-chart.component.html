@@ -1,0 +1,11 @@
+
+<div [ngClass]="isListView ? 'chart-root-list' : 'chart-root'" (click)="onClick($event)">
+    <div class="chart-container" [ngStyle]="chartContainerNgStyle" id="chartContainer">
+        <canvas baseChart class="chart" id="chartCanvas"
+        [type]="'line'"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+        </canvas>   
+    </div>
+</div>

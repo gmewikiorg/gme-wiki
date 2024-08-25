@@ -1,0 +1,18 @@
+<div class="control-root">
+    <div class="label">Category</div>
+    <table style="width:100%;">
+        <tr style="font-size: 0.7em;color: gray;">
+            <td></td>
+            <td>Show</td>
+            <td>Hide</td>
+            <td></td>
+        </tr>
+        <tr *ngFor="let button of categoryButtons" class="button-category-tr no-select" >
+            <td class="button-category" (click)="onClickButtonCategory(button)">{{ button.category }}</td>
+            <td><div class="control-button" (click)="onClickShow(button)" [ngClass]="getButtonClass(button, 'show')"></div></td>
+            <td><div class="control-button" (click)="onClickHide(button)" [ngClass]="getButtonClass(button, 'hide')"></div></td>
+            <!-- <td><div class="control-button" (click)="onClickShow(button)" [ngClass]="button.showActivated === true? 'selected' : 'not-selected'"></div></td>
+            <td><div class="control-button" (click)="onClickHide(button)" [ngClass]="button.hideActivated === true? 'selected' : 'not-selected'"></div></td> -->
+        </tr>
+    </table>
+</div>

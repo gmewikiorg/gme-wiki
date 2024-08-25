@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ScreenSizeService } from '../../../services/screen-size.service';
+import { ScreenService } from '../../../shared/services/screen-size.service';
 import { OwnershipData } from '../ownership-data.class';
 import dayjs from 'dayjs';
 import { RouterModule } from '@angular/router';
@@ -14,11 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class OwnershipTableComponent {
   constructor(
-    // private _screenService: ScreenSizeService
+    private _screenService: ScreenService
   ){}
 
-  // public get isMobile(): boolean { return this._screenService.isMobile; }
-  public get isMobile(): boolean { return false; }
+  public get isMobile(): boolean { return this._screenService.isMobile; }
 
   public get data(): OwnershipData { return new OwnershipData(); }
 
