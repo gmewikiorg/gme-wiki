@@ -9,13 +9,13 @@ export const mobileMenuItems: MobileMenuItem[] = [
     //     'assets/flaticon/search-1.png',
     //     'Research'
     // ),
-    new MobileMenuItem(
-        'IMAGE',
-        null,
-        '/calendar',
-        'assets/flaticon/calendar.png',
-        'Calendar'
-    ),
+    // new MobileMenuItem(
+    //     'IMAGE',
+    //     null,
+    //     '/calendar',
+    //     'assets/flaticon/calendar.png',
+    //     'Calendar'
+    // ),
     new MobileMenuItem(
         'IMAGE',
         null,
