@@ -1,0 +1,18 @@
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    border: 1px solid black;
+}
+
+td{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+.top-row{
+    font-weight: bold;
+
+}
+.number-cell{
+    text-align: right;
+}
