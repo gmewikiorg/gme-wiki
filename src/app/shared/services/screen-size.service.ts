@@ -8,28 +8,35 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class ScreenService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this._isMobile = false;
     if (isPlatformBrowser(this.platformId)) {
       this._screenDimensions$ = new BehaviorSubject({ width: window.innerWidth, height: window.innerHeight });
       this._browser = window.navigator.userAgent;
       this._isBrowser = true;
+      if(window.innerWidth < 480){
+        this._isMobile = true;
+      }
     } else {
       this._isBrowser = false;
+      this._isMobile = false;
       this._screenDimensions$ = new BehaviorSubject({ width: 800, height: 600 });
     }
 
   }
 
   private _isBrowser: boolean;
+  private _isMobile: boolean;
   private _screenDimensions$: BehaviorSubject<{ width: number, height: number }>;
   public get screenDimensions$(): Observable<{ width: number, height: number }> { return this._screenDimensions$.asObservable(); }
   public get screenDimensions(): { width: number, height: number } { return this._screenDimensions$.getValue(); }
-  public get isMobile(): boolean { return this.screenDimensions.width < 480; }
+  public get isMobile(): boolean { return this._isMobile; }
   public get isBrowser(): boolean { return this._isBrowser; }
 
 
 
   public updateScreenSize(width: number, height: number) {
     this._screenDimensions$.next({ width: width, height: height });
+    this._isMobile = this.screenDimensions.width < 480;
   }
 
 

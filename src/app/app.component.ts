@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ScreenService } from './shared/services/screen-size.service';
 import { SettingsService } from './shared/services/settings.service';
+import { LoadingService } from './shared/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +22,12 @@ export class AppComponent {
     private _titleService: Title,
     private _sizeService: ScreenService,
     private _settingsService: SettingsService,
-    private _router: Router
+    private _router: Router,
+    private _loadingService: LoadingService,
   ) {
-
     this._isBrowser = isPlatformBrowser(this.platformId);
     const isServer: boolean = isPlatformServer(this.platformId);
-
+    
   }
 
   private _isBrowser: boolean;
@@ -38,7 +39,7 @@ export class AppComponent {
     this._sizeService.updateScreenSize(width, height);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this._settingsService.getSettings();
     if(this._isBrowser){
       this._router.events.subscribe(event => {
@@ -46,6 +47,8 @@ export class AppComponent {
           if (event.url === '/') {
             this._router.navigate(['/timeline']);
           }else{
+            if(event.url === '/timeline'){
+            }
           }
         }
         const element = document.querySelector('#app-component-root');

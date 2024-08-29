@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { OwnershipData } from './ownership-data.class';
 import dayjs from 'dayjs';
 import { RouterModule } from '@angular/router';
@@ -20,14 +20,32 @@ export class OwnershipComponent {
   constructor(
     // private _loadingService: LoadingService, 
     // private _screenService: ScreenSizeService, 
+    private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title) {
 
-    this.titleService.setTitle('GameStop ownership (as of '+this.lastUpdated+')',);
+    this.titleService.setTitle('GameStop ownership (as of ' + this.lastUpdated + ')',);
     this._isBrowser = isPlatformBrowser(this.platformId);
+
+    const metaTags = this.meta.getTags('name');
+    metaTags.forEach(tag => this.meta.removeTagElement(tag));
+    this.meta.addTags([
+      { name: 'description', content: 'GameStop Company Ownership' },
+      { name: 'keywords', content: 'GameStop, GME, ownership, shares, stockholders, shareholders, DRS, DTCC, Cede & Co, Ryan Cohen, Roaring Kitty, DeepFuckingValue, insiders, institutions, DSPP, Computershare, transfer agent, registered shares, vanguard group, blackrock inc, state street corporation' },
+      { name: 'author', content: 'GME shareholder' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      { charset: 'UTF-8' }
+    ]);
+    this.meta.addTags([
+      { property: 'og:title', content: 'GameStop Company Ownership' },
+      { property: 'og:description', content: 'GameStop ownership pie chart and table' },
+      { property: 'og:url', content: 'https://gmetimeline.org/ownership' },
+      { property: 'og:type', content: 'website' },
+    ]);
   }
 
-    private _isBrowser: boolean = false;
+  private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
 
@@ -35,7 +53,7 @@ export class OwnershipComponent {
 
   public get isLoading(): boolean { return false; }
 
-  public get lastUpdated(): string { 
+  public get lastUpdated(): string {
     return dayjs((new OwnershipData()).lastUpdateYYYYMMDD).format('MMMM D, YYYY')
   }
 

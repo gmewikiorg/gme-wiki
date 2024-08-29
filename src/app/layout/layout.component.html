@@ -1,4 +1,14 @@
-<div class="layout-root" *ngIf="!isMobile">
+<!-- <div *ngIf="isLoading">
+    it is loading
+</div>
+
+<div *ngIf="!isLoading">
+    it is NOT loading
+</div> -->
+
+
+<div class="layout-root" *ngIf="!isMobile && !isLoading">
+
     <app-sidebar class="app-sidebar" *ngIf="!isMobile"></app-sidebar>
     <div class="router-outlet">
         <router-outlet></router-outlet>
@@ -7,8 +17,9 @@
 
 
 
-<div class="layout-root-mobile" *ngIf=isMobile>
-    <app-mobile-top-bar class="mobile-top-bar"></app-mobile-top-bar>
+<div class="layout-root-mobile" *ngIf="isMobile && !isLoading">
+
+    <app-mobile-top-bar class="mobile-top-bar" *ngIf="isMobile"></app-mobile-top-bar>
     <div class="router-outlet-mobile">
         <router-outlet></router-outlet>
     </div>

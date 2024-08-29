@@ -7,6 +7,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faInfo, faQuestion, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { mobileMenuItems } from './mobile-menu-items';
 import { TimelineControlsComponent } from '../../main-pages/timeline/timeline-controls/timeline-controls.component';
+import { LoadingService } from '../../shared/services/loading.service';
 
 @Component({
   selector: 'app-mobile-top-bar',
@@ -17,7 +18,7 @@ import { TimelineControlsComponent } from '../../main-pages/timeline/timeline-co
 })
 export class MobileTopBarComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private _loadingService: LoadingService){}
 
   private _isTimeline: boolean = false;
   private _menuIsExpanded: boolean = false;
@@ -32,12 +33,14 @@ export class MobileTopBarComponent {
   public get faQuestion(): IconDefinition { return faQuestion; }
   public get faBars(): IconDefinition { return faBars; }
   public get mobileMenuItems(): MobileMenuItem[] { return mobileMenuItems; }
+  public get isLoading(): boolean { return this._loadingService.dataIsLoading; }
 
   ngOnInit(){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this._setItem(event.url);
     }});
+    this._setItem(this.router.url)
   }
 
   private _setItem(url :string){
@@ -49,7 +52,6 @@ export class MobileTopBarComponent {
         item.select();
         this._selectedMenuItem = item;
         itemFound = true;
-
       }
       
     });

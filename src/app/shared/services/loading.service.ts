@@ -38,14 +38,14 @@ export class LoadingService {
   private _priceEntries: GmePriceEntry[] = [];
   private _quarterlyResults: EarningsResult[] = [];
 
-  private _dataIsLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _dataIsLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private _loadingMessage: string = '';
   public get dataIsLoading(): boolean { return this._dataIsLoading$.getValue(); }
   public get dataIsLoading$(): Observable<boolean> { return this._dataIsLoading$.asObservable(); }
   public get loadingMessage(): string { return this._loadingMessage; }
 
   public set loadingMessage(loadingMessage: string) { this._loadingMessage = loadingMessage; }
-  public beginLoading() { this._dataIsLoading$.next(true); }
+  // public beginLoading() { this._dataIsLoading$.next(true); }
 
   private _allDataImported: boolean = false;
 
@@ -63,8 +63,8 @@ export class LoadingService {
     this._dataIsLoading$.next(true);
     this._loadingMessage = 'Loading stuff...';
 
-    this._loadingMessage = 'Loading earnings data...';
-    await this.loadEarnings();
+    // this._loadingMessage = 'Loading earnings data...';
+    // await this.loadEarnings();
     this._loadingMessage = 'Loading GME price data...';
     await this._loadGmeData();
     this._loadingMessage = 'Loading events data...';
@@ -87,7 +87,7 @@ export class LoadingService {
       }
     }
     if (needsUpdate) {
-      // console.log("_loadEvents() needs update")
+      console.log("_loadEvents() needs update, getting from Google sheets")
       this._allEventConfigs = await firstValueFrom(this._importEventsService.importEventsFromGoogleSheet$());
       this._settingsService.setLastEventsCheckedDate();
       this._settingsService.setEventsData(this._allEventConfigs);
