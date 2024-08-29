@@ -1,4 +1,4 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -23,12 +23,21 @@ export class LayoutComponent implements OnInit, AfterViewInit{
     } else {
       this._isBrowser = false;
     }
+    if(isPlatformServer(this.platformId)){
+      this._isServer = true;
+    } else {
+      this._isServer = false;
+    }
 
   }
+
+  private _isServer: boolean;
   private _isBrowser: boolean;
   private _isMobile: boolean = false;
   private _isLoading: boolean = true;
   public get isLoading(): boolean { return this._isLoading; }
+  public get isBrowser(): boolean { return this._isBrowser;}
+  public get isServer(): boolean { return this._isServer; }
   public get isMobile(): boolean { return this._isMobile; }
   public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
@@ -36,17 +45,19 @@ export class LayoutComponent implements OnInit, AfterViewInit{
     if(this._isBrowser){
       if(this.router.url === '/timeline'){
       }
-      if(window.innerWidth < 480){
-        this._isMobile = true;
-      }else{
-        this._isMobile = false;
-      }
+
       /**
        * Without this timer, for some reason there is an issue with this components value of _isLoading, 
        * behaving as if it is both true and false for a brief moment in time
        */
-      timer(0).subscribe(() => {
-        this._isLoading = false;
+      timer(100).subscribe(() => {
+  
+        if(window.innerWidth < 480){
+          this._isMobile = true;
+        }else{
+          this._isMobile = false;
+        }
+        this._isLoading = false;    
       });
       this._sizeService.screenDimensions$.subscribe({
         next: ()=>{
@@ -66,6 +77,9 @@ export class LayoutComponent implements OnInit, AfterViewInit{
   private _afterViewInit: boolean = false;
   public get afterViewInit(): boolean { return this._afterViewInit; }
   ngAfterViewInit(): void {
-    this._afterViewInit = true;
+    // if (isPlatformBrowser(this.platformId)) {
+    //   const ssrElements = document.querySelectorAll('.ssr-hidden');
+    //   ssrElements.forEach(el => el.classList.remove('ssr-hidden'));
+    // }
   }
 }
