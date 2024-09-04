@@ -7,26 +7,41 @@
 </div> -->
 
 
-<div class="layout-root" *ngIf="!isMobile && !isLoading">
+<div class="component-root" *ngIf="!isMobile && !isLoading">
 
     <app-sidebar class="app-sidebar" *ngIf="!isMobile"></app-sidebar>
     <div class="router-outlet">
         <router-outlet></router-outlet>
     </div>
+
+    <div class="night-mode-button" *ngIf="!isDarkMode" (click)="onClickNightMode()">
+        <fa-icon [icon]="faMoon" class="fa-icon"></fa-icon>
+    </div>
+    <div class="night-mode-button-dark" *ngIf="isDarkMode" (click)="onClickNightMode()">
+        <fa-icon [icon]="faSun" class="fa-icon"></fa-icon>
+    </div>
+
 </div>
 
 
 
-<div class="layout-root-mobile" *ngIf="isMobile && !isLoading">
+<div class="component-root-mobile" *ngIf="isMobile && !isLoading">
 
     <app-mobile-top-bar class="mobile-top-bar" *ngIf="isMobile"></app-mobile-top-bar>
     <div class="router-outlet-mobile">
         <router-outlet></router-outlet>
     </div>
+
+    <div class="night-mode-button-mobile" *ngIf="!isDarkMode" (click)="onClickNightMode()">
+        <fa-icon [icon]="faMoon" class="fa-icon-mobile"></fa-icon>
+    </div>
+    <div class="night-mode-button-mobile-dark" *ngIf="isDarkMode" (click)="onClickNightMode()">
+        <fa-icon [icon]="faSun" class="fa-icon-mobile"></fa-icon>
+    </div>
 </div>
 
 
-<div class="layout-root ssr-hidden" *ngIf="isLoading" style="z-index: -100;">
+<div class="component-root ssr-hidden" *ngIf="isLoading" style="z-index: -100;">
     <div class="router-outlet">
         <router-outlet></router-outlet>
     </div>

@@ -7,23 +7,30 @@ import { ScreenService } from '../shared/services/screen-size.service';
 import { LoadingService } from '../shared/services/loading.service';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { timer } from 'rxjs';
+import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, SidebarComponent, MobileTopBarComponent, LoadingComponent],
+  imports: [CommonModule, RouterModule, SidebarComponent, MobileTopBarComponent, LoadingComponent, FontAwesomeModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit, AfterViewInit{
+export class LayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _sizeService: ScreenService, private _loadingService: LoadingService, private router: Router) { 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private _sizeService: ScreenService, 
+    private _loadingService: LoadingService, 
+    private router: Router,
+    private _screenService: ScreenService) {
     if (isPlatformBrowser(this.platformId)) {
       this._isBrowser = true;
     } else {
       this._isBrowser = false;
     }
-    if(isPlatformServer(this.platformId)){
+    if (isPlatformServer(this.platformId)) {
       this._isServer = true;
     } else {
       this._isServer = false;
@@ -36,14 +43,20 @@ export class LayoutComponent implements OnInit, AfterViewInit{
   private _isMobile: boolean = false;
   private _isLoading: boolean = true;
   public get isLoading(): boolean { return this._isLoading; }
-  public get isBrowser(): boolean { return this._isBrowser;}
+  public get isBrowser(): boolean { return this._isBrowser; }
   public get isServer(): boolean { return this._isServer; }
   public get isMobile(): boolean { return this._isMobile; }
   public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
-  ngOnInit(){
-    if(this._isBrowser){
-      if(this.router.url === '/timeline'){
+  public get faMoon(): IconDefinition { return faMoon; }
+  public get faSun(): IconDefinition { return faSun; }
+
+  public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
+  public onClickNightMode() { this._screenService.toggleDarkMode(); }
+
+  ngOnInit() {
+    if (this._isBrowser) {
+      if (this.router.url === '/timeline') {
       }
 
       /**
@@ -51,19 +64,19 @@ export class LayoutComponent implements OnInit, AfterViewInit{
        * behaving as if it is both true and false for a brief moment in time
        */
       timer(100).subscribe(() => {
-  
-        if(window.innerWidth < 480){
+
+        if (window.innerWidth < 480) {
           this._isMobile = true;
-        }else{
+        } else {
           this._isMobile = false;
         }
-        this._isLoading = false;    
+        this._isLoading = false;
       });
       this._sizeService.screenDimensions$.subscribe({
-        next: ()=>{
-          if(window.innerWidth < 480){
+        next: () => {
+          if (window.innerWidth < 480) {
             this._isMobile = true;
-          }else{
+          } else {
             this._isMobile = false;
           }
         }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-about',
@@ -14,7 +15,7 @@ export class AboutComponent {
 
   public get isMobile(): boolean { return false; }
 
-  constructor(private meta: Meta, private titleService: Title){
+  constructor(private meta: Meta, private titleService: Title, private screenService: ScreenService){
     this.titleService.setTitle('About gmetimeline.org');
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));

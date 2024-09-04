@@ -2,7 +2,7 @@ import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { Title } from '@angular/platform-browser';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ScreenService } from './shared/services/screen-size.service';
 import { SettingsService } from './shared/services/settings.service';
 import { LoadingService } from './shared/services/loading.service';
@@ -10,7 +10,7 @@ import { LoadingService } from './shared/services/loading.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LayoutComponent],
+  imports: [RouterOutlet, LayoutComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -24,6 +24,7 @@ export class AppComponent {
     private _settingsService: SettingsService,
     private _router: Router,
     private _loadingService: LoadingService,
+    private _screenService: ScreenService,
   ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
     const isServer: boolean = isPlatformServer(this.platformId);
@@ -59,5 +60,7 @@ export class AppComponent {
     }
     
   }
+
+  public get appNgClass(): string[] { return this._screenService.pageContentNgClass; }
 
 }

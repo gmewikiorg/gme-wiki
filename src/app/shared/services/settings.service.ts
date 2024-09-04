@@ -68,6 +68,32 @@ export class SettingsService {
     }
   }
 
+
+  
+  public getDarkMode(): boolean {
+    let darkMode: boolean = false;
+    if (this._localStorage) {
+      let storageValue = this._localStorage.getItem('light-or-dark');
+      if(storageValue !== null){
+        if(storageValue === 'LIGHT'){
+          darkMode = false;
+        }else if(storageValue === 'DARK'){
+          darkMode = true;
+        }
+      }
+    }
+    return darkMode;
+  }
+  public setDarkMode(isDarkMode: boolean){
+    if (this._localStorage) {
+      let storageValue = 'LIGHT';
+      if(isDarkMode === true){
+        storageValue = 'DARK';
+      }
+      this._localStorage.setItem('light-or-dark', storageValue);
+    }
+  }
+
   /**
    * 
    * @param now current time to compare against previous time
