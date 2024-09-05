@@ -14,7 +14,7 @@ export class ChartDataManagerService {
    * The ChartDataManagerService manages the datasets for the chart.  As filters are applied, the datasets need to be updated.
    */
   constructor() {
-    this._dataManager = new ChartDataSetManager([], [], [], -1);
+    this._dataManager = new ChartDataSetManager([], [], [], -1, false);
   }
 
   private _dataSets$: BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]> = new BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]>([]);
@@ -57,6 +57,10 @@ export class ChartDataManagerService {
   public updateDateRange(startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._dataManager.updateDateRange(startDateYYYYMMDD, endDateYYYYMMDD);
   }
+  public updateDarkMode(isDarkMode: boolean){
+    this._dataManager.updateDarkMode(isDarkMode);
+  }
+
 
 
   public clearSearchResults(significance: number, categories: TimelineEventType[], allEvents: TimelineEvent[]) {
@@ -76,7 +80,6 @@ export class ChartDataManagerService {
   public getTypeColor(type: TimelineEventType, transparency?: number): string {
     return this._dataManager.getTypeColor(type, transparency);
   }
-
 
 
 }

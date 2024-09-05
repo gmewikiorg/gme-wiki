@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { BarController, CategoryScale, Chart, ChartConfiguration, ChartOptions, Decimation, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip, TooltipItem } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartDataManagerService } from './timeline-chart-data-manager-service';
@@ -9,6 +9,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import dayjs from 'dayjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './timeline-chart.component.html',
   styleUrl: './timeline-chart.component.scss'
 })
-export class TimelineChartComponent {
+export class TimelineChartComponent implements OnDestroy {
   @ViewChild(BaseChartDirective) public baseChart: BaseChartDirective | undefined;
   @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) { }
 
@@ -28,6 +29,7 @@ export class TimelineChartComponent {
     private _sizeService: ScreenService,
     private _settingsService: SettingsService
   ) { 
+    this._isDarkMode = this._sizeService.isDarkMode;
     Chart.unregister(ChartDataLabels);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
     Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale);
@@ -47,9 +49,17 @@ export class TimelineChartComponent {
   private _chartContainerNgStyle: any;
   public get chartContainerNgStyle(): any { return this._chartContainerNgStyle; }
 
+  private _isDarkMode: boolean;
+
+  private _subscriptions: Subscription[] = [];
+
   ngOnInit() {
     
 
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   private _updateLabels() {
@@ -59,25 +69,33 @@ export class TimelineChartComponent {
   }
 
   ngAfterViewInit() {
+
+    const darkModeSub = this._sizeService.isDarkMode$.subscribe({
+      next: (isDarkMode)=>{
+        this._isDarkMode = isDarkMode;
+        this.lineChartOptions = this._setLineChartOptions();
+        this._chartDataService.updateDarkMode(isDarkMode);
+      }
+    })
+
     /**
      * This subscription is required to update the chart after datasets are modified.
      * For example, if the user changes a filter value such as significance value, 
      * this subscription will fire and the chart must be updated here.
      */
-    this._chartDataService.dataSets$.subscribe({
+    const datasetSub = this._chartDataService.dataSets$.subscribe({
       next: (datasets) => {
         this._updateLabels();
-        // console.log("Updating datasets:", datasets)
         this.lineChartData.datasets = datasets;
         this.baseChart?.update();
       },
       error: () => { },
       complete: () => { }
     });
-    this._sizeService.screenDimensions$.subscribe({
+    const screenSizeSub = this._sizeService.screenDimensions$.subscribe({
       next: () => { this._updateChartContainerStyle(); }
     });
-    this._timelineItemService.itemSelected$.subscribe({
+    const timelineSub = this._timelineItemService.itemSelected$.subscribe({
       next: (selected) => {
         if (selected.item) {
           if (selected.source === 'ITEMS') {
@@ -88,11 +106,18 @@ export class TimelineChartComponent {
       error: () => { },
       complete: () => { }
     });
+    this._subscriptions = [darkModeSub, datasetSub, screenSizeSub, timelineSub];
   }
 
 
 
   private _setLineChartOptions(): ChartOptions<'line'> {
+
+    let scaleColor = 'rgba(128,128,128,0.2)';
+    if(this._isDarkMode){
+       scaleColor = 'rgba(255,255,255,0.1)';
+    }
+    
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -124,9 +149,18 @@ export class TimelineChartComponent {
         //   }
         // }
       },
-      // animation: {
-      //   duration: 0
-      // },
+      scales: {
+        x: {
+          grid: {
+            color: scaleColor // Change the color of the lines along the X axis
+          }
+        },
+        y: {
+          grid: {
+            color: scaleColor // Change the color of the lines along the Y axis
+          }
+        }
+      },
       plugins: {
         tooltip: {
           backgroundColor: (context) => {

@@ -99,13 +99,25 @@ export class TimelineItemComponent {
       
     } else { // if not selected
       if(this.isMobile){ // if mobile and not selected
-        return {
-          'background-color': this._chartDataService.getTypeColor(this.item.mainType, 0.05),
-          // 'border-left': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
-          // 'border-right': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
-          'padding-top': '15px',
-          'padding-bottom': '15px',
+        if(this._sizeService.isDarkMode){
+          return {
+            'background-color': 'rgba(0,0,0,0.9)',
+            'color': 'white',
+            // 'border-left': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
+            // 'border-right': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
+            'padding-top': '15px',
+            'padding-bottom': '15px',
+          }
+        }else{
+          return {
+            'background-color': this._chartDataService.getTypeColor(this.item.mainType, 0.05),
+            // 'border-left': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
+            // 'border-right': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
+            'padding-top': '15px',
+            'padding-bottom': '15px',
+          }
         }
+
       }else{
         return { // if not mobile and not selected
           'background-color': this._chartDataService.getTypeColor(this.item.mainType, 0.05),

@@ -141,7 +141,7 @@ export class LoadingService {
     this._timelineItemsService.updateCategories(this._settingsService.categories);
     const priceEntries = this._gmeDataService.allPriceEntries;
     const dataManager: ChartDataSetManager = new ChartDataSetManager(priceEntries,
-      this._timelineItemsService.allTimelineItems, this._settingsService.categories, this._settingsService.significanceValue);
+      this._timelineItemsService.allTimelineItems, this._settingsService.categories, this._settingsService.significanceValue, this._settingsService.getDarkMode());
     this._dataManagerService.setDataManager(dataManager);
     this._timelineItemsService.setQuarterlyFinancialResults(this._quarterlyResults);
     this._loadingMessage = '';

@@ -23,6 +23,8 @@ export class ChartDataSetManager {
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
 
+  private _isDarkMode: boolean;
+
   private _signifianceValue: number = -1;
   private _timelineCategories: TimelineEventType[] = [];
   public get datasets$(): Observable<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]> { return this._datasets$.asObservable(); }
@@ -39,11 +41,12 @@ export class ChartDataSetManager {
    * @param categories 
    * @param significanceValue 
    */
-  constructor(priceEntries: GmePriceEntry[], timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number) {
+  constructor(priceEntries: GmePriceEntry[], timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean) {
     this._allPriceEntries = priceEntries;
     this._timelineEvents = timelineItems;
     this._timelineCategories = categories;
     this._signifianceValue = significanceValue;
+    this._isDarkMode = isDarkMode;
     // console.log("BUILDING DataSetManager", this._allPriceEntries, this._timelineEvents, this._timelineCategories, this._signifianceValue)
     this.getAndUpdateDatasets()
   }
@@ -61,6 +64,11 @@ export class ChartDataSetManager {
   public updateDateRange(startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._startDateYYYYMMDD = startDateYYYYMMDD;
     this._endDateYYYYMMDD = endDateYYYYMMDD;
+    this.getAndUpdateDatasets();
+  }
+
+  public updateDarkMode(isDarkMode: boolean){
+    this._isDarkMode = isDarkMode;
     this.getAndUpdateDatasets();
   }
 
@@ -93,7 +101,8 @@ export class ChartDataSetManager {
       this._allPriceEntries,
       this._timelineEvents,
       this._signifianceValue,
-      this._timelineCategories);
+      this._timelineCategories,
+      this._isDarkMode);
     const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = chartData.datasets;
     this._chartLabels = chartData.labels;
     this._datasetConfigs = chartData.datasetConfigs;

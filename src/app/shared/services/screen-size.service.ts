@@ -22,9 +22,7 @@ export class ScreenService {
       this._isMobile = false;
       this._screenDimensions$ = new BehaviorSubject({ width: 800, height: 600 });
     }
-
     this._setDarkMode(this._settingsService.getDarkMode());
-
   }
 
 
@@ -60,8 +58,7 @@ export class ScreenService {
   }
 
   private _setDarkMode(isDarkMode: boolean){
-    this._isDarkMode = isDarkMode;
-    if(this._isDarkMode){
+    if(isDarkMode){
       this._pageTitleNgClass = ['dark-mode'];
       this._pageContentNgClass = ['dark-mode'];
       this._pageSectionNgClass = ['dark-mode'];
@@ -73,13 +70,17 @@ export class ScreenService {
       this._pageSectionHeadingNgClass = ['light-mode'];
     }
     this._settingsService.setDarkMode(isDarkMode);
+    this._isDarkMode$.next(isDarkMode);
   }
 
-  private _isDarkMode: boolean = false;
-  public get isDarkMode(): boolean { return this._isDarkMode; }
-  public toggleDarkMode() { 
-    this._isDarkMode = !this._isDarkMode; 
-    this._setDarkMode(this._isDarkMode);
+  private _isDarkMode$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public get isDarkMode(): boolean { return this._isDarkMode$.getValue(); }
+  public get isDarkMode$(): Observable<boolean> { return this._isDarkMode$.asObservable(); }
+  public onClickDarkMode() { 
+    this._setDarkMode(true);
+  }
+  public onClickLightMode(){
+    this._setDarkMode(false);
   }
 
   

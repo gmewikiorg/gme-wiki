@@ -17,7 +17,8 @@ export class ChartDataItemBuilder {
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
-        currentCategoriesValue: TimelineEventType[]): {
+        currentCategoriesValue: TimelineEventType[],
+        isDarkMode: boolean): {
             datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[],
             datasetConfigs: DatasetConfig[],
             labels: string[]
@@ -69,18 +70,29 @@ export class ChartDataItemBuilder {
             });
 
         const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = [];
+
+        let gmeBorderColor = 'green';
+        let gmeBackgroundColor =  'rgba(0,255,0,0.075)';
+        if(isDarkMode){
+            gmeBorderColor = 'rgba(0, 255, 0, 0.6)';
+            gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
+        }
+
         datasets.push({
             data: closePrices,
             label: 'GME price $ ',
             fill: true,
             tension: 0.5,
-            borderColor: 'green',
-            backgroundColor: 'rgba(0,255,0,0.075)',
+            borderColor: gmeBorderColor,
+            backgroundColor: gmeBackgroundColor,
             borderWidth: 1.3,
             pointRadius: 0,
             pointHitRadius: 0,
             pointHoverRadius: 0,
         });
+        
+        
+        
         let datasetConfigs = this._getDatasetConfigs(currentSignificanceValue, currentCategoriesValue, condensedItems);
         datasetConfigs.forEach(datasetConfig => {
             datasets.push({

@@ -14,10 +14,10 @@
         <router-outlet></router-outlet>
     </div>
 
-    <div class="night-mode-button" *ngIf="!isDarkMode" (click)="onClickNightMode()">
+    <div class="night-mode-button" *ngIf="!isDarkMode" (click)="onClickDarkMode()">
         <fa-icon [icon]="faMoon" class="fa-icon"></fa-icon>
     </div>
-    <div class="night-mode-button-dark" *ngIf="isDarkMode" (click)="onClickNightMode()">
+    <div class="night-mode-button-dark" *ngIf="isDarkMode" (click)="onClickLightMode()">
         <fa-icon [icon]="faSun" class="fa-icon"></fa-icon>
     </div>
 
@@ -32,10 +32,10 @@
         <router-outlet></router-outlet>
     </div>
 
-    <div class="night-mode-button-mobile" *ngIf="!isDarkMode" (click)="onClickNightMode()">
+    <div class="night-mode-button-mobile" *ngIf="!isDarkMode" (click)="onClickDarkMode()">
         <fa-icon [icon]="faMoon" class="fa-icon-mobile"></fa-icon>
     </div>
-    <div class="night-mode-button-mobile-dark" *ngIf="isDarkMode" (click)="onClickNightMode()">
+    <div class="night-mode-button-mobile-dark" *ngIf="isDarkMode" (click)="onClickLightMode()">
         <fa-icon [icon]="faSun" class="fa-icon-mobile"></fa-icon>
     </div>
 </div>

@@ -52,7 +52,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   public get faSun(): IconDefinition { return faSun; }
 
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
-  public onClickNightMode() { this._screenService.toggleDarkMode(); }
+  public onClickDarkMode() { this._screenService.onClickDarkMode(); }
+  public onClickLightMode() { this._screenService.onClickLightMode(); }
 
   ngOnInit() {
     if (this._isBrowser) {
