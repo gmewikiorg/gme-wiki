@@ -199,6 +199,17 @@ body {
 
 
 
+.source-link{
+
+  color: rgb(19, 40, 134);
+
+  .dark-mode & {
+      color: rgb(186, 199, 255);
+  }
+}
+
+
+
 // .light-mode .component-root, .page-title, .page-subtitle, .page-date, .page-section, .section-heading{
 // // // // .light-mode * {
 //   background-color: #ffffff;

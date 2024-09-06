@@ -1,0 +1,12 @@
+
+<div class="buttons-container">
+    <button class="control-button" (click)="onClickDRSNumber()">Number of DRS shares</button>
+    <button class="control-button" (click)="onClickDRSPercent()">DRS shares as % of total</button>
+</div>
+
+<div class="chart-container" id="chartContainer" style="max-width: 100%;" >
+
+    <canvas baseChart style="max-width:100%;" class="chart" id="chartCanvas" [type]="'bar'" [data]="barChartData" [options]="barChartOptions"
+        [legend]="barChartLegend">
+    </canvas>
+</div>

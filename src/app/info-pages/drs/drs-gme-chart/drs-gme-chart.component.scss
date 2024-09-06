@@ -1,0 +1,15 @@
+.chart{
+    min-height: 250px;
+}
+
+.buttons-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.control-button{
+    border: 1px solid rgba(128, 128, 128, 0.178);
+    border-radius: 5px;
+    margin: 5px;
+}

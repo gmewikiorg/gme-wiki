@@ -26,7 +26,7 @@
                 </td>
                 <td rowspan="4" class="border-bottom drs-row" *ngIf="showSources">
                     Held by registered holders with Computershare
-                    <div class="source">
+                    <div class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
                         Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
                     </div>
@@ -71,7 +71,7 @@
                 </td>
                 <td rowspan="16" class="border-bottom-2 cede-row" *ngIf="showSources">
                     Held by Cede & Co on behalf of DTCC
-                    <div *ngIf="showSources" class="source">
+                    <div *ngIf="showSources" class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
                         Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
                     </div>
@@ -131,7 +131,7 @@
 
                         </a>
                     </div>
-                    <div>
+                    <div style="font-size: 0.9em; font-weight: normal;">
                         This position is credible as of June 13. However, it is entirely possible that RK could have at
                         any
                         time after June 13 changed this position without providing this information publicly.
@@ -225,7 +225,7 @@
 
                     Held by <a style="font-weight: bold; color: #8f1795; text-decoration: none;"
                         [routerLink]="'/drs'">registered holders</a> at Computershare
-                    <div class="source" *ngIf="showSources">
+                    <div class="source-link" *ngIf="showSources">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
                         Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
                     </div>
@@ -270,7 +270,7 @@
                 <td colspan="3" style="font-size:0.9em; padding-top:15px;padding-bottom: 15px;" class="cede-row">
 
                     Held by Cede & Co on behalf of the DTCC
-                    <div class="source" *ngIf="showSources">
+                    <div class="source-link" *ngIf="showSources">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
                         Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
                     </div>
@@ -321,7 +321,7 @@
 
                         </a>
                     </div>
-                    <div>
+                    <div style="font-size: 0.9em; font-weight: normal;">
                         This position is credible as of June 13. However, it is entirely possible that RK could have at
                         any
                         time after June 13 changed this position without providing this information publicly.

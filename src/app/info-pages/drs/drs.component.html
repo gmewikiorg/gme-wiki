@@ -73,6 +73,14 @@
         </div>
 
 
+        <div class="page-section" *ngIf="isBrowser">
+            <div class="section-heading">
+                Registered shares of GME by fiscal quarter
+            </div>
+            <p style="color:gray;">Fiscal quarters prior to Q2 22 have been adjusted for the stock split</p>
+            <app-drs-gme-chart></app-drs-gme-chart>
+        </div>
+
         <div class="page-section">
             <div class="section-heading">Why hold shares in DRS form?</div>
             <ul>
