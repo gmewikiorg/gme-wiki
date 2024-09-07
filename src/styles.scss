@@ -121,6 +121,8 @@ body {
 .page-section {
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #ffffff;
@@ -133,22 +135,22 @@ body {
 
 }
 
-.page-section>p {
-  padding-left: 5px;
-  padding-right: 5px;
+// .page-section>p {
+//   padding-left: 5px;
+//   padding-right: 5px;
 
-  .dark-mode & {
-    background-color: #121212;
-    color: #ffffff;
-  }
-}
+//   .dark-mode & {
+//     background-color: #121212;
+//     color: #ffffff;
+//   }
+// }
 
 .section-heading {
   font-weight: 550;
   font-size: 1.3em;
   margin-top: 20px;
-  padding-left: 5px;
-  padding-right: 5px;
+  // padding-left: 5px;
+  // padding-right: 5px;
 
   .dark-mode & {
     background-color: #121212;

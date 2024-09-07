@@ -10,12 +10,13 @@ import dayjs from 'dayjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-timeline-chart',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule],
+  imports: [BaseChartDirective, CommonModule, RouterModule],
   templateUrl: './timeline-chart.component.html',
   styleUrl: './timeline-chart.component.scss'
 })
@@ -27,7 +28,8 @@ export class TimelineChartComponent implements OnDestroy {
     private _chartDataService: ChartDataManagerService,
     private _timelineItemService: TimelineItemsService,
     private _sizeService: ScreenService,
-    private _settingsService: SettingsService
+    private _settingsService: SettingsService,
+    private _router: Router
   ) { 
     this._isDarkMode = this._sizeService.isDarkMode;
     Chart.unregister(ChartDataLabels);
@@ -35,7 +37,7 @@ export class TimelineChartComponent implements OnDestroy {
     Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale);
     this._updateChartContainerStyle();
     this._updateLabels();
-    this.lineChartOptions = this._setLineChartOptions();
+    this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
     this.lineChartData.datasets = this._chartDataService.dataSets; 
   }
 
@@ -73,7 +75,7 @@ export class TimelineChartComponent implements OnDestroy {
     const darkModeSub = this._sizeService.isDarkMode$.subscribe({
       next: (isDarkMode)=>{
         this._isDarkMode = isDarkMode;
-        this.lineChartOptions = this._setLineChartOptions();
+        this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         this._chartDataService.updateDarkMode(isDarkMode);
       }
     })
@@ -111,10 +113,10 @@ export class TimelineChartComponent implements OnDestroy {
 
 
 
-  private _setLineChartOptions(): ChartOptions<'line'> {
+  private _setLineChartOptions(isDarkMode: boolean): ChartOptions<'line'> {
 
     let scaleColor = 'rgba(128,128,128,0.2)';
-    if(this._isDarkMode){
+    if(isDarkMode){
        scaleColor = 'rgba(255,255,255,0.1)';
     }
     
@@ -123,31 +125,31 @@ export class TimelineChartComponent implements OnDestroy {
       maintainAspectRatio: false,
       animation: false,
       onHover: (event, array) => {
-        // console.log("something!!", event, array)
         if (array.length > 0) {
           if (!this._tooltipOpenedFromTimelineItems) {
-            // console.log("tooltip NOT opened from timeline items")
             const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
             if (timelineItem) {
-              this._timelineItemService.selectItem(timelineItem, 'CHART');
+              if(timelineItem.hasLocalArticle){
+                this._timelineItemService.selectItem(timelineItem, 'CHART');
+              }
             } else {
-              // this._timelineItemService.unselectItem();
             }
           } else {
             this._tooltipOpenedFromTimelineItems = false;
           }
         } else {
-          // this._timelineItemService.unselectItem();
         }
       },
       onClick: (event, array) => {
-        // console.log(event, array)
-        // if (array.length > 0) {
-        //   const timelineItem = this._lookupEventByIndex(array[0].datasetIndex, array[0].index);
-        //   if (timelineItem) {
-        //     this._timelineItemService.selectItem(timelineItem);
-        //   }
-        // }
+        if (array.length > 0) {
+          const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
+          if (timelineItem) {
+            this._timelineItemService.selectItem(timelineItem, 'CHART');
+            if(timelineItem.hasLocalArticle){
+              this._router.navigate([timelineItem.localArticle?.url])
+            }
+          }
+        }
       },
       scales: {
         x: {
@@ -183,9 +185,9 @@ export class TimelineChartComponent implements OnDestroy {
             weight: 'normal',
           },
           callbacks: {
+            title: (context) => { return this._titleContext(context) },
             label: (context) => { return this._labelContext(context) },
-            footer: (context) => { return this._footerContext(context) },
-            title: (context) => { return this._titleContext(context) }
+            // footer: (context) => { return this._footerContext(context) },
           },
         },
         legend: {

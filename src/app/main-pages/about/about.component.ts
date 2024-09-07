@@ -13,7 +13,7 @@ import { ScreenService } from '../../shared/services/screen-size.service';
 })
 export class AboutComponent {
 
-  public get isMobile(): boolean { return false; }
+  public get isMobile(): boolean { return this.screenService.isMobile; }
 
   constructor(private meta: Meta, private titleService: Title, private screenService: ScreenService){
     this.titleService.setTitle('About gmetimeline.org');

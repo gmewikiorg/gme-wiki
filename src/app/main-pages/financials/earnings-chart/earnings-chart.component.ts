@@ -113,7 +113,7 @@ export class EarningsChartComponent {
             },
             borderWidth: 1,
             formatter: function (value, context) {
-              return '$' + (value / 1000000000).toFixed(1);
+              return '$' + (value / 1000000000).toFixed(1) + ' B';
             },
             font: {
               weight: 'bold',
@@ -168,7 +168,7 @@ export class EarningsChartComponent {
             },
             borderWidth: 1,
             formatter: function (value, context) {
-              return '$' + (value / 1000000).toFixed(0);
+              return '$' + (value / 1000000).toFixed(0) + ' M';
             },
             // font: {
             //   weight: 'bold',
@@ -284,7 +284,9 @@ export class EarningsChartComponent {
       },
 
       layout: {
-
+        padding: {
+          right: 10
+        }
       },
       plugins: {
         datalabels: {

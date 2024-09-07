@@ -25,14 +25,11 @@ export class DrsGmeChartComponent implements AfterViewInit {
   public barChartOptions: ChartOptions<'bar'>;
   public barChartLegend = false;
 
-  private _isMobile: boolean = false;
+  public get isMobile(): boolean { return this._sizeService.isMobile; }
   private _isPercentage: boolean = false;
 
   ngAfterViewInit(): void {
     this._sizeService.screenDimensions$.subscribe((change) => {
-      if (this._sizeService.isMobile) {
-        this._isMobile = true;
-      }
       this.barChartData = this._setData();
       this.barChartOptions = this._setOptions();
 
@@ -127,7 +124,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
 
   private _setData(): ChartConfiguration<'bar'>['data'] {
     const width = this._sizeService.screenWidth;
-    const isMobile = this._isMobile;
+    const isMobile = this.isMobile;
     // const isMobile = false;
     // this._isMobile = false;
     const isPercentage = this._isPercentage;
@@ -235,23 +232,20 @@ export class DrsGmeChartComponent implements AfterViewInit {
             },
           },
           ticks: {
-            backdropColor: 'purple',
             maxTicksLimit: 6,
-            // Include a dollar sign in the ticks
-            // callback: function (value, index, ticks) {
-            //   const numVal = Number(value);
-            //   if (numVal >= 0) {
-            //     if (numVal === 0) {
-            //       return '$0'
-            //     } else {
-            //       return '$' + (numVal / 1000000000) + ' billion';
-            //     }
-
-            //   } else {
-            //     return '$' + (numVal / 1000000000) + ' billion';
-            //   }
+            // callback: (value: number)=>{
+            //   return value;
             // }
-          }
+            callback(tickValue, index, ticks) {
+              if(isPercentage){
+                return Number(tickValue) + " %";
+              }
+              return (Number(tickValue) / 1000000) + " M";
+            },
+            // callback: function (value: number) {
+            //   return value >= 1000000 ? value / 1000000 + ' M' : value;
+            // },
+          },
         },
 
       },
