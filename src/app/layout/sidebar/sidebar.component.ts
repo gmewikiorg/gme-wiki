@@ -5,6 +5,7 @@ import { trigger, state, style, animate, transition, keyframes, } from '@angular
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoins, faChartLine, faChartPie, faSliders, faQuestion, faBars, faCircleInfo, faTableList, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { SettingsService } from '../../shared/services/settings.service';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -46,8 +47,7 @@ export class SidebarComponent {
   constructor(
     private _settingsService: SettingsService, 
     private _router: Router, 
-    // private _renderer: Renderer2, 
-    // private _screenService: ScreenSizeService
+    private _screenService: ScreenService 
   ) { }
   
 
@@ -61,7 +61,7 @@ export class SidebarComponent {
   public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
 
 
-  
+  public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
   ngOnInit(): void {
     // this._renderer.listen('window', 'click', (e: Event) => {
