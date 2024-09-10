@@ -51,7 +51,8 @@ export class OwnershipTableComponent {
   public get showSources(): boolean { return this._showSources; }
   public get buttonLabel(): string { return this._buttonLabel; }
 
-  public get recent10Q10Kurl(): string { return 'https://www.sec.gov/Archives/edgar/data/1326380/000132638024000030/gme-20240504.htm'; }
+  public get recent10Q10Kurl(): string { return 'https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638024000109/gme-20240803.htm'; }
+  public get recent10Q10KDate(): string { return 'September 4, 2024'; }
 
 
   public percent(section: number): string{

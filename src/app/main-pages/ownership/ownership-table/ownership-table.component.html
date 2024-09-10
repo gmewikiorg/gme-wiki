@@ -28,7 +28,7 @@
                     Held by registered holders with Computershare
                     <div class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q - {{recent10Q10KDate}}</a>
                     </div>
                 </td>
                 <td class="drs-row">DRS</td>
@@ -73,7 +73,7 @@
                     Held by Cede & Co on behalf of DTCC
                     <div *ngIf="showSources" class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q: {{recent10Q10KDate}}</a>
                     </div>
                 </td>
             </tr>
@@ -227,7 +227,7 @@
                         [routerLink]="'/drs'">registered holders</a> at Computershare
                     <div class="source-link" *ngIf="showSources">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q: {{recent10Q10KDate}}</a>
                     </div>
 
                     <div *ngIf="showSources">
@@ -272,7 +272,7 @@
                     Held by Cede & Co on behalf of the DTCC
                     <div class="source-link" *ngIf="showSources">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">sec.gov - 10Q: June 11, 2024</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q: {{recent10Q10KDate}}</a>
                     </div>
                 </td>
             </tr>
