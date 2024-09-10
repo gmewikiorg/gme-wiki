@@ -72,6 +72,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
     'Q3 23',
     'Q4 23',
     'Q1 24',
+    'Q2 24',
   ];
 
   private _data_drsRegisteredQuarterly: number[] = [
@@ -86,7 +87,8 @@ export class DrsGmeChartComponent implements AfterViewInit {
     75400000,   // Q2 23
     75400000,   // Q3 23
     75300000,   // Q4 23
-    74600000    // Q1 24
+    74600000,    // Q1 24
+    72800000,    // Q2 24
   ];
 
   private _data_tsoQuarterly: number[] = [
@@ -101,7 +103,8 @@ export class DrsGmeChartComponent implements AfterViewInit {
     305241294,      // Q2 23
     305514315,      // Q3 23
     305873200,      // Q4 23
-    351217517       // Q1 24
+    351217517,       // Q1 24
+    426509592,       // Q1 24
   ];
 
   private _data_drsPercentQuarterly: number[] = this._data_drsRegisteredQuarterly.map(drsRegistered => {

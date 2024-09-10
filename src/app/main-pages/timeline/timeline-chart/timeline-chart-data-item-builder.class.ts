@@ -73,9 +73,11 @@ export class ChartDataItemBuilder {
 
         let gmeBorderColor = 'green';
         let gmeBackgroundColor =  'rgba(0,255,0,0.075)';
+        let pointHoverBorderColor = 'black';
         if(isDarkMode){
             gmeBorderColor = 'rgba(0, 255, 0, 0.6)';
             gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
+            pointHoverBorderColor = 'white';
         }
 
         datasets.push({
@@ -102,7 +104,8 @@ export class ChartDataItemBuilder {
                 tension: 0.5,
                 borderColor: 'black',
                 pointBackgroundColor: datasetConfig.color,
-                pointBorderColor: 'black',
+                pointBorderColor: 'rgba(0,0,0,0)',
+                pointHoverBorderColor: pointHoverBorderColor,
                 pointBorderWidth: 1,
                 borderWidth: 0.1,
                 pointRadius: this._getPointRadius(datasetConfig.significance),

@@ -33,7 +33,7 @@
                 </td>
                 <td class="drs-row">DRS</td>
                 <td class="drs-row"></td>
-                <td class="number-cell drs-row">{{drsNumber}} M</td>
+                <td class="number-cell drs-row">{{drsNumber.toFixed(1)}} M</td>
                 <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                     DSPP
                 </td>
                 <td class="dspp-row"></td>
-                <td class="number-cell dspp-row">{{dsppNumber}} M</td>
+                <td class="number-cell dspp-row">{{dsppNumber.toFixed(1)}} M</td>
                 <td class="number-cell dspp-row">{{percent(dsppNumber)}} %</td>
             </tr>
             <tr *ngIf="showSources">
@@ -249,12 +249,12 @@
                 
             </td> -->
                 <td class="drs-row">DRS</td>
-                <td class="number-cell drs-row">{{drsNumber}} M</td>
+                <td class="number-cell drs-row">{{drsNumber.toFixed(1)}} M</td>
                 <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
             </tr>
             <tr>
                 <td class="dspp-row">DSPP</td>
-                <td class="number-cell dspp-row">{{dsppNumber}} M</td>
+                <td class="number-cell dspp-row">{{dsppNumber.toFixed(1)}} M</td>
                 <td class="number-cell dspp-row">{{percent(dsppNumber)}} %</td>
             </tr>
             <tr>

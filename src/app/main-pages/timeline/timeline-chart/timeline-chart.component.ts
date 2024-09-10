@@ -129,32 +129,34 @@ export class TimelineChartComponent implements OnDestroy {
           if (!this._tooltipOpenedFromTimelineItems) {
             const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
             if (timelineItem) {
-              if(timelineItem.hasLocalArticle){
-                this._timelineItemService.selectItem(timelineItem, 'CHART');
-              }
+              // if(timelineItem.hasLocalArticle){
+              //   this._timelineItemService.selectItem(timelineItem, 'CHART');
+              // }
             } else {
             }
           } else {
             this._tooltipOpenedFromTimelineItems = false;
           }
+
         } else {
         }
+        
       },
       onClick: (event, array) => {
         if (array.length > 0) {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
             this._timelineItemService.selectItem(timelineItem, 'CHART');
-            if(timelineItem.hasLocalArticle){
-              this._router.navigate([timelineItem.localArticle?.url])
-            }
+            // if(timelineItem.hasLocalArticle){
+            //   this._router.navigate([timelineItem.localArticle?.url])
+            // }
           }
         }
       },
       scales: {
         x: {
           grid: {
-            color: scaleColor // Change the color of the lines along the X axis
+            color: 'rgba(0,0,0,0.01)'
           }
         },
         y: {
@@ -171,6 +173,7 @@ export class TimelineChartComponent implements OnDestroy {
             }
             return this._tooltipBackgroundColor;
           },
+          
           borderColor: 'black',
           borderWidth: 1,
           displayColors: false,

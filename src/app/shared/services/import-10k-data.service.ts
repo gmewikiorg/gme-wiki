@@ -29,7 +29,7 @@ export class Import10KDataService {
   private async _loadData(fileType: '10K' | '10Q') {
     let filePath = 'assets/data/10k_filings-2024-06-11.csv';
     if(fileType === '10Q'){
-      filePath = 'assets/data/10q_filings-2024-06-11.csv';
+      filePath = 'assets/data/10q_filings-2024-09-10.csv';
     }
     return await lastValueFrom(this._httpClient.get(filePath, { responseType: 'text' },).pipe(
       map(data => this._parseCSV(data, fileType)),

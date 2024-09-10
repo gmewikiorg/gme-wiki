@@ -38,7 +38,7 @@ export class TimelineComponent {
       this.meta.addTags([
         { property: 'og:title', content: 'GameStop Interactive Timeline' },
         { property: 'og:description', content: 'GameStop Interactive Timeline' },
-        { property: 'og:url', content: 'https://gmetimeline.org/social-media' },
+        { property: 'og:url', content: 'https://gmetimeline.org/timeline' },
         { property: 'og:type', content: 'website' },
       ]);
     this._isBrowser = isPlatformBrowser(this.platformId);
