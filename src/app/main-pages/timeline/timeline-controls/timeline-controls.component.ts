@@ -74,12 +74,16 @@ export class TimelineControlsComponent {
     })
   }
 
+
+
   public get faSliders() { return faSliders; }
   public get faQuestion() { return faQuestion; }
   public get faMagnifyingGlass() { return faMagnifyingGlass; }
 
   public get isMobile(): boolean { return this._sizeService.isMobile; }
   public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
+
+  public displayControls: boolean = false;
 
   private _showSearchResults: boolean = false;
   // private _searchIsOpen: boolean = false;

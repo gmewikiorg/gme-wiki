@@ -1,5 +1,15 @@
 <div class="controls-root" *ngIf="!isMobile">
-    <div class="controls-bar-container">
+
+    <div class="controls-bar-container display-controls-container" *ngIf="!displayControls">
+        <div class="display-controls-button" (click)="displayControls = !displayControls">
+            <!-- <button  > -->
+                <fa-icon [icon]="faSliders"></fa-icon>
+            <!-- </button> -->
+        </div>
+
+    </div>
+
+    <div class="controls-bar-container" *ngIf="displayControls">
         <div class="controls-area shadow" [ngClass]="settingsOpen ? 'expanded' : 'not-expanded'"
             (mouseleave)="onMouseLeaveControls()">
 
@@ -26,14 +36,18 @@
                 </div>
             </div>
 
-            <app-timeline-chapters-control class="controls-expanded" *ngIf="storyChaptersOpen"></app-timeline-chapters-control>
-            <app-timeline-settings-control class="controls-expanded" *ngIf="settingsOpen"></app-timeline-settings-control>
+            <app-timeline-chapters-control class="controls-expanded"
+                *ngIf="storyChaptersOpen"></app-timeline-chapters-control>
+            <app-timeline-settings-control class="controls-expanded"
+                *ngIf="settingsOpen"></app-timeline-settings-control>
             <app-timeline-search-control *ngIf="showSearchResults" [searchValue]="searchValue"
                 (searchValueChanged)="onSearchInputValueChanged($event)"
                 (searchResultsApplied)="onMouseLeaveControls()"></app-timeline-search-control>
 
         </div>
     </div>
+
+
 </div>
 
 
@@ -66,11 +80,13 @@
         </div>
     </div>
     <div class="mobile-timeline-controls" *ngIf="storyChaptersOpen || settingsOpen || showSearchResults">
-        <app-timeline-chapters-control class="controls-expanded-mobile" *ngIf="storyChaptersOpen"></app-timeline-chapters-control>
-        <app-timeline-settings-control class="controls-expanded-mobile" *ngIf="settingsOpen"></app-timeline-settings-control>
+        <app-timeline-chapters-control class="controls-expanded-mobile"
+            *ngIf="storyChaptersOpen"></app-timeline-chapters-control>
+        <app-timeline-settings-control class="controls-expanded-mobile"
+            *ngIf="settingsOpen"></app-timeline-settings-control>
         <app-timeline-search-control *ngIf="showSearchResults" [searchValue]="searchValue"
             (searchValueChanged)="onSearchInputValueChanged($event)"
             (searchResultsApplied)="onMouseLeaveControls()"></app-timeline-search-control>
     </div>
-    
+
 </div>
