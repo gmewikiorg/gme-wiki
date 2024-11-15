@@ -3,8 +3,8 @@ import { ChartConfiguration } from "chart.js";
 export class OwnershipData {
     constructor() { }
     
-    public get tso(): number { return 426509592; }
-    public get lastUpdateYYYYMMDD(): string { return "2024-09-04"; }
+    public get tso(): number { return  446509592; }
+    public get lastUpdateYYYYMMDD(): string { return "2024-09-30"; }
 
     public get drs() { return this.data[2]; }
     public get dspp() { return this.data[3]; }
@@ -18,6 +18,14 @@ export class OwnershipData {
     public get remainder() { return this.data[11]; }
 
 
+
+    public get totalRegistered(): number { return this.drs.value + this.dspp.value; }
+    public get totalInsiders(): number { return this.rc.value + this.otherInsiders.value; }
+    public get totalInstitutional(): number { return this.otherInstitutional.value + this.vanguard.value + this.blackrock.value + this.statestreet.value; }
+    public get totalBeneficial(): number { return this.tso - this.totalRegistered; }
+    public get remainderTotal(): number { return this.totalBeneficial - (this.totalInsiders + this.totalInstitutional + this.rk.value) }
+
+
     public get data(): {
         label: string,
         value: number,
@@ -26,23 +34,66 @@ export class OwnershipData {
     }[] {
         // 2024-09-04
         const registeredCount = 72800000;
-        const cedeCount = 353700000;
+        const cedeCount = 373709592;
+        const drs = (0.824 * registeredCount);
+        const dspp = (0.176* registeredCount);
+        const ryanCohen = 36800000;
+        const allOtherInsiders = 800000;
+        const allInsiders = ryanCohen + allOtherInsiders;
+        const roaringKitty = 9001000;
+
+        const vanguard = 37108031;
+        const blackrock = 32241728;
+        const stateStreet = 11143759;
+
+
+        // https://www.nasdaq.com/market-activity/stocks/gme/institutional-holdings
+        const allInstitutional = 149503346;
+        const remainingInstitutional = allInstitutional - (vanguard + blackrock + stateStreet);
+
+        const remainder = this.tso - (registeredCount + allInsiders + allInstitutional + roaringKitty);
+
         return [
             { label: 'Held by registered holders with Computershare', value: registeredCount, layer: 0, color: '#8f1795', },
             { label: 'Held by Cede & Co on behalf of DTCC', value: cedeCount, layer: 0, color: '#CCC', },
-            { label: 'DRS', value: (0.824 * registeredCount), layer: 1, color: '#8f1795', },
-            { label: 'DSPP', value: (0.176* registeredCount), layer: 1, color: '#a91cb0', },
-            { label: 'Ryan Cohen', value: 36800000, layer: 1, color: '#0066ff', },
-            { label: 'All other insiders', value: 800000, layer: 1, color: '#0066ff', },
-            { label: 'Roaring Kitty', value: 9001000, layer: 1, color: '#ff0000', },
-            { label: 'Vanguard Group Inc', value: 29698579, layer: 1, color: '#ff9900', },
-            { label: 'Blackrock Inc', value: 22599419, layer: 1, color: '#ff9900', },
-            { label: 'State Street Corp', value: 8073188, layer: 1, color: '#ff9900', },
-            { label: 'All other institutional', value: 37244635, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
-            { label: 'Remainder', value: 209483179, layer: 1, color: '#EEE', },
+            { label: 'DRS', value: drs, layer: 1, color: '#8f1795', },
+            { label: 'DSPP', value: dspp, layer: 1, color: '#a91cb0', },
+            { label: 'Ryan Cohen', value: ryanCohen, layer: 1, color: '#0066ff', },
+            { label: 'All other insiders', value: allOtherInsiders, layer: 1, color: '#0066ff', },
+            { label: 'Roaring Kitty', value: roaringKitty, layer: 1, color: '#ff0000', },
+            { label: 'Vanguard Group Inc', value: vanguard, layer: 1, color: '#ff9900', },
+            { label: 'Blackrock Inc', value: blackrock, layer: 1, color: '#ff9900', },
+            { label: 'State Street Corp', value: stateStreet, layer: 1, color: '#ff9900', },
+            { label: 'All other institutional', value: remainingInstitutional, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
+            { label: 'Remainder', value: remainder, layer: 1, color: '#EEE', },
         ];
 
 
+
+
+
+        /**
+         * 
+         */
+        // public get tso(): number { return  426509592; }
+                // // 2024-09-04
+                // const registeredCount = 72800000;
+                // const cedeCount = 353700000;
+                // return [
+                //     { label: 'Held by registered holders with Computershare', value: registeredCount, layer: 0, color: '#8f1795', },
+                //     { label: 'Held by Cede & Co on behalf of DTCC', value: cedeCount, layer: 0, color: '#CCC', },
+                //     { label: 'DRS', value: (0.824 * registeredCount), layer: 1, color: '#8f1795', },
+                //     { label: 'DSPP', value: (0.176* registeredCount), layer: 1, color: '#a91cb0', },
+                //     { label: 'Ryan Cohen', value: 36800000, layer: 1, color: '#0066ff', },
+                //     { label: 'All other insiders', value: 800000, layer: 1, color: '#0066ff', },
+                //     { label: 'Roaring Kitty', value: 9001000, layer: 1, color: '#ff0000', },
+                //     { label: 'Vanguard Group Inc', value: 29698579, layer: 1, color: '#ff9900', },
+                //     { label: 'Blackrock Inc', value: 22599419, layer: 1, color: '#ff9900', },
+                //     { label: 'State Street Corp', value: 8073188, layer: 1, color: '#ff9900', },
+                //     { label: 'All other institutional', value: 37244635, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
+                //     { label: 'Remainder', value: 209483179, layer: 1, color: '#EEE', },
+                // ];
+        
 
 
         /**
@@ -98,12 +149,7 @@ export class OwnershipData {
     }
 
 
-    public get totalRegistered(): number { return this.drs.value + this.dspp.value; }
-    public get totalInsiders(): number { return this.rc.value + this.otherInsiders.value; }
-    public get totalInstitutional(): number { return this.otherInstitutional.value + this.vanguard.value + this.blackrock.value + this.statestreet.value; }
 
-    public get totalBeneficial(): number { return this.tso - this.totalRegistered; }
-    public get remainderTotal(): number { return this.totalBeneficial - (this.totalInsiders + this.totalInstitutional + this.rk.value) }
 
 
     public get chartData(): ChartConfiguration<'pie'>['data'] {
