@@ -3,6 +3,7 @@ import { DrsTimelineComponent } from './drs-timeline/drs-timeline.component';
 import { RouterModule } from '@angular/router';
 import { DrsGmeChartComponent } from './drs-gme-chart/drs-gme-chart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { OwnershipData } from '../../main-pages/ownership/ownership-data.class';
 
 @Component({
   selector: 'app-drs',
@@ -12,6 +13,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrl: './drs.component.scss'
 })
 export class DrsComponent {
+
+  private _ownershipData: OwnershipData = new OwnershipData();
+  private _drsPercent = (this._ownershipData.drsData.value / this._ownershipData.tso) * 100;
+
   constructor(
     // private _loadingService: LoadingService, 
     // private _screenService: ScreenSizeService, 
@@ -22,5 +27,7 @@ export class DrsComponent {
 
   private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
+
+  public get drsPercent(): string { return this._drsPercent.toFixed(0); }
 
 }

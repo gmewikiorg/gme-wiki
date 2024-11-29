@@ -6,24 +6,24 @@ export class OwnershipData {
     public get tso(): number { return  446509592; }
     public get lastUpdateYYYYMMDD(): string { return "2024-09-30"; }
 
-    public get drs() { return this.data[2]; }
-    public get dspp() { return this.data[3]; }
-    public get rc() { return this.data[4]; }
-    public get otherInsiders() { return this.data[5]; }
-    public get rk() { return this.data[6]; }
-    public get vanguard() { return this.data[7]; }
-    public get blackrock() { return this.data[8]; }
-    public get statestreet() { return this.data[9]; }
-    public get otherInstitutional() { return this.data[10]; }
-    public get remainder() { return this.data[11]; }
+    public get drsData() { return this.data[2]; }
+    public get dsppData() { return this.data[3]; }
+    public get rcData() { return this.data[4]; }
+    public get otherInsidersData() { return this.data[5]; }
+    public get rkData() { return this.data[6]; }
+    public get vanguardData() { return this.data[7]; }
+    public get blackrockData() { return this.data[8]; }
+    public get statestreetData() { return this.data[9]; }
+    public get otherInstitutionalData() { return this.data[10]; }
+    public get remainderData() { return this.data[11]; }
 
 
 
-    public get totalRegistered(): number { return this.drs.value + this.dspp.value; }
-    public get totalInsiders(): number { return this.rc.value + this.otherInsiders.value; }
-    public get totalInstitutional(): number { return this.otherInstitutional.value + this.vanguard.value + this.blackrock.value + this.statestreet.value; }
+    public get totalRegistered(): number { return this.drsData.value + this.dsppData.value; }
+    public get totalInsiders(): number { return this.rcData.value + this.otherInsidersData.value; }
+    public get totalInstitutional(): number { return this.otherInstitutionalData.value + this.vanguardData.value + this.blackrockData.value + this.statestreetData.value; }
     public get totalBeneficial(): number { return this.tso - this.totalRegistered; }
-    public get remainderTotal(): number { return this.totalBeneficial - (this.totalInsiders + this.totalInstitutional + this.rk.value) }
+    public get remainderTotal(): number { return this.totalBeneficial - (this.totalInsiders + this.totalInstitutional + this.rkData.value) }
 
 
     public get data(): {
@@ -48,7 +48,7 @@ export class OwnershipData {
 
 
         // https://www.nasdaq.com/market-activity/stocks/gme/institutional-holdings
-        const allInstitutional = 149503346;
+        const allInstitutional = 125374405;
         const remainingInstitutional = allInstitutional - (vanguard + blackrock + stateStreet);
 
         const remainder = this.tso - (registeredCount + allInsiders + allInstitutional + roaringKitty);

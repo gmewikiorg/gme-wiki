@@ -27,20 +27,20 @@ export class OwnershipTableComponent {
 
   public get tso(): string { return (this.data.tso / 1000000).toFixed(1); }
 
-  public get drsNumber(): number { return this.data.drs.value / 1000000; }
-  public get dsppNumber(): number { return this.data.dspp.value / 1000000; }
+  public get drsNumber(): number { return this.data.drsData.value / 1000000; }
+  public get dsppNumber(): number { return this.data.dsppData.value / 1000000; }
   public get totalRegistered(): number { return this.drsNumber + this.dsppNumber; }
 
-  public get rkNumber(): number { return this.data.rk.value / 1000000; }
+  public get rkNumber(): number { return this.data.rkData.value / 1000000; }
 
-  public get rcNumber(): number { return this.data.rc.value / 1000000; }
-  public get otherInsiders(): number { return this.data.otherInsiders.value / 1000000; }
+  public get rcNumber(): number { return this.data.rcData.value / 1000000; }
+  public get otherInsiders(): number { return this.data.otherInsidersData.value / 1000000; }
   public get insidersTotal(): number { return this.rcNumber + this.otherInsiders; }
 
-  public get vanguard(): number { return this.data.vanguard.value / 1000000; }
-  public get blackrock(): number { return this.data.blackrock.value / 1000000; }
-  public get statestreet(): number { return this.data.statestreet.value / 1000000; }
-  public get otherInst(): number { return this.data.otherInstitutional.value / 1000000; }
+  public get vanguard(): number { return this.data.vanguardData.value / 1000000; }
+  public get blackrock(): number { return this.data.blackrockData.value / 1000000; }
+  public get statestreet(): number { return this.data.statestreetData.value / 1000000; }
+  public get otherInst(): number { return this.data.otherInstitutionalData.value / 1000000; }
   public get instTotal(): number { return this.vanguard + this.blackrock + this.statestreet + this.otherInst; }
 
   public get remainderTotal(): number { return this.data.remainderTotal;  }
