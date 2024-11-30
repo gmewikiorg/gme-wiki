@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-social-media',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './social-media.component.html',
   styleUrl: './social-media.component.scss'
 })
