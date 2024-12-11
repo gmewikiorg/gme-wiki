@@ -3,8 +3,8 @@ import { ChartConfiguration } from "chart.js";
 export class OwnershipData {
     constructor() { }
     
-    public get tso(): number { return  446509592; }
-    public get lastUpdateYYYYMMDD(): string { return "2024-09-30"; }
+    public get tso(): number { return  446800365; }
+    public get lastUpdateYYYYMMDD(): string { return "2024-12-04"; }
 
     public get drsData() { return this.data[2]; }
     public get dsppData() { return this.data[3]; }
@@ -32,14 +32,17 @@ export class OwnershipData {
         layer: number,
         color: string,
     }[] {
-        // 2024-09-04
-        const registeredCount = 72800000;
-        const cedeCount = 373709592;
+
+        const registeredCount = 71000000;
+        const cedeCount = 375800365;
+
         const drs = (0.824 * registeredCount);
         const dspp = (0.176* registeredCount);
+
         const ryanCohen = 36800000;
         const allOtherInsiders = 800000;
         const allInsiders = ryanCohen + allOtherInsiders;
+
         const roaringKitty = 9001000;
 
         const vanguard = 37108031;
@@ -48,7 +51,7 @@ export class OwnershipData {
 
 
         // https://www.nasdaq.com/market-activity/stocks/gme/institutional-holdings
-        const allInstitutional = 125374405;
+        const allInstitutional = 125513066;
         const remainingInstitutional = allInstitutional - (vanguard + blackrock + stateStreet);
 
         const remainder = this.tso - (registeredCount + allInsiders + allInstitutional + roaringKitty);
@@ -64,11 +67,27 @@ export class OwnershipData {
             { label: 'Vanguard Group Inc', value: vanguard, layer: 1, color: '#ff9900', },
             { label: 'Blackrock Inc', value: blackrock, layer: 1, color: '#ff9900', },
             { label: 'State Street Corp', value: stateStreet, layer: 1, color: '#ff9900', },
-            { label: 'All other institutional', value: remainingInstitutional, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
+            { label: 'All other (>300 institutions) ', value: remainingInstitutional, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
             { label: 'Remainder', value: remainder, layer: 1, color: '#EEE', },
         ];
 
 
+
+        /**    2024-09-30
+         *     public get tso(): number { return  446509592; }
+         *         const registeredCount = 72800000;
+        const cedeCount = 373709592;
+        const drs = (0.824 * registeredCount);
+        const dspp = (0.176* registeredCount);
+        const ryanCohen = 36800000;
+        const allOtherInsiders = 800000;
+        const allInsiders = ryanCohen + allOtherInsiders;
+        const roaringKitty = 9001000;
+
+        const vanguard = 37108031;
+        const blackrock = 32241728;
+        const stateStreet = 11143759;
+         */
 
 
 
