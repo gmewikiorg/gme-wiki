@@ -17,6 +17,9 @@ export class DrsComponent {
   private _ownershipData: OwnershipData = new OwnershipData();
   private _drsPercent = (this._ownershipData.drsData.value / this._ownershipData.tso) * 100;
 
+  private _recentDrsUpdate = new OwnershipData();
+  public get recentDrsUpdate(): OwnershipData { return this._recentDrsUpdate; }
+
   constructor(
     // private _loadingService: LoadingService, 
     // private _screenService: ScreenSizeService, 

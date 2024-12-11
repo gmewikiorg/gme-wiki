@@ -28,7 +28,7 @@
                     Held by registered holders with Computershare
                     <div class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q - {{recent10Q10KDate}}</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}: {{recent10Q10KDate}}</a>
                     </div>
                 </td>
                 <td class="drs-row">DRS</td>
@@ -73,7 +73,7 @@
                     Held by Cede & Co on behalf of DTCC
                     <div *ngIf="showSources" class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">10Q: {{recent10Q10KDate}}</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}: {{recent10Q10KDate}}</a>
                     </div>
                 </td>
             </tr>
