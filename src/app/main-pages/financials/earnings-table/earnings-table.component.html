@@ -16,7 +16,7 @@
         <thead>
             <tr style="font-weight: 500;" [style.fontSize]="fontSize">
                 <td [style.width]="columnWidth()">{{timePeriod}}</td>
-                <td *ngIf="columnCount >=7" [style.width]="columnWidth()">Document Date</td>
+                <!-- <td *ngIf="columnCount >=7" [style.width]="columnWidth()">Document Date</td> -->
                 <td [style.width]="columnWidth()">Revenue<br>(billions)</td>
                 <td [style.width]="columnWidth()">Net income<br>(millions)</td>
                 <td *ngIf="columnCount >=5" [style.width]="columnWidth()">Assets<br>(billions)</td>
@@ -27,16 +27,22 @@
         </thead>
         <tbody *ngFor="let row of tableRows">
             <tr>
-                <td>{{ row.earningsResult.reportingPeriod }} {{ trimmedYear(row.earningsResult.fiscalYear) }}</td>
-                <td style="font-size: 0.8em;" *ngIf="columnCount >=7">
-                    <a [href]="row.earningsResult.url" target="_blank">
-                        {{ date(row.earningsResult.reportDateYYYYMMDD)}}
+                <td>
+                    <a [href]="row.earningsResult.url" target="_blank"
+                        style="display:flex;flex-direction: row; justify-content: space-between; align-items: center; text-decoration: none; color: rgb(71, 71, 71);">
+                        <div>
+                            {{ row.earningsResult.reportingPeriod }} {{ trimmedYear(row.earningsResult.fiscalYear) }}
+                        </div>
+                        <div *ngIf="pageWidth > 1375" class="date-url" style="text-align: right;">
+                            {{ date(row.earningsResult.reportDateYYYYMMDD)}}
+                        </div>
                     </a>
                 </td>
                 <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'REVENUE')">
                     $ {{ ((row.earningsResult.revenue)/1000000000).toFixed(1) }}
                 </td>
-                <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'NETINCOME')" [style.width]="columnWidth()">
+                <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'NETINCOME')"
+                    [style.width]="columnWidth()">
                     $ {{ ((row.earningsResult.netEarnings/1000000)).toFixed(0)}}
                 </td>
                 <td [style.backgroundColor]="backgroundColor(row.earningsResult, 'ASSETS')" *ngIf="columnCount >=5">
@@ -53,7 +59,6 @@
                     $ {{row.earningsResult.netEPS.toFixed(2)}}
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>
