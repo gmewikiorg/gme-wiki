@@ -100,6 +100,7 @@ export class Import10KDataService {
         totalLiabilities: Number(rowCells[26]),
         stockholdersEquity: Number(rowCells[27]),
         drs: Number(rowCells[28]),
+        url: rowCells[29],
         reportingPeriod: reportingPeriod,
       }
       const fYResult: EarningsResult = new EarningsResult(FyEarningsResult);
@@ -161,6 +162,7 @@ export class Import10KDataService {
               totalLiabilities: Number(tabSplitLine[26]),
               stockholdersEquity: Number(tabSplitLine[27]),
               drs: Number(tabSplitLine[28]),
+              url: tabSplitLine[29],
               reportingPeriod: this._getReportingPeriod(tabSplitLine[1]),
             }
             const quarterlyResult: EarningsResult = new EarningsResult(earningsResult);
