@@ -154,7 +154,7 @@ export class EarningsTableComponent {
     const indexSegment1 = tableRowsCount * (4 / 8);
     const indexSegment2 = tableRowsCount * (5 / 8);
     const indexSegment3 = tableRowsCount * (6 / 8);
-    const indexSegment4 = tableRowsCount * (8 / 8);
+    const indexSegment4 = tableRowsCount * (7 / 8);
 
     const thisResultRowIndex = results.findIndex(result => {
       const sameDate = result.reportingPeriod === quarterResult.reportingPeriod && result.fiscalYear === quarterResult.fiscalYear;
