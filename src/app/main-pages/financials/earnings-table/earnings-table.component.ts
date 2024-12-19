@@ -122,6 +122,7 @@ export class EarningsTableComponent {
 
     let backgroundColor: string = '';
 
+    /** Get a color between red --> yellow --> green */
     if (column === 'REVENUE') {
       propertyValue = quarterResult.revenue;
       minMax = this._getMinMax(results.map(item => item.revenue));
@@ -149,6 +150,7 @@ export class EarningsTableComponent {
       backgroundColor = this._getColorZeroBased(propertyValue);
     }
 
+    /** Create a gradient on the table to fade out the lower rows from time past */
     const tableRowsCount = this.tableRows.length;
     const indexSegment0 = tableRowsCount * (3 / 8);
     const indexSegment1 = tableRowsCount * (4 / 8);
@@ -168,9 +170,9 @@ export class EarningsTableComponent {
     } else if (thisResultRowIndex >= indexSegment2 && thisResultRowIndex < indexSegment3) {
       backgroundColor = this._setAlpha(backgroundColor, 0.04);
     } else if (thisResultRowIndex >= indexSegment3 && thisResultRowIndex < indexSegment4) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.025);
+      backgroundColor = this._setAlpha(backgroundColor, 0.03);
     } else if (thisResultRowIndex >= indexSegment4) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.01);
+      backgroundColor = this._setAlpha(backgroundColor, 0.02);
     }
     return backgroundColor;
   }

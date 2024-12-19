@@ -19,6 +19,7 @@ import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-inte
 import { RedditComponent } from './info-pages/reddit/reddit.component';
 import { RoaringKittyComponent } from './info-pages/roaring-kitty/roaring-kitty.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
+import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 
 
 
@@ -51,7 +52,7 @@ export const routes: Routes = [
     { path: 'roaring-kitty', component: RoaringKittyComponent },
     { path: 'sneeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
-
+    { path: 'turnaround', component: TurnaroundComponent },
 
 
 
