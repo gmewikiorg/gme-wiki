@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { CommonModule } from '@angular/common';
@@ -16,8 +16,28 @@ import { fy23NewsArticles } from './news-article/fy23-news-articles';
 })
 export class Fy23ProfitabilityComponent {
 
-  constructor(private titleService: Title, private _screenSizeService: ScreenService) {
-    this.titleService.setTitle('GameStop was profitable for the first time in 6 years - FY 2023')
+  constructor(
+    private meta: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object, 
+    private titleService: Title, 
+    private _screenSizeService: ScreenService) {
+    this.titleService.setTitle('GameStop FY 2023 Profitability')
+    const metaTags = this.meta.getTags('name');
+    metaTags.forEach(tag => this.meta.removeTagElement(tag));
+    this.meta.addTags([
+      { name: 'description', content: 'GameStop was profitable for the first time in 6 years' },
+      { name: 'keywords', content: 'GameStop, GME, GameStop turnaround, GameStop profitability, GameStop FY 2023 profitability' },
+      { name: 'author', content: 'GME shareholder' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      { charset: 'UTF-8' }
+    ]);
+    this.meta.addTags([
+      { property: 'og:title', content: 'GameStop FY 2023 Profitability' },
+      { property: 'og:description', content: 'GameStop FY 2023 Profitability' },
+      { property: 'og:url', content: 'https://gmetimeline.org/fy23-profitability' },
+      { property: 'og:type', content: 'website' },
+    ]);
   }
   public get newsArticles(): NewsArticle[] { return fy23NewsArticles; }
   public get moreThan800Px(): boolean {

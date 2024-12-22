@@ -55,7 +55,7 @@
 
 
             <div class="chart-container">
-                
+
                 <iframe *ngIf="moreThan1680Px" width="1280" height="720" frameborder="0" scrolling="no"
                     src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT7n4mmCwtjREaCkJVUkHe_ujHBod7vGtEB5iI_kbYToT5dU9cQSq-d3XO2PuFEZ64GCuU70jVayE0R/pubchart?oid=1680346632&amp;format=interactive"></iframe>
 
@@ -130,6 +130,10 @@
             <p>While this is an undeniably positive result for the company in this time period, GameStop continues to
                 face numerous challenges and must continue to improve and adapt in order to successfully compete in the
                 modern video game industry.</p>
+
+            <div style="margin-top: 50px; margin-bottom: 10px;">
+                <a [routerLink]="'/turnaround'">Read more about GameStop's Turnaround (2021 to present)</a>
+            </div>
         </div>
 
 
@@ -139,10 +143,14 @@
                 Profitability with an operating loss
             </div>
             <p>
-                While net earnings were above zero and thus positive, a closer inspection shows that there is still an issue with the operations of the company:  operating expenses exceeded gross profit, with an overall operating loss of $34.5 million.
+                While net earnings were above zero and thus positive, a closer inspection shows that there is still an
+                issue with the operations of the company: operating expenses exceeded gross profit, with an overall
+                operating loss of $34.5 million.
             </p>
             <p>
-                However, because GameStop held an approximately $1 billion cash position throughout fiscal year 2023, GameStop was able to earn $49.5 million in interest income from this large cash position, which exceeded the operating losses of the company and produced an overall net profitability. 
+                However, because GameStop held an approximately $1 billion cash position throughout fiscal year 2023,
+                GameStop was able to earn $49.5 million in interest income from this large cash position, which exceeded
+                the operating losses of the company and produced an overall net profitability.
             </p>
             <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="max-width: 100%;"
                 *ngIf="moreThan800Px || moreThan1680Px">
