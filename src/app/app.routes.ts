@@ -20,6 +20,7 @@ import { RedditComponent } from './info-pages/reddit/reddit.component';
 import { RoaringKittyComponent } from './info-pages/roaring-kitty/roaring-kitty.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
+import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
 
 
 
@@ -43,6 +44,7 @@ export const routes: Routes = [
     { path: 'guide', component: SummaryGuideComponent },
     { path: 'media', component: MediaComponent },
     { path: 'moass', component: MoassComponent },
+    { path: 'naked-short-selling', component: NakedShortSellingComponent },
     { path: 'propaganda', component: MediaComponent },
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
