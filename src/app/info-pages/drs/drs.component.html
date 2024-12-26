@@ -113,7 +113,7 @@
 
             <b>Method 1:</b>
             <ol>
-                <li>An investor purchases shares of GME at a stock broker, for example Fidelity
+                <li>An investor purchases shares of GME at a stock broker, for example Fidelity or IBKR
                 </li>
                 <li>The investor requests to the broker to transfer the shares to DRS</li>
             </ol>
@@ -134,12 +134,22 @@
 
         <div class="page-section">
             <div class="section-heading">Held by registered holders with Computershare: DRS versus DSPP</div>
-            <p>All shares held with GameStop's transfer agent Computershare are considered "registered",
-                which means that the individual investor is listed by name on the issuer's (GameStop's) stock ledger
-                (also referred to as
-                the "register") and the investor is therefore known to the company.
-            </p>
-            <p>
+            <ul>
+                <li>All shares held with GameStop's transfer agent Computershare are considered "registered",
+                    which means that the individual investor is listed by name on the issuer's (GameStop's) stock
+                    register
+                    (also referred to as
+                    the "ledger") and the investor is therefore known to the company.</li>
+                <li>However, of registered shares, DRS is the only form that provides both ownership <i> and possession
+                    </i> of shares</li>
+                <li>Holding shares in Computershare's Direct Stock Purchase Plan (DSPP) provides registered ownership
+                    but not possession of shares</li>
+            </ul>
+
+            <div style="font-size: 1.1em;">
+                See <a [routerLink]="'/drs-vs-dspp'">DRS versus DSPP</a>
+            </div>
+            <!-- <p>
                 GameStop reports this information in their 10-Q / 10-K filings.<br>
                 For example, in <a
                     [href]="recentDrsUpdate.link"
@@ -201,11 +211,32 @@
                     <img src="assets/icons/discord-icon.png" style="width: 20px; height: 20px; margin-right: 8px;"
                         alt="DRS Discord">
                     Discuss the
-                    DRS versus DSPP distinction</a></div>
+                    DRS versus DSPP distinction</a></div> -->
         </div>
 
 
-        <app-drs-timeline class="page-section"></app-drs-timeline>
+        <div class="page-section">
+            <div class="section-heading">DRS Discovery Timeline</div>
+
+            <ul>
+                <li>
+                    In the aftermath of the <a [routerLink]="'/sneeze'">GME sneeze of January 2021</a>, GME investors
+                    began to search for information to help make sense of what really happened and how the market
+                    actually
+                    functions
+                </li>
+                <li>Gathering largely on Reddit, several communities emerged, for example superstonk, where GME was the
+                    central topic of conversation</li>
+                <li> Through a series of discoveries and conversations, GME investors eventually learned
+                    that DRS was the only way that an investor can obtain real ownership of the shares they paid for by
+                    putting the registered ownership of the shares in their own name</li>
+                <li>GME shareholders advocating for DRS have faced resistance and censorship on Reddit</li>
+            </ul>
+
+            <div style="font-size: 1.1em;">
+                See <a [routerLink]="'/drs-timeline'">full DRS discovery timeline</a>
+            </div>
+        </div>
 
 
         <!-- <div class="page-section">

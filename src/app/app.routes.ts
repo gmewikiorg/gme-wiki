@@ -21,6 +21,9 @@ import { RoaringKittyComponent } from './info-pages/roaring-kitty/roaring-kitty.
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
+import { MediaVsNakedShortsComponent } from './info-pages/media-vs-naked-shorts/media-vs-naked-shorts.component';
+import { FudComponent } from './info-pages/fud/fud.component';
+import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
 
 
 
@@ -38,22 +41,37 @@ export const routes: Routes = [
 
     /** Info pages / articles  */
     { path: '2024-atms', component: Atms2024Component },
+
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
+    { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
+    
     { path: 'fy23-profitability', component: Fy23ProfitabilityComponent },
+    { path: 'fud', component: FudComponent },
+
     { path: 'guide', component: SummaryGuideComponent },
+
     { path: 'media', component: MediaComponent },
-    { path: 'moass', component: MoassComponent },
-    { path: 'naked-short-selling', component: NakedShortSellingComponent },
     { path: 'propaganda', component: MediaComponent },
+    { path: 'media-vs-naked-shorts', component: MediaVsNakedShortsComponent },
+    
+    { path: 'moass', component: MoassComponent },
+
+    { path: 'naked-short-selling', component: NakedShortSellingComponent },
+
+
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
     { path: 'reddit', component: RedditComponent },
+    
     { path: 'DeepFuckingValue', component: RoaringKittyComponent },
     { path: 'dfv', component: RoaringKittyComponent },
+    { path: 'keith-gill', component: RoaringKittyComponent },
     { path: 'roaring-kitty', component: RoaringKittyComponent },
+
     { path: 'sneeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
+
     { path: 'turnaround', component: TurnaroundComponent },
 
 

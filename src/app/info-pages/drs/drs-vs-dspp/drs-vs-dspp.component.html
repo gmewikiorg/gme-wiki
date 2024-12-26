@@ -1,0 +1,136 @@
+<div class="component-root" id="goUp">
+    <div class="page-content">
+        <div class="page-title">
+            DRS versus DSPP
+        </div>
+        <div class="page-subtitle">
+            Both are forms of registered shares, only DRS provides self-custody
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Summary</div>
+            <ul>
+                <li>All shares held with GameStop's transfer agent Computershare are considered "registered",
+                    which means that the individual investor is listed by name on the issuer's (GameStop's) stock
+                    register
+                    (also referred to as
+                    the "ledger") and the investor is therefore known to the company.</li>
+                <li>However, of registered shares, DRS is the only form that provides both ownership <i> and possession
+                    </i> of shares</li>
+                <li>Holding shares in Computershare's Direct Stock Purchase Plan (DSPP) provides registered ownership
+                    but not possession of shares</li>
+            </ul>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Registered shares reported by GameStop</div>
+
+            <p>
+                GameStop reports the number of shares that are held by all registered holders in their 10-Q / 10-K
+                filings.<br>
+                For example, in <a [href]="recentDrsUpdate.link" target="_blank">
+                    the most recent {{recentDrsUpdate.formType}} posted on {{recentDrsUpdate.date}}:
+                </a>
+            </p>
+            <p
+                style="padding: 15px; border-radius: 5px; background-color: rgba(148, 148, 148, 0.137); font-size: 0.9em;">
+                {{recentDrsUpdate.text}}
+            </p>
+            <p>
+                This number reported by GameStop includes all registered shares held by registered holders with
+                GameStop's transfer agent Computershare.
+            </p>
+
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">
+                Registered with Computershare
+            </div>
+            <p>
+                Within an account at Computershare, shareholders can hold their shares in one of two ways:
+
+            </p>
+            <ol>
+                <li>Directly, in DRS form, with the
+                    shares listed as type 'Book'</li>
+                <li>
+                    In Computershare's plan service, often referred to as direct stock purchase plan or DSPP, with the
+                    shares listed as type 'Plan Holdings'
+                </li>
+            </ol>
+            <div class="image-container">
+                <img src="assets/drs/book-plan-holdings-modified.png" class="image" alt="'Book' versus 'Plan'">
+            </div>
+
+            <p>When a GME investor requests to their stock broker to move the shares of GME that they paid for from their stock broker account into DRS
+                form, the stock broker will initiate the transfer, and this will eventually place the shares into DRS form listed as 'Book' in the Computershare account.</p>
+            <p>When a GME investor purchases shares of GME directly from Computershare, this will place those purchased
+                shares in Computershare's plan, and the shares will be shown under 'Plan Holdings' in the Computershare
+                account.</p>
+            <p>A shareholder is easily able to move shares from plan holdings into DRS form within their Computershare
+                account <a href="https://www.drsgme.org/terminating-from-directstock" target="_blank">by terminating
+                    their DirectStock Plan</a>.</p>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">
+                Technical distinction between DRS and DSPP
+            </div>
+            <ul>
+                <li>
+                    <b>DRS</b>
+                    <ul>
+                        <li>The investor is directly registered by name as the owner of the shares in the main class on
+                            GameStop's stock ledger (or
+                            register)
+                        </li>
+                        <li>Though the shares are accessed and managed in an account with Computershare, the shares are
+                            formally "held" directly by the shareholder without any intermediary</li>
+                        <li>Holding shares in DRS form provides both ownership and possession of shares</li>
+                        <li>Holding shares in DRS form is the only way to have both ownership and possession of shares
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>DSPP</b>
+                    <ul>
+                        <li>Computershare provides a plan service, commonly referred to as DSPP / direct stock purchase
+                            plan</li>
+                        <li>Shares in the plan are not held by the investor
+                            <ul>
+                                <li>
+                                    Typically 80% to 90% of the shares are held by Dingo & Co (Computershare's
+                                    nominee)
+                                </li>
+                                <li>Typically 10% to 20% of the shares are held by Cede & Co for operational
+                                    efficiency</li>
+                            </ul>
+                        </li>
+                        <li>The investor is registered by name as the beneficial owner of the shares in a subclass on
+                            the
+                            ledger</li>
+                        <li>
+                            Holding shares in the plan provides beneficial ownership but not possession of the shares
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div style="display:flex;flex-direction: row; align-items: center;">
+                <div style="margin-right: 5px;">Discuss the
+                    DRS versus DSPP distinction in </div>
+                <a href="https://discord.com/channels/1102309240145707049/1256339671391141928" target="_blank"
+                    style="display:flex;flex-direction: row;align-items: center;">
+
+                    <img src="assets/icons/discord-icon.png" style="width: 20px; height: 20px; margin-right: 8px;"
+                        alt="DRS Discord">
+                    The DRS Discord</a>
+            </div>
+        </div>
+
+        <div class="page-section" style="margin-bottom: 50px;"></div>
+    </div>
+</div>

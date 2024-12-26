@@ -1,5 +1,4 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { DrsTimelineComponent } from './drs-timeline/drs-timeline.component';
 import { RouterModule } from '@angular/router';
 import { DrsGmeChartComponent } from './drs-gme-chart/drs-gme-chart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -9,7 +8,7 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-drs',
   standalone: true,
-  imports: [DrsTimelineComponent, RouterModule, DrsGmeChartComponent, CommonModule],
+  imports: [RouterModule, DrsGmeChartComponent, CommonModule],
   templateUrl: './drs.component.html',
   styleUrl: './drs.component.scss'
 })
