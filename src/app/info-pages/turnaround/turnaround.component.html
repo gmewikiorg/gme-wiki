@@ -17,7 +17,7 @@
                 <li>In the years preceding 2021, GameStop was a struggling company that was often viewed as <a
                         href="https://www.fool.com/investing/2020/02/22/is-gamestop-headed-for-bankruptcy.aspx"
                         target="_blank">likely heading towards bankruptcy</a></li>
-                <li>The company has aggressively reduced its store count from around 4,800 in 2020 to below 4,000 by the
+                <li>The company has aggressively <a [routerLink]="'/stores'">reduced its store count</a> from around 4,800 in 2020 to below 4,000 by the
                     end of 2024, focusing on fewer, more profitable locations</li>
                 <li>CEO Ryan Cohen’s strategy emphasizes cost-cutting, profitability, and a selection of
                     higher-value items that align with GameStop’s trade-in model</li>
@@ -104,7 +104,7 @@
         <div class="page-section">
             <div class="section-heading">Turnaround Begins</div>
             <p>By June 2021, Ryan Cohen and the new board of directors were in the position to initiate the turnaround
-                of the company. This has involved extensive cutting of costs, closing of stores, and modernization of a
+                of the company. This has involved extensive cutting of costs, <a [routerLink]="'/stores'">closing of stores</a>, and modernization of a
                 company that had previously failed to adapt with the modern era.
 
             </p>
@@ -149,7 +149,7 @@
                     href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
                     target="_blank">
                     Ryan Cohen stated</a>: "with respect to retail operations, we plan to continue reducing costs and
-                focusing on profitability... This means a smaller network of stores with an expanded assortment of
+                focusing on profitability... This means <a [routerLink]="'/stores'">a smaller network of stores</a> with an expanded assortment of
                 higher value items that fit into our trade-in model."
 
             </p>
@@ -178,5 +178,6 @@
         </div>
 
 
+        <div class="page-section" style="margin-bottom: 50px;"></div>
     </div>
 </div>

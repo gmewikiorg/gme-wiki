@@ -1,0 +1,12 @@
+<!-- 
+<div class="buttons-container">
+    <button class="control-button" (click)="onClickAllStores()">All stores</button>
+    <button class="control-button" (click)="onClickBySegment()">By segment</button>
+</div> -->
+
+<div class="chart-container" id="chartContainer" style="max-width: 100%;">
+
+    <canvas baseChart style="max-width:100%;" class="chart" id="chartCanvas" [type]="'bar'" [data]="barChartData" [options]="barChartOptions"
+        [legend]="barChartLegend">
+    </canvas>
+</div>

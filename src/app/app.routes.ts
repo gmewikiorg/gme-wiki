@@ -24,6 +24,8 @@ import { NakedShortSellingComponent } from './info-pages/naked-short-selling/nak
 import { MediaVsNakedShortsComponent } from './info-pages/media-vs-naked-shorts/media-vs-naked-shorts.component';
 import { FudComponent } from './info-pages/fud/fud.component';
 import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
+import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
+import { StoresComponent } from './info-pages/stores/stores.component';
 
 
 
@@ -45,16 +47,17 @@ export const routes: Routes = [
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
     { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
-    
+
     { path: 'fy23-profitability', component: Fy23ProfitabilityComponent },
     { path: 'fud', component: FudComponent },
 
     { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'media', component: MediaComponent },
-    { path: 'propaganda', component: MediaComponent },
     { path: 'media-vs-naked-shorts', component: MediaVsNakedShortsComponent },
-    
+    { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
+    { path: 'propaganda', component: MediaComponent },
+
     { path: 'moass', component: MoassComponent },
 
     { path: 'naked-short-selling', component: NakedShortSellingComponent },
@@ -63,7 +66,7 @@ export const routes: Routes = [
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
     { path: 'reddit', component: RedditComponent },
-    
+
     { path: 'DeepFuckingValue', component: RoaringKittyComponent },
     { path: 'dfv', component: RoaringKittyComponent },
     { path: 'keith-gill', component: RoaringKittyComponent },
@@ -71,6 +74,8 @@ export const routes: Routes = [
 
     { path: 'sneeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
+
+    { path: 'stores', component: StoresComponent },
 
     { path: 'turnaround', component: TurnaroundComponent },
 

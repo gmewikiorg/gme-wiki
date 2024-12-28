@@ -1,0 +1,39 @@
+<div class="component-root">
+    <div class="page-content">
+        <div class="page-title">
+            GameStop Stores
+        </div>
+        <div class="page-subtitle">
+            GameStop continues to close stores as part of the ongoing turnaround strategy
+        </div>
+        <div class="page-section">
+            <div class="section-heading">
+                Summary
+            </div>
+            <ul>
+                <li>GameStop had a peak of approximately 7,500 stores in 2016</li>
+                <li>Since 2016, GameStop has reduced the total number of stores every year, with approximately 4,200 stores as of FY23</li>
+            </ul>
+        </div>
+
+        <div class="page-section" *ngIf="isBrowser">
+            <div class="section-heading">Stores Chart</div>
+            <app-stores-chart></app-stores-chart>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">GameStop 2024 annual meeting</div>
+            <p>
+                From <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">Ryan Cohen's statements on June 17</a> from GameStop's 2024 annual meeting:
+            </p>
+            <ul>
+                <li>"With respect to retail operations, we plan to continue reducing costs and focusing on
+                    profitability."</li>
+                <li>"This means a smaller network of stores with an expanded assortment of higher value items that fit
+                    into our trade-in model."</li>
+            </ul>
+        </div>
+
+        <div class="page-section" style="margin-bottom: 50px;"></div>
+    </div>
+</div>

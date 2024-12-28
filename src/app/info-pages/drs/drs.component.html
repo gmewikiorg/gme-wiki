@@ -149,69 +149,6 @@
             <div style="font-size: 1.1em;">
                 See <a [routerLink]="'/drs-vs-dspp'">DRS versus DSPP</a>
             </div>
-            <!-- <p>
-                GameStop reports this information in their 10-Q / 10-K filings.<br>
-                For example, in <a
-                    [href]="recentDrsUpdate.link"
-                    target="_blank">
-                    the most recent {{recentDrsUpdate.formType}} posted on {{recentDrsUpdate.date}}:
-                </a>
-            </p>
-            <p
-                style="padding: 15px; border-radius: 5px; background-color: rgba(148, 148, 148, 0.137); font-size: 0.9em;">
-                {{recentDrsUpdate.text}}
-            </p>
-            <p>
-                However, of registered shares, there is an important distinction between shares held in DRS form versus
-                shares held in DSPP
-                form.
-            </p>
-            <ul>
-                <li>
-                    <b>DRS</b>
-                    <ul>
-                        <li>The investor is directly registered by name as the owner of the shares in the main class on
-                            GameStop's stock ledger (or
-                            register)
-                        </li>
-                        <li>Though the shares are accessed and managed in an account with Computershare, the shares are
-                            formally "held" directly by the shareholder without any intermediary</li>
-                        <li>Holding shares in DRS form provides both ownership and possession of shares</li>
-                        <li>Holding shares in DRS form is the only way to have both ownership and possession of shares
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>DSPP</b>
-                    <ul>
-                        <li>Computershare provides a plan service, commonly referred to as DSPP / direct stock purchase
-                            plan</li>
-                        <li>Shares in the plan are not held by the investor
-                            <ul>
-                                <li>
-                                    Typically 80% to 90% of the shares are held by Dingo & Co (Computershare's
-                                    nominee)
-                                </li>
-                                <li>Typically 10% to 20% of the shares are held by Cede & Co for operational
-                                    efficiency</li>
-                            </ul>
-                        </li>
-                        <li>The investor is registered by name as the beneficial owner of the shares in a subclass on
-                            the
-                            ledger</li>
-                        <li>
-                            Holding shares in the plan provides beneficial ownership but not possession of the shares
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <div><a href="https://discord.com/channels/1102309240145707049/1256339671391141928" target="_blank"
-                    style="display:flex;flex-direction: row;align-items: center;">
-
-                    <img src="assets/icons/discord-icon.png" style="width: 20px; height: 20px; margin-right: 8px;"
-                        alt="DRS Discord">
-                    Discuss the
-                    DRS versus DSPP distinction</a></div> -->
         </div>
 
 
@@ -238,9 +175,18 @@
             </div>
         </div>
 
+        <div class="page-section">
+            <div class="section-heading">Why isn't DRS information reported by financial information providers?</div>
+            <ul>
+                <li>Mainstream financial media is not incentivized to ever discuss DRS</li>
+                <li>The incentive is much greater to never validate the existence and purpose of DRS</li>
+                <li>Common finance tools that are supposed to provide ownership information of publicly traded stocks such as GME do not publish any information about DRS, despite the significant percentage of all GME shares that are directly registered</li>
+            </ul>
+            <div style="font-size: 1.1em;">
+                See <a [routerLink]="'/media-omits-drs'">media omission of DRS</a>
+            </div>
+        </div>
 
-        <!-- <div class="page-section">
-            <app-help-contribute ></app-help-contribute>
-        </div> -->
+        <div class="page-section" style="margin-bottom: 50px;"></div>
     </div>
 </div>

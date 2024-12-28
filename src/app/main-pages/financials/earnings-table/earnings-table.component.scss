@@ -13,6 +13,11 @@
     font-size: 1.2em;
     color: rgba(0, 0, 0, 0.8);
 }
+@media (max-width:500px) {
+    .table{
+        font-size: 1.0em;
+    }
+}
 td{
     border: 1px solid rgba(206, 206, 206, 0.5);
     padding: 5px;
