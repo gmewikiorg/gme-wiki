@@ -17,7 +17,6 @@ import { MediaComponent } from './info-pages/media/media.component';
 import { MoassComponent } from './info-pages/moass/moass.component';
 import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-interview-2022.component';
 import { RedditComponent } from './info-pages/reddit/reddit.component';
-import { RoaringKittyComponent } from './info-pages/roaring-kitty/roaring-kitty.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
@@ -26,6 +25,10 @@ import { FudComponent } from './info-pages/fud/fud.component';
 import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
 import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
 import { StoresComponent } from './info-pages/stores/stores.component';
+import { BurpComponent } from './info-pages/burp/burp.component';
+import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
+import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
+import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
 
 
 
@@ -43,6 +46,10 @@ export const routes: Routes = [
 
     /** Info pages / articles  */
     { path: '2024-atms', component: Atms2024Component },
+
+    { path: 'burp', component: BurpComponent },
+    { path: 'burp-may-2024', component: BurpComponent },
+    
 
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
@@ -65,20 +72,28 @@ export const routes: Routes = [
 
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
+    { path: 'ryan-cohen', component: RyanCohenComponent },
+    { path: 'rc', component: RyanCohenComponent },
+
     { path: 'reddit', component: RedditComponent },
 
-    { path: 'DeepFuckingValue', component: RoaringKittyComponent },
-    { path: 'dfv', component: RoaringKittyComponent },
-    { path: 'keith-gill', component: RoaringKittyComponent },
-    { path: 'roaring-kitty', component: RoaringKittyComponent },
+    { path: 'DeepFuckingValue', component: KeithGillComponent },
+    { path: 'dfv', component: KeithGillComponent },
+    { path: 'keith-gill', component: KeithGillComponent },
+    { path: 'roaring-kitty', component: KeithGillComponent },
+
+
 
     { path: 'sneeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
 
     { path: 'stores', component: StoresComponent },
 
+    
     { path: 'turnaround', component: TurnaroundComponent },
 
+    { path: 't-plus-35', component: TPlusThirtyFiveComponent },
+    { path: 't-plus-thirty-five', component: TPlusThirtyFiveComponent },
 
 
     { path: '**', redirectTo: 'timeline' }

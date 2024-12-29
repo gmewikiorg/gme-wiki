@@ -31,14 +31,14 @@
                         Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}: {{recent10Q10KDate}}</a>
                     </div>
                 </td>
-                <td class="drs-row">DRS</td>
+                <td class="drs-row"><a [routerLink]="'/drs'">DRS</a></td>
                 <td class="drs-row"></td>
                 <td class="number-cell drs-row">{{drsNumber.toFixed(1)}} M</td>
                 <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
             </tr>
             <tr>
                 <td class="dspp-row">
-                    DSPP
+                    <a [routerLink]="'/drs-vs-dspp'">DSPP</a>
                 </td>
                 <td class="dspp-row"></td>
                 <td class="number-cell dspp-row">{{dsppNumber.toFixed(1)}} M</td>
@@ -248,12 +248,12 @@
                 <!-- <td rowspan="3" class="border-bottom drs-row">
                 
             </td> -->
-                <td class="drs-row">DRS</td>
+                <td class="drs-row"><a [routerLink]="'/drs'">DRS</a></td>
                 <td class="number-cell drs-row">{{drsNumber.toFixed(1)}} M</td>
                 <td class="number-cell drs-row">{{percent(drsNumber)}} %</td>
             </tr>
             <tr>
-                <td class="dspp-row">DSPP</td>
+                <td class="dspp-row"><a [routerLink]="'/drs-vs-dspp'">DSPP</a></td>
                 <td class="number-cell dspp-row">{{dsppNumber.toFixed(1)}} M</td>
                 <td class="number-cell dspp-row">{{percent(dsppNumber)}} %</td>
             </tr>

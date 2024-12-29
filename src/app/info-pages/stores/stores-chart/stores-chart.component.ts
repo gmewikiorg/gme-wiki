@@ -22,7 +22,7 @@ export class StoresChartComponent {
 
   public barChartData: ChartConfiguration<'bar'>['data'];
   public barChartOptions: ChartOptions<'bar'>;
-  public barChartLegend = false;
+  public barChartLegend = true;
 
   public get isMobile(): boolean { return this._sizeService.isMobile; }
   private _isPercentage: boolean = false;
@@ -80,54 +80,30 @@ export class StoresChartComponent {
             color: 'rgba(143, 23, 149, 1.0)',
             listeners: {
               enter() {
-
               }
             },
             align: 'top',
             anchor: 'end',
             backgroundColor: 'rgba(255,255,255,0.9)',
             borderRadius: 5,
-            // display(context) {
-            //   if (context.dataIndex === 0) {
-            //     return false;
-            //   }
-            //   if (context.dataIndex === context.dataset.data.length - 1) {
-            //     return true;
-            //   }
-            //   if (width < 800 && !isMobile) {
-
-            //     return false;
-            //   }
-            //   return true;
-            // },
             display: false,
-
             borderColor: function (context) {
               return 'rgba(0,0,255,0.1)';
             },
             borderWidth: 1,
-            // formatter: function (value, context) {
-            //   if (isPercentage) {
-            //     return (value).toFixed(1) + ' %';
-            //   } else {
-            //     return (value / 1000000).toFixed(1) + ' M';
-            //   }
-
-            // },
             font: {
               weight: 'bold',
             },
             padding: 2,
-
           },
           backgroundColor: [
-            'rgba(0, 0, 209, 0.2)',
+            'rgba(0, 0, 209, 0.5)',
           ],
           borderColor: [
-            'rgba(0, 0, 209, 0.6)',
+            'rgba(255, 255, 255, 0.8)',
           ],
           borderRadius: 5,
-          borderWidth: 0,
+          borderWidth: 1,
         },
         {
           label: 'USA video game brand stores',
@@ -136,7 +112,6 @@ export class StoresChartComponent {
             color: 'rgba(111, 111, 149, 1.0)',
             listeners: {
               enter() {
-
               }
             },
             align: 'top',
@@ -144,33 +119,23 @@ export class StoresChartComponent {
             backgroundColor: 'rgba(255,255,255,0.9)',
             borderRadius: 5,
             display: false,
-
             borderColor: function (context) {
               return 'rgba(0,0,255,0.1)';
             },
             borderWidth: 1,
-            formatter: function (value, context) {
-              if (isPercentage) {
-                return (value).toFixed(1) + ' %';
-              } else {
-                return (value / 1000000).toFixed(1) + ' M';
-              }
-
-            },
             font: {
               weight: 'bold',
             },
             padding: 2,
-
           },
           backgroundColor: [
-            'rgba(255, 0, 0, 0.5)',
+            'rgba(255, 0, 0, 0.7)',
           ],
           borderColor: [
-            'rgba(222, 0, 0, 1.0)',
+            'rgba(255, 255, 255, 0.8)',
           ],
           borderRadius: 5,
-          borderWidth: 0,
+          borderWidth: 1,
         },
         {
           label: 'USA technology brand stores',
@@ -179,7 +144,6 @@ export class StoresChartComponent {
             color: 'rgba(111, 111, 149, 1.0)',
             listeners: {
               enter() {
-
               }
             },
             align: 'top',
@@ -191,14 +155,6 @@ export class StoresChartComponent {
               return 'rgba(0,0,255,0.1)';
             },
             borderWidth: 1,
-            formatter: function (value, context) {
-              if (isPercentage) {
-                return (value).toFixed(1) + ' %';
-              } else {
-                return (value / 1000000).toFixed(1) + ' M';
-              }
-
-            },
             font: {
               weight: 'bold',
             },
@@ -206,13 +162,13 @@ export class StoresChartComponent {
 
           },
           backgroundColor: [
-            'rgba(255, 0, 0, 0.2)',
+            'rgba(255, 0, 0, 0.3)',
           ],
           borderColor: [
-            'rgba(255, 0, 0, 1.0)',
+            'rgba(255, 255, 255, 0.8)',
           ],
           borderRadius: 5,
-          borderWidth: 0,
+          borderWidth: 1,
         },
       ],
     };
@@ -246,16 +202,7 @@ export class StoresChartComponent {
             },
           },
           ticks: {
-            maxTicksLimit: 6,
-            // callback: (value: number)=>{
-            //   return value;
-            // }
-            // callback(tickValue, index, ticks) {
-
-            // },
-            // callback: function (value: number) {
-            //   return value >= 1000000 ? value / 1000000 + ' M' : value;
-            // },
+            // maxTicksLimit: 6,
           },
         },
 
