@@ -22,7 +22,7 @@ export class EarningsResult{
     public get assetImpairments(): number { return this._data.assetImpairments; }
     public get gainOnSale(): number { return this._data.gainOnSale; }
     public get mergerExpenses(): number { return this._data.mergerExpenses; }
-    public get operatingExpenses(): number { return this._data.operatingExpenses; }
+    public get operatingGainLoss(): number { return this._data.operatingGainLoss; }
     public get otherLoss(): number { return this._data.otherLoss; }
     public get interestIncome(): number { return this._data.interestIncome; }
     public get debtExtinguishment(): number { return this._data.debtExtinguishment; }

@@ -1,0 +1,84 @@
+.choose-chart-root {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.earnings-chart-container {
+    width: 100%;
+}
+
+
+.more-charts-button {
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    font-size: 1.1em;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 3px;
+}
+
+.more-charts-button:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.controls-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chart-options-buttons {
+    display: flex;
+    flex-direction: column;
+    // min-height: 52px;
+    padding: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.chart-option-button {
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.0);
+    font-size: 1.1em;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 3px;
+    color: rgb(68, 68, 68);
+}
+
+.chart-option-button:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.chart-options-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3px;
+}
+.chart-options-group{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.chart-options-row-title {
+    min-width: 100px;
+    margin-right: 5px;
+    color: gray;
+    font-size: 0.95em;
+}
+
+.selected{
+    // font-weight: bold;
+    color: rgb(0, 89, 255);
+    border: 1px solid rgba(0, 89, 255, 0.2);
+}
+.selected:hover{
+    border: 1px solid rgba(0, 89, 255, 0.5);
+}

@@ -18,7 +18,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 })
 export class EarningsTableComponent {
   constructor(
-    private _financialsService: Import10KDataService,
+    private _importFinancialsService: Import10KDataService,
     private _loadingService: LoadingService,
     private _screenService: ScreenService) {
   }
@@ -49,8 +49,8 @@ export class EarningsTableComponent {
 
   async ngOnInit() {
     await this._loadingService.loadEarnings();
-    this._quarterlyResults = this._financialsService.quarterlyResults.filter(item => item.fiscalYear >= 2020);
-    this._annualResults = this._financialsService.annualResults.filter(item => item.fiscalYear >= 2005);
+    this._quarterlyResults = this._importFinancialsService.quarterlyResults.filter(item => item.fiscalYear >= 2020);
+    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
     this._tableRows = this._buildTableRows();
     this._screenService.screenDimensions$.subscribe({
       next: (dimensions) => {
@@ -91,7 +91,7 @@ export class EarningsTableComponent {
     if (value === 'QUARTERS') {
       this._displayMode = 'QUARTER';
       this._timePeriod = 'Fiscal Quarter';
-      this._financialsService.load10QData$();
+      this._importFinancialsService.load10QData$();
     } else {
       this._displayMode = 'ANNUAL';
       this._timePeriod = 'Fiscal Year';
@@ -143,7 +143,7 @@ export class EarningsTableComponent {
       minMax = this._getMinMax(results.map(item => item.stockholdersEquity / 1000000));
       backgroundColor = this._getNonRedColor(0, minMax.max, propertyValue);
     } else if (column === 'OPERATINGLOSSGAIN') {
-      propertyValue = quarterResult.operatingExpenses / 1000000;
+      propertyValue = quarterResult.operatingGainLoss / 1000000;
       backgroundColor = this._getColorZeroBased(propertyValue);
     } else if (column === 'EPS') {
       propertyValue = quarterResult.netEPS / 1000000;

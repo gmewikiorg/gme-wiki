@@ -12,7 +12,7 @@ export interface EarningsResultInterface {
     assetImpairments: number;
     gainOnSale: number;
     mergerExpenses: number;
-    operatingExpenses: number;
+    operatingGainLoss: number;
     otherLoss: number;
     interestIncome: number;
     debtExtinguishment: number;

@@ -11,10 +11,9 @@
 
 
         <div class="page-section">
-            <div class="section-heading" style="margin-bottom: 10px;">Revenue and earnings by fiscal year chart</div>
-            <app-earnings-chart class="earnings-chart-container" *ngIf="isBrowser"></app-earnings-chart>
-            <div *ngIf="!isBrowser" style="height: 650px;"></div>
+            <app-choose-chart></app-choose-chart>
         </div>
+
 
 
         <div class="page-section">
@@ -33,12 +32,15 @@
         <div class="page-section">
             <div class="section-heading">GameStop 2024 annual meeting</div>
             <p>
-                From <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">Ryan Cohen's statements on June 17</a> from GameStop's 2024 annual meeting:
+                From <a
+                    href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
+                    target="_blank">Ryan Cohen's statements on June 17</a> from GameStop's 2024 annual meeting:
             </p>
             <ul>
                 <li>"With respect to retail operations, we plan to continue reducing costs and focusing on
                     profitability."</li>
-                <li>"This means <a [routerLink]="'/stores'">a smaller network of stores</a> with an expanded assortment of higher value items that fit
+                <li>"This means <a [routerLink]="'/stores'">a smaller network of stores</a> with an expanded assortment
+                    of higher value items that fit
                     into our trade-in model."</li>
             </ul>
         </div>
@@ -66,9 +68,8 @@
 
         <div class="page-section">
             <div class="section-heading">Data source</div>
-            <div >
-                <a
-                    href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
+            <div>
+                <a href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
                     target="_blank">
                     GameStop 10-K filings - Google Sheets
                 </a>

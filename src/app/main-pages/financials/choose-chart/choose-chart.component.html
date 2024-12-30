@@ -1,0 +1,55 @@
+<div class="choose-chart-root">
+
+
+    <div class="controls-row">
+
+        <div class="chart-options-buttons">
+            <div *ngIf="showMoreChartOptions" class="chart-options-row">
+                <div class="chart-options-row-title">Chart type</div>
+                <div class="chart-options-group">
+
+
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenue}"
+                        (click)="onClickChartOption('REVENUE')">Revenue and net income</button>
+
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsOperations}"
+                        (click)="onClickChartOption('OPERATIONS')">Operating loss /
+                        earnings</button>
+
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsInterest}"
+                        (click)="onClickChartOption('INTEREST')">Interest income</button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsEquity}"
+                        (click)="onClickChartOption('EQUITY')">Stockholders'
+                        Equity</button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsProfit}"
+                        (click)="onClickChartOption('PROFIT')">Gross profit</button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsSGA}"
+                        (click)="onClickChartOption('SGA')">SG&A</button>
+                </div>
+            </div>
+            <div *ngIf="showMoreChartOptions" class="chart-options-row">
+                <div class="chart-options-row-title">Time period</div>
+                <div class="chart-options-group">
+                    <button class="chart-option-button" [ngClass]="{'selected': periodIsAnnual}"
+                        (click)="onClickChartPeriod('ANNUAL')">Annually</button>
+                    <button class="chart-option-button" [ngClass]="{'selected': periodIsQuarter}"
+                        (click)="onClickChartPeriod('QUARTER')">Quarterly</button>
+                    <!-- <button class="chart-option-button" [ngClass]="{'selected': periodIsQoverQ}"
+                        (click)="onClickChartPeriod('QOVERQ')">Quarter over
+                        quarter</button> -->
+                </div>
+            </div>
+        </div>
+        <div>
+            <button (click)="onClickMoreCharts()" class="more-charts-button" *ngIf="!showMoreChartOptions">
+                <fa-icon [icon]="faChartSimple" style="color:rgb(0, 89, 255);"></fa-icon>
+                More charts</button>
+            <button (click)="onClickMoreCharts()" class="more-charts-button" *ngIf="showMoreChartOptions">
+                Hide chart options</button>
+        </div>
+    </div>
+
+    <div class="section-heading" style="margin-bottom: 10px; margin-top: 5px;">{{ chartTitle }}</div>
+    <app-earnings-chart class="earnings-chart-container" *ngIf="isBrowser"></app-earnings-chart>
+    <div *ngIf="!isBrowser" style="height: 650px;"></div>
+</div>

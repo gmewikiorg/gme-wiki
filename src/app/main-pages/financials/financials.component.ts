@@ -5,11 +5,14 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChooseChartComponent } from './choose-chart/choose-chart.component';
 
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [EarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule],
+  imports: [ChooseChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule],
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })
@@ -45,6 +48,8 @@ export class FinancialsComponent {
 
   }
 
+
+
   public get isMobile(): boolean { return this.screenService.isMobile; }
 
   private _isBrowser: boolean = false;
@@ -54,5 +59,7 @@ export class FinancialsComponent {
 
   ngOnInit(){
   }
+
+
 
 }
