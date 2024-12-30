@@ -7,6 +7,7 @@ import { FinancialChartService } from '../choose-chart/financial-chart.service';
 import { EarningsResult } from '../earnings-results/earnings-result.class';
 import { Import10KDataService } from '../../../shared/services/import-10k-data.service';
 import { CommonModule } from '@angular/common';
+import { LoadingService } from '../../../shared/services/loading.service';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './earnings-chart.component.scss'
 })
 export class EarningsChartComponent {
-  constructor(private _sizeService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService) {
+  constructor(private _sizeService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService, private _loadingService: LoadingService) {
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend)
     this.barChartData = this._updateDatasets();
@@ -31,12 +32,19 @@ export class EarningsChartComponent {
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartService.chartPeriod; }
   public get chartOption(): 'REVENUE' | 'PROFIT' | 'OPERATIONS' | 'SGA' | 'INTEREST' | 'EQUITY' { return this._chartService.chartOption; }
 
-  ngOnInit(): void { }
+  async ngOnInit() {     
+    await this._loadingService.loadEarnings(); 
+        this._updateChartDataAndOptions();
+  }
 
   ngAfterViewInit(): void {
-    this._sizeService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); });
+
+
     this._chartService.chartOption$.subscribe(() => { this._updateChartDataAndOptions(); })
     this._chartService.chartPeriod$.subscribe(() => { this._updateChartDataAndOptions(); })
+    this._sizeService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); });
+    // console.log("update la")
+
   }
 
   private _updateChartDataAndOptions() {
@@ -181,7 +189,6 @@ export class EarningsChartComponent {
       }
     }
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
-
     let dataItems: number[] = results.map(r => r.revenue).reverse();
     const netIncomeDataItems: number[] = results.map(r => r.netEarnings).reverse();
     if (this.chartOption === 'REVENUE') {
