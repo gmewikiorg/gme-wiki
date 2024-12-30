@@ -29,12 +29,16 @@ export class EarningsChartComponent {
   public barChartLegend = false;
   public showCustomLegend: boolean = true;
 
+  private _isLoaded: boolean = false;
+  public get isLoaded(): boolean { return this._isLoaded; }
+
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartService.chartPeriod; }
   public get chartOption(): 'REVENUE' | 'PROFIT' | 'OPERATIONS' | 'SGA' | 'INTEREST' | 'EQUITY' { return this._chartService.chartOption; }
 
-  async ngOnInit() {     
-    await this._loadingService.loadEarnings(); 
-        this._updateChartDataAndOptions();
+  async ngOnInit() {
+    await this._loadingService.loadEarnings();
+    this._updateChartDataAndOptions();
+    this._isLoaded = true;
   }
 
   ngAfterViewInit(): void {
@@ -58,7 +62,7 @@ export class EarningsChartComponent {
     const datasetColors = this._getDatasetColors(dataEntryCount, dataItems);
     const dataLabelColors = datasetColors.map(color => this._setNewAlpha(color, 0.9));
     let tickScale = this._tickScale;
-    if(label === 'Net income'){
+    if (label === 'Net income') {
       tickScale = 1000000;
     }
     return {
@@ -80,18 +84,18 @@ export class EarningsChartComponent {
         },
         align: function (context) {
           let value = Number(context.dataset.data[context.dataIndex]);
-          if(value > 0){
+          if (value > 0) {
             return 'top';
-          }else{
+          } else {
             return 'bottom';
           }
           return 'bottom';
         },
         anchor: function (context) {
           let value = Number(context.dataset.data[context.dataIndex]);
-          if(value > 0){
+          if (value > 0) {
             return 'end';
-          }else{
+          } else {
             return 'start';
           }
           return 'start';
@@ -178,13 +182,13 @@ export class EarningsChartComponent {
         results = this._financeService.quarterlyResults;
         periodLabel = 'by fiscal quarter';
       } else if (this.chartPeriod === 'QOVERQ') {
-        const quarterOrder = {'Q1': 1, 'Q2': 2, 'Q3': 3, 'Q4': 4, 'FY': 5};
-        results = Object.assign(this._financeService.quarterlyResults, []).filter(r => r.fiscalYear >= 2020).sort((r1, r2)=>{
+        const quarterOrder = { 'Q1': 1, 'Q2': 2, 'Q3': 3, 'Q4': 4, 'FY': 5 };
+        results = Object.assign(this._financeService.quarterlyResults, []).filter(r => r.fiscalYear >= 2020).sort((r1, r2) => {
           const quarterDiff = quarterOrder[r1.reportingPeriod] - quarterOrder[r2.reportingPeriod];
           if (quarterDiff !== 0) return quarterDiff;
           return r1.fiscalYear - r2.fiscalYear;
         })
-        results = results.reverse();        
+        results = results.reverse();
         periodLabel = 'quarter over quarter';
       }
     }
@@ -251,7 +255,7 @@ export class EarningsChartComponent {
       if (this.chartPeriod !== 'ANNUAL') {
         this._tickScale = 1000000;
         this._tickLabel = 'million';
-      }else{
+      } else {
         this._tickScale = 1000000000;
         this._tickLabel = 'billion';
       }
@@ -260,7 +264,7 @@ export class EarningsChartComponent {
         this._tickScale = 1000000;
         this._tickLabel = 'million';
       }
-    } else if(this.chartOption === 'EQUITY'){
+    } else if (this.chartOption === 'EQUITY') {
       this._tickScale = 1000000000;
       this._tickLabel = 'billion';
     }

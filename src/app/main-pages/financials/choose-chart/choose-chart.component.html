@@ -34,7 +34,7 @@
                         (click)="onClickChartPeriod('ANNUAL')">Annually</button>
                     <button class="chart-option-button" [ngClass]="{'selected': periodIsQuarter}"
                         (click)="onClickChartPeriod('QUARTER')">Quarterly</button>
-                    <!-- <button class="chart-option-button" [ngClass]="{'selected': periodIsQoverQ}"
+                    <!-- <button class="chart-option-button"  [ngClass]="{'selected': periodIsQoverQ}"
                         (click)="onClickChartPeriod('QOVERQ')">Quarter over
                         quarter</button> -->
                 </div>
@@ -44,8 +44,9 @@
             <button (click)="onClickMoreCharts()" class="more-charts-button" *ngIf="!showMoreChartOptions">
                 <fa-icon [icon]="faChartSimple" style="color:rgb(0, 89, 255);"></fa-icon>
                 More charts</button>
-            <button (click)="onClickMoreCharts()" class="more-charts-button" *ngIf="showMoreChartOptions">
-                Hide chart options</button>
+            <button (click)="onClickMoreCharts()" class="more-charts-button" style="font-size:0.8em; color: gray;" *ngIf="showMoreChartOptions">
+                <fa-icon [icon]="faX"></fa-icon> 
+                </button>
         </div>
     </div>
 

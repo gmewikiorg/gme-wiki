@@ -1,21 +1,21 @@
 <div class="component-root">
 
     <div class="page-title">
-        GameStop Income Statements
+        GameStop Financial Statements
     </div>
     <div class="page-subtitle">
-        By fiscal year, 2005 to 2023
+        Earnings results and related company financial information
     </div>
 
     <div class="page-content">
 
-
         <div class="page-section" >
             <app-choose-chart></app-choose-chart>
         </div>
-
-
-
+        <div class="page-section">
+            <div class="section-heading">Earnings table</div>
+            <app-earnings-table></app-earnings-table>
+        </div>
         <div class="page-section">
             <div class="section-heading">Changes to GME equity in 2024</div>
             <div style="font-size:0.9em;color:gray;">As of September 23, 2024</div>
@@ -28,7 +28,15 @@
 
             </div>
         </div>
-
+        <!-- <div class="page-section">
+            <div class="section-heading">Data source</div>
+            <div>
+                <a href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
+                    target="_blank">
+                    GameStop 10-K filings - Google Sheets
+                </a>
+            </div>
+        </div> -->
         <div class="page-section">
             <div class="section-heading">GameStop 2024 annual meeting</div>
             <p>
@@ -44,7 +52,6 @@
                     into our trade-in model."</li>
             </ul>
         </div>
-
         <div class="page-section">
             <div class="section-heading">FY23 earnings summary article</div>
             <div style="font-size:0.9em;color:gray;">April 10, 2024</div>
@@ -54,34 +61,7 @@
                 <div>
                     In fiscal year 2023, GameStop was profitable for the first time in 6 years
                 </div>
-
             </div>
         </div>
-
-
-
-        <div class="page-section">
-            <div class="section-heading">Earnings table</div>
-            <app-earnings-table></app-earnings-table>
-        </div>
-
-
-        <div class="page-section">
-            <div class="section-heading">Data source</div>
-            <div>
-                <a href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
-                    target="_blank">
-                    GameStop 10-K filings - Google Sheets
-                </a>
-            </div>
-        </div>
-
-
-
-
     </div>
 </div>
-
-
-<!-- <app-loading class="layout-root" style="justify-content: center;" *ngIf="isLoading"
-    [loadingMessage]="loadingMessage"></app-loading> -->

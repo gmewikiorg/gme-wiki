@@ -1,7 +1,7 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
 import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
 import { FinancialChartService } from './financial-chart.service';
 
@@ -18,7 +18,7 @@ export class ChooseChartComponent {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
   public get faChartSimple() { return faChartSimple; }
-
+  public get faX() { return faX; }
 
   private _showMoreChartOptions: boolean = false;
   public get showMoreChartOptions(): boolean { return this._showMoreChartOptions; }
