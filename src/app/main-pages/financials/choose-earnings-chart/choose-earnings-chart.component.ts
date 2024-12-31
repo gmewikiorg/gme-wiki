@@ -3,17 +3,19 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
 import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
-import { FinancialChartService } from './financial-chart.service';
+import { FinancialChartService } from './earnings-chart.service';
+import { EarningsChartOption } from './earnings-chart-option.enum';
+
 
 @Component({
-  selector: 'app-choose-chart',
+  selector: 'app-choose-earnings-chart',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, EarningsChartComponent],
-  templateUrl: './choose-chart.component.html',
-  styleUrl: './choose-chart.component.scss'
+  templateUrl: './choose-earnings-chart.component.html',
+  styleUrl: './choose-earnings-chart.component.scss'
 })
-export class ChooseChartComponent {
-
+export class ChooseEarningsChartComponent {
+  public EarningsChartOption = EarningsChartOption;
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService  ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -34,21 +36,26 @@ export class ChooseChartComponent {
   }
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._financialsService.chartPeriod; }
-  public get chartOption(): 'REVENUE' | 'PROFIT' | 'OPERATIONS' | 'SGA' | 'INTEREST' | 'EQUITY' { return this._financialsService.chartOption; }
+  public get chartOption(): EarningsChartOption { return this._financialsService.chartOption; }
 
   public get periodIsAnnual(): boolean { return this.chartPeriod === 'ANNUAL'; }
   public get periodIsQuarter(): boolean { return this.chartPeriod === 'QUARTER'; }
-  public get periodIsQoverQ(): boolean { return this.chartPeriod === 'QOVERQ'; }
+  // public get periodIsQoverQ(): boolean { return this.chartPeriod === 'QOVERQ'; }
 
-  public get chartIsRevenue(): boolean { return this.chartOption === 'REVENUE'; }
-  public get chartIsProfit(): boolean { return this.chartOption === 'PROFIT'; }
-  public get chartIsOperations(): boolean { return this.chartOption === 'OPERATIONS'; }
-  public get chartIsSGA(): boolean { return this.chartOption === 'SGA'; }
-  public get chartIsInterest(): boolean { return this.chartOption === 'INTEREST'; }
-  public get chartIsEquity(): boolean { return this.chartOption === 'EQUITY'; }
+  public get chartIsRevenueVsIncome(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME; }
+  public get chartIsRevenueVsCost(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_COST; }
+  public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_GROSS_PROFIT; }
+
+  public get chartIsOperations(): boolean { return this.chartOption === EarningsChartOption.OPERATING_INCOME; }
+  public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartOption.GROSS_PROFIT_VS_SGA; }
+  public get chartIsOperationsVsSGA(): boolean { return this.chartOption === EarningsChartOption.OPERATIONS_VS_SGA; }
+
+  public get chartIsInterest(): boolean { return this.chartOption === EarningsChartOption.INTEREST_INCOME; }
+  public get chartIsEquity(): boolean { return this.chartOption === EarningsChartOption.STOCKHOLDERS_EQUITY; }
 
 
-  public onClickChartOption(option: 'REVENUE' | 'PROFIT' | 'OPERATIONS' | 'SGA' | 'INTEREST' | 'EQUITY') {
+
+  public onClickChartOption(option: EarningsChartOption) {
     this._financialsService.setChartOption(option);
   }
 

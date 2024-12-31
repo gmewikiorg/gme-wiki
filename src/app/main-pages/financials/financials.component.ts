@@ -7,12 +7,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ChooseChartComponent } from './choose-chart/choose-chart.component';
+import { ChooseEarningsChartComponent } from './choose-earnings-chart/choose-earnings-chart.component';
 
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [ChooseChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule],
+  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule],
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })
