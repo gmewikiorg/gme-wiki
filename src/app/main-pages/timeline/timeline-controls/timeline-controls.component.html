@@ -1,12 +1,14 @@
 <div class="controls-root" *ngIf="!isMobile">
 
     <div class="controls-bar-container display-controls-container" *ngIf="!displayControls">
-        <div class="display-controls-button" (click)="displayControls = !displayControls">
-            <!-- <button  > -->
-                <fa-icon [icon]="faSliders"></fa-icon>
-            <!-- </button> -->
-        </div>
+        <button class="display-controls-button" (click)="displayControls = !displayControls">
+            <fa-icon [icon]="faSliders" style="color: rgb(0, 89, 255); margin-right: 5px;" ></fa-icon>
 
+            More GME metrics
+
+
+
+        </button>
     </div>
 
     <div class="controls-bar-container" *ngIf="displayControls">
@@ -15,13 +17,13 @@
 
 
             <div class="icon-container">
-                <div class="story-icon-container" (mouseenter)="onMouseEnterStory()" (mouseleave)="onMouseLeaveStory()"
+                <!-- <div class="story-icon-container" (mouseenter)="onMouseEnterStory()" (mouseleave)="onMouseLeaveStory()"
                     (click)="onClickStory()">
                     <img src="assets/flaticon/hourglass.png" alt="" class="story-icon"
                         [ngClass]="{'active-story': (isOverStoryIcon || storyChaptersOpen)}">
                     <img src="assets/flaticon/hourglass-bw.png" alt="" class="story-icon-bnw"
                         [ngClass]="{'inactive-story': (!isOverStoryIcon && !storyChaptersOpen)}">
-                </div>
+                </div> -->
 
                 <fa-icon [icon]="faSliders" class="control-icon" [ngClass]="settingsOpen ? 'settings-open' : ''"
                     (click)="onClickSettings()"></fa-icon>

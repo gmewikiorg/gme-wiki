@@ -163,7 +163,7 @@ export class EarningsChartComponent {
     if (this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
       if (context.datasetIndex === 0) {
         label = "Revenue:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
+      } else if (context.datasetIndex === 1) { 
         label = "Net Income:  $" + this.numberWithCommas(numValue);
       }
     } else if (this.chartOption === EarningsChartOption.REVENUE_VS_COST) {

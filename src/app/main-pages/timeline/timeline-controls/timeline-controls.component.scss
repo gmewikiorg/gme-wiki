@@ -18,24 +18,30 @@
     justify-content: flex-end;
 }
 .display-controls-button{
-    background-color: white;
-    border: 1px solid gray;
-    top: 30px;
-    right: 80px;
+    // background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 3px;
+    font-size: 1.1em;
+    top: 32px;
+    right: 85px;
     position: fixed;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    // border-radius: 30px;
+    // width: 30px;
+    // height: 30px;
     font-size: 1.2em;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    color: gray;
+    // justify-content: center;
     cursor: pointer;
 }
 .display-controls-button:hover{
-    color: var(--color-special);
+    // color: var(--color-special);
+    // color: 
+    border: 1px solid black;
 }
 
 .controls-area{
