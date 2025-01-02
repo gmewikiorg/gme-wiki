@@ -1,6 +1,6 @@
 <div class="controls-root" *ngIf="!isMobile">
 
-    <div class="controls-bar-container display-controls-container" *ngIf="!displayControls">
+    <!-- <div class="controls-bar-container display-controls-container" *ngIf="!displayControls">
         <button class="display-controls-button" (click)="displayControls = !displayControls">
             <fa-icon [icon]="faSliders" style="color: rgb(0, 89, 255); margin-right: 5px;" ></fa-icon>
 
@@ -9,7 +9,7 @@
 
 
         </button>
-    </div>
+    </div> -->
 
     <div class="controls-bar-container" *ngIf="displayControls">
         <div class="controls-area shadow" [ngClass]="settingsOpen ? 'expanded' : 'not-expanded'"
