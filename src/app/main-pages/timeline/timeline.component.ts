@@ -46,6 +46,7 @@ export class TimelineComponent {
 
   private _isBrowser: boolean;
   private _isLoading: boolean = true;
+
   public get isBrowser(): boolean { return this._isBrowser; }
 
   public get isMobile(): boolean { return this._sizeService.isMobile }
@@ -67,6 +68,7 @@ export class TimelineComponent {
     this._loadingService.loadingMessage = "Building chart...";
     if(this._isBrowser){
       await this._loadingService.loadData$();
+      
       this._isLoading = false;
     }else{
       // console.log("Not browser")

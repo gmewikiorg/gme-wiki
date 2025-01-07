@@ -7,9 +7,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { TimelineItemsService } from '../timeline-items/timeline-items.service';
 import { EventSearchService } from './timeline-search-control/search/event-search.service';
 import { faMagnifyingGlass, faQuestion, faSliders } from '@fortawesome/free-solid-svg-icons';
-import { TimelineChaptersControlComponent } from './timeline-chapters-control/timeline-chapters-control.component';
 import { TimelineSearchControlComponent } from './timeline-search-control/timeline-search-control.component';
 import { TimelineSettingsControlComponent } from './timeline-settings-control/timeline-settings-control.component';
+import { ChooseGmeMetricComponent } from './choose-gme-metric/choose-gme-metric.component';
 
 @Component({
   selector: 'app-timeline-controls',
@@ -17,9 +17,9 @@ import { TimelineSettingsControlComponent } from './timeline-settings-control/ti
   imports: [
     FontAwesomeModule, 
     CommonModule, 
-    TimelineChaptersControlComponent, 
     TimelineSearchControlComponent,
     TimelineSettingsControlComponent,
+    ChooseGmeMetricComponent
   ],
   templateUrl: './timeline-controls.component.html',
   styleUrl: './timeline-controls.component.scss',

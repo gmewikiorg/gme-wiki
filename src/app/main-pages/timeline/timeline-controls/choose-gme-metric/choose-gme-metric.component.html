@@ -1,0 +1,51 @@
+<div class="metrics-root">
+    <div style="display:flex;flex-direction: column;">
+        <div class="options-row">
+            <div class="options-label">
+                GME metric
+            </div>
+            <div class="options-choices">
+
+                <button class="option-button" [ngClass]="{'selected': metricIsPrice}"
+                    (click)="onClickMetric('PRICE')">Share
+                    price (timeline)</button>
+                <!-- <button class="option-button" [ngClass]="{'selected': metricIsVolume}"
+                    (click)="onClickMetric('VOLUME')">Volume</button>
+                <button class="option-button" [ngClass]="{'selected': metricIsPtoB}"
+                    (click)="onClickMetric('PtoB')">Price-to-Book Ratio</button>
+                <button class="option-button" [ngClass]="{'selected': metricIsPtoS}"
+                    (click)="onClickMetric('PtoS')">Price-to-Sales Ratio</button> -->
+                <!-- <button class="option-button">FTDs</button> -->
+
+            </div>
+        </div>
+        <div class="options-row">
+            <div class="options-label">
+                Time period
+            </div>
+            <div class="options-choices">
+
+                <button class="option-button" [ngClass]="{'selected': periodIs1Year}"
+                    (click)="onClickPeriod('2_YEARS')">2
+                    years</button>
+                <!-- <button class="option-button" [ngClass]="{'selected': periodIs5Years}"
+                    (click)="onClickPeriod('5_YEARS')">5
+                    years</button> -->
+                <button class="option-button" [ngClass]="{'selected': periodIsCurrent}"
+                    (click)="onClickPeriod('CURRENT')">The Sneeze and The Turnaround</button>
+                <button class="option-button" [ngClass]="{'selected': periodIsHistoric}"
+                    (click)="onClickPeriod('HISTORIC')">Historic</button>
+                <!-- <button class="option-button" [ngClass]="{'selected': periodIsCustom}"
+                    (click)="onClickPeriod('CUSTOM')">Custom</button> -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin-left: 25px;">
+        <button (click)="onClickClose()" class="close-button">
+            <fa-icon [icon]="faX"></fa-icon>
+        </button>
+    </div>
+</div>

@@ -26,18 +26,30 @@ export class ImportGmeDataService {
 
 
   public async loadGMEPriceEntries$() {
-    const csvEntries = await this._loadGMECSVdata$()
-    const sheetEntries = await lastValueFrom(this._loadGoogleSheetData$());
-    const allEntries = this._mergeEntries(csvEntries, sheetEntries);
+    const start = dayjs();
+    
+    const csvEntriesCurrent = await this._loadGMECSVdataCurrentEra$()
+    const csvEntriesHistoric = await this._loadGMECSVdataHistoricEra$()
+    // const sheetEntries = await lastValueFrom(this._loadGoogleSheetData$());
+    const allEntries = this._mergeEntries(csvEntriesCurrent, csvEntriesHistoric);
     this.setGmePriceEntries(allEntries);
+    // return allEntries;
+    const end = dayjs();
+    // console.log(end.diff(start), " total diff")
     return allEntries;
   }
+
+
+    //   /**
+  //    * Data source:  https://www.nasdaq.com/market-activity/stocks/gme/historical
+  //    */
+
 
 
   /**
    * Most of the GME historic trading data is stored in the assets/data/gme-data-post-2020.csv file
    */
-  private async _loadGMECSVdata$() {
+  private async _loadGMECSVdataCurrentEra$() {
     const subject$ = new Subject<GmePriceEntry[]>();
     const gmeDatafileName = 'assets/data/gme-data-post-2020.csv';
 
@@ -47,6 +59,19 @@ export class ImportGmeDataService {
         // catchError(error => of([]))
       ))
   }
+
+  private async   _loadGMECSVdataHistoricEra$() {
+    const subject$ = new Subject<GmePriceEntry[]>();
+    const gmeDatafileName = 'assets/data/gme-data-pre-2020.csv';
+
+    return await lastValueFrom(this._httpClient.get(gmeDatafileName, { responseType: 'text' },)
+      .pipe(
+        map(data => this._parseCSV(data)),
+        // catchError(error => of([]))
+      ))
+  }
+
+
 
 
   /** Convert CSV table into an array of objects */
@@ -93,62 +118,45 @@ export class ImportGmeDataService {
   }
 
 
-  private _loadGoogleSheetData$() {
-    const gmeSubject$ = new Subject<GmePriceEntry[]>();
-    /**
-     *  Google Sheet needs to be publish as tsv (tab-separated values) and not csv.
-     *  TSV output is far more simple to parse. 
-     *  
-     */
-    /**
-     * Data source:  https://www.nasdaq.com/market-activity/stocks/gme/historical
-     */
-    const gmeDataOverviewTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQixUOsD8VuEXI06nXbOqMGsDbQiofVAYlbL9_-fh6xo21SSt84x2e0iqDBqWmj_e--CXKpKtiPbjOq/pub?gid=1551713069&single=true&output=tsv';
-    const priceEntries: GmePriceEntry[] = [];
-    this._httpClient.get(gmeDataOverviewTsvUrl, { responseType: 'text' }).subscribe({
-      next: (response) => {
-        let lines = response.split('\n');
-        lines = lines.slice(1);
-        lines.forEach(line => {
-          let tabSplitLine = line.split('\t');
-          const priceEntry: GmePriceEntry = {
-            dateYYYYMMDD: this._convertToDate(tabSplitLine[0]),
-            close: this._convertToNumber(tabSplitLine[1]),
-            volume: this._convertToNumber(tabSplitLine[2]),
-            open: this._convertToNumber(tabSplitLine[3]),
-            high: this._convertToNumber(tabSplitLine[4]),
-            low: this._convertToNumber(tabSplitLine[5]),
-          }
-          priceEntries.push(priceEntry);
-        });
-        // this._priceEntries = priceEntries;
-        // this._sortData();
-        // this._fillGaps();
-        gmeSubject$.next(priceEntries);
-        gmeSubject$.complete();
-      },
-    })
-    return gmeSubject$.asObservable();
-  }
-
-  // public loadGmeData$(): Observable<GmePriceEntry[]> {
-  // const subject$ = new BehaviorSubject<GmePriceEntry[]>([]);
-  // const csvEntries = this._loadCSVdata$()
-  // return this._loadCSVdata$();
-  // const sheetEntries = await lastValueFrom(this._loadGoogleSheetData$());
-  // const allEntries = this._mergeEntries(csvEntries, sheetEntries);
-
-
-  // forkJoin([this._loadCSVdata$(), this._loadGoogleSheetData$()]).subscribe({
-  //   next: (bothArrays) => {
-  //     const mergedValue = this._mergeEntries(bothArrays[0], bothArrays[1]);
-  //     subject$.next(mergedValue);
-  //   },
-  //   error: () => { },
-  //   complete: () => { subject$.complete(); },
-  // })
-  // return subject$.asObservable();
+  // private _loadGoogleSheetData$() {
+  //   const gmeSubject$ = new Subject<GmePriceEntry[]>();
+  //   /**
+  //    *  Google Sheet needs to be publish as tsv (tab-separated values) and not csv.
+  //    *  TSV output is far more simple to parse. 
+  //    *  
+  //    */
+  //   /**
+  //    * Data source:  https://www.nasdaq.com/market-activity/stocks/gme/historical
+  //    */
+  //   const gmeDataOverviewTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQixUOsD8VuEXI06nXbOqMGsDbQiofVAYlbL9_-fh6xo21SSt84x2e0iqDBqWmj_e--CXKpKtiPbjOq/pub?gid=1551713069&single=true&output=tsv';
+  //   const priceEntries: GmePriceEntry[] = [];
+  //   this._httpClient.get(gmeDataOverviewTsvUrl, { responseType: 'text' }).subscribe({
+  //     next: (response) => {
+  //       let lines = response.split('\n');
+  //       lines = lines.slice(1);
+  //       lines.forEach(line => {
+  //         let tabSplitLine = line.split('\t');
+  //         const priceEntry: GmePriceEntry = {
+  //           dateYYYYMMDD: this._convertToDate(tabSplitLine[0]),
+  //           close: this._convertToNumber(tabSplitLine[1]),
+  //           volume: this._convertToNumber(tabSplitLine[2]),
+  //           open: this._convertToNumber(tabSplitLine[3]),
+  //           high: this._convertToNumber(tabSplitLine[4]),
+  //           low: this._convertToNumber(tabSplitLine[5]),
+  //         }
+  //         priceEntries.push(priceEntry);
+  //       });
+  //       // this._priceEntries = priceEntries;
+  //       // this._sortData();
+  //       // this._fillGaps();
+  //       gmeSubject$.next(priceEntries);
+  //       gmeSubject$.complete();
+  //     },
+  //   })
+  //   return gmeSubject$.asObservable();
   // }
+
+
 
   private _mergeEntries(csvEntries: GmePriceEntry[], sheetEntries: GmePriceEntry[]): GmePriceEntry[] {
     const allEntries: GmePriceEntry[] = Object.assign([], csvEntries);

@@ -16,8 +16,12 @@ export class ChartDataSetManager {
   private _datasetConfigs: DatasetConfig[] = [];
   private _timelineEvents: TimelineEvent[] = [];
 
-  private _startDateYYYYMMDD: string = '2020-07-01';
-  private _endDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
+
+  /** No data available for GME prior to 2002-02-13 */
+  // private _minStartDateYYYYMMDD: string = '2002-02-13'
+
+  private _startDateYYYYMMDD: string;
+  private _endDateYYYYMMDD: string;
 
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
@@ -41,7 +45,9 @@ export class ChartDataSetManager {
    * @param categories 
    * @param significanceValue 
    */
-  constructor(priceEntries: GmePriceEntry[], timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean) {
+  constructor(startDateYYYYMMDD: string, endDateYYYYMMDD: string, priceEntries: GmePriceEntry[], timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean) {
+    this._startDateYYYYMMDD = startDateYYYYMMDD;
+    this._endDateYYYYMMDD = endDateYYYYMMDD
     this._allPriceEntries = priceEntries;
     this._timelineEvents = timelineItems;
     this._timelineCategories = categories;
@@ -91,21 +97,29 @@ export class ChartDataSetManager {
   }
 
   public getAndUpdateDatasets() {
+
+    // console.log("all price entries", this._allPriceEntries)
     const chartData: {
       datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[],
       datasetConfigs:  DatasetConfig[],
       labels: string[],
     } = ChartDataItemBuilder.buildChartDataItems(
-      this.startDateYYYYMMDD,
-      this.endDateYYYYMMDD,
+      this._startDateYYYYMMDD,
+      this._endDateYYYYMMDD,
       this._allPriceEntries,
       this._timelineEvents,
       this._signifianceValue,
       this._timelineCategories,
       this._isDarkMode);
+
+      // console.log("Chart Data", chartData, )
     const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = chartData.datasets;
     this._chartLabels = chartData.labels;
     this._datasetConfigs = chartData.datasetConfigs;
+
+
+    // console.log("getAndUpdateDataSets(),", datasets)
+
     this._datasets$.next(datasets);
   }
 

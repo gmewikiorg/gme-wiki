@@ -1,0 +1,75 @@
+.metrics-root{
+    display:flex;
+    flex-direction: row;
+    padding: 5px;
+    z-index: 50;
+    
+    background-color: white;
+    border: 2px solid blue;
+
+    margin-top: 20px;
+    border-radius: 3px;
+    max-width: 800px;
+    position: fixed;
+}
+
+
+.option-button {
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.0);
+    font-size: 1.1em;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 3px;
+    color: rgb(68, 68, 68);
+}
+
+
+
+
+
+.option-button:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.options-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3px;
+}
+.options-choices{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.options-label {
+    min-width: 100px;
+    margin-right: 5px;
+    color: gray;
+    font-size: 0.95em;
+}
+
+
+.selected{
+    // font-weight: bold;
+    color: rgb(0, 89, 255);
+    border: 1px solid rgba(0, 89, 255, 0.2);
+}
+.selected:hover{
+    border: 1px solid rgba(0, 89, 255, 0.5);
+}
+
+
+
+.close-button{
+    font-size: 0.8em;
+    color: gray;
+    cursor: pointer;
+}.close-button:hover{
+    color:black;
+}

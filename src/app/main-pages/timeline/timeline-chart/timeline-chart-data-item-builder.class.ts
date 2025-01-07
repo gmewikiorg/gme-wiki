@@ -27,7 +27,9 @@ export class ChartDataItemBuilder {
          * Build one ChartDataItem per day for each day from start date to end date
          */
 
-        // console.log("buildChartDataItems()", startDateYYYYMMDD, endDateYYYYMMDD, gmePriceEntries, timelineEvents, currentCategoriesValue, currentCategoriesValue)
+        // console.log("*** buildChartDataItems()", startDateYYYYMMDD, endDateYYYYMMDD, gmePriceEntries, timelineEvents, currentCategoriesValue, currentCategoriesValue)
+        // console.log("*** gmePriceEntries", gmePriceEntries)
+        
         const items: ChartDataItem[] = [];
         const foundStartIndex = gmePriceEntries.findIndex(item => item.dateYYYYMMDD === startDateYYYYMMDD);
         let foundEndIndex = gmePriceEntries.findIndex(item => item.dateYYYYMMDD === endDateYYYYMMDD);
@@ -60,6 +62,9 @@ export class ChartDataItemBuilder {
         }else{
             condensedItems = items;
         }
+
+        // console.log("CONDENSED ITEMS", condensedItems)
+
         const closePrices: number[] = [];
         const chartLabels: string[] = [];
         condensedItems
@@ -79,6 +84,9 @@ export class ChartDataItemBuilder {
             gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
             pointHoverBorderColor = 'white';
         }
+
+
+        // console.log("Close prices", closePrices)
 
         datasets.push({
             data: closePrices,

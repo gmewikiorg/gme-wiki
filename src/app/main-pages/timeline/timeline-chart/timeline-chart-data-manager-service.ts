@@ -14,7 +14,7 @@ export class ChartDataManagerService {
    * The ChartDataManagerService manages the datasets for the chart.  As filters are applied, the datasets need to be updated.
    */
   constructor() {
-    this._dataManager = new ChartDataSetManager([], [], [], -1, false);
+    this._dataManager = new ChartDataSetManager('','',[], [], [], -1, false);
   }
 
   private _dataSets$: BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]> = new BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]>([]);

@@ -15,6 +15,7 @@ import { ImportEventsService } from './import-events.service';
 import { EventSearchService } from '../../main-pages/timeline/timeline-controls/timeline-search-control/search/event-search.service';
 import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/timeline-items-builder.class';
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
+import { TimelineControlsService } from '../../main-pages/timeline/timeline-controls/choose-gme-metric/timeline-controls.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class LoadingService {
     private _import10KService: Import10KDataService,
     private _importEventsService: ImportEventsService,
     private _searchService: EventSearchService,
+    private _timelineControlsService: TimelineControlsService,
   ) {
   }
 
@@ -87,7 +89,7 @@ export class LoadingService {
       }
     }
     if (needsUpdate) {
-      console.log("_loadEvents() needs update, getting from Google sheets")
+      // console.log("_loadEvents() needs update, getting from Google sheets")
       this._allEventConfigs = await firstValueFrom(this._importEventsService.importEventsFromGoogleSheet$());
       this._settingsService.setLastEventsCheckedDate();
       this._settingsService.setEventsData(this._allEventConfigs);
@@ -98,17 +100,20 @@ export class LoadingService {
   }
 
   private async _loadGmeData() {
-    let needsUpdate: boolean = this._needsGMEUpdate();
-    needsUpdate = true;
-    if (needsUpdate) {
-      // this._priceEntries = await this._gmeDataService.loadGMECSVdata$()
-      this._priceEntries = await this._gmeDataService.loadGMEPriceEntries$();
-      this._settingsService.setGmeData(this._priceEntries);
-      this._settingsService.setLastEventsCheckedDate();
-    } else {
-      this._priceEntries = this._settingsService.gmeData;
-      this._gmeDataService.setGmePriceEntries(this._priceEntries);
-    }
+    this._priceEntries = await this._gmeDataService.loadGMEPriceEntries$();
+    this._settingsService.setGmeData(this._priceEntries);
+    // console.log("price entries", this._priceEntries)
+    // let needsUpdate: boolean = this._needsGMEUpdate();
+    // needsUpdate = true;
+    // if (needsUpdate) {
+    //   // this._priceEntries = await this._gmeDataService.loadGMECSVdata$()
+    //   this._priceEntries = await this._gmeDataService.loadGMEPriceEntries$();
+    //   this._settingsService.setGmeData(this._priceEntries);
+    //   this._settingsService.setLastEventsCheckedDate();
+    // } else {
+    //   this._priceEntries = this._settingsService.gmeData;
+    //   this._gmeDataService.setGmePriceEntries(this._priceEntries);
+    // }
   }
 
 
@@ -140,9 +145,19 @@ export class LoadingService {
     this._timelineItemsService.updateSignificanceValue(this._settingsService.significanceValue);
     this._timelineItemsService.updateCategories(this._settingsService.categories);
     const priceEntries = this._gmeDataService.allPriceEntries;
-    const dataManager: ChartDataSetManager = new ChartDataSetManager(priceEntries,
-      this._timelineItemsService.allTimelineItems, this._settingsService.categories, this._settingsService.significanceValue, this._settingsService.getDarkMode());
+
+    const dataManager: ChartDataSetManager = new ChartDataSetManager(
+      this._timelineControlsService.startDateYYYYMMDD,
+      this._timelineControlsService.endDateYYYYMMDD,
+      priceEntries,
+      this._timelineItemsService.allTimelineItems, 
+      this._settingsService.categories, 
+      this._settingsService.significanceValue, 
+      this._settingsService.getDarkMode()
+    );
+
     this._dataManagerService.setDataManager(dataManager);
+
     this._timelineItemsService.setQuarterlyFinancialResults(this._quarterlyResults);
     this._loadingMessage = '';
 

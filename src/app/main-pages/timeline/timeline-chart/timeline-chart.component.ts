@@ -11,6 +11,7 @@ import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.cl
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
+import { TimelineControlsService } from '../timeline-controls/choose-gme-metric/timeline-controls.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class TimelineChartComponent implements OnDestroy {
     private _timelineItemService: TimelineItemsService,
     private _sizeService: ScreenService,
     private _settingsService: SettingsService,
+    private _controlsService: TimelineControlsService,
     private _router: Router
   ) { 
     this._isDarkMode = this._sizeService.isDarkMode;
@@ -37,8 +39,11 @@ export class TimelineChartComponent implements OnDestroy {
     Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale);
     this._updateChartContainerStyle();
     this._updateLabels();
+
     this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
     this.lineChartData.datasets = this._chartDataService.dataSets; 
+
+    // console.log("DATASETS", this.lineChartData.datasets)
   }
 
   public lineChartData: ChartConfiguration<'line'>['data'] = { labels: [], datasets: [] };
@@ -56,7 +61,9 @@ export class TimelineChartComponent implements OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   ngOnInit() {
-    
+    this._controlsService.period$.subscribe(()=>{
+      this._chartDataService.updateDateRange(this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
+    })
 
   }
 
@@ -89,6 +96,7 @@ export class TimelineChartComponent implements OnDestroy {
       next: (datasets) => {
         this._updateLabels();
         this.lineChartData.datasets = datasets;
+        // console.log("DATASETS UPDATE", this.lineChartData.datasets)
         this.baseChart?.update();
       },
       error: () => { },
