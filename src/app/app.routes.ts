@@ -20,7 +20,7 @@ import { RedditComponent } from './info-pages/reddit/reddit.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
-import { MediaVsNakedShortsComponent } from './info-pages/media-vs-naked-shorts/media-vs-naked-shorts.component';
+import { CNBCVsNakedShortsComponent } from './info-pages/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
 import { FudComponent } from './info-pages/fud/fud.component';
 import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
 import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
@@ -50,6 +50,8 @@ export const routes: Routes = [
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },
     
+    { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
+    
 
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
@@ -61,7 +63,7 @@ export const routes: Routes = [
     { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'media', component: MediaComponent },
-    { path: 'media-vs-naked-shorts', component: MediaVsNakedShortsComponent },
+    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
     { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
     { path: 'propaganda', component: MediaComponent },
 

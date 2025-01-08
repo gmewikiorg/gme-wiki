@@ -14,6 +14,7 @@ export class ChartDataItemBuilder {
     public static buildChartDataItems(
         startDateYYYYMMDD: string,
         endDateYYYYMMDD: string,
+        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS',
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
@@ -29,7 +30,7 @@ export class ChartDataItemBuilder {
 
         // console.log("*** buildChartDataItems()", startDateYYYYMMDD, endDateYYYYMMDD, gmePriceEntries, timelineEvents, currentCategoriesValue, currentCategoriesValue)
         // console.log("*** gmePriceEntries", gmePriceEntries)
-        
+
         const items: ChartDataItem[] = [];
         const foundStartIndex = gmePriceEntries.findIndex(item => item.dateYYYYMMDD === startDateYYYYMMDD);
         let foundEndIndex = gmePriceEntries.findIndex(item => item.dateYYYYMMDD === endDateYYYYMMDD);
@@ -59,34 +60,45 @@ export class ChartDataItemBuilder {
             } else {
                 condensedItems = items;
             }
-        }else{
+        } else {
             condensedItems = items;
         }
 
         // console.log("CONDENSED ITEMS", condensedItems)
+
+
 
         const closePrices: number[] = [];
         const chartLabels: string[] = [];
         condensedItems
             .filter(entry => entry.date.format('YYYY-MM-DD') >= startDateYYYYMMDD && entry.date.format('YYYY-MM-DD') <= endDateYYYYMMDD)
             .forEach(condensedItem => {
-                closePrices.push(condensedItem.finalClose);
+                if (metric === 'PRICE') {
+                    closePrices.push(condensedItem.finalClose);
+                } else if (metric === 'VOLUME') {
+                    closePrices.push(condensedItem.volume);
+                } else if (metric === 'EQUITY') {
+                    closePrices.push(condensedItem.equity);
+                } else if (metric === 'PTOB') {
+                    closePrices.push(condensedItem.pToB);
+                } else if (metric === 'PTOS') {
+                    closePrices.push(condensedItem.pToS);
+                }
                 chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM D, YY'));
             });
 
         const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = [];
 
         let gmeBorderColor = 'green';
-        let gmeBackgroundColor =  'rgba(0,255,0,0.075)';
+        let gmeBackgroundColor = 'rgba(0,255,0,0.075)';
         let pointHoverBorderColor = 'black';
-        if(isDarkMode){
+        if (isDarkMode) {
             gmeBorderColor = 'rgba(0, 255, 0, 0.6)';
             gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
             pointHoverBorderColor = 'white';
         }
 
 
-        // console.log("Close prices", closePrices)
 
         datasets.push({
             data: closePrices,
@@ -100,30 +112,39 @@ export class ChartDataItemBuilder {
             pointHitRadius: 0,
             pointHoverRadius: 0,
         });
-        
-        
-        
-        let datasetConfigs = this._getDatasetConfigs(currentSignificanceValue, currentCategoriesValue, condensedItems);
-        datasetConfigs.forEach(datasetConfig => {
-            datasets.push({
-                data: datasetConfig.dataPoints,
-                label: datasetConfig.label,
-                fill: true,
-                tension: 0.5,
-                borderColor: 'black',
-                pointBackgroundColor: datasetConfig.color,
-                pointBorderColor: 'rgba(0,0,0,0)',
-                pointHoverBorderColor: pointHoverBorderColor,
-                pointBorderWidth: 1,
-                borderWidth: 0.1,
-                pointRadius: this._getPointRadius(datasetConfig.significance),
-                pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
-                pointHoverRadius: 5 + (4 * datasetConfig.significance),
-                pointStyle: 'circle',
-            })
-        });
+
+
+
+        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, condensedItems);
+        // if (metric === 'PRICE') {
+            if (true) {
+            datasetConfigs.forEach(datasetConfig => {
+                datasets.push({
+                    data: datasetConfig.dataPoints,
+                    label: datasetConfig.label,
+                    fill: true,
+                    tension: 0.5,
+
+                    pointBackgroundColor: datasetConfig.color,
+                    pointBorderColor: datasetConfig.color,
+                    pointBorderWidth: 3,
+
+                    pointHoverBorderColor: datasetConfig.borderColor,
+                    pointHoverBackgroundColor: datasetConfig.borderColor,
+                    pointHoverBorderWidth: 5,
+
+
+                    pointRadius: this._getPointRadius(datasetConfig.significance),
+                    pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
+                    pointHoverRadius: 5 + (4 * datasetConfig.significance),
+                    pointStyle: 'circle',
+                })
+            });
+        }
+
+
         /** change every second label to "" value */
-        for(let i=1; i<chartLabels.length;i++){
+        for (let i = 1; i < chartLabels.length; i++) {
             chartLabels[i] = "";
             i++;
         }
@@ -179,6 +200,7 @@ export class ChartDataItemBuilder {
      * Build each datapoint configuration, a unique set based on significance + type combination.
      */
     private static _getDatasetConfigs(
+        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS',
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
         condensedItems: ChartDataItem[]): DatasetConfig[] {
@@ -232,12 +254,12 @@ export class ChartDataItemBuilder {
                 // console.log("NO EVENTS")
                 datapointSets.splice(setIndex, 1);
                 setIndex--;
-            }else{
+            } else {
             }
             setIndex++;
         }
         const configs = datapointSets.map(set => {
-            return new DatasetConfig(set.datapoints, set.type, set.type, this.getTypeColor(set.type), set.significance);
+            return new DatasetConfig(set.datapoints, set.type, set.type, this.getTypeColor(set.type, 0.5), this.getTypeColor(set.type), set.significance, metric);
         });
         return configs
     }

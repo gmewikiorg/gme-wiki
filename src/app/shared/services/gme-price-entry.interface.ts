@@ -5,5 +5,8 @@ export interface GmePriceEntry{
     volume: number,
     open: number,
     high: number,
-    low: number
+    low: number,
+    tso: number,
+    trailingSales: number,
+    equity: number,
 }

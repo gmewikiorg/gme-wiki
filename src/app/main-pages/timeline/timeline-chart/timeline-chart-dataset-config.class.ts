@@ -9,14 +9,37 @@ export class DatasetConfig {
     private _label: string;
     private _itemType: TimelineEventType;
     private _color: string;
+    private _borderColor: string;
     private _significanceValue: number;
+    private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS';
 
     public get timelineItems(): (TimelineEvent | null)[] { return this._timelineItems; }
     public get dataPoints(): (number | null)[] {
         return this._timelineItems.map((timelineItem) => {
             if (timelineItem !== null) {
                 if (timelineItem.gmePriceEntry) {
-                    return timelineItem.gmePriceEntry.close;
+                    const entry = timelineItem.gmePriceEntry;
+                    const isPresplit: boolean = entry.dateYYYYMMDD < '2022-07-21';
+                    if (this._metric === 'PRICE') {
+                        return entry.close;
+                    } else if (this._metric === 'VOLUME') {
+                        return entry.volume;
+                    } else if (this._metric === 'EQUITY') {
+                        return entry.equity;
+                    } else if (this._metric === 'PTOB') {
+                        let ptob = (entry.close * entry.tso) / entry.equity
+                        if(isPresplit){
+                            ptob = ((entry.close*4) * entry.tso) / entry.equity
+                        }
+                        return ptob;
+                    } else if (this._metric === 'PTOS') {
+                        let ptos = (entry.close * entry.tso) / entry.trailingSales
+                        if(isPresplit){
+                            ptos = ((entry.close*4) * entry.tso) / entry.trailingSales
+                        }
+                        return ptos;
+                    }
+                    return entry.close;
                 }
             }
             return null;
@@ -25,15 +48,18 @@ export class DatasetConfig {
     public get label(): string { return this._label; }
     public get itemType(): TimelineEventType { return this._itemType; }
     public get color(): string { return this._color; }
+    public get borderColor(): string { return this._borderColor; }
     public get significance(): number { return this._significanceValue; }
 
 
-    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, significance: number) {
+    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
         this._timelineItems = timelineItems;
         this._label = label;
         this._itemType = type;
         this._color = color;
+        this._borderColor = borderColor;
         this._significanceValue = significance;
+        this._metric = metric;
     }
 
     public get eventCount(): number {

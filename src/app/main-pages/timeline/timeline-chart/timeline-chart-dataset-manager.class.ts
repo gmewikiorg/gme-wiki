@@ -26,6 +26,8 @@ export class ChartDataSetManager {
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
+  private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' = 'PRICE'
+  public get metric():  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' { return this._metric; }
 
   private _isDarkMode: boolean;
 
@@ -72,6 +74,10 @@ export class ChartDataSetManager {
     this._endDateYYYYMMDD = endDateYYYYMMDD;
     this.getAndUpdateDatasets();
   }
+  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'){
+    this._metric = metric;
+    this.getAndUpdateDatasets();
+  }
 
   public updateDarkMode(isDarkMode: boolean){
     this._isDarkMode = isDarkMode;
@@ -106,6 +112,7 @@ export class ChartDataSetManager {
     } = ChartDataItemBuilder.buildChartDataItems(
       this._startDateYYYYMMDD,
       this._endDateYYYYMMDD,
+      this._metric,
       this._allPriceEntries,
       this._timelineEvents,
       this._signifianceValue,

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { BarController, CategoryScale, Chart, ChartConfiguration, ChartOptions, Decimation, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip, TooltipItem } from 'chart.js';
+import { BarController, BarElement, CategoryScale, Chart, ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, Decimation, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip, TooltipItem } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartDataManagerService } from './timeline-chart-data-manager-service';
 import { TimelineItemsService } from '../timeline-items/timeline-items.service';
@@ -36,7 +36,7 @@ export class TimelineChartComponent implements OnDestroy {
     this._isDarkMode = this._sizeService.isDarkMode;
     Chart.unregister(ChartDataLabels);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
-    Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale);
+    Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale, BarController, BarElement);
     this._updateChartContainerStyle();
     this._updateLabels();
 
@@ -49,6 +49,78 @@ export class TimelineChartComponent implements OnDestroy {
   public lineChartData: ChartConfiguration<'line'>['data'] = { labels: [], datasets: [] };
   public lineChartOptions: ChartOptions<'line'>;
   public lineChartLegend = false;
+
+
+  public mixedChartData: ChartData<keyof ChartTypeRegistry, number[], string> = {
+    datasets: [
+
+      {
+        type: 'line',
+        label: 'Line Dataset',
+        // xAxisID: 'xLineAxis', 
+        yAxisID: 'yRight',
+        data: [2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3],
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        fill: false
+      },
+
+      {
+        type: 'bar',
+        label: 'Bar Dataset',
+        // xAxisID: 'xBarAxis', 
+        yAxisID: 'yLeft',
+        data: [1200, 1900, 300, 500, 200, 300, 200, 1900, 300, 500],
+        borderWidth: 2,
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      },
+    ],
+    labels: ['asd', 'asdf', '', 'asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '',]
+    // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June']
+  };
+  public mixedChartOptions = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Mixed Bar/Line Chart'
+      }
+    },
+    scales: {
+      xBarAxis: {
+        type: 'category',
+        // labels: ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'], // distinct bar labels
+        position: 'bottom',
+        offset: true,  // offset can help visually separate axes
+      },
+      // Second x-axis for line dataset
+      xLineAxis: {
+        type: 'category',
+        // labels: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'], // distinct line labels
+        position: 'none',   // put the line's x-axis on top (for example)
+        offset: true,
+      },
+      yLeft: {
+        type: 'linear',
+        position: 'left',
+        beginAtZero: true
+      },
+      // Right axis
+      yRight: {
+        type: 'linear',
+        position: 'right',
+        beginAtZero: true,
+        // If the right y-axis overlaps the left axis labels,
+        // you can add some padding:
+        grid: {
+          drawOnChartArea: false // This keeps grid lines off the main chart area
+        }
+      },
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
 
   public get isMobile(): boolean { return this._sizeService.isMobile; }
   public get isListView(): boolean { return this._settingsService.chartListIsVertical; }
@@ -63,6 +135,9 @@ export class TimelineChartComponent implements OnDestroy {
   ngOnInit() {
     this._controlsService.period$.subscribe(()=>{
       this._chartDataService.updateDateRange(this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
+    })
+    this._controlsService.metric$.subscribe(()=>{
+      this._chartDataService.updateMetric(this._controlsService.metric)
     })
 
   }

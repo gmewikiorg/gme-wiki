@@ -19,13 +19,14 @@ export class ChooseGmeMetricComponent {
 
     public get faX() { return faX; }
 
-  public get metric(): 'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS' { return this._controlsService.metric; }
+  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'{ return this._controlsService.metric; }
   public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._controlsService.period; }
 
   public get metricIsPrice(): boolean { return this.metric === 'PRICE'; }
   public get metricIsVolume(): boolean { return this.metric === 'VOLUME'; }
-  public get metricIsPtoB(): boolean { return this.metric === 'PtoB'; }
-  public get metricIsPtoS(): boolean { return this.metric === 'PtoS'; }
+  public get metricIsPtoB(): boolean { return this.metric === 'PTOB'; }
+  public get metricIsPtoS(): boolean { return this.metric === 'PTOS'; }
+  public get metricIsEquity(): boolean { return this.metric === 'EQUITY'; }
 
   public get periodIs1Year(): boolean { return this.period === '2_YEARS'; }
   public get periodIs5Years(): boolean { return this.period === '5_YEARS'; }
@@ -34,7 +35,7 @@ export class ChooseGmeMetricComponent {
   public get periodIsCustom(): boolean { return this.period === 'CUSTOM'; }
 
 
-  public onClickMetric(metric:  'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS') {
+  public onClickMetric(metric:  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
     this._controlsService.setMetric(metric);
   }
 

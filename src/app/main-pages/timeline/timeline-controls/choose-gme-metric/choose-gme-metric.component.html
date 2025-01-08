@@ -1,4 +1,4 @@
-<div class="metrics-root">
+<div class="metrics-root shadow">
     <div style="display:flex;flex-direction: column;">
         <div class="options-row">
             <div class="options-label">
@@ -9,12 +9,14 @@
                 <button class="option-button" [ngClass]="{'selected': metricIsPrice}"
                     (click)="onClickMetric('PRICE')">Share
                     price (timeline)</button>
-                <!-- <button class="option-button" [ngClass]="{'selected': metricIsVolume}"
+                <button class="option-button" [ngClass]="{'selected': metricIsVolume}"
                     (click)="onClickMetric('VOLUME')">Volume</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoB}"
-                    (click)="onClickMetric('PtoB')">Price-to-Book Ratio</button>
+                    (click)="onClickMetric('PTOB')">Price-to-Book Ratio</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoS}"
-                    (click)="onClickMetric('PtoS')">Price-to-Sales Ratio</button> -->
+                    (click)="onClickMetric('PTOS')">Price-to-Sales Ratio</button>
+                    <button class="option-button" [ngClass]="{'selected': metricIsEquity}"
+                    (click)="onClickMetric('EQUITY')">Stockholders' Equity</button>
                 <!-- <button class="option-button">FTDs</button> -->
 
             </div>

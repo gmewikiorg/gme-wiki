@@ -11,16 +11,13 @@ export class TimelineControlsService {
 
 
   private _period$: BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> = new BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'>('CURRENT');
-  private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS'> = new BehaviorSubject<'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS'>('PRICE');
+  private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'> = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'>('PRICE');
 
   public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period$.getValue(); }
-  public get metric(): 'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS' { return this._metric$.getValue(); }
+  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' { return this._metric$.getValue(); }
 
   public get period$(): Observable<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> { return this._period$.asObservable(); }
-  public get metric$(): Observable<'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS'> { return this._metric$.asObservable(); }
-
-  // private _viewStartDateYYYYMMDD: string = '2020-06-01'
-  // private _viewEndDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
+  public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'> { return this._metric$.asObservable(); }
 
   /** No data available for GME prior to 2002-02-13 */
   private _minStartDateYYYYMMDD: string = '2002-02-13'
@@ -28,11 +25,14 @@ export class TimelineControlsService {
   private _startDateYYYYMMDD: string = '2020-06-01';
   private _endDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
 
+  // private _startDateYYYYMMDD: string = '2015-02-13';
+  // private _endDateYYYYMMDD: string = '2021-02-29'
+
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
 
-  public setMetric(metric: 'PRICE' | 'VOLUME' | 'PtoB' | 'PtoS') {
+  public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
     this._metric$.next(metric);
   }
 
@@ -49,10 +49,6 @@ export class TimelineControlsService {
     } else if (period === 'CUSTOM') {
 
     }
-
-
-
-
 
     this._period$.next(period);
   }

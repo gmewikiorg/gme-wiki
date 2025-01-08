@@ -57,6 +57,10 @@ export class ChartDataManagerService {
   public updateDateRange(startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._dataManager.updateDateRange(startDateYYYYMMDD, endDateYYYYMMDD);
   }
+  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'){
+    this._dataManager.updateMetric(metric);
+  }
+
   public updateDarkMode(isDarkMode: boolean){
     this._dataManager.updateDarkMode(isDarkMode);
   }

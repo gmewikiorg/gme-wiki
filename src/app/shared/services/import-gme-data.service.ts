@@ -29,9 +29,9 @@ export class ImportGmeDataService {
     const start = dayjs();
     
     const csvEntriesCurrent = await this._loadGMECSVdataCurrentEra$()
-    const csvEntriesHistoric = await this._loadGMECSVdataHistoricEra$()
+    // const csvEntriesHistoric = await this._loadGMECSVdataHistoricEra$()
     // const sheetEntries = await lastValueFrom(this._loadGoogleSheetData$());
-    const allEntries = this._mergeEntries(csvEntriesCurrent, csvEntriesHistoric);
+    const allEntries = this._mergeEntries(csvEntriesCurrent, []);
     this.setGmePriceEntries(allEntries);
     // return allEntries;
     const end = dayjs();
@@ -107,10 +107,13 @@ export class ImportGmeDataService {
       const priceEntry: GmePriceEntry = {
         dateYYYYMMDD: this._convertToDate(cells[0]),
         close: this._convertToNumber(cells[1]),
-        volume: this._convertToNumber(cells[2]),
+        volume: Number(cells[2]),
         open: this._convertToNumber(cells[3]),
         high: this._convertToNumber(cells[4]),
         low: this._convertToNumber(cells[5]),
+        tso: Number(cells[6]),
+        trailingSales: Number(cells[7]),
+        equity: Number(cells[8]),
       }
       priceEntries.push(priceEntry);
     }
@@ -207,6 +210,9 @@ export class ImportGmeDataService {
           open: prevEntry.open,
           high: prevEntry.high,
           low: prevEntry.low,
+          tso: prevEntry.tso,
+          trailingSales: prevEntry.trailingSales,
+          equity: prevEntry.equity,
         });
       }
       currentDateYYYYMMDD = dayjs(currentDateYYYYMMDD).add(1, 'days').format('YYYY-MM-DD');

@@ -20,10 +20,20 @@ export class ChartDataItem {
         }
         if (finalClose !== undefined) {
             this._finalClose = finalClose;
-        }else{
-            if(this._gmePriceEntries.length > 0){
-                this._finalClose = this._gmePriceEntries[0].close;
+        }
+        if(this._gmePriceEntries.length > 0){
+            const finalItem = this._gmePriceEntries[this._gmePriceEntries.length-1];
+            this._finalClose = finalItem.close;
+            this._tso = finalItem.tso;
+            this._trailingSales = finalItem.trailingSales;
+            this._equity = finalItem.equity;
+            this._pToS = (finalItem.close * finalItem.tso) / finalItem.trailingSales;
+            this._pToB = (finalItem.close * finalItem.tso) / finalItem.equity;
+            if(finalItem.dateYYYYMMDD < '2022-07-21'){
+                this._pToS = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingSales;
+                this._pToB = ((finalItem.close*4) * finalItem.tso) / finalItem.equity;
             }
+            this._volume = finalItem.volume;
         }
     }
 
@@ -32,6 +42,12 @@ export class ChartDataItem {
     private _events: TimelineEvent[];
     private _highPriceValue: number = -1;
     private _finalClose: number = -1;
+    private _tso: number = -1;
+    private _trailingSales: number = -1;
+    private _equity: number = 1;
+    private _pToB: number = 0;
+    private _pToS: number = 0;
+    private _volume: number = 0;
 
     public get date(): dayjs.Dayjs { return dayjs(this._dateYYYYMMDD); }
     public get dateYYYYMMDD(): string { return this._dateYYYYMMDD; }
@@ -39,6 +55,12 @@ export class ChartDataItem {
     public get events(): TimelineEvent[] { return this._events; }
     public get highPriceValue(): number { return this._highPriceValue; }
     public get finalClose(): number { return this._finalClose; }
+    public get tso(): number { return this._tso; }
+    public get trailingSales(): number { return this._trailingSales; }
+    public get equity(): number { return this._equity; }
+    public get pToB(): number { return this._pToB; }
+    public get pToS(): number { return this._pToS; }
+    public get volume(): number { return this._volume; } 
 
     public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[]): {
         event: TimelineEvent | null,
