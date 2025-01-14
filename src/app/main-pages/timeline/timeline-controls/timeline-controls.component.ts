@@ -9,7 +9,7 @@ import { EventSearchService } from './timeline-search-control/search/event-searc
 import { faMagnifyingGlass, faQuestion, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { TimelineSearchControlComponent } from './timeline-search-control/timeline-search-control.component';
 import { TimelineSettingsControlComponent } from './timeline-settings-control/timeline-settings-control.component';
-import { ChooseGmeMetricComponent } from './choose-gme-metric/choose-gme-metric.component';
+import { ChooseGmeMetricComponent } from '../timeline-chart/chart-options/timeline-chart-options.component';
 
 @Component({
   selector: 'app-timeline-controls',

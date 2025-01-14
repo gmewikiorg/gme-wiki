@@ -14,7 +14,8 @@ export class ChartDataItemBuilder {
     public static buildChartDataItems(
         startDateYYYYMMDD: string,
         endDateYYYYMMDD: string,
-        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS',
+        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
+        period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM',
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
@@ -83,8 +84,17 @@ export class ChartDataItemBuilder {
                     closePrices.push(condensedItem.pToB);
                 } else if (metric === 'PTOS') {
                     closePrices.push(condensedItem.pToS);
+                } else if (metric === 'PTOE') {
+                    closePrices.push(condensedItem.pToE);
                 }
-                chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM D, YY'));
+                if (period === 'CURRENT') {
+                    chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM YYYY'));
+                } else if (period === 'HISTORIC') {
+                    chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('YYYY'));
+                } else {
+                    chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM YYYY'));
+                }
+
             });
 
         const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = [];
@@ -113,41 +123,62 @@ export class ChartDataItemBuilder {
             pointHoverRadius: 0,
         });
 
-
-
         let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, condensedItems);
-        // if (metric === 'PRICE') {
+        if (period === 'CURRENT') {
             if (true) {
-            datasetConfigs.forEach(datasetConfig => {
-                datasets.push({
-                    data: datasetConfig.dataPoints,
-                    label: datasetConfig.label,
-                    fill: true,
-                    tension: 0.5,
+                datasetConfigs.forEach(datasetConfig => {
+                    datasets.push({
+                        data: datasetConfig.dataPoints,
+                        label: datasetConfig.label,
+                        fill: true,
+                        tension: 0.5,
 
-                    pointBackgroundColor: datasetConfig.color,
-                    pointBorderColor: datasetConfig.color,
-                    pointBorderWidth: 3,
+                        pointBackgroundColor: datasetConfig.color,
+                        pointBorderColor: datasetConfig.color,
+                        pointBorderWidth: 3,
 
-                    pointHoverBorderColor: datasetConfig.borderColor,
-                    pointHoverBackgroundColor: datasetConfig.borderColor,
-                    pointHoverBorderWidth: 5,
+                        pointHoverBorderColor: datasetConfig.borderColor,
+                        pointHoverBackgroundColor: datasetConfig.borderColor,
+                        pointHoverBorderWidth: 5,
 
 
-                    pointRadius: this._getPointRadius(datasetConfig.significance),
-                    pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
-                    pointHoverRadius: 5 + (4 * datasetConfig.significance),
-                    pointStyle: 'circle',
-                })
-            });
+                        pointRadius: this._getPointRadius(datasetConfig.significance),
+                        pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
+                        pointHoverRadius: 5 + (4 * datasetConfig.significance),
+                        pointStyle: 'circle',
+                    })
+                });
+            }
         }
 
 
-        /** change every second label to "" value */
-        for (let i = 1; i < chartLabels.length; i++) {
-            chartLabels[i] = "";
-            i++;
+        if (period === 'CURRENT') {
+            /** change every second label to "" value */
+            // for (let i = 1; i < chartLabels.length; i++) {
+            //     chartLabels[i] = "";
+            //     i++
+            // }
+        } else if (period === 'HISTORIC') {
+            /**
+             * In this case we only add the first instance of each year, so that the year label is shown where the first occurrence of that year happens, 
+             * and not some automatically chosen spot.
+             * 
+             * in the chart settings, scales.x.ticks.autoskip must be false in this case.
+             */
+            let years:string[] = [];
+            for (let i = 0; i < chartLabels.length; i++) {
+                if (!years.includes(chartLabels[i])) {
+                    if(chartLabels[i] !== '2002'){
+                        years.push(chartLabels[i]);
+                    }else{
+                        chartLabels[i] = "";
+                    }
+                } else {
+                    chartLabels[i] = "";
+                }
+            }
         }
+
         const returnValue = {
             datasets: datasets,
             datasetConfigs: datasetConfigs,
@@ -200,7 +231,7 @@ export class ChartDataItemBuilder {
      * Build each datapoint configuration, a unique set based on significance + type combination.
      */
     private static _getDatasetConfigs(
-        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS',
+        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
         condensedItems: ChartDataItem[]): DatasetConfig[] {

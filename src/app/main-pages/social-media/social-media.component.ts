@@ -25,7 +25,7 @@ export class SocialMediaComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'Social Media for GME Shareholders' },
       { property: 'og:description', content: 'Social Media for GME shareholders' },
-      { property: 'og:url', content: 'https://gmetimeline.org/social-media' },
+      { property: 'og:url', content: 'https://gmewiki.org/social-media' },
       { property: 'og:type', content: 'website' },
     ]);
   }

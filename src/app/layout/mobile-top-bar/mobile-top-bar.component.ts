@@ -80,9 +80,7 @@ export class MobileTopBarComponent {
   }
   
   public onClickTopBar(){
-    if(this.selectedMenuItem?.routerLink !== '/timeline'){
       this._menuIsExpanded = !this._menuIsExpanded;
-    }
   }
 
 }

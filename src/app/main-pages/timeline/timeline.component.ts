@@ -5,14 +5,14 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { TimelineItemsComponent } from './timeline-items/timeline-items.component';
 import { SettingsService } from '../../shared/services/settings.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { TimelineContentComponent } from './timeline-content/timeline-content.component';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [TimelineControlsComponent, TimelineItemsComponent, TimelineChartComponent, CommonModule, LoadingComponent],
+  imports: [TimelineControlsComponent, TimelineChartComponent, CommonModule, LoadingComponent, TimelineContentComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss'
 })
@@ -38,7 +38,7 @@ export class TimelineComponent {
       this.meta.addTags([
         { property: 'og:title', content: 'GameStop Interactive Timeline' },
         { property: 'og:description', content: 'GameStop Interactive Timeline' },
-        { property: 'og:url', content: 'https://gmetimeline.org/timeline' },
+        { property: 'og:url', content: 'https://gmewiki.org/timeline' },
         { property: 'og:type', content: 'website' },
       ]);
     this._isBrowser = isPlatformBrowser(this.platformId);

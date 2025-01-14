@@ -1,13 +1,5 @@
 <div class="chart-container" [ngStyle]="chartContainerNgStyle" id="chartContainer">
-    <canvas baseChart class="chart" id="chartCanvas" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
+    <canvas baseChart id="chartCanvas" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
         [legend]="lineChartLegend">
     </canvas>
 </div>
-
-
-
-<!-- <div class="chart-container" [ngStyle]="chartContainerNgStyle" id="chartContainer">
-    <canvas baseChart class="chart" id="mixedChart"  [data]="mixedChartData" [options]="mixedChartOptions"
-        [legend]="lineChartLegend">
-    </canvas>
-</div> -->

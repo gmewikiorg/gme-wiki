@@ -35,7 +35,7 @@ export class Fy23ProfitabilityComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop FY 2023 Profitability' },
       { property: 'og:description', content: 'GameStop FY 2023 Profitability' },
-      { property: 'og:url', content: 'https://gmetimeline.org/fy23-profitability' },
+      { property: 'og:url', content: 'https://gmewiki.org/fy23-profitability' },
       { property: 'og:type', content: 'website' },
     ]);
   }

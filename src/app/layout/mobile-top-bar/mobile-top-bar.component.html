@@ -6,11 +6,8 @@
         <div *ngIf="selectedMenuItem.iconOrImg === 'IMAGE'" class="menu-item-icon" (click)="onClickImage()">
             <img [src]="selectedMenuItem.imgSrc" style="width: 25px; height: 25px;">
         </div>
-        <div class="menu-item-label" *ngIf="!isTimeline">
+        <div class="menu-item-label">
             {{ selectedMenuItem.label }}
-        </div>
-        <div class="timeline-controls" *ngIf="isTimeline">
-            <app-timeline-controls></app-timeline-controls>
         </div>
     </div>
     <div class="mobile-menu-item" *ngIf="!selectedMenuItem">

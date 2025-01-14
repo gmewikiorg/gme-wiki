@@ -42,7 +42,7 @@ export class FinancialsComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop Earnings and Financial Information' },
       { property: 'og:description', content: 'GameStop Earnings and Financial Information' },
-      { property: 'og:url', content: 'https://gmetimeline.org/financials' },
+      { property: 'og:url', content: 'https://gmewiki.org/financials' },
       { property: 'og:type', content: 'website' },
     ]);
 

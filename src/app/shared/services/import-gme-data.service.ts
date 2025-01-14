@@ -51,7 +51,7 @@ export class ImportGmeDataService {
    */
   private async _loadGMECSVdataCurrentEra$() {
     const subject$ = new Subject<GmePriceEntry[]>();
-    const gmeDatafileName = 'assets/data/gme-data-post-2020.csv';
+    const gmeDatafileName = 'assets/data/gme-data.csv';
 
     return await lastValueFrom(this._httpClient.get(gmeDatafileName, { responseType: 'text' },)
       .pipe(
@@ -114,6 +114,7 @@ export class ImportGmeDataService {
         tso: Number(cells[6]),
         trailingSales: Number(cells[7]),
         equity: Number(cells[8]),
+        trailingEarnings: Number(cells[9]),
       }
       priceEntries.push(priceEntry);
     }
@@ -213,6 +214,7 @@ export class ImportGmeDataService {
           tso: prevEntry.tso,
           trailingSales: prevEntry.trailingSales,
           equity: prevEntry.equity,
+          trailingEarnings: prevEntry.trailingEarnings,
         });
       }
       currentDateYYYYMMDD = dayjs(currentDateYYYYMMDD).add(1, 'days').format('YYYY-MM-DD');

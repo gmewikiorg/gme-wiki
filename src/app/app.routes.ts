@@ -29,6 +29,7 @@ import { BurpComponent } from './info-pages/burp/burp.component';
 import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
 import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
 import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
+import { FaqComponent } from './info-pages/faq/faq.component';
 
 
 
@@ -60,6 +61,7 @@ export const routes: Routes = [
     { path: 'fy23-profitability', component: Fy23ProfitabilityComponent },
     { path: 'fud', component: FudComponent },
 
+    { path: 'faq', component: FaqComponent },
     { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'media', component: MediaComponent },

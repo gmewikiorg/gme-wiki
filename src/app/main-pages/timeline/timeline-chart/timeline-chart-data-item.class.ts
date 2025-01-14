@@ -29,9 +29,11 @@ export class ChartDataItem {
             this._equity = finalItem.equity;
             this._pToS = (finalItem.close * finalItem.tso) / finalItem.trailingSales;
             this._pToB = (finalItem.close * finalItem.tso) / finalItem.equity;
+            this._pToE = (finalItem.close * finalItem.tso) / finalItem.trailingEarnings;
             if(finalItem.dateYYYYMMDD < '2022-07-21'){
                 this._pToS = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingSales;
                 this._pToB = ((finalItem.close*4) * finalItem.tso) / finalItem.equity;
+                this._pToE = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingEarnings;
             }
             this._volume = finalItem.volume;
         }
@@ -47,6 +49,7 @@ export class ChartDataItem {
     private _equity: number = 1;
     private _pToB: number = 0;
     private _pToS: number = 0;
+    private _pToE: number = 0;
     private _volume: number = 0;
 
     public get date(): dayjs.Dayjs { return dayjs(this._dateYYYYMMDD); }
@@ -60,6 +63,7 @@ export class ChartDataItem {
     public get equity(): number { return this._equity; }
     public get pToB(): number { return this._pToB; }
     public get pToS(): number { return this._pToS; }
+    public get pToE(): number { return this._pToE; }
     public get volume(): number { return this._volume; } 
 
     public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[]): {

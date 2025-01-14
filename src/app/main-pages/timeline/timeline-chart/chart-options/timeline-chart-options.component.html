@@ -1,5 +1,5 @@
-<div class="metrics-root shadow">
-    <div style="display:flex;flex-direction: column;">
+<div class="metrics-root">
+    <div style="display:flex;flex-direction: column; ">
         <div class="options-row">
             <div class="options-label">
                 GME metric
@@ -15,7 +15,9 @@
                     (click)="onClickMetric('PTOB')">Price-to-Book Ratio</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoS}"
                     (click)="onClickMetric('PTOS')">Price-to-Sales Ratio</button>
-                    <button class="option-button" [ngClass]="{'selected': metricIsEquity}"
+                <button class="option-button" [ngClass]="{'selected': metricIsPtoE}"
+                    (click)="onClickMetric('PTOE')">Price-to-Earnings Ratio</button>
+                <button class="option-button" [ngClass]="{'selected': metricIsEquity}"
                     (click)="onClickMetric('EQUITY')">Stockholders' Equity</button>
                 <!-- <button class="option-button">FTDs</button> -->
 
@@ -45,7 +47,7 @@
     </div>
 
 
-    <div style="margin-left: 25px;">
+    <div style="padding:5px;">
         <button (click)="onClickClose()" class="close-button">
             <fa-icon [icon]="faX"></fa-icon>
         </button>

@@ -11,13 +11,13 @@ export class TimelineControlsService {
 
 
   private _period$: BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> = new BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'>('CURRENT');
-  private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'> = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'>('PRICE');
+  private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' >('PRICE');
 
   public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period$.getValue(); }
-  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' { return this._metric$.getValue(); }
+  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric$.getValue(); }
 
   public get period$(): Observable<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> { return this._period$.asObservable(); }
-  public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'> { return this._metric$.asObservable(); }
+  public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > { return this._metric$.asObservable(); }
 
   /** No data available for GME prior to 2002-02-13 */
   private _minStartDateYYYYMMDD: string = '2002-02-13'
@@ -32,7 +32,7 @@ export class TimelineControlsService {
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
 
-  public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
+  public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' ) {
     this._metric$.next(metric);
   }
 

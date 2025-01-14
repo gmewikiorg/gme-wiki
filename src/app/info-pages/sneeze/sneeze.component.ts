@@ -31,7 +31,7 @@ export class SneezeComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'January 2021 GameStop GME Sneeze' },
       { property: 'og:description', content: 'January 2021 GameStop GME Sneeze' },
-      { property: 'og:url', content: 'https://gmetimeline.org/sneeze' },
+      { property: 'og:url', content: 'https://gmewiki.org/sneeze' },
       { property: 'og:type', content: 'website' },
     ]);
   }

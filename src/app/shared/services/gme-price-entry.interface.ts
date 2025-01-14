@@ -9,4 +9,5 @@ export interface GmePriceEntry{
     tso: number,
     trailingSales: number,
     equity: number,
+    trailingEarnings: number,
 }

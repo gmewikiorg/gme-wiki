@@ -3,7 +3,7 @@ import { TimelineItemsService } from './timeline-items.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { TimelineEvent } from './timeline-item/timeline-event.class';
 import { TimelineItemComponent } from './timeline-item/timeline-item.component';
-import { TimelineListItemComponent } from './timeline-list-item/timeline-list-item.component';
+import { TimelineListItemComponent } from './timeline-list-item-old/timeline-list-item.component';
 import { CommonModule } from '@angular/common';
 import { SettingsService } from '../../../shared/services/settings.service';
 import { RouterModule } from '@angular/router';

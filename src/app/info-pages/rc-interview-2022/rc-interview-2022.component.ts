@@ -24,7 +24,7 @@ export class RcInterview2022Component {
     this.meta.addTags([
       { property: 'og:title', content: 'Ryan Cohen Interview with Joe Fonicello of GMEdd.com' },
       { property: 'og:description', content: 'Ryan Cohen Interview with Joe Fonicello of GMEdd.com' },
-      { property: 'og:url', content: 'https://gmetimeline.org/rc-interview' },
+      { property: 'og:url', content: 'https://gmewiki.org/rc-interview' },
       { property: 'og:type', content: 'website' },
     ]);
   }

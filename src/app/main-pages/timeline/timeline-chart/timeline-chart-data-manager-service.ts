@@ -14,7 +14,7 @@ export class ChartDataManagerService {
    * The ChartDataManagerService manages the datasets for the chart.  As filters are applied, the datasets need to be updated.
    */
   constructor() {
-    this._dataManager = new ChartDataSetManager('','',[], [], [], -1, false);
+    this._dataManager = new ChartDataSetManager('', '', [], [], [], -1, false);
   }
 
   private _dataSets$: BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]> = new BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]>([]);
@@ -32,7 +32,7 @@ export class ChartDataManagerService {
     /** this value is set one time, provided by AppComponent */
     this._dataManager = dataManager;
     // console.log('register data manager', dataManager)
-    
+
     this._dataManager.datasets$.subscribe({
       next: (datasets) => {
         this._chartLabels = this._dataManager.chartLabels;
@@ -54,14 +54,14 @@ export class ChartDataManagerService {
   public updateDisplayedEvents(events: TimelineEvent[]) {
     this._dataManager.updateDisplayedEvents(events);
   }
-  public updateDateRange(startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
-    this._dataManager.updateDateRange(startDateYYYYMMDD, endDateYYYYMMDD);
+  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+    this._dataManager.updatePeriod(period, startDateYYYYMMDD, endDateYYYYMMDD);
   }
-  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'){
+  public updateMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
     this._dataManager.updateMetric(metric);
   }
 
-  public updateDarkMode(isDarkMode: boolean){
+  public updateDarkMode(isDarkMode: boolean) {
     this._dataManager.updateDarkMode(isDarkMode);
   }
 

@@ -11,7 +11,7 @@ export class DatasetConfig {
     private _color: string;
     private _borderColor: string;
     private _significanceValue: number;
-    private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS';
+    private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE';
 
     public get timelineItems(): (TimelineEvent | null)[] { return this._timelineItems; }
     public get dataPoints(): (number | null)[] {
@@ -52,7 +52,7 @@ export class DatasetConfig {
     public get significance(): number { return this._significanceValue; }
 
 
-    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
+    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
         this._timelineItems = timelineItems;
         this._label = label;
         this._itemType = type;

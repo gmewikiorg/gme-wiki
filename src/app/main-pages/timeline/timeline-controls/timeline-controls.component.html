@@ -1,53 +1,8 @@
-<div class="controls-root" *ngIf="!isMobile">
-
-    <div>
-        <button class="display-controls-button" (click)="displayControls = true" *ngIf="!displayControls">
-            <fa-icon [icon]="faSliders" style="color: rgb(0, 89, 255); margin-right: 5px;"></fa-icon>
-            GME metrics
-        </button>
-
-        <app-choose-gme-metric class="choose-metrics-container" *ngIf="displayControls"
-            (closeOptions)="displayControls = false"></app-choose-gme-metric>
-
-
-    </div>
-</div>
-
-
-
-
-
-
-<!-- Mobile -->
-
-<div class="controls-root-mobile" *ngIf="isMobile">
-    <div class="icon-container-mobile">
-        <div class="story-icon-container" (mouseenter)="onMouseEnterStory()" (mouseleave)="onMouseLeaveStory()"
-            (click)="onClickStory()">
-            <img src="assets/flaticon/hourglass.png" alt="" class="story-icon"
-                [ngClass]="{'active-story': (isOverStoryIcon || storyChaptersOpen)}">
-            <img src="assets/flaticon/hourglass-bw.png" alt="" class="story-icon-bnw"
-                [ngClass]="{'inactive-story': (!isOverStoryIcon && !storyChaptersOpen)}">
-        </div>
-
-        <fa-icon [icon]="faSliders" class="control-icon" [ngClass]="settingsOpen ? 'settings-open' : ''"
-            (click)="onClickSettings()"></fa-icon>
-        <div class="search-bar">
-            <fa-icon [icon]="faMagnifyingGlass" class="control-icon"
-                [ngClass]="showSearchResults ? 'settings-open' : ''" (click)="onClickSearchButton()"></fa-icon>
-            <!-- <input type="text" (keydown)="onKey($event)" class="search-input" (click)="onClickSearchText()"
-                (focus)="onClickSearchText()"> -->
-
-            <input [value]="searchInputValue" #searchbox type="text" class="search-input-mobile" placeholder="Search"
-                (click)="onClickSearchText()" (focus)="onClickSearchText()" (keyup)="onKey($event)">
-        </div>
-    </div>
-    <div class="mobile-timeline-controls" *ngIf="storyChaptersOpen || settingsOpen || showSearchResults">
-        <app-timeline-settings-control class="controls-expanded-mobile"
-            *ngIf="settingsOpen"></app-timeline-settings-control>
-        <app-timeline-search-control *ngIf="showSearchResults" [searchValue]="searchValue"
-            (searchValueChanged)="onSearchInputValueChanged($event)"
-            (searchResultsApplied)="onMouseLeaveControls()"></app-timeline-search-control>
-    </div>
-
+<div class="controls-root">
+    <button class="display-controls-button" (click)="displayControls = true" *ngIf="!displayControls">
+        <fa-icon [icon]="faSliders" style="color: rgb(0, 89, 255); margin-right: 5px;"></fa-icon>
+        Chart options
+    </button>
+    <app-timeline-chart-options class="choose-metrics-container" *ngIf="displayControls"
+        (closeOptions)="displayControls = false"></app-timeline-chart-options>
 </div>

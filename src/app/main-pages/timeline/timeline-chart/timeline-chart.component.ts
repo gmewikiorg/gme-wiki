@@ -11,7 +11,9 @@ import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.cl
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
-import { TimelineControlsService } from '../timeline-controls/choose-gme-metric/timeline-controls.service';
+import { TimelineControlsService } from './chart-options/timeline-controls.service';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import { getAnnotationConfig } from './chart-options/annotations-historic';
 
 
 @Component({
@@ -32,16 +34,16 @@ export class TimelineChartComponent implements OnDestroy {
     private _settingsService: SettingsService,
     private _controlsService: TimelineControlsService,
     private _router: Router
-  ) { 
+  ) {
     this._isDarkMode = this._sizeService.isDarkMode;
-    Chart.unregister(ChartDataLabels);
+    Chart.unregister(ChartDataLabels, annotationPlugin);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
-    Chart.register(PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale, BarController, BarElement);
+    Chart.register(annotationPlugin, PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale, BarController, BarElement);
     this._updateChartContainerStyle();
     this._updateLabels();
 
     this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
-    this.lineChartData.datasets = this._chartDataService.dataSets; 
+    this.lineChartData.datasets = this._chartDataService.dataSets;
 
     // console.log("DATASETS", this.lineChartData.datasets)
   }
@@ -51,92 +53,20 @@ export class TimelineChartComponent implements OnDestroy {
   public lineChartLegend = false;
 
 
-  public mixedChartData: ChartData<keyof ChartTypeRegistry, number[], string> = {
-    datasets: [
-
-      {
-        type: 'line',
-        label: 'Line Dataset',
-        // xAxisID: 'xLineAxis', 
-        yAxisID: 'yRight',
-        data: [2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3, 2, 29, 5, 5, 2, 3],
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-        fill: false
-      },
-
-      {
-        type: 'bar',
-        label: 'Bar Dataset',
-        // xAxisID: 'xBarAxis', 
-        yAxisID: 'yLeft',
-        data: [1200, 1900, 300, 500, 200, 300, 200, 1900, 300, 500],
-        borderWidth: 2,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
-      },
-    ],
-    labels: ['asd', 'asdf', '', 'asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '','asd', 'asdf', '',]
-    // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June', 'January', 'February', 'March', 'April', 'May', 'June']
-  };
-  public mixedChartOptions = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Mixed Bar/Line Chart'
-      }
-    },
-    scales: {
-      xBarAxis: {
-        type: 'category',
-        // labels: ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'], // distinct bar labels
-        position: 'bottom',
-        offset: true,  // offset can help visually separate axes
-      },
-      // Second x-axis for line dataset
-      xLineAxis: {
-        type: 'category',
-        // labels: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'], // distinct line labels
-        position: 'none',   // put the line's x-axis on top (for example)
-        offset: true,
-      },
-      yLeft: {
-        type: 'linear',
-        position: 'left',
-        beginAtZero: true
-      },
-      // Right axis
-      yRight: {
-        type: 'linear',
-        position: 'right',
-        beginAtZero: true,
-        // If the right y-axis overlaps the left axis labels,
-        // you can add some padding:
-        grid: {
-          drawOnChartArea: false // This keeps grid lines off the main chart area
-        }
-      },
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-
-  public get isMobile(): boolean { return this._sizeService.isMobile; }
-  public get isListView(): boolean { return this._settingsService.chartListIsVertical; }
-
   private _chartContainerNgStyle: any;
   public get chartContainerNgStyle(): any { return this._chartContainerNgStyle; }
 
   private _isDarkMode: boolean;
+  private _timePeriod: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' = 'CURRENT';
 
   private _subscriptions: Subscription[] = [];
 
   ngOnInit() {
-    this._controlsService.period$.subscribe(()=>{
-      this._chartDataService.updateDateRange(this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
+    this._controlsService.period$.subscribe((period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM') => {
+      this._timePeriod = period;
+      this._chartDataService.updatePeriod(period, this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
     })
-    this._controlsService.metric$.subscribe(()=>{
+    this._controlsService.metric$.subscribe(() => {
       this._chartDataService.updateMetric(this._controlsService.metric)
     })
 
@@ -155,7 +85,7 @@ export class TimelineChartComponent implements OnDestroy {
   ngAfterViewInit() {
 
     const darkModeSub = this._sizeService.isDarkMode$.subscribe({
-      next: (isDarkMode)=>{
+      next: (isDarkMode) => {
         this._isDarkMode = isDarkMode;
         this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         this._chartDataService.updateDarkMode(isDarkMode);
@@ -171,6 +101,7 @@ export class TimelineChartComponent implements OnDestroy {
       next: (datasets) => {
         this._updateLabels();
         this.lineChartData.datasets = datasets;
+        this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         // console.log("DATASETS UPDATE", this.lineChartData.datasets)
         this.baseChart?.update();
       },
@@ -199,10 +130,23 @@ export class TimelineChartComponent implements OnDestroy {
   private _setLineChartOptions(isDarkMode: boolean): ChartOptions<'line'> {
 
     let scaleColor = 'rgba(128,128,128,0.2)';
-    if(isDarkMode){
-       scaleColor = 'rgba(255,255,255,0.1)';
+    if (isDarkMode) {
+      scaleColor = 'rgba(255,255,255,0.1)';
     }
-    
+
+    const img = new Image();
+    img.src = 'assets/icons/bluesky-logo.png';
+
+    const period = this._timePeriod;
+    let annotation;
+    if (period === 'CURRENT') {
+
+    } else if (period === 'HISTORIC') {
+      annotation = getAnnotationConfig(this._isDarkMode);
+    } else if (period === '2_YEARS') {
+
+    }
+
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -223,7 +167,7 @@ export class TimelineChartComponent implements OnDestroy {
 
         } else {
         }
-        
+
       },
       onClick: (event, array) => {
         if (array.length > 0) {
@@ -239,7 +183,12 @@ export class TimelineChartComponent implements OnDestroy {
       scales: {
         x: {
           grid: {
-            color: 'rgba(0,0,0,0.01)'
+            // color: 'rgba(0,0,0,0.1)'
+          },
+          ticks: {
+            autoSkip: period === 'HISTORIC' ? false : true,
+            // autoSkip: () => { if (period === 'HISTORIC') { return false; } return true; },
+            maxTicksLimit: 23,  // <-- the maximum number of labels you want
           }
         },
         y: {
@@ -249,6 +198,7 @@ export class TimelineChartComponent implements OnDestroy {
         }
       },
       plugins: {
+        annotation: annotation,
         tooltip: {
           backgroundColor: (context) => {
             if (context.tooltipItems.length > 0) {
@@ -256,7 +206,7 @@ export class TimelineChartComponent implements OnDestroy {
             }
             return this._tooltipBackgroundColor;
           },
-          
+
           borderColor: 'black',
           borderWidth: 1,
           displayColors: false,
@@ -276,17 +226,20 @@ export class TimelineChartComponent implements OnDestroy {
             // footer: (context) => { return this._footerContext(context) },
           },
         },
-        legend: {
-          display: true,
-          labels: {
-            color: 'rgb(0, 0, 0)',
-            usePointStyle: true
-          },
-          position: 'left'
-        }
-      }
+        // legend: {
+        //   display: true,
+        //   labels: {
+        //     color: 'rgb(0, 0, 0)',
+        //     usePointStyle: true
+        //   },
+        //   position: 'left'
+        // }
+      },
+
     };
   }
+
+
 
   private _labelContext(context: TooltipItem<"line">) {
     const event = this._chartDataService.lookupEventByIndex(context.datasetIndex, context.dataIndex)
@@ -342,11 +295,9 @@ export class TimelineChartComponent implements OnDestroy {
       if (containerEl && chartEl) {
         let clientY = 0;
         const gap = (containerEl.clientHeight - chartEl.clientHeight) / 2;
-        if (this.isListView) {
-          clientY = point.y + 80 + gap;
-        } else {
-          clientY = point.y + gap;
-        }
+
+        clientY = point.y + gap;
+
         mouseMoveEvent = new MouseEvent('mousemove', {
           clientX: point.x,
           clientY: clientY,
@@ -358,24 +309,12 @@ export class TimelineChartComponent implements OnDestroy {
   }
 
   private _updateChartContainerStyle() {
-    if (this.isListView) {
-      let width = this._sizeService.screenDimensions.width - 500;
-      const maxHeight = this._sizeService.screenDimensions.height - 80;
-      this._chartContainerNgStyle = {
-        'max-width': width + 'px',
-        'height': maxHeight + 'px',
-      };
-    } else {
-      const gridBottomRowHeight = 180;
-      const width = this._sizeService.screenDimensions.width;
-      const height = this._sizeService.screenDimensions.height - gridBottomRowHeight;
-      const roundedWidth = Math.floor(width / 20) * 20;
-      const roundedHeight = Math.floor(height / 50) * 50;
-      this._chartContainerNgStyle = {
-        'max-width': roundedWidth + 'px',
-        'height': roundedHeight + 'px',
-      };
-    }
+    const width = this._sizeService.screenDimensions.width;
+    const height = this._sizeService.screenDimensions.height - 0;
+    this._chartContainerNgStyle = {
+      // 'max-width': width + 'px',
+      // 'height': height + 'px',
+    };
   }
 
   private _tooltipBackgroundColor: string = 'rgba(0,0,0,0.8)';
@@ -389,3 +328,5 @@ export class TimelineChartComponent implements OnDestroy {
   }
 
 }
+
+

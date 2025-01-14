@@ -5,11 +5,11 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-choose-gme-metric',
+  selector: 'app-timeline-chart-options',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule],
-  templateUrl: './choose-gme-metric.component.html',
-  styleUrl: './choose-gme-metric.component.scss'
+  templateUrl: './timeline-chart-options.component.html',
+  styleUrl: './timeline-chart-options.component.scss'
 })
 export class ChooseGmeMetricComponent {
 
@@ -19,13 +19,14 @@ export class ChooseGmeMetricComponent {
 
     public get faX() { return faX; }
 
-  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'{ return this._controlsService.metric; }
+  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._controlsService.metric; }
   public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._controlsService.period; }
 
   public get metricIsPrice(): boolean { return this.metric === 'PRICE'; }
   public get metricIsVolume(): boolean { return this.metric === 'VOLUME'; }
   public get metricIsPtoB(): boolean { return this.metric === 'PTOB'; }
   public get metricIsPtoS(): boolean { return this.metric === 'PTOS'; }
+  public get metricIsPtoE(): boolean { return this.metric === 'PTOE'; }
   public get metricIsEquity(): boolean { return this.metric === 'EQUITY'; }
 
   public get periodIs1Year(): boolean { return this.period === '2_YEARS'; }
@@ -35,7 +36,7 @@ export class ChooseGmeMetricComponent {
   public get periodIsCustom(): boolean { return this.period === 'CUSTOM'; }
 
 
-  public onClickMetric(metric:  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS') {
+  public onClickMetric(metric:  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' ) {
     this._controlsService.setMetric(metric);
   }
 

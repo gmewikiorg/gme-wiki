@@ -42,7 +42,7 @@ export class DrsComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'DRS - Direct Registration System' },
       { property: 'og:description', content: 'DRS - Direct Registration System' },
-      { property: 'og:url', content: 'https://gmetimeline.org/drs' },
+      { property: 'og:url', content: 'https://gmewiki.org/drs' },
       { property: 'og:type', content: 'website' },
     ]);
   }

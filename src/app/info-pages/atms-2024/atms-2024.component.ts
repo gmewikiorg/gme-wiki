@@ -28,7 +28,7 @@ export class Atms2024Component {
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop raises cash in 2024' },
       { property: 'og:description', content: 'GameStop raises cash in 2024' },
-      { property: 'og:url', content: 'https://gmetimeline.org/2024-atms' },
+      { property: 'og:url', content: 'https://gmewiki.org/2024-atms' },
       { property: 'og:type', content: 'website' },
     ]);
   }

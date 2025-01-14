@@ -15,7 +15,7 @@ import { ImportEventsService } from './import-events.service';
 import { EventSearchService } from '../../main-pages/timeline/timeline-controls/timeline-search-control/search/event-search.service';
 import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/timeline-items-builder.class';
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
-import { TimelineControlsService } from '../../main-pages/timeline/timeline-controls/choose-gme-metric/timeline-controls.service';
+import { TimelineControlsService } from '../../main-pages/timeline/timeline-chart/chart-options/timeline-controls.service';
 
 @Injectable({
   providedIn: 'root'

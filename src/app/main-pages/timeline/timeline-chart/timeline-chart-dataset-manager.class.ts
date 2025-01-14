@@ -26,8 +26,11 @@ export class ChartDataSetManager {
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
-  private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' = 'PRICE'
-  public get metric():  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' { return this._metric; }
+  private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' = 'PRICE';
+  private _period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' = 'CURRENT';
+
+  public get metric():  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric; }
+  public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period; }
 
   private _isDarkMode: boolean;
 
@@ -69,12 +72,13 @@ export class ChartDataSetManager {
     this.getAndUpdateDatasets();
   }
 
-  public updateDateRange(startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+    this._period = period;
     this._startDateYYYYMMDD = startDateYYYYMMDD;
     this._endDateYYYYMMDD = endDateYYYYMMDD;
     this.getAndUpdateDatasets();
   }
-  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS'){
+  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE'){
     this._metric = metric;
     this.getAndUpdateDatasets();
   }
@@ -113,6 +117,7 @@ export class ChartDataSetManager {
       this._startDateYYYYMMDD,
       this._endDateYYYYMMDD,
       this._metric,
+      this._period,
       this._allPriceEntries,
       this._timelineEvents,
       this._signifianceValue,

@@ -1,11 +1,14 @@
 <div class="component-root" *ngIf="!isLoading">
+    <div class="page-title">
+        GameStop Company Ownership
+    </div>
+    <div class="page-subtitle">
+        As of {{ lastUpdated }}
+    </div>
+
+    
     <div class="page-content" style="width: 100%;">
-        <div class="page-title" stsyle="width:100%;">
-            GameStop Company Ownership
-        </div>
-        <div class="page-subtitle">
-            As of {{ lastUpdated }}
-        </div>
+
 
         <div class="page-section"
             style="padding:0px; width: 100%; height: 100%;" >

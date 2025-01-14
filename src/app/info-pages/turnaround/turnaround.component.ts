@@ -32,7 +32,7 @@ export class TurnaroundComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop Turnaround' },
       { property: 'og:description', content: 'GameStop Turnaround' },
-      { property: 'og:url', content: 'https://gmetimeline.org/turnaround' },
+      { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
       { property: 'og:type', content: 'website' },
     ]);
   }
