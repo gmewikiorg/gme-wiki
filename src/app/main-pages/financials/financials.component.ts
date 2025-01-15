@@ -8,11 +8,12 @@ import { ScreenService } from '../../shared/services/screen-size.service';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChooseEarningsChartComponent } from './choose-earnings-chart/choose-earnings-chart.component';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule],
+  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule, FooterComponent],
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })
@@ -40,8 +41,9 @@ export class FinancialsComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'GameStop Earnings and Financial Information' },
-      { property: 'og:description', content: 'GameStop Earnings and Financial Information' },
+      { property: 'og:title', content: 'gmewiki.org - GameStop Earnings and Financial Information' },
+      { property: 'og:description', content: 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/misc/earnings.png' },
       { property: 'og:url', content: 'https://gmewiki.org/financials' },
       { property: 'og:type', content: 'website' },
     ]);

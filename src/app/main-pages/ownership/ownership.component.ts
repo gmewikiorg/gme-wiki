@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { OwnershipChartComponent } from './ownership-chart/ownership-chart.component';
 import { OwnershipTableComponent } from './ownership-table/ownership-table.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-ownership',
   standalone: true,
-  imports: [CommonModule, RouterModule, OwnershipChartComponent, OwnershipTableComponent],
+  imports: [CommonModule, RouterModule, OwnershipChartComponent, OwnershipTableComponent, FooterComponent],
   templateUrl: './ownership.component.html',
   styleUrl: './ownership.component.scss'
 })
@@ -38,8 +39,9 @@ export class OwnershipComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'GameStop Company Ownership' },
-      { property: 'og:description', content: 'GameStop ownership pie chart and table' },
+      { property: 'og:title', content: 'gmewiki.org - GameStop Company Ownership' },
+      { property: 'og:description', content: 'GameStop ownership pie chart and table with sources' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/misc/ownership.png' },
       { property: 'og:url', content: 'https://gmewiki.org/ownership' },
       { property: 'og:type', content: 'website' },
     ]);

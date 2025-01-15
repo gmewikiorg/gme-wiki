@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FooterComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
@@ -29,7 +30,7 @@ export class AboutComponent {
     ]);
     this.meta.addTags([
       { property: 'og:title', content: 'About gmewiki.org' },
-      { property: 'og:description', content: 'About gmewiki.org' },
+      { property: 'og:description', content: 'gmewiki.org - a community driven information tool about GME' },
       { property: 'og:url', content: 'https://gmewiki.org/about' },
       { property: 'og:type', content: 'website' },
     ]);

@@ -8,11 +8,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { SettingsService } from '../../shared/services/settings.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { TimelineContentComponent } from './timeline-content/timeline-content.component';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [TimelineControlsComponent, TimelineChartComponent, CommonModule, LoadingComponent, TimelineContentComponent],
+  imports: [TimelineControlsComponent, TimelineChartComponent, CommonModule, LoadingComponent, TimelineContentComponent, FooterComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss'
 })
@@ -36,8 +37,9 @@ export class TimelineComponent {
         { charset: 'UTF-8' }
       ]);
       this.meta.addTags([
-        { property: 'og:title', content: 'GameStop Interactive Timeline' },
-        { property: 'og:description', content: 'GameStop Interactive Timeline' },
+        { property: 'og:title', content: 'gmewiki.org - Interactive GME Timeline' },
+        { property: 'og:description', content: 'GME interactive annotated timeline and chart tools' },
+        { property: 'og:image', content: 'https://gmewiki.org/assets/misc/timeline.png' },
         { property: 'og:url', content: 'https://gmewiki.org/timeline' },
         { property: 'og:type', content: 'website' },
       ]);

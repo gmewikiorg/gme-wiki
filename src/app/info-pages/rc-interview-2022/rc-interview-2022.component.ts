@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-rc-interview-2022',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './rc-interview-2022.component.html',
   styleUrl: './rc-interview-2022.component.scss'
 })

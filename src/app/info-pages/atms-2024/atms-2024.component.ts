@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-atms-2024',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FooterComponent],
   templateUrl: './atms-2024.component.html',
   styleUrl: './atms-2024.component.scss'
 })
@@ -26,7 +27,7 @@ export class Atms2024Component {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'GameStop raises cash in 2024' },
+      { property: 'og:title', content: 'gmewiki.org - GameStop raises cash in 2024' },
       { property: 'og:description', content: 'GameStop raises cash in 2024' },
       { property: 'og:url', content: 'https://gmewiki.org/2024-atms' },
       { property: 'og:type', content: 'website' },

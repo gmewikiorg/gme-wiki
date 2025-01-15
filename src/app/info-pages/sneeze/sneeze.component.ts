@@ -1,11 +1,12 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HelpContributeComponent } from '../../shared/components/help-contribute/help-contribute.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-sneeze',
   standalone: true,
-  imports: [HelpContributeComponent],
+  imports: [HelpContributeComponent, FooterComponent],
   templateUrl: './sneeze.component.html',
   styleUrl: './sneeze.component.scss'
 })

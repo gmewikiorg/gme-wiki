@@ -4,11 +4,12 @@ import { DrsGmeChartComponent } from './drs-gme-chart/drs-gme-chart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { OwnershipData } from '../../main-pages/ownership/ownership-data.class';
 import { Meta, Title } from '@angular/platform-browser';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-drs',
   standalone: true,
-  imports: [RouterModule, DrsGmeChartComponent, CommonModule],
+  imports: [RouterModule, DrsGmeChartComponent, CommonModule, FooterComponent],
   templateUrl: './drs.component.html',
   styleUrl: './drs.component.scss'
 })
@@ -40,8 +41,8 @@ export class DrsComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'DRS - Direct Registration System' },
-      { property: 'og:description', content: 'DRS - Direct Registration System' },
+      { property: 'og:title', content: 'gmewiki.org - DRS - Direct Registration System' },
+      { property: 'og:description', content: 'Information pertaining to DRS and GME, the history of DRS by GME investors, distinction with DSPP' },
       { property: 'og:url', content: 'https://gmewiki.org/drs' },
       { property: 'og:type', content: 'website' },
     ]);
