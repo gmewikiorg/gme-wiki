@@ -1,21 +1,28 @@
 <div class="component-root">
-    <div class="page-title">
+    <div class="page-title" [style.margin]="isMobile? '2px' : ''">
         GME Timeline
     </div>
     <!-- <div class="page-subtitle">
             subtitle
         </div> -->
 
-    <div class="page-content">
+    <div class="page-content" [style.margin]="isMobile? '0px' : ''">
 
 
 
-        <div class="page-section">
+        <div class="page-section" [style.margin]="isMobile? '0px' : ''">
 
-            <div class="timeline-root" *ngIf="!isLoading">
+            <div class="timeline-root">
                 <app-timeline-controls class="timeline-controls"></app-timeline-controls>
-                <div class="section-heading">Timeline of noteworthy events</div>
-                <app-timeline-chart class="app-chart" *ngIf="isBrowser"></app-timeline-chart>
+                <div class="section-heading" [style.margin]="isMobile? '0px' : ''" *ngIf="!isMobile">Timeline of noteworthy events</div>
+                <div class="timeline-chart-grid">
+                    <app-timeline-chart class="app-chart shadow" *ngIf="chartIsLoaded"></app-timeline-chart>
+                    <div class="annotation-box-container" *ngIf="showAnnotationBox">
+                        <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TimelineControlsService } from './timeline-controls.service';
+import { TimelineControlsService } from '../timeline-controls.service';
 import { CommonModule } from '@angular/common';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

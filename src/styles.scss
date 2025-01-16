@@ -53,7 +53,13 @@ body {
 }
 
 
-
+.black-white-bg{
+  background-color: rgba(255, 255, 255, 0.9);
+  .dark-mode & {
+    background-color: #121212de;
+    color: #ffffffd7;
+  }
+}
 
 .component-root {
   display: flex;

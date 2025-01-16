@@ -1,0 +1,11 @@
+<div *ngIf="event !== null" class="event-container">
+    <div class="event shadow" [ngStyle]="eventStyle">
+        <div class="date">
+            {{ date(event.dateYYYYMMDD) }}
+        </div>
+        <div class="title">
+            {{ event.title }}
+        </div>
+        <div *ngIf="!isMobile">{{event.description}}</div>
+    </div>
+</div>

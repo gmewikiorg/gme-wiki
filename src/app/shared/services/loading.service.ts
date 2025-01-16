@@ -12,10 +12,9 @@ import { DdEntry } from './dd-entry.interface';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
 import { Import10KDataService } from './import-10k-data.service';
 import { ImportEventsService } from './import-events.service';
-import { EventSearchService } from '../../main-pages/timeline/timeline-controls/timeline-search-control/search/event-search.service';
 import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/timeline-items-builder.class';
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
-import { TimelineControlsService } from '../../main-pages/timeline/timeline-chart/chart-options/timeline-controls.service';
+import { TimelineControlsService } from '../../main-pages/timeline/timeline-controls/timeline-controls.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,6 @@ export class LoadingService {
     private _settingsService: SettingsService,
     private _import10KService: Import10KDataService,
     private _importEventsService: ImportEventsService,
-    private _searchService: EventSearchService,
     private _timelineControlsService: TimelineControlsService,
   ) {
   }
@@ -141,7 +139,6 @@ export class LoadingService {
     this._loadingMessage = 'Building chart...';
     const timelineItems: TimelineEvent[] = TimelineItemsBuilder.getTimelineItems(this._allEventConfigs, this._priceEntries);
     this._timelineItemsService.setAllTimelineEvents(timelineItems);
-    this._searchService.setTimelineItems(timelineItems, this._ddEntries);
     this._timelineItemsService.updateSignificanceValue(this._settingsService.significanceValue);
     this._timelineItemsService.updateCategories(this._settingsService.categories);
     const priceEntries = this._gmeDataService.allPriceEntries;

@@ -1,5 +1,5 @@
-<div class="chart-container" [ngStyle]="chartContainerNgStyle" id="chartContainer">
+<div class="chart-container" id="chartContainer">
     <canvas baseChart id="chartCanvas" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
-        [legend]="lineChartLegend">
+        [legend]="lineChartLegend" [ngStyle]="cursorNgStyle">
     </canvas>
 </div>

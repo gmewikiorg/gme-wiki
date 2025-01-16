@@ -24,10 +24,6 @@
     <div *ngIf="item.gmePrice !== -1" style="font-size: 0.8em; margin-bottom: 10px; color: rgb(221, 221, 221);">
         GME price per share:
         <span style="font-weight: bold; color: rgb(138, 214, 138);">${{ item.gmePrice.toFixed(2) }}</span>
-        <span *ngIf="item.gmePricePreSplit" style="margin-left: 5px;">(pre-<span class="split-button" (click)="onClickSplit()">split</span>:
-            <span style="color: rgb(138, 214, 138);">${{
-                item.gmePricePreSplit}}</span>)
-        </span>
     </div>
 
     <div>

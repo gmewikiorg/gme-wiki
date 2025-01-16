@@ -91,4 +91,28 @@ export class TimelineEvent{
     public setQuarterlyFinancialResult(result: EarningsResult){
         this._quarterlyFinancialResult = result;
     }
+
+    public static getTypeColor(type?: TimelineEventType, transparency?: number): string {
+        if (!transparency) {
+            transparency = 0.8;
+        }
+        // if(!type){
+        //     type = this.mainType;
+        // }
+        if (type === TimelineEventType.CORP) {
+            return 'rgba(128,0,0,' + String(transparency) + ')';
+        } else if (type === TimelineEventType.MEDIA) {
+            return 'rgba(230,110,0,' + String(transparency) + ')';
+        } else if (type === TimelineEventType.RC) {
+            return 'rgba(0,0,255,' + String(transparency) + ')';
+        } else if (type === TimelineEventType.SOCIAL_MEDIA) {
+            return 'rgba(255,0,0,' + String(transparency) + ')';
+        } else if (type === TimelineEventType.OTHER) {
+            return 'rgba(128,128,128,' + String(transparency) + ')';
+        } else if (type === TimelineEventType.DRS) {
+            return 'rgba(148,23,106,' + String(transparency) + ')';
+        } else {
+            return 'black';
+        }
+    }
 }

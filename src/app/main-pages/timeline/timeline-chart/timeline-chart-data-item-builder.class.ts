@@ -290,31 +290,11 @@ export class ChartDataItemBuilder {
             setIndex++;
         }
         const configs = datapointSets.map(set => {
-            return new DatasetConfig(set.datapoints, set.type, set.type, this.getTypeColor(set.type, 0.5), this.getTypeColor(set.type), set.significance, metric);
+            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeColor(set.type), set.significance, metric);
         });
         return configs
     }
 
-    public static getTypeColor(type: TimelineEventType, transparency?: number): string {
-        if (!transparency) {
-            transparency = 0.8;
-        }
-        if (type === TimelineEventType.CORP) {
-            return 'rgba(128,0,0,' + String(transparency) + ')';
-        } else if (type === TimelineEventType.MEDIA) {
-            return 'rgba(230,110,0,' + String(transparency) + ')';
-        } else if (type === TimelineEventType.RC) {
-            return 'rgba(0,0,255,' + String(transparency) + ')';
-        } else if (type === TimelineEventType.SOCIAL_MEDIA) {
-            return 'rgba(255,0,0,' + String(transparency) + ')';
-        } else if (type === TimelineEventType.OTHER) {
-            return 'rgba(128,128,128,' + String(transparency) + ')';
-        } else if (type === TimelineEventType.DRS) {
-            return 'rgba(148,23,106,' + String(transparency) + ')';
-        } else {
-            return 'black';
-        }
-    }
 
     private static _getSignificances(currentValue: number): number[] {
         let value = currentValue;

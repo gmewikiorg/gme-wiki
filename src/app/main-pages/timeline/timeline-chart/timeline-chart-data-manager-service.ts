@@ -81,9 +81,6 @@ export class ChartDataManagerService {
     return this._dataManager.lookupIndexByTimelineItem(event);
   }
 
-  public getTypeColor(type: TimelineEventType, transparency?: number): string {
-    return this._dataManager.getTypeColor(type, transparency);
-  }
 
 
 }

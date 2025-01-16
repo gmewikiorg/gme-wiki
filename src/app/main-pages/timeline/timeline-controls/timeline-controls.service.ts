@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 
 @Injectable({
   providedIn: 'root'
@@ -25,18 +26,17 @@ export class TimelineControlsService {
   private _startDateYYYYMMDD: string = '2020-06-01';
   private _endDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
 
-  // private _startDateYYYYMMDD: string = '2015-02-13';
-  // private _endDateYYYYMMDD: string = '2021-02-29'
-
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
 
   public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' ) {
+    this._timelineItemAnnotation$.next(null);
     this._metric$.next(metric);
   }
 
   public setPeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM') {
+    this._timelineItemAnnotation$.next(null);
     if (period === '2_YEARS') {
       this._startDateYYYYMMDD = dayjs().add(-2, 'years').format('YYYY-MM-DD');
     } else if (period === '5_YEARS') {
@@ -49,8 +49,16 @@ export class TimelineControlsService {
     } else if (period === 'CUSTOM') {
 
     }
-
     this._period$.next(period);
+  }
+
+
+  
+  private _timelineItemAnnotation$: BehaviorSubject<TimelineEvent | null> = new BehaviorSubject<TimelineEvent | null>(null);
+  public get timelineItemAnnotation$(): Observable<TimelineEvent | null> { return this._timelineItemAnnotation$.asObservable(); }
+
+  public onHoverTimelineItem(timelineItem: TimelineEvent | null){
+    this._timelineItemAnnotation$.next(timelineItem);
   }
 
 

@@ -135,9 +135,6 @@ export class ChartDataSetManager {
     this._datasets$.next(datasets);
   }
 
-  public getTypeColor(type: TimelineEventType, transparency?: number): string {
-    return ChartDataItemBuilder.getTypeColor(type, transparency);
-  }
 
   public lookupIndexByTimelineItem(timelineItem: TimelineEvent): { datasetIndex: number, itemIndex: number } {
     const indexValue = {
