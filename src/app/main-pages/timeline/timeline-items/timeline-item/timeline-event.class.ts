@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 export class TimelineEvent{
 
     private _title: string;
+    private _shortTitle: string = '';
     private _dateYYYYMMDD: string;
     private _urls: TimelineEventURL[];
     private _expandedUrls: TimelineEventURL[];
@@ -29,6 +30,8 @@ export class TimelineEvent{
     private _quarterlyFinancialResult: EarningsResult | null = null;
 
     public get title(): string { return this._title; }
+    public get shortTitle(): string { return this._shortTitle; }
+    public get hasShortTitle(): boolean { return this._shortTitle !== '' && this._shortTitle !== null && this._shortTitle !== undefined; }
     public get dateYYYYMMDD(): string { return this._dateYYYYMMDD; }
     public get dateMMMDDYYYY(): string { return dayjs(this.dateYYYYMMDD).format('MMM DD, YYYY'); }
     public get urls(): TimelineEventURL[] { return this._urls; }
@@ -56,6 +59,7 @@ export class TimelineEvent{
 
     constructor(config: TimelineEventConfig, gmePriceEntry: GmePriceEntry | undefined, index: number){
         this._title = config.title;
+        this._shortTitle = config.shortTitle; 
         this._dateYYYYMMDD = config.dateYYYYMMDD;
         this._urls = config.urls;
         this._expandedUrls = config.expandedUrls;

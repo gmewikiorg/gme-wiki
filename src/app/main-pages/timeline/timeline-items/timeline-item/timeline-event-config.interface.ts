@@ -3,6 +3,7 @@ import { TimelineEventURL, TimelineEventViewType } from "./timeline-event-url.in
 
 export interface TimelineEventConfig{
     title: string;
+    shortTitle: string;
     dateYYYYMMDD: string;
     urls: TimelineEventURL[]; 
     description: string;

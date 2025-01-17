@@ -147,6 +147,10 @@ export class TimelineChartComponent implements OnDestroy {
           }
         }
       },
+      layout: {
+        padding: 0,
+        
+      },
       scales: {
         x: {
           grid: {
@@ -203,10 +207,19 @@ export class TimelineChartComponent implements OnDestroy {
   private _labelContext(context: TooltipItem<"line">) {
     const event = this._chartDataService.lookupEventByIndex(context.datasetIndex, context.dataIndex)
     let label = '';
-    if(event?.hasLocalArticle){
-      label += '📰';
+
+    if(this._sizeService.isMobile){
+      if(event?.hasShortTitle){
+        label += event.shortTitle;
+      }
+    }else{
+      if(event?.hasLocalArticle){
+        label += '📰';
+      }
+      label += event?.title
     }
-    label += event?.title
+
+
     return label;
   }
   // private _footerContext(context: TooltipItem<"line">[]) {
@@ -214,7 +227,13 @@ export class TimelineChartComponent implements OnDestroy {
   // }
   private _titleContext(context: TooltipItem<"line">[]) {
     const event = this._chartDataService.lookupEventByIndex(context[0].datasetIndex, context[0].dataIndex)
-    return '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY') + " - GME share price: $" + Number(context[0].raw).toFixed(2);
+    let title = '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY') + " - GME share price: $" + Number(context[0].raw).toFixed(2)
+
+    if(this._sizeService.isMobile){
+      title = '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY')
+    }
+
+    return title;
   }
 
 

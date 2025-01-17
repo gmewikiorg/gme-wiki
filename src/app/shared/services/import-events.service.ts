@@ -40,18 +40,20 @@ export class ImportEventsService {
       if(line.length > 0){
         let commaSplitLine = line.split('>');
         const title = commaSplitLine[0];
-        const description = commaSplitLine[1];
-        const dateYYYYMMDD = commaSplitLine[2];
-        const significance = Number(commaSplitLine[3]);
-        const imgSrc = commaSplitLine[4];
-        const tags: string[] = this._getTagsFromSource(commaSplitLine[5]);
-        const urls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[6]);
-        const types: TimelineEventType[] = this._getEventTypes(commaSplitLine[7]);
-        const localArticle: TimelineEventURL | null = this._getLocalArticle(commaSplitLine[8]);
-        const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[9]);
-        const specificView: TimelineEventViewType[] = this._getViewType(commaSplitLine[10]);
+        const shortTitle = commaSplitLine[1];
+        const description = commaSplitLine[2];
+        const dateYYYYMMDD = commaSplitLine[3];
+        const significance = Number(commaSplitLine[4]);
+        const imgSrc = commaSplitLine[5];
+        const tags: string[] = this._getTagsFromSource(commaSplitLine[6]);
+        const urls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[7]);
+        const types: TimelineEventType[] = this._getEventTypes(commaSplitLine[8]);
+        const localArticle: TimelineEventURL | null = this._getLocalArticle(commaSplitLine[9]);
+        const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[10]);
+        const specificView: TimelineEventViewType[] = this._getViewType(commaSplitLine[11]);
         const eventConfig: TimelineEventConfig = {
           title: title,
+          shortTitle: shortTitle,
           dateYYYYMMDD: dateYYYYMMDD,
           urls: urls,
           description: description,
