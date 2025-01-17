@@ -68,6 +68,9 @@ export class TimelineComponent {
   public get isLoading(): boolean { return this._isLoading; }
   public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
+  private _chartTitle: string = 'GME Sneeze & Turnaround timeline - from 2020 to present';
+  public get chartTitle(): string { return this._chartTitle; }
+
   async ngOnInit() {
     this._sizeService.screenDimensions$.subscribe({
       next: (dimensions) => {
@@ -75,6 +78,16 @@ export class TimelineComponent {
         }
       },
     });
+
+    this._controlsService.period$.subscribe((period)=>{
+      if(period === 'CURRENT'){
+        this._chartTitle = 'GME Sneeze & Turnaround timeline - from 2020 to present';
+      }else if(period === 'HISTORIC'){
+        this._chartTitle = 'GME Historic timeline';
+      }else if(period === '2_YEARS'){
+        this._chartTitle = 'GME - timeline of recent 2 years';
+      }
+    })
 
     this._loadingService.loadingMessage = "Building chart...";
     if (this._isBrowser) {

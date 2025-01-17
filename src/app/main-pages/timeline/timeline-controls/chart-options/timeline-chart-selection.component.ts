@@ -5,13 +5,13 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-timeline-chart-options',
+  selector: 'app-timeline-chart-selection',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule],
-  templateUrl: './timeline-chart-options.component.html',
-  styleUrl: './timeline-chart-options.component.scss'
+  templateUrl: './timeline-chart-selection.component.html',
+  styleUrl: './timeline-chart-selection.component.scss'
 })
-export class ChooseGmeMetricComponent {
+export class TimelineChartSelectionComponent {
 
   constructor(private _controlsService: TimelineControlsService) { }
 

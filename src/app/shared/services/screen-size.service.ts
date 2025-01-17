@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, isSignal, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SettingsService } from './settings.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,16 @@ import { SettingsService } from './settings.service';
 export class ScreenService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _settingsService: SettingsService) {
-    this._isMobile = false;
     if (isPlatformBrowser(this.platformId)) {
       this._screenDimensions$ = new BehaviorSubject({ width: window.innerWidth, height: window.innerHeight });
       this._browser = window.navigator.userAgent;
       this._isBrowser = true;
       if (window.innerWidth < 480) {
-        this._isMobile = true;
+        this._isMobile$.next(true);
       }
     } else {
       this._isBrowser = false;
-      this._isMobile = false;
+      this._isMobile$.next(false);
       this._screenDimensions$ = new BehaviorSubject({ width: 800, height: 600 });
     }
     this._setDarkMode(this._settingsService.getDarkMode());
@@ -28,18 +27,37 @@ export class ScreenService {
 
 
   private _isBrowser: boolean;
-  private _isMobile: boolean;
+  private _isMobile$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _changedScreenFromToMobile$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _screenDimensions$: BehaviorSubject<{ width: number, height: number }>;
   public get screenDimensions$(): Observable<{ width: number, height: number }> { return this._screenDimensions$.asObservable(); }
   public get screenDimensions(): { width: number, height: number } { return this._screenDimensions$.getValue(); }
-  public get isMobile(): boolean { return this._isMobile; }
+  public get isMobile(): boolean { return this._isMobile$.getValue(); }
+  public get isMobile$(): Observable<boolean> { return this._isMobile$.asObservable(); }
   public get isBrowser(): boolean { return this._isBrowser; }
+  public get changedScreenFromToMobile$(): Observable<boolean> { return this._changedScreenFromToMobile$.asObservable();}
 
 
 
   public updateScreenSize(width: number, height: number) {
+    const wasMobile: boolean = this.isMobile;
+    const mobileCutoff = 480;
     this._screenDimensions$.next({ width: width, height: height });
-    this._isMobile = this.screenDimensions.width < 480;
+    
+    if(width < mobileCutoff){
+      // is now mobile
+      if(!wasMobile){
+        this._changedScreenFromToMobile$.next(true);
+      }
+
+      this._isMobile$.next(true);
+    }else{
+      // is now not mobile
+      if(wasMobile){
+        this._changedScreenFromToMobile$.next(true);
+      }
+      this._isMobile$.next(false);
+    }
   }
 
 

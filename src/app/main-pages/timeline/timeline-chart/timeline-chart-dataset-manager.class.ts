@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ChartDataItemBuilder } from "./timeline-chart-data-item-builder.class";
 import { ChartDataset, ScatterDataPoint } from "chart.js";
 import dayjs from "dayjs";
+import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 
 
 export class ChartDataSetManager {
@@ -29,10 +30,11 @@ export class ChartDataSetManager {
   private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' = 'PRICE';
   private _period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' = 'CURRENT';
 
-  public get metric():  'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric; }
+  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric; }
   public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period; }
 
   private _isDarkMode: boolean;
+  private _isMobile: boolean;
 
   private _signifianceValue: number = -1;
   private _timelineCategories: TimelineEventType[] = [];
@@ -50,7 +52,8 @@ export class ChartDataSetManager {
    * @param categories 
    * @param significanceValue 
    */
-  constructor(startDateYYYYMMDD: string, endDateYYYYMMDD: string, priceEntries: GmePriceEntry[], timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean) {
+  constructor(startDateYYYYMMDD: string, endDateYYYYMMDD: string, priceEntries: GmePriceEntry[],
+    timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean, isMobile: boolean) {
     this._startDateYYYYMMDD = startDateYYYYMMDD;
     this._endDateYYYYMMDD = endDateYYYYMMDD
     this._allPriceEntries = priceEntries;
@@ -58,6 +61,7 @@ export class ChartDataSetManager {
     this._timelineCategories = categories;
     this._signifianceValue = significanceValue;
     this._isDarkMode = isDarkMode;
+    this._isMobile = isMobile;
     // console.log("BUILDING DataSetManager", this._allPriceEntries, this._timelineEvents, this._timelineCategories, this._signifianceValue)
     this.getAndUpdateDatasets()
   }
@@ -78,13 +82,18 @@ export class ChartDataSetManager {
     this._endDateYYYYMMDD = endDateYYYYMMDD;
     this.getAndUpdateDatasets();
   }
-  public updateMetric( metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE'){
+  public updateMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
     this._metric = metric;
     this.getAndUpdateDatasets();
   }
 
-  public updateDarkMode(isDarkMode: boolean){
+  public updateDarkMode(isDarkMode: boolean) {
     this._isDarkMode = isDarkMode;
+    this.getAndUpdateDatasets();
+  }
+
+  public updateIsMobile(isMobile: boolean){
+    this._isMobile = isMobile;
     this.getAndUpdateDatasets();
   }
 
@@ -106,12 +115,13 @@ export class ChartDataSetManager {
     this.getAndUpdateDatasets();
   }
 
-  public getAndUpdateDatasets() {
 
-    // console.log("all price entries", this._allPriceEntries)
+
+  public getAndUpdateDatasets() {
+    let specificView: TimelineEventViewType = this._getSpecificView();
     const chartData: {
       datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[],
-      datasetConfigs:  DatasetConfig[],
+      datasetConfigs: DatasetConfig[],
       labels: string[],
     } = ChartDataItemBuilder.buildChartDataItems(
       this._startDateYYYYMMDD,
@@ -122,9 +132,11 @@ export class ChartDataSetManager {
       this._timelineEvents,
       this._signifianceValue,
       this._timelineCategories,
-      this._isDarkMode);
+      specificView,
+      this._isDarkMode,
+      this._isMobile);
 
-      // console.log("Chart Data", chartData, )
+    // console.log("Chart Data", chartData, )
     const datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[] = chartData.datasets;
     this._chartLabels = chartData.labels;
     this._datasetConfigs = chartData.datasetConfigs;
@@ -170,6 +182,23 @@ export class ChartDataSetManager {
   private _lookupEvent(dateYYYYMMDD: string, type: TimelineEventType, significance: number): TimelineEvent | undefined {
     const foundItem = this._timelineEvents.find(item => (item.dateYYYYMMDD === dateYYYYMMDD) && (item.types.indexOf(type) > -1) && item.significance === significance);
     return foundItem;
+  }
+
+  private _getSpecificView(): TimelineEventViewType {
+    if (this.period === 'CURRENT') {
+      if (this._isMobile) {
+        return 'CURRENT_MOBILE';
+      } else {
+        return 'CURRENT';
+      }
+    } else if (this.period === 'HISTORIC') {
+      if (this._isMobile) {
+        return 'HISTORIC_MOBILE';
+      } else {
+        return 'HISTORIC';
+      }
+    }
+    return 'CURRENT';
   }
 
 }

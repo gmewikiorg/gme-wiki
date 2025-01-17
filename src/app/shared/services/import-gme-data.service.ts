@@ -60,19 +60,6 @@ export class ImportGmeDataService {
       ))
   }
 
-  private async   _loadGMECSVdataHistoricEra$() {
-    const subject$ = new Subject<GmePriceEntry[]>();
-    const gmeDatafileName = 'assets/data/gme-data-pre-2020.csv';
-
-    return await lastValueFrom(this._httpClient.get(gmeDatafileName, { responseType: 'text' },)
-      .pipe(
-        map(data => this._parseCSV(data)),
-        // catchError(error => of([]))
-      ))
-  }
-
-
-
 
   /** Convert CSV table into an array of objects */
   private _parseCSV(data: any): GmePriceEntry[] {

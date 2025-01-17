@@ -3,6 +3,6 @@
         <fa-icon [icon]="faSliders" style="color: rgb(0, 89, 255); margin-right: 5px;"></fa-icon>
         Chart options
     </button>
-    <app-timeline-chart-options class="choose-metrics-container" *ngIf="displayControls"
-        (closeOptions)="displayControls = false"></app-timeline-chart-options>
+    <app-timeline-chart-selection class="choose-metrics-container" *ngIf="displayControls"
+        (closeOptions)="displayControls = false"></app-timeline-chart-selection>
 </div>

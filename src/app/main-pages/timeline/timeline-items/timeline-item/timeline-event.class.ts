@@ -1,7 +1,7 @@
 import { GmePriceEntry } from "../../../../shared/services/gme-price-entry.interface";
 import { TimelineEventConfig } from "./timeline-event-config.interface";
 import { TimelineEventType } from "./timeline-event-type.enum";
-import { TimelineEventURL } from "./timeline-event-url.interface";
+import { TimelineEventURL, TimelineEventViewType } from "./timeline-event-url.interface";
 import { EarningsResult } from "../../../financials/earnings-results/earnings-result.class";
 import dayjs from "dayjs";
 
@@ -16,6 +16,7 @@ export class TimelineEvent{
     private _significance: number;
     private _imgSrc: string = '';
     private _tags: string[] = [];
+    private _specificViews: TimelineEventViewType[] = [];
 
     private _isSelected: boolean = false;
     private _gmePriceEntry: GmePriceEntry | undefined;
@@ -39,6 +40,7 @@ export class TimelineEvent{
     public get imgSrc(): string { return this._imgSrc;}
     public get tags(): string[] { return this._tags; }
     public get localArticle(): TimelineEventURL | null { return this._localArticle;}
+    public get specificViews(): TimelineEventViewType[] { return this._specificViews; }
 
     public get isSelected(): boolean { return this._isSelected; }
     public get hasImg(): boolean { return this._imgSrc !== ''; }
@@ -60,6 +62,7 @@ export class TimelineEvent{
         this._types = config.types;
         this._significance = config.significance
         this._description = config.description;
+        this._specificViews = config.specificViews;
         if(config.imgSrc){
             this._imgSrc = config.imgSrc;
         }

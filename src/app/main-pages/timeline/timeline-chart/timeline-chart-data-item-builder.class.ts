@@ -5,6 +5,7 @@ import { DatasetConfig } from "./timeline-chart-dataset-config.class";
 import { ChartDataset, ScatterDataPoint } from "chart.js";
 import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
 import dayjs from "dayjs";
+import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 
 /** This class has static methods to be used by chart-dataset-manager.classs.ts */
 export class ChartDataItemBuilder {
@@ -20,7 +21,9 @@ export class ChartDataItemBuilder {
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
-        isDarkMode: boolean): {
+        specificView: TimelineEventViewType,
+        isDarkMode: boolean,
+        isMobile: boolean): {
             datasets: ChartDataset<"line", (number | ScatterDataPoint | null)[]>[],
             datasetConfigs: DatasetConfig[],
             labels: string[]
@@ -28,9 +31,6 @@ export class ChartDataItemBuilder {
         /**
          * Build one ChartDataItem per day for each day from start date to end date
          */
-
-        // console.log("*** buildChartDataItems()", startDateYYYYMMDD, endDateYYYYMMDD, gmePriceEntries, timelineEvents, currentCategoriesValue, currentCategoriesValue)
-        // console.log("*** gmePriceEntries", gmePriceEntries)
 
         const items: ChartDataItem[] = [];
         const foundStartIndex = gmePriceEntries.findIndex(item => item.dateYYYYMMDD === startDateYYYYMMDD);
@@ -88,7 +88,7 @@ export class ChartDataItemBuilder {
                     closePrices.push(condensedItem.pToE);
                 }
                 if (period === 'CURRENT') {
-                    chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM YYYY'));
+                    chartLabels.push(condensedItem.dateYYYYMMDD);
                 } else if (period === 'HISTORIC') {
                     chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('YYYY'));
                 } else {
@@ -107,9 +107,6 @@ export class ChartDataItemBuilder {
             gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
             pointHoverBorderColor = 'white';
         }
-
-
-
         datasets.push({
             data: closePrices,
             label: 'GME price $ ',
@@ -122,42 +119,47 @@ export class ChartDataItemBuilder {
             pointHitRadius: 0,
             pointHoverRadius: 0,
         });
+        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, condensedItems, specificView);
+        datasetConfigs.forEach(datasetConfig => {
+            datasets.push({
+                data: datasetConfig.dataPoints,
+                label: datasetConfig.label,
+                fill: true,
+                tension: 0.5,
 
-        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, condensedItems);
+                pointBackgroundColor: datasetConfig.color,
+                pointBorderColor: datasetConfig.color,
+                pointBorderWidth: 3,
+
+                pointHoverBorderColor: datasetConfig.borderColor,
+                pointHoverBackgroundColor: datasetConfig.borderColor,
+                pointHoverBorderWidth: 5,
+
+
+                pointRadius: this._getPointRadius(datasetConfig.significance),
+                pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
+                pointHoverRadius: 5 + (4 * datasetConfig.significance),
+                pointStyle: 'circle',
+            })
+        });
         if (period === 'CURRENT') {
-            if (true) {
-                datasetConfigs.forEach(datasetConfig => {
-                    datasets.push({
-                        data: datasetConfig.dataPoints,
-                        label: datasetConfig.label,
-                        fill: true,
-                        tension: 0.5,
-
-                        pointBackgroundColor: datasetConfig.color,
-                        pointBorderColor: datasetConfig.color,
-                        pointBorderWidth: 3,
-
-                        pointHoverBorderColor: datasetConfig.borderColor,
-                        pointHoverBackgroundColor: datasetConfig.borderColor,
-                        pointHoverBorderWidth: 5,
-
-
-                        pointRadius: this._getPointRadius(datasetConfig.significance),
-                        pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
-                        pointHoverRadius: 5 + (4 * datasetConfig.significance),
-                        pointStyle: 'circle',
-                    })
-                });
+            let currentDate: dayjs.Dayjs = dayjs('2020-07-01');
+            if (isMobile) {
+                currentDate = dayjs('2021-01-01');
             }
-        }
-
-
-        if (period === 'CURRENT') {
-            /** change every second label to "" value */
-            // for (let i = 1; i < chartLabels.length; i++) {
-            //     chartLabels[i] = "";
-            //     i++
-            // }
+            for (let i = 0; i < chartLabels.length; i++) {
+                if (dayjs(chartLabels[i]).isAfter(currentDate)) {
+                    if (isMobile) {
+                        chartLabels[i] = dayjs(chartLabels[i]).format('YYYY');
+                        currentDate = currentDate.add(12, 'months');
+                    } else {
+                        chartLabels[i] = dayjs(chartLabels[i]).format('MMM YYYY');
+                        currentDate = currentDate.add(6, 'months');
+                    }
+                } else {
+                    chartLabels[i] = "";
+                }
+            }
         } else if (period === 'HISTORIC') {
             /**
              * In this case we only add the first instance of each year, so that the year label is shown where the first occurrence of that year happens, 
@@ -165,12 +167,12 @@ export class ChartDataItemBuilder {
              * 
              * in the chart settings, scales.x.ticks.autoskip must be false in this case.
              */
-            let years:string[] = [];
+            let years: string[] = [];
             for (let i = 0; i < chartLabels.length; i++) {
                 if (!years.includes(chartLabels[i])) {
-                    if(chartLabels[i] !== '2002'){
+                    if (chartLabels[i] !== '2002') {
                         years.push(chartLabels[i]);
-                    }else{
+                    } else {
                         chartLabels[i] = "";
                     }
                 } else {
@@ -234,7 +236,8 @@ export class ChartDataItemBuilder {
         metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
-        condensedItems: ChartDataItem[]): DatasetConfig[] {
+        condensedItems: ChartDataItem[],
+        specificView: TimelineEventViewType): DatasetConfig[] {
         const datapointSets: {
             type: TimelineEventType,
             significance: number,
@@ -260,16 +263,20 @@ export class ChartDataItemBuilder {
             const priorityEvent = condensedItem.getPriorityEvent(allSignificances, currentCategoriesValue);
             // console.log("Priority Event, ", priorityEvent)
             datapointSets.forEach(datapointSet => {
-                if (priorityEvent.event === null) {
-                    datapointSet.datapoints.push(null);
-                } else {
-                    const isMatch: boolean = datapointSet.significance === priorityEvent.significance && datapointSet.type === priorityEvent.type;
-                    if (isMatch) {
-                        datapointSet.datapoints.push(priorityEvent.event);
-                        // console.log("pushing event", priorityEvent.event)
-                    } else {
+                if (priorityEvent.event?.specificViews.includes(specificView)) {
+                    if (priorityEvent.event === null) {
                         datapointSet.datapoints.push(null);
+                    } else {
+                        const isMatch: boolean = datapointSet.significance === priorityEvent.significance && datapointSet.type === priorityEvent.type;
+                        if (isMatch) {
+                            datapointSet.datapoints.push(priorityEvent.event);
+                            // console.log("pushing event", priorityEvent.event)
+                        } else {
+                            datapointSet.datapoints.push(null);
+                        }
                     }
+                } else {
+                    datapointSet.datapoints.push(null);
                 }
             });
         });

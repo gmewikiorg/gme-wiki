@@ -23,7 +23,7 @@ export class TimelineControlsService {
   /** No data available for GME prior to 2002-02-13 */
   private _minStartDateYYYYMMDD: string = '2002-02-13'
 
-  private _startDateYYYYMMDD: string = '2020-06-01';
+  private _startDateYYYYMMDD: string = '2020-07-01';
   private _endDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
 
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }

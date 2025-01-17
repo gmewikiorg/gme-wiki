@@ -74,9 +74,9 @@ export class MobileTopBarComponent {
     this._menuIsExpanded = false;
   }
   public onClickImage(){
-    if(this.selectedMenuItem?.routerLink === '/timeline'){
-      this._menuIsExpanded = !this._menuIsExpanded;
-    }
+    // if(this.selectedMenuItem?.routerLink === '/timeline'){
+    //   this._menuIsExpanded = !this._menuIsExpanded;
+    // }
   }
   
   public onClickTopBar(){

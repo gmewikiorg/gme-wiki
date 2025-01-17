@@ -17,14 +17,14 @@
 }
 .app-chart {
   z-index: 50;
-  padding: 15px;
+  // padding: 15px;
   grid-row: 1 / span 2;
   grid-column: 1 / span 1;
 }
 
 @media (max-width:500px) {
   .timeline-chart-grid {
-    height: 450px;
+    height: 500px;
   }
 }
 
@@ -37,6 +37,11 @@
   grid-column: 1 / span 1;
   display: flex;
   flex-direction: row-reverse;
+  max-width: 100%;
+}
+.annotation-box-container-mobile{
+  display:flex;
+  flex-direction: column;
   max-width: 100%;
 }
 

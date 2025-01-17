@@ -70,7 +70,15 @@ export class TimelineChartComponent implements OnDestroy {
         this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         this._chartDataService.updateDarkMode(isDarkMode);
       }
+    }) 
+
+    const changedToMobileSub = this._sizeService.changedScreenFromToMobile$.subscribe({
+      next: ()=>{
+        this._chartDataService.updateIsMobile(this._sizeService.isMobile);
+      }
     })
+
+
     /**
      * This subscription is required to update the chart after datasets are modified.
      * For example, if the user changes a filter value such as significance value, 
@@ -87,7 +95,7 @@ export class TimelineChartComponent implements OnDestroy {
       error: () => { },
       complete: () => { }
     });
-    this._subscriptions = [darkModeSub, datasetSub];
+    this._subscriptions = [darkModeSub, datasetSub,changedToMobileSub];
   }
 
   private _cursorNgStyle = { cursor: 'default', }
@@ -101,12 +109,16 @@ export class TimelineChartComponent implements OnDestroy {
 
     const period = this._timePeriod;
     let annotation: any = {}
+    let maxTicksLimit = 9;
     if (period === 'CURRENT') {
+      maxTicksLimit = 9;
 
     } else if (period === 'HISTORIC') {
+      maxTicksLimit = 23;
       annotation = getAnnotationConfig(this._isDarkMode);
     } else if (period === '2_YEARS') {
     }
+
 
     return {
       responsive: true,
@@ -129,7 +141,7 @@ export class TimelineChartComponent implements OnDestroy {
         if (array.length > 0) {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
-            if(timelineItem.hasLocalArticle){
+            if(timelineItem.hasLocalArticle && !this._sizeService.isMobile){
               this._router.navigate([timelineItem.localArticle!.url]);
             }
           }
@@ -141,9 +153,10 @@ export class TimelineChartComponent implements OnDestroy {
             // color: 'rgba(0,0,0,0.1)'
           },
           ticks: {
-            autoSkip: period === 'HISTORIC' ? false : true,
+            // autoSkip: period === 'HISTORIC' ? false : true,
+            autoSkip: false,
             // autoSkip: () => { if (period === 'HISTORIC') { return false; } return true; },
-            maxTicksLimit: 23,  // <-- the maximum number of labels you want
+            maxTicksLimit: maxTicksLimit,
           }
         },
         y: {
@@ -189,19 +202,16 @@ export class TimelineChartComponent implements OnDestroy {
 
   private _labelContext(context: TooltipItem<"line">) {
     const event = this._chartDataService.lookupEventByIndex(context.datasetIndex, context.dataIndex)
-    return '' + event?.title;
-  }
-  private _footerContext(context: TooltipItem<"line">[]) {
-    const event = this._chartDataService.lookupEventByIndex(context[0].datasetIndex, context[0].dataIndex)
-    if (event) {
-      if (event.description.length > 120) {
-        return event.description.substring(0, 120) + '...';
-      } else {
-        return event.description;
-      }
+    let label = '';
+    if(event?.hasLocalArticle){
+      label += '📰';
     }
-    return '';
+    label += event?.title
+    return label;
   }
+  // private _footerContext(context: TooltipItem<"line">[]) {
+  //   return '';
+  // }
   private _titleContext(context: TooltipItem<"line">[]) {
     const event = this._chartDataService.lookupEventByIndex(context[0].datasetIndex, context[0].dataIndex)
     return '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY') + " - GME share price: $" + Number(context[0].raw).toFixed(2);

@@ -14,7 +14,7 @@ export class ChartDataManagerService {
    * The ChartDataManagerService manages the datasets for the chart.  As filters are applied, the datasets need to be updated.
    */
   constructor() {
-    this._dataManager = new ChartDataSetManager('', '', [], [], [], -1, false);
+    this._dataManager = new ChartDataSetManager('', '', [], [], [], -1, false, false);
   }
 
   private _dataSets$: BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]> = new BehaviorSubject<ChartDataset<"line", (number | ScatterDataPoint | null)[]>[]>([]);
@@ -45,6 +45,8 @@ export class ChartDataManagerService {
     this._dataManager.getAndUpdateDatasets();
   }
 
+  // public getAndUpdateDatasets() { this._dataManager.getAndUpdateDatasets(); }
+
   public updateSignificanceValue(value: number) {
     this._dataManager.updateSignificanceValue(value);
   }
@@ -63,6 +65,9 @@ export class ChartDataManagerService {
 
   public updateDarkMode(isDarkMode: boolean) {
     this._dataManager.updateDarkMode(isDarkMode);
+  }
+  public updateIsMobile(isMobile: boolean){
+    this._dataManager.updateIsMobile(isMobile);
   }
 
 

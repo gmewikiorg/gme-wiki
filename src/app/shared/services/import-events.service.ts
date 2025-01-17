@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, Subject } from 'rxjs';
+import { lastValueFrom, map, Observable, Subject } from 'rxjs';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
-import { TimelineEventURL } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-url.interface';
+import { TimelineEventURL, TimelineEventViewType } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-url.interface';
 import { TimelineEventType } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-type.enum';
 
 @Injectable({
@@ -12,52 +12,82 @@ export class ImportEventsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public importEventsFromGoogleSheet$(): Observable<TimelineEventConfig[]> {
+
+  /**
+   * 
+   * The .csv document is picky, must remove the last empty line.
+   * separated by ">"
+   */
+  public async importEventsFromCSV$(){
     const eventsSubject: Subject<TimelineEventConfig[]> = new Subject();
-    /**
-     *  Google Sheet needs to be publish as tsv (tab-separated values) and not csv.
-     *  TSV output is far more simple to parse. 
-     */
-    const eventsGoogleSheetTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQixUOsD8VuEXI06nXbOqMGsDbQiofVAYlbL9_-fh6xo21SSt84x2e0iqDBqWmj_e--CXKpKtiPbjOq/pub?gid=1314216829&single=true&output=tsv';
     const eventConfigs: TimelineEventConfig[] = [];
-    return this.httpClient.get(eventsGoogleSheetTsvUrl, { responseType: 'text' }).pipe(
-      map((response: string)=> {return this._buildEventConfigs(response)})
-    )
+
+    const eventsFilename = 'assets/data/timeline-events.csv';
+
+    return await lastValueFrom(this.httpClient.get(eventsFilename, { responseType: 'text' },)
+      .pipe(
+        map(data => this._buildEventConfigs(data)),
+        // catchError(error => of([]))
+      ))
   }
 
-  private _buildEventConfigs(response: string): TimelineEventConfig[]{
+  private _buildEventConfigs(response: string): TimelineEventConfig[] {
+
     const eventConfigs: TimelineEventConfig[] = [];
     let lines = response.split('\n');
     lines = lines.slice(1);
     lines.forEach(line => {
-      let tabSplitLine = line.split('\t');
-      const title = tabSplitLine[0];
-      const description = tabSplitLine[1];
-      const dateYYYYMMDD = tabSplitLine[2];
-      const significance = Number(tabSplitLine[3]);
-      const specialIdentifier = tabSplitLine[4];
-      const imgSrc = tabSplitLine[5];
-      const tags: string[] = this._getTagsFromSource(tabSplitLine[6]);
-      const urls: TimelineEventURL[] = this._getUrlsFromSource(tabSplitLine[7]);
-      const types: TimelineEventType[] = this._getEventTypes(tabSplitLine[8]);
-      const localArticle: TimelineEventURL | null = this._getLocalArticle(tabSplitLine[9]);
-      const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(tabSplitLine[10]);
-      const eventConfig: TimelineEventConfig = {
-        title: title,
-        dateYYYYMMDD: dateYYYYMMDD,
-        urls: urls,
-        description: description,
-        types: types,
-        significance: significance,
-        imgSrc: imgSrc,
-        specialIdentifier: specialIdentifier,
-        tags: tags,
-        localArticle: localArticle,
-        expandedUrls: [],
+      if(line.length > 0){
+        let commaSplitLine = line.split('>');
+        const title = commaSplitLine[0];
+        const description = commaSplitLine[1];
+        const dateYYYYMMDD = commaSplitLine[2];
+        const significance = Number(commaSplitLine[3]);
+        const imgSrc = commaSplitLine[4];
+        const tags: string[] = this._getTagsFromSource(commaSplitLine[5]);
+        const urls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[6]);
+        const types: TimelineEventType[] = this._getEventTypes(commaSplitLine[7]);
+        const localArticle: TimelineEventURL | null = this._getLocalArticle(commaSplitLine[8]);
+        const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[9]);
+        const specificView: TimelineEventViewType[] = this._getViewType(commaSplitLine[10]);
+        const eventConfig: TimelineEventConfig = {
+          title: title,
+          dateYYYYMMDD: dateYYYYMMDD,
+          urls: urls,
+          description: description,
+          types: types,
+          significance: significance,
+          imgSrc: imgSrc,
+          tags: tags,
+          localArticle: localArticle,
+          expandedUrls: expandedUrls,
+          specificViews: specificView,
+        }
+        eventConfigs.push(eventConfig);
       }
-      eventConfigs.push(eventConfig);
+      
     });
     return eventConfigs;
+  }
+
+  private _getViewType(sourceValue: string): TimelineEventViewType[] {
+    const viewTypes: TimelineEventViewType[] = [];
+    sourceValue = sourceValue.substring(1, sourceValue.length - 2);
+    let sourceTypes = sourceValue.split(";").filter(value => value !== "");
+    sourceTypes.forEach(sourceType => {
+      let type: TimelineEventViewType = 'CURRENT';
+      if (sourceType === 'CURRENT') {
+        type = 'CURRENT';
+      } else if (sourceType === 'HISTORIC') {
+        type = 'HISTORIC';
+      } else if (sourceType === 'CURRENT_MOBILE') {
+        type = 'CURRENT_MOBILE';
+      } else if (sourceType === 'HISTORIC_MOBILE') {
+        type = 'HISTORIC_MOBILE';
+      }
+      viewTypes.push(type);
+    })
+    return viewTypes;
   }
 
   private _getLocalArticle(sourceValue: string): TimelineEventURL | null {
