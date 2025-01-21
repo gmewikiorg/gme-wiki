@@ -1,65 +1,68 @@
-<div *ngIf="event !== null" class="event-container">
-    <div class="event shadow black-white-bg" [ngStyle]="eventStyle" >
-        <div class="top-row">
-            <div class="date">
-                {{ date(event.dateYYYYMMDD) }}
-            </div>
-            <div class="price">
-                ${{ (event.gmePrice).toFixed(2) }}
-            </div>
-        </div>
-        <div class="content"  [style.flexDirection]="isMobile ? 'column' : 'row'">
-            <div class="event-col-1">
-
-
-                <div class="title">
-                    {{ event.title }}
+<div *ngIf="event !== null" class="annotation" [ngClass]="isHistoric? 'annotation-historic': ''">
+    <div class="event-container black-white-bg-opaque" [ngClass]="isMobile? 'event-container-mobile': ''">
+        <div class="event shadow" [ngStyle]="eventStyle" >
+            <div class="top-row">
+                <div class="date">
+                    {{ date(event.dateYYYYMMDD) }}
                 </div>
-                <div *ngIf="!isMobile">{{event.description}}</div>
-                <div class="link-container" *ngIf="event.hasLocalArticle">
-                    <img src="assets/icons/newspaper-icon.png" class="logo" alt="Document">
-                    <a [routerLink]="event.localArticle?.url" style="font-size:1.5em;">{{
-                        event.localArticle?.label}}</a>
+                <div class="price">
+                    ${{ (event.gmePrice).toFixed(2) }}
                 </div>
-                <div *ngIf="event.urls.length > 0">
-                    <div *ngFor="let link of event.urls" class="link">
-                        <div *ngIf="!linkTypeIsOther(link.type)" class="link-container">
-                            <img *ngIf="link.type === 'LEMMY'" src="assets/icons/lemmy-icon.png" class="logo"
-                                alt="Lemmy discussion">
-                            <img *ngIf="link.type === 'REDDIT'" src="assets/icons/reddit-icon.png" class="logo"
-                                alt="Reddit">
-                            <img *ngIf="link.type === 'WIKIPEDIA'" src="assets/icons/wikipedia-logo.png" class="logo"
-                                alt="Wikipedia">
-                            <img *ngIf="link.type === 'YOUTUBE'" src="assets/icons/youtube-icon.png" class="logo"
-                                alt="YouTube">
-                            <img *ngIf="link.type === 'DOCUMENT'" src="assets/icons/document-icon.png" class="logo"
-                                alt="Document">
-                            <img *ngIf="link.type === 'NEWS'" src="assets/icons/newspaper-icon.png" class="logo"
-                                alt="News">
-                            <img *ngIf="link.type === 'GAMESTOP'" src="assets/icons/gs-logo.png" class="logo"
-                                alt="GameStop">
-                            <img *ngIf="link.type === 'X-TWITTER'" src="assets/icons/x-twitter-logo.png" class="logo"
-                                alt="X-TWITTER">
-                            <a [href]="link.url" *ngIf="link.type !== 'LEMMY'" target="_blank">{{link.label}}</a>
-                            <a [href]="link.url" *ngIf="link.type === 'LEMMY' && link.label === ''"
-                                target="_blank">Thread on Lemmy</a>
-                            <a [href]="link.url" *ngIf="link.type === 'LEMMY'" target="_blank">{{link.label}}</a>
-                        </div>
-                        <div *ngIf="linkTypeIsOther(link.type)" class="link-container">
-                            <a [href]="link.url" target="_blank">{{link.label}}</a>
+            </div>
+            <div class="content"  [style.flexDirection]="isMobile ? 'column' : 'row'">
+                <div class="event-col-1">
+    
+    
+                    <div class="title">
+                        {{ event.title }}
+                    </div>
+                    <div *ngIf="!isMobile">{{event.description}}</div>
+                    <div  *ngIf="event.hasLocalArticle">
+                        <img src="assets/icons/newspaper-icon.png" class="logo" alt="Document">
+                        <a [routerLink]="event.localArticle?.url" style="font-size:1.5em;">{{
+                            event.localArticle?.label}}</a>
+                    </div>
+                    <div *ngIf="event.urls.length > 0">
+                        <div *ngFor="let link of event.urls" class="link-container">
+                            <div *ngIf="!linkTypeIsOther(link.type)" class="link-container">
+                                <img *ngIf="link.type === 'LEMMY'" src="assets/icons/lemmy-icon.png" class="logo"
+                                    alt="Lemmy discussion">
+                                <img *ngIf="link.type === 'REDDIT'" src="assets/icons/reddit-icon.png" class="logo"
+                                    alt="Reddit">
+                                <img *ngIf="link.type === 'WIKIPEDIA'" src="assets/icons/wikipedia-logo.png" class="logo"
+                                    alt="Wikipedia">
+                                <img *ngIf="link.type === 'YOUTUBE'" src="assets/icons/youtube-icon.png" class="logo"
+                                    alt="YouTube">
+                                <img *ngIf="link.type === 'DOCUMENT'" src="assets/icons/document-icon.png" class="logo"
+                                    alt="Document">
+                                <img *ngIf="link.type === 'NEWS'" src="assets/icons/newspaper-icon.png" class="logo"
+                                    alt="News">
+                                <img *ngIf="link.type === 'GAMESTOP'" src="assets/icons/gs-logo.png" class="logo"
+                                    alt="GameStop">
+                                <img *ngIf="link.type === 'X-TWITTER'" src="assets/icons/x-twitter-logo.png" class="logo"
+                                    alt="X-TWITTER">
+                                <a [href]="link.url" *ngIf="link.type !== 'LEMMY'" target="_blank">{{link.label}}</a>
+                                <a [href]="link.url" *ngIf="link.type === 'LEMMY' && link.label === ''"
+                                    target="_blank">Thread on Lemmy</a>
+                                <a [href]="link.url" *ngIf="link.type === 'LEMMY'" target="_blank">{{link.label}}</a>
+                            </div>
+                            <div *ngIf="linkTypeIsOther(link.type)" >
+                                <a [href]="link.url" target="_blank">{{link.label}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="event-col-2">
-                <div *ngIf="event.hasImg" class="image-container" [ngClass]="isMobile ? 'image-container-mobile': ''">
-                    <img [src]="event.imgSrc" class="image" [ngClass]="isMobile ? 'image-container-mobile': ''">
+                <div class="event-col-2">
+                    <div *ngIf="event.hasImg" class="image-container" [ngClass]="isMobile ? 'image-container-mobile': ''">
+                        <img [src]="event.imgSrc" class="image" [ngClass]="isMobile ? 'image-container-mobile': ''">
+                    </div>
                 </div>
             </div>
+    
+    
+    
+    
         </div>
-
-
-
-
     </div>
+    
 </div>

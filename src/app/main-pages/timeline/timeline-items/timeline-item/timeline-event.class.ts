@@ -119,7 +119,7 @@ export class TimelineEvent{
         } else if (type === TimelineEventType.DRS) {
             return 'rgba(148,23,106,' + String(transparency) + ')';
         } else {
-            return 'black';
+            return 'rgba(0,0,0,0)';
         }
     }
 }

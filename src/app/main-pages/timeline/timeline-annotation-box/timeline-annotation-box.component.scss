@@ -1,19 +1,38 @@
-.event-container{
+.annotation {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+}
+.annotation-historic{
+    align-items: flex-start;
 }
 
-.event{
-    margin-top: 10px;
-    border-radius: 5px;
-    min-width: 250px;
-    max-width: calc(100% - 60px);
-    padding: 20px;
-    display:flex;
+.event-container{
+    display: flex;
     flex-direction: column;
-    z-index: 51;
+    // align-items: center;
+    z-index: 154;
+    min-width: 250px;
+    // max-width: 600px
+    max-width: 60%;
+}
+.event-container-mobile{
+    // max-width: calc(100% - 60px);
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.event {
+    border-radius: 5px;
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 155;
+
+    // background: radial-gradient(circle, rgba(255, 255, 255, 1) 60%, rgba(255, 0, 0, 1) 100%);
+
 }
 
 // @media (max-width:500px) {
@@ -21,55 +40,66 @@
 //       padding: 15px;
 //     }
 //   }
-.content{
-    display:flex;
+.content {
+    display: flex;
     flex-direction: row;
 }
-.event-col-1{
 
-}
-.event-col-2{
-    display:flex;
+.event-col-1 {}
+
+.event-col-2 {
+    display: flex;
     flex-direction: column;
 }
 
-.title{
+.title {
     font-weight: bold;
 }
-.top-row{
-    display:flex;
+
+.top-row {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.date{
+
+.date {
     font-size: 0.9em;
-    color:gray;
-}
-.price{
-    font-size: 0.9em;
-    color:rgb(65, 131, 65);
+    color: gray;
 }
 
-.logo{
+.price {
+    font-size: 0.9em;
+    color: rgb(65, 131, 65);
+}
+
+.logo {
     width: 18px;
     height: 18px;
     margin-right: 5px;
 }
 
-.image-container{
+.image-container {
     max-width: 200px;
 
 }
-.image-container-mobile{
 
-}
-.image{
+.image-container-mobile {}
+
+.image {
     min-width: 150px;
     max-width: 200px;
     border-radius: 5px;
 }
-.image-mobile{
+
+.image-mobile {
     max-width: 100%;
     width: 100%;
     max-height: 100%;
 }
+
+.link-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+

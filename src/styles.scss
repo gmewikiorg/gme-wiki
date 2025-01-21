@@ -60,6 +60,13 @@ body {
     color: #ffffffd7;
   }
 }
+.black-white-bg-opaque{
+  background-color: rgba(255, 255, 255, 1);
+  .dark-mode & {
+    background-color: #121212;
+    color: rgba(255, 255, 255, 1);
+  }
+}
 
 .component-root {
   display: flex;
