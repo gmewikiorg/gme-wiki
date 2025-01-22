@@ -20,28 +20,28 @@ export const mobileMenuItems: MobileMenuItem[] = [
         'IMAGE',
         null,
         '/timeline',
-        'assets/icons/timeline-icon.png',
+        'assets/nav-icons/timeline-icon.png',
         'Timeline'
     ),
     new MobileMenuItem(
         'IMAGE',
         null,
         '/earnings',
-        'assets/flaticon/bar-chart-3.png',
+        'assets/nav-icons/bar-chart-3.png',
         'Earnings'
     ),
     new MobileMenuItem(
         'IMAGE',
         null,
         '/ownership',
-        'assets/icons/ownership.png',
+        'assets/nav-icons/ownership.png',
         'Company Ownership'
     ),
     new MobileMenuItem(
         'IMAGE',
         null,
         '/social-media',
-        'assets/flaticon/social-media.png',
+        'assets/nav-icons/social-media.png',
         'Social Media'
     ),
     new MobileMenuItem(
