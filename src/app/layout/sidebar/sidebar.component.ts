@@ -6,11 +6,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoins, faChartLine, faChartPie, faSliders, faQuestion, faBars, faCircleInfo, faTableList, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { SettingsService } from '../../shared/services/settings.service';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { OwnershipIconComponent } from '../../shared/nav-icons/ownership-icon/ownership-icon.component';
+import { SocialMediaIconComponent } from '../../shared/nav-icons/social-media-icon/social-media-icon.component';
+import { TimelineIconComponent } from '../../shared/nav-icons/timeline-icon/timeline-icon.component';
+import { EarningsIconComponent } from '../../shared/nav-icons/earnings-icon/earnings-icon.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [FontAwesomeModule, RouterModule, CommonModule],
+  imports: [FontAwesomeModule, RouterModule, CommonModule, OwnershipIconComponent, SocialMediaIconComponent, TimelineIconComponent, EarningsIconComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   animations: [
@@ -45,11 +49,11 @@ import { ScreenService } from '../../shared/services/screen-size.service';
 export class SidebarComponent {
 
   constructor(
-    private _settingsService: SettingsService, 
-    private _router: Router, 
-    private _screenService: ScreenService 
+    private _settingsService: SettingsService,
+    private _router: Router,
+    private _screenService: ScreenService
   ) { }
-  
+
 
   public get faChartLine(): IconDefinition { return faChartLine; }
   public get faChartPie(): IconDefinition { return faChartPie; }
@@ -70,9 +74,9 @@ export class SidebarComponent {
     //     }else{
     //     }
     //   }
-        
+
     // });
-    this._router.events.subscribe((event)=>{
+    this._router.events.subscribe((event) => {
     })
   }
 
@@ -95,19 +99,19 @@ export class SidebarComponent {
   private _clicked = false;
   public onClick() {
     // if(this._screenService.isLargeScreen){
-      
+
     // }else{
     //   this._menuIsOpen = !this._menuIsOpen;
     //   this._clicked = true;
     // }
   }
   public onMouseEnter() {
-    if(!this._clicked){
+    if (!this._clicked) {
       this._menuIsOpen = true;
-    }else{
+    } else {
       this._clicked = false;
     }
-    
+
   }
 
 }

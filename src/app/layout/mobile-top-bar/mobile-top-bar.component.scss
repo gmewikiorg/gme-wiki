@@ -13,12 +13,19 @@
     display:flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 .menu-item-icon{
     margin: 2px;
     margin-left: 5px;
     margin-right: 5px;
     color: gray;
+    min-width: 30px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 .menu-item-label{
     margin: 2px;

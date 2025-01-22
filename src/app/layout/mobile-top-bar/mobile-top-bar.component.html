@@ -28,7 +28,10 @@
         <div *ngIf="item.iconOrImg === 'ICON'" class="menu-item-icon"><fa-icon [icon]="item.icon" *ngIf="item.icon"
                 style="font-size:1.5em;"></fa-icon></div>
         <div *ngIf="item.iconOrImg === 'IMAGE'" class="menu-item-icon">
-            <img [src]="item.imgSrc" style="width: 25px; height: 25px;">
+            <app-timeline-icon *ngIf="item.routerLink === '/timeline'" style="width: 30px;height: 30px;"></app-timeline-icon>
+            <app-earnings-icon *ngIf="item.routerLink === '/earnings'" style="width: 30px;height: 30px;"></app-earnings-icon>
+            <app-ownership-icon *ngIf="item.routerLink === '/ownership'" style="width: 30px;height: 30px;"></app-ownership-icon>
+            <app-social-media-icon *ngIf="item.routerLink === '/social-media'" style="width: 30px;height: 30px;"></app-social-media-icon>
         </div>
 
         <div class="menu-item-label">

@@ -29,8 +29,7 @@
                 </div> -->
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'" [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
-                        <img src="assets/nav-icons/timeline-icon.png" 
-                            style="width: 30px; height: 30px;">
+                        <app-timeline-icon style="width: 30px;height:30px;"></app-timeline-icon>
                     </div>
                     <div class="sidebar-item-title">
                         Timeline
@@ -38,10 +37,7 @@
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/earnings'" [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
-                        <img src="assets/nav-icons/bar-chart-3.png" 
-                        style="width: 30px; height: 30px;">
-                        <!-- <fa-icon [icon]="faTableList"
-                            style="width: 30px; height: 30px; font-size:1.7em; color: rgb(91, 116, 91);"></fa-icon> -->
+                        <app-earnings-icon style="width: 30px;height:30px;"></app-earnings-icon>
                     </div>
                     <div class="sidebar-item-title">
                         Earnings
@@ -49,8 +45,8 @@
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/ownership'"  [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
-                        <img src="assets/nav-icons/ownership.png" alt="ownership"
-                            style="width: 30px; height: 30px;">
+                        <app-ownership-icon style="width: 30px;height:30px;"></app-ownership-icon>
+                            
                     </div>
                     <div class="sidebar-item-title">
                         Company Ownership
@@ -58,8 +54,7 @@
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/social-media'" [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
-                        <img src="assets/nav-icons/social-media.png" alt=""
-                            style="width: 30px; height: 30px;">
+                        <app-social-media-icon style="width: 30px;height:30px;"></app-social-media-icon>
                     </div>
                     <div class="sidebar-item-title">
                         Social Media
