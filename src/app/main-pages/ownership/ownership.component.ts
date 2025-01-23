@@ -19,8 +19,6 @@ export class OwnershipComponent {
 
 
   constructor(
-    // private _loadingService: LoadingService, 
-    // private _screenService: ScreenSizeService, 
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title) {

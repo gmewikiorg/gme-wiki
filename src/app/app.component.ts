@@ -15,7 +15,6 @@ import { LoadingService } from './shared/services/loading.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'gme-timeline-3';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -45,12 +44,12 @@ export class AppComponent {
     if(this._isBrowser){
       this._router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          if (event.url === '/') {
-            this._router.navigate(['/timeline']);
-          }else{
-            if(event.url === '/timeline'){
-            }
-          }
+          // if (event.url === '/') {
+          //   this._router.navigate(['/timeline']);
+          // }else{
+          //   if(event.url === '/timeline'){
+          //   }
+          // }
         }
         const element = document.querySelector('#app-component-root');
         if(element){

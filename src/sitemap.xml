@@ -1,40 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
+        <loc>https://gmewiki.org/start</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>https://gmewiki.org/timeline</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/drs</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/earnings</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/ownership</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/social-media</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/about</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/fy23-profitability</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://gmewiki.org/guide</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://gmewiki.org/faq</loc>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/rc-interview</loc>
-        <lastmod>2025-01-14</lastmod>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/2024-atms</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/cnbc-naked-shorts</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/drs-timeline</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/drs-vs-dspp</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/media</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/naked-short-selling</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/moass</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/sneeze</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://gmewiki.org/stores</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+        <sitemap>
+        <loc>https://gmewiki.org/turnaround</loc>
+        <lastmod>2025-01-23</lastmod>
     </sitemap>
 
 </sitemapindex>

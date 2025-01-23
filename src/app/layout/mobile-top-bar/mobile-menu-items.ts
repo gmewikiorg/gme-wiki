@@ -19,6 +19,13 @@ export const mobileMenuItems: MobileMenuItem[] = [
     new MobileMenuItem(
         'IMAGE',
         null,
+        '/start',
+        'assets/nav-icons/start.png',
+        'Start'
+    ),
+    new MobileMenuItem(
+        'IMAGE',
+        null,
         '/timeline',
         'assets/nav-icons/timeline-icon.png',
         'Timeline'

@@ -12,11 +12,12 @@ import { OwnershipIconComponent } from '../../shared/nav-icons/ownership-icon/ow
 import { SocialMediaIconComponent } from '../../shared/nav-icons/social-media-icon/social-media-icon.component';
 import { TimelineIconComponent } from '../../shared/nav-icons/timeline-icon/timeline-icon.component';
 import { EarningsIconComponent } from '../../shared/nav-icons/earnings-icon/earnings-icon.component';
+import { StartIconComponent } from '../../shared/nav-icons/start-icon/start-icon.component';
 
 @Component({
   selector: 'app-mobile-top-bar',
   standalone: true,
-  imports: [RouterModule, CommonModule, FontAwesomeModule, TimelineControlsComponent, OwnershipIconComponent, SocialMediaIconComponent, TimelineIconComponent, EarningsIconComponent],
+  imports: [RouterModule, CommonModule, FontAwesomeModule, TimelineControlsComponent, OwnershipIconComponent, SocialMediaIconComponent, TimelineIconComponent, EarningsIconComponent, StartIconComponent],
   templateUrl: './mobile-top-bar.component.html',
   styleUrl: './mobile-top-bar.component.scss'
 })

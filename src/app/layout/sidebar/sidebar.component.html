@@ -27,6 +27,14 @@
                         Research
                     </div>
                 </div> -->
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/start'" [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <app-start-icon style="width: 30px;height:30px;"></app-start-icon>
+                    </div>
+                    <div class="sidebar-item-title">
+                        Start
+                    </div>
+                </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'" [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-timeline-icon style="width: 30px;height:30px;"></app-timeline-icon>

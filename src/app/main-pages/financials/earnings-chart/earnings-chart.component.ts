@@ -27,8 +27,8 @@ export class EarningsChartComponent {
     this._datasetBuilder = new EarningsDatasetBuilder(this._sizeService);
     this.barChartOptions = this._setOptions();
     this.barChartData = this._updateDatasets();
-
   }
+
 
   public barChartData: ChartConfiguration<'bar'>['data'];
   public barChartOptions: ChartOptions<'bar'>;

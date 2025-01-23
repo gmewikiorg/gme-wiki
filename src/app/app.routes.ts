@@ -30,13 +30,15 @@ import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus
 import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
 import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
 import { FaqComponent } from './info-pages/faq/faq.component';
+import { StartPageComponent } from './main-pages/start-page/start-page.component';
 
 
 
 export const routes: Routes = [
 
 
-    { path: '*', component: TimelineComponent },
+    // { path: '', component: StartPageComponent },
+    { path: 'start', component: StartPageComponent},
     { path: 'timeline', component: TimelineComponent },
     { path: 'ownership', component: OwnershipComponent },
     { path: 'earnings', component: FinancialsComponent },
@@ -50,9 +52,9 @@ export const routes: Routes = [
 
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },
-    
+
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
-    
+
 
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
@@ -93,12 +95,16 @@ export const routes: Routes = [
 
     { path: 'stores', component: StoresComponent },
 
-    
+
     { path: 'turnaround', component: TurnaroundComponent },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
     { path: 't-plus-thirty-five', component: TPlusThirtyFiveComponent },
 
 
-    { path: '**', redirectTo: 'timeline' }
+    {
+        path: '**', // Wildcard to match any route
+        redirectTo: '/start', // Redirects to the root path
+        pathMatch: 'full', // Ensures the whole path matches 
+    },
 ];
