@@ -91,7 +91,9 @@ export const routes: Routes = [
 
 
     { path: 'sneeze', component: SneezeComponent },
+    { path: 'squeeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
+    { path: 'squeeze-january-2021', component: SneezeComponent },
 
     { path: 'stores', component: StoresComponent },
 

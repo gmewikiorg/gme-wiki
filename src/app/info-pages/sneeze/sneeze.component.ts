@@ -2,11 +2,12 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HelpContributeComponent } from '../../shared/components/help-contribute/help-contribute.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sneeze',
   standalone: true,
-  imports: [HelpContributeComponent, FooterComponent],
+  imports: [HelpContributeComponent, FooterComponent, RouterModule],
   templateUrl: './sneeze.component.html',
   styleUrl: './sneeze.component.scss'
 })
@@ -23,7 +24,7 @@ export class SneezeComponent {
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
       { name: 'description', content: 'January 2021 GameStop GME Sneeze' },
-      { name: 'keywords', content: 'GameStop, GME, GME sneeze, GameStop sneeze, GameStop short squeeze, GME short squeeze, wallstreetbets, Roaring Kitty, DeepFuckingValue' },
+      { name: 'keywords', content: 'GameStop, GME, GME sneeze, GameStop sneeze, GameStop short squeeze, GME short squeeze, wallstreetbets, Roaring Kitty, DeepFuckingValue, gme wiki, gme price' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
@@ -31,7 +32,7 @@ export class SneezeComponent {
     ]);
     this.meta.addTags([
       { property: 'og:title', content: 'January 2021 GameStop GME Sneeze' },
-      { property: 'og:description', content: 'January 2021 GameStop GME Sneeze' },
+      { property: 'og:description', content: 'January 2021 GameStop GME Sneeze - What happened?  Was it even a short squeeze?' },
       { property: 'og:url', content: 'https://gmewiki.org/sneeze' },
       { property: 'og:type', content: 'website' },
     ]);

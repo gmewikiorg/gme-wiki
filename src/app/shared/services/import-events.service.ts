@@ -77,7 +77,7 @@ export class ImportEventsService {
     sourceValue = sourceValue.substring(1, sourceValue.length - 2);
     let sourceTypes = sourceValue.split(";").filter(value => value !== "");
     sourceTypes.forEach(sourceType => {
-      let type: TimelineEventViewType = 'CURRENT';
+      let type: TimelineEventViewType | null = null;
       if (sourceType === 'CURRENT') {
         type = 'CURRENT';
       } else if (sourceType === 'HISTORIC') {
@@ -87,7 +87,10 @@ export class ImportEventsService {
       } else if (sourceType === 'HISTORIC_MOBILE') {
         type = 'HISTORIC_MOBILE';
       }
-      viewTypes.push(type);
+      if(type !== null){
+        viewTypes.push(type);
+      }
+
     })
     return viewTypes;
   }
