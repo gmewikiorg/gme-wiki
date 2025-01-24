@@ -15,7 +15,7 @@ constructor(
     private meta: Meta,
     private titleService: Title) {
 
-    this.titleService.setTitle('Welcome to gmewiki.org',);
+    this.titleService.setTitle('Welcome to gmewiki.org - an information tool all about GME and GameStop',);
 
 
     const metaTags = this.meta.getTags('name');
