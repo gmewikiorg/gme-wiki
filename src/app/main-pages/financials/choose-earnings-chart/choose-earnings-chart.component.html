@@ -66,6 +66,7 @@
     </div>
 
     <div class="section-heading" style="margin-bottom: 10px; margin-top: 5px;">{{ chartTitle }}</div>
-    <app-earnings-chart class="earnings-chart-container" *ngIf="isBrowser"></app-earnings-chart>
-    <div *ngIf="!isBrowser" style="height: 650px;"></div>
+    <!-- <div *ngIf="isLoading && isBrowser" style="height: 650px; background-color: rgba(255, 255, 255, 0); width: 100%;" ></div> -->
+    <app-earnings-chart class="earnings-chart-container" *ngIf="!isLoading && isBrowser"></app-earnings-chart>
+
 </div>

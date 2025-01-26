@@ -1,10 +1,11 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
 import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
 import { FinancialChartService } from './earnings-chart.service';
 import { EarningsChartOption } from './earnings-chart-option.enum';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -14,9 +15,9 @@ import { EarningsChartOption } from './earnings-chart-option.enum';
   templateUrl: './choose-earnings-chart.component.html',
   styleUrl: './choose-earnings-chart.component.scss'
 })
-export class ChooseEarningsChartComponent {
+export class ChooseEarningsChartComponent implements OnInit {
   public EarningsChartOption = EarningsChartOption;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService  ) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
   public get faChartSimple() { return faChartSimple; }
@@ -25,11 +26,18 @@ export class ChooseEarningsChartComponent {
   private _showMoreChartOptions: boolean = false;
   public get showMoreChartOptions(): boolean { return this._showMoreChartOptions; }
   private _isBrowser: boolean = false;
+  private _isLoading: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
   public get chartTitle(): string { return this._financialsService.chartTitle; }
+  public get isLoading(): boolean { return this._isLoading; }
 
+  ngOnInit() {
+    timer(0).subscribe(()=>{
+      this._isLoading = false;
+    })
 
+  }
 
   onClickMoreCharts() {
     this._showMoreChartOptions = !this._showMoreChartOptions;

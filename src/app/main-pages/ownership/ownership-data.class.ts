@@ -77,7 +77,7 @@ export class OwnershipData {
             { label: 'Vanguard Group Inc', value: vanguard, layer: 1, color: '#ff9900', },
             { label: 'Blackrock Inc', value: blackrock, layer: 1, color: '#ff9900', },
             { label: 'State Street Corp', value: stateStreet, layer: 1, color: '#ff9900', },
-            { label: 'All other (>300 institutions) ', value: remainingInstitutional, layer: 1, color: 'rgba(255, 153, 0, 0.5)', },
+            { label: 'All other (>300 institutions) ', value: remainingInstitutional, layer: 1, color: 'rgb(255, 204, 129)', },
             { label: 'Remainder', value: remainder, layer: 1, color: '#EEE', },
         ];
 

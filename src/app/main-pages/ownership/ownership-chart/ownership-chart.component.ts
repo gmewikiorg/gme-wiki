@@ -4,6 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { OwnershipData } from '../ownership-data.class';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { CommonModule } from '@angular/common';
+import { ImportGmeDataService } from '../../../shared/services/import-gme-data.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class OwnershipChartComponent implements OnInit, AfterViewInit{
   constructor(
-    // private _gmeService: ImportGmeDataService,
+    private _gmeService: ImportGmeDataService,
     // private _loadingService: LoadingService, 
   ){ 
     Chart.unregister(ChartDataLabels);
@@ -164,7 +165,7 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit{
   private _footerContext(context: TooltipItem<"pie">[]){
     const hasGMEData = false;
     if(hasGMEData){
-      // const lastClosePrice = this._gmeService.lastClosePrice;
+      const lastClosePrice = this._gmeService.lastClosePrice;
       // const  marketValue = context[0].parsed * lastClosePrice / 1000000000;
       // const date = dayjs(this._gmeService.allPriceEntries[this._gmeService.allPriceEntries.length-1].dateYYYYMMDD).format('MMMM D, YYYY')
       // return '$' + (marketValue).toFixed(1) + " billion -- market value as of " + date;

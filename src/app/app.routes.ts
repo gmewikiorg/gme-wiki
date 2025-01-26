@@ -31,6 +31,7 @@ import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component
 import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
 import { FaqComponent } from './info-pages/faq/faq.component';
 import { StartPageComponent } from './main-pages/start-page/start-page.component';
+import { FtdComponent } from './info-pages/ftd/ftd.component';
 
 
 
@@ -60,10 +61,15 @@ export const routes: Routes = [
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
     { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
 
+    { path: 'faq', component: FaqComponent },
     { path: 'fy23-profitability', component: Fy23ProfitabilityComponent },
+    
+    { path: 'ftd', component: FtdComponent },
+    { path: 'ftds', component: FtdComponent },
+    { path: 'failure-to-deliver', component: FtdComponent },
     { path: 'fud', component: FudComponent },
 
-    { path: 'faq', component: FaqComponent },
+
     { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'media', component: MediaComponent },

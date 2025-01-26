@@ -29,7 +29,7 @@ export class DrsComponent {
     private titleService: Title, 
   ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
-    this.titleService.setTitle('DRS - Direct Registration System')
+    this.titleService.setTitle('gmewiki.org - DRS - Direct Registration System')
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
