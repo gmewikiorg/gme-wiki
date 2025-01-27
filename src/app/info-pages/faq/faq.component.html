@@ -4,111 +4,64 @@
             Frequently Asked Questions about GME and GameStop
         </div>
 
-
-
-        <div class="page-section">
-            <div class="section-heading">
-                General questions about GameStop
+        <div class="page-section grid" *ngIf="width >= minSidebarWidth">
+            <!-- Wide screen, have a sidebar -->
+            <div class="faq-left-sidebar">
+                <div *ngFor="let section of faqSections" style="display:flex;flex-direction: column;">
+                    <div class="section-heading" (click)="scrollToSection(section)">{{section}}</div>
+                    <ul *ngIf="showSectionFAQs(section)">
+                        <li *ngFor="let faq of sectionFaqs(section)"
+                            [ngClass]="faq.id === currentItemId ? 'active': ''" (click)="scrollToElement('faq-id-'+faq.id)">
+                            <div>{{faq.question}}</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul>
-                <li>What is GameStop?</li>
-                <li>What is GameStop’s business model?</li>
-                <li>What products and services does GameStop offer?</li>
-                <li>How does GameStop make money?</li>
-                <li>When was GameStop founded?</li>
-                <li>Where is GameStop headquartered?</li>
-                <li>Where is GameStop incorporated?</li>
-                <li>How has GameStop adapted to digital gaming trends?</li>
-                <li>What countries does GameStop operate in?</li>
-            </ul>
-        </div>
 
-        <div class="page-section">
+            <div class="faq-body">
+                <div class="page-section" *ngFor="let section of faqSections">
+                    <div class="section-heading">{{section}}</div>
+                    <ul>
+                        <li *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id" style="margin-bottom: 15px;">
+                            <div [ngClass]="faq.id === currentItemId ? 'active': ''" class="faq-question">{{faq.question}}</div>
+                            <div class="faq-answer">{{faq.answerText}}</div>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="section-heading">
-                Corporate Information
+                <div class="page-section" style="height: 560px; width: 100%; background-color: rgba(255, 255, 255, 0);">
+                </div>
             </div>
-            <ul>
-                <li>Who is the CEO of GameStop?</li>
-                <li>Who are the major shareholders of GME?</li>
-                <li>How has GameStop’s leadership changed in recent years?</li>
-                <li>What is GameStop’s vision and mission statement?</li>
-                <li>What is GameStop’s strategy for e-commerce growth?</li>
-                <li>Does GameStop plan to diversify its business?</li>
-            </ul>
 
         </div>
 
-        
-        <div class="page-section">
-            <div class="section-heading">
-                Stock Performance and Investment
+
+
+
+        <div class="page-section" *ngIf="width < minSidebarWidth">
+            <!-- narrow screen, no sidebar -->
+            <div class="page-section" *ngFor="let section of faqSections">
+                <div class="section-heading">{{section}}</div>
+                <ul>
+                    <li *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id">
+                        <div [ngClass]="faq.id === currentItemId ? 'active': ''">{{faq.question}}</div>
+                        <div>{{faq.answerText}}</div>
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li>What is GME?</li>
-                <li>How can I invest in GME stock?</li>
-                <li>What is the current price of GME stock?</li>
-                <li>Which stock exchange is GME listed on?</li>
-                <li>Where can I find GME’s historical stock performance?</li>
-                <li>Is GME a good stock to invest in?</li>
-                <li>What are the risks of investing in GME?</li>
-                <li>Has GME ever declared a stock split?</li>
-                <li>What is the short interest in GME stock?</li>
-                <li>How does GME’s market cap compare to its competitors?</li>
-                <li>Where can I track GME’s trading volume?</li>
-            </ul>
 
         </div>
 
-        <div class="page-section">
+    </div>
 
-            <div class="section-heading">
-                Financial and Operational Details
-            </div>
-            <ul>
-                <li>How can I find GameStop’s quarterly earnings reports?</li>
-                <li>What were GameStop’s revenues last year?</li>
-                <li>Does GameStop have any significant debt?</li>
-                <li>What are GameStop’s plans for expansion?</li>
-                <li>How does GameStop compete with digital-only platforms?</li>
-            </ul>
-
-        </div>
-        <div class="page-section">
+    <div style="margin-top:50px;"></div>
+    <app-footer class="app-footer"></app-footer>
+</div>
 
 
-            <div class="section-heading">
-                Community and Retail Presence
-            </div>
-            <ul>
-                <li>How many GameStop stores are there globally?</li>
-                <li>Where can I find a GameStop location near me?</li>
-                <li>Does GameStop offer trade-in services for games and consoles?</li>
-                <li>What loyalty programs does GameStop offer?</li>
-                <li>Can I pre-order games through GameStop?</li>
-                <li>Does GameStop sell digital game codes?</li>
-            </ul>
 
 
-        </div>
-        <div class="page-section">
-
-            <div class="section-heading">
-                Legal and Controversy
-            </div>
-            <ul>
-                <li>Has GameStop been involved in any legal issues?</li>
-                <li>What was the SEC’s response to the GME short squeeze?</li>
-                <li>Are there ongoing lawsuits related to GME stock trading?</li>
-                <li>How did GameStop address the controversies surrounding its stock?</li>
-            </ul>
-
-        </div>
-        <div class="page-section">
-            <div class="section-heading">Unsorted questions</div>
-
-
-            <!-- <ul>
+<!-- <ul>
                 <li>What's the situation with GME?</li>
                 <li>GME? Isn't that over already?</li>
                 <li>What caused the GME stock price surge in early 2021?</li>
@@ -165,9 +118,9 @@
                 <li>How many employees does GameStop have?</li>
 
             </ul> -->
-        </div>
+<!-- </div> -->
 
-        <!-- 
+<!-- 
         GME wiki 2021
 GME highest price before split
 GameStop stock scandal explained
@@ -177,8 +130,3 @@ GME wiki reddit
 GME wiki stock price
 Keith Gill net worth
  -->
-
-    </div>
-    <div style="margin-top:50px;"></div>
-    <app-footer class="app-footer-fixed"></app-footer>
-</div>
