@@ -56,6 +56,7 @@ export class FaqComponent implements OnInit {
   currentPosition: string = '';
   private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
+  public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
   private _width: number = 800;
   public get width(): number { return this._width; }
@@ -89,17 +90,17 @@ export class FaqComponent implements OnInit {
     if (this.currentItemId !== null) {
       const foundItem = faqs.find(item => item.id === this.currentItemId);
       if (foundItem) {
-        if(foundItem.section === 'GENERAL' && sectionIndex === 0){
+        if (foundItem.section === 'GENERAL' && sectionIndex === 0) {
           return true;
-        }else if(foundItem.section === 'CORPORATE' && sectionIndex === 1){
+        } else if (foundItem.section === 'CORPORATE' && sectionIndex === 1) {
           return true;
-        }else if(foundItem.section === 'STOCK' && sectionIndex === 2){
+        } else if (foundItem.section === 'STOCK' && sectionIndex === 2) {
           return true;
-        }else if(foundItem.section === 'FINANCIAL' && sectionIndex === 3){
+        } else if (foundItem.section === 'FINANCIAL' && sectionIndex === 3) {
           return true;
-        }else if(foundItem.section === 'RETAIL' && sectionIndex === 4){
+        } else if (foundItem.section === 'RETAIL' && sectionIndex === 4) {
           return true;
-        }else if(foundItem.section === 'LEGAL' && sectionIndex === 5){
+        } else if (foundItem.section === 'LEGAL' && sectionIndex === 5) {
           return true;
         }
       }
@@ -136,22 +137,22 @@ export class FaqComponent implements OnInit {
         // Check if the item is visible in the viewport
         // console.log("rect.top, rec.bot, window.innerheight, ", rect.top.toFixed(0), rect.bottom.toFixed(0), window.innerHeight)
         // if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-        if(rect.bottom > 0 && rect.top < 30){
+        if (rect.bottom > 0 && rect.top < 30) {
           foundItemId = faq.id;
         }
       }
     });
-    if(foundItemId === null){
-      if(this.currentItemId !== null){
+    if (foundItemId === null) {
+      if (this.currentItemId !== null) {
         foundItemId = this.currentItemId;
       }
     }
     this.currentItemId = foundItemId;
   }
 
-  public scrollToSection(section: string){
+  public scrollToSection(section: string) {
     const sectionFAQs = this.sectionFaqs(section);
-    const scrollToElementId = 'faq-id-'+sectionFAQs[0].id;
+    const scrollToElementId = 'faq-id-' + sectionFAQs[0].id;
     this.scrollToElement(scrollToElementId);
   }
   scrollToElement(elementId: string) {

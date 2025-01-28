@@ -7,11 +7,11 @@
         <div class="page-section grid" *ngIf="width >= minSidebarWidth">
             <!-- Wide screen, have a sidebar -->
             <div class="faq-left-sidebar">
-                <div *ngFor="let section of faqSections" style="display:flex;flex-direction: column;">
+                <div *ngFor="let section of faqSections" style="display:flex;flex-direction: column;cursor: pointer;" >
                     <div class="section-heading" (click)="scrollToSection(section)">{{section}}</div>
                     <ul *ngIf="showSectionFAQs(section)">
-                        <li *ngFor="let faq of sectionFaqs(section)"
-                            [ngClass]="faq.id === currentItemId ? 'active': ''" (click)="scrollToElement('faq-id-'+faq.id)">
+                        <li *ngFor="let faq of sectionFaqs(section)" [ngClass]="faq.id === currentItemId ? 'active': ''" class="faq-sidebar-question"
+                            (click)="scrollToElement('faq-id-'+faq.id)">
                             <div>{{faq.question}}</div>
                         </li>
                     </ul>
@@ -19,14 +19,16 @@
             </div>
 
             <div class="faq-body">
-                <div class="page-section" *ngFor="let section of faqSections">
-                    <div class="section-heading">{{section}}</div>
-                    <ul>
-                        <li *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id" style="margin-bottom: 15px;">
-                            <div [ngClass]="faq.id === currentItemId ? 'active': ''" class="faq-question">{{faq.question}}</div>
-                            <div class="faq-answer">{{faq.answerText}}</div>
-                        </li>
-                    </ul>
+                <div class="page-section" *ngFor="let section of faqSections" style="margin-top:0px;">
+                    <div class="section-heading" style="margin-top:0px;">{{section}}</div>
+
+                    <div *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id" style="margin-bottom: 15px;"
+                        class="faq-list-item" [ngClass]="isDarkMode? 'faq-list-item-dark': ''">
+                        <div [ngClass]="faq.id === currentItemId ? 'active': ''" class="faq-question">{{faq.question}}
+                        </div>
+                        <div class="faq-answer">{{faq.answerText}}</div>
+                    </div>
+
                 </div>
 
                 <div class="page-section" style="height: 560px; width: 100%; background-color: rgba(255, 255, 255, 0);">
@@ -42,12 +44,14 @@
             <!-- narrow screen, no sidebar -->
             <div class="page-section" *ngFor="let section of faqSections">
                 <div class="section-heading">{{section}}</div>
-                <ul>
-                    <li *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id">
-                        <div [ngClass]="faq.id === currentItemId ? 'active': ''">{{faq.question}}</div>
-                        <div>{{faq.answerText}}</div>
-                    </li>
-                </ul>
+
+                <div *ngFor="let faq of sectionFaqs(section)" [id]="'faq-id-'+faq.id" class="faq-list-item"
+                    [ngClass]="isDarkMode? 'faq-list-item-dark': ''">
+                    <div [ngClass]="faq.id === currentItemId ? 'active': ''" class="faq-question">{{faq.question}}
+                    </div>
+                    <div class="faq-answer"> {{faq.answerText}}</div>
+                </div>
+
             </div>
 
         </div>
