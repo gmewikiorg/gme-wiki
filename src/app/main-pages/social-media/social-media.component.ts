@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -5,7 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-social-media',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './social-media.component.html',
   styleUrl: './social-media.component.scss'
 })
@@ -29,4 +30,34 @@ export class SocialMediaComponent {
       { property: 'og:type', content: 'website' },
     ]);
   }
+  // apple-podcasts-icon.png
+
+  private _xSpacesAccounts: string[] = [
+    'peruvian_bull',
+    // 'Badmojo6969',
+    // 'magsonthemoon',
+    // 'seymourbutts741',
+    // 'squeezistChrist',
+    'mikeal_man',
+  ].sort(() => Math.random() - 0.5);
+
+  public get xSpacesAccounts(): string[]{
+    return this._xSpacesAccounts;
+  }
+
+
 }
+
+
+/**
+ * 
+ * function shuffleArray(array: string[]): string[] {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
+const shuffledNames = shuffleArray(names);
+
+console.log(shuffledNames);
+
+ */
