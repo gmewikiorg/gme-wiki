@@ -3,6 +3,17 @@
     flex-direction: row;
 }
 
+
+
+
+@media (max-width:500px) {
+    .section-body{
+        display:flex;
+        flex-direction: column-reverse;
+    }
+  }
+  
+
 .page-image{
     width: 100%;
 
@@ -12,4 +23,10 @@
 .page-image:hover{
     border: 1px solid rgba(0, 0, 0, 0.507);
     cursor: pointer;
+}
+.section-p{
+    padding-left:30px;
+    padding-right: 30px;
+    // text-align: center;
+    font-size: 1.2em;
 }
