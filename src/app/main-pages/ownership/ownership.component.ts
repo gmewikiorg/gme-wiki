@@ -39,7 +39,7 @@ export class OwnershipComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'gmewiki.org - GameStop Company Ownership' },
       { property: 'og:description', content: 'GameStop ownership pie chart and table with sources' },
-      { property: 'og:image', content: 'https://gmewiki.org/assets/misc/ownership.png' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/ownership.png' },
       { property: 'og:url', content: 'https://gmewiki.org/ownership' },
       { property: 'og:type', content: 'website' },
     ]);

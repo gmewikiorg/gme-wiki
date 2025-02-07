@@ -1,0 +1,15 @@
+.section-body{
+    display:flex;
+    flex-direction: row;
+}
+
+.page-image{
+    width: 100%;
+
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+.page-image:hover{
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    cursor: pointer;
+}

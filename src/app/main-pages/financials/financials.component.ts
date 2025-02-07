@@ -43,7 +43,7 @@ export class FinancialsComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'gmewiki.org - GameStop Earnings and Financial Information' },
       { property: 'og:description', content: 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings' },
-      { property: 'og:image', content: 'https://gmewiki.org/assets/misc/earnings.png' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/earnings.png' },
       { property: 'og:url', content: 'https://gmewiki.org/financials' },
       { property: 'og:type', content: 'website' },
     ]);

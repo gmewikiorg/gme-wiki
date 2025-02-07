@@ -45,7 +45,7 @@ export class TimelineComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'gmewiki.org - Interactive GME Timeline' },
       { property: 'og:description', content: 'GME interactive annotated timeline and chart tools' },
-      { property: 'og:image', content: 'https://gmewiki.org/assets/misc/timeline.png' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/timeline.png' },
       { property: 'og:url', content: 'https://gmewiki.org/timeline' },
       { property: 'og:type', content: 'website' },
     ]);
