@@ -8,12 +8,12 @@
 
 
     <div class="page-content">
-        <div class="page-section">
-            <div class="section-heading"><a [routerLink]="'/timeline'">GME Timeline</a></div>
+        <div class="page-section menu-item" [routerLink]="'/timeline'" >
+            <div class="section-heading">GME Timeline</div>
             <div class="section-body">
 
-                <a [routerLink]="'/timeline'"><img src="assets/main-pages/timeline.png" style="max-width: 600px;"
-                        alt="gme timeline" class="page-image"></a>
+                <img src="assets/main-pages/timeline.png"
+                        alt="gme timeline" class="page-image">
                 <p class="section-p">Explore the history of GameStop and see noteworthy
                     events in their relationship to the changes of GME
                     stock</p>
@@ -21,11 +21,11 @@
 
         </div>
 
-        <div class="page-section">
-            <div class="section-heading"><a [routerLink]="'/earnings'">GME Earnings and Financial Information</a></div>
+        <div class="page-section menu-item" [routerLink]="'/earnings'">
+            <div class="section-heading">GME Earnings and Financial Information</div>
             <div class="section-body">
-                <a [routerLink]="'/earnings'"><img src="assets/main-pages/earnings.png" style="max-width: 600px;"
-                        alt="gme earnings" class="page-image"></a>
+                <img src="assets/main-pages/earnings.png"
+                        alt="gme earnings" class="page-image">
                 <p class="section-p">View the status and history of GameStop revenue, net
                     earnings, stockholders' equity, and related
                     information</p>
@@ -34,11 +34,12 @@
 
         </div>
 
-        <div class="page-section">
-            <div class="section-heading"><a [routerLink]="'/ownership'">GME Ownership</a></div>
+        <div class="page-section menu-item" [routerLink]="'/ownership'">
+            <div class="section-heading">GME Ownership</div>
             <div class="section-body">
-                <a [routerLink]="'/ownership'"><img src="assets/main-pages/ownership.png" style="max-width: 400px;"
-                        alt="gme ownership" class="page-image"></a>
+                <div style="max-width: 400px;"> <img src="assets/main-pages/ownership.png" 
+                    alt="gme ownership" class="page-image"></div>
+                
                 <p class="section-p">Who owns GameStop?<br>
                     See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith Gill,
                     and
@@ -46,14 +47,19 @@
             </div>
         </div>
 
-        <div class="page-section">
-            <div class="section-heading"><a [routerLink]="'/social-media'">GME Social Media</a></div>
+        <div class="page-section menu-item" [routerLink]="'/social-media'">
+            <div class="section-heading">GME Social Media</div>
             <p>Connect with the GME shareholder community across numerous platforms</p>
         </div>
 
-        <div class="page-section">
-            <div class="section-heading"><a [routerLink]="'/faq'">GME FAQ</a></div>
+        <div class="page-section menu-item" [routerLink]="'/faq'">
+            <div class="section-heading">GME FAQ</div>
             <p>Find answers to common questions pertaining to GME</p>
+        </div>
+
+        <div class="page-section menu-item" [routerLink]="'/about'">
+            <div class="section-heading">About</div>
+            <p>About gmewiki.org</p>
         </div>
     </div>
 

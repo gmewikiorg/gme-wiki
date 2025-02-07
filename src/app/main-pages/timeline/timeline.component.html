@@ -1,5 +1,5 @@
 <div class="component-root">
-    <div class="page-title" [style.margin]="isMobile? '0px' : ''" *ngIf="!isMobile">
+    <div [ngClass]="isMobile? 'mobile-title' : 'page-title'">
         GME Timeline
     </div>
     <!-- <div class="page-subtitle">

@@ -14,13 +14,14 @@
   }
   
 
-.page-image{
-    width: 100%;
+.menu-item{
+    // width: 100%;
 
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0);
+    padding: 15px;
 }
-.page-image:hover{
+.menu-item:hover{
     border: 1px solid rgba(0, 0, 0, 0.507);
     cursor: pointer;
 }
@@ -29,4 +30,9 @@
     padding-right: 30px;
     // text-align: center;
     font-size: 1.2em;
+}
+
+.page-image{
+    width: 100%;
+    max-width: 640px;
 }
