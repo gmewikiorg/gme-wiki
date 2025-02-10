@@ -215,8 +215,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  font-size: 0.9em;
-  // background-color: #ffffff;
+  font-size: 0.8em;
+  color: rgb(48, 48, 48);
   .dark-mode & {
     background-color: #121212;
     color: #ffffff;
