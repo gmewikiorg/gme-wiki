@@ -41,27 +41,31 @@ body {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.app-footer{
+.app-footer {
   width: 100%;
-  display:flex;
+  display: flex;
 }
-.app-footer-fixed{
+
+.app-footer-fixed {
   width: 100%;
-  position:fixed;
+  position: fixed;
   bottom: 0;
-  display:flex;
+  display: flex;
 }
 
 
-.black-white-bg{
+.black-white-bg {
   background-color: rgba(255, 255, 255, 0.9);
+
   .dark-mode & {
     background-color: #121212de;
     color: #ffffffd7;
   }
 }
-.black-white-bg-opaque{
+
+.black-white-bg-opaque {
   background-color: rgba(255, 255, 255, 1);
+
   .dark-mode & {
     background-color: #121212;
     color: rgba(255, 255, 255, 1);
@@ -74,6 +78,7 @@ body {
   width: 100%;
   align-items: center;
   background-color: #ffffff;
+
   .dark-mode & {
     background-color: #121212;
     color: #ffffff;
@@ -88,6 +93,7 @@ body {
   // padding: 5px;
 
   background-color: #ffffff;
+
   .dark-mode & {
     background-color: #121212;
     color: #ffffff;
@@ -205,6 +211,7 @@ body {
   font-size: 1.1em;
   display: flex;
   flex-direction: column;
+
   .dark-mode & {
     background-color: #121212;
     color: #ffffff;
@@ -217,6 +224,7 @@ body {
   justify-content: flex-end;
   font-size: 0.8em;
   color: rgb(48, 48, 48);
+
   .dark-mode & {
     background-color: #121212;
     color: #ffffff;
@@ -225,15 +233,24 @@ body {
 
 
 
-.source-link{
+.source-link {
 
   color: rgb(19, 40, 134);
 
   .dark-mode & {
-      color: rgb(186, 199, 255);
+    color: rgb(186, 199, 255);
   }
 }
 
+
+td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px;
+
+  .dark-mode & {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
 
 
 // .light-mode .component-root, .page-title, .page-subtitle, .page-date, .page-section, .section-heading{
@@ -258,8 +275,8 @@ fa-icon {
 
 // .dark-mode .component-root,.page-title,.page-subtitle,.page-date,.page-section,.section-heading 
 // {  
-  // background-color: #121212;
-  // color: #ffffff;
+// background-color: #121212;
+// color: #ffffff;
 
 // }
 

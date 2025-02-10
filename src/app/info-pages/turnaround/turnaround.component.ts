@@ -1,8 +1,9 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { HelpContributeComponent } from '../../shared/components/help-contribute/help-contribute.component';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-turnaround',
@@ -11,7 +12,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
   templateUrl: './turnaround.component.html',
   styleUrl: './turnaround.component.scss'
 })
-export class TurnaroundComponent {
+export class TurnaroundComponent implements OnInit{
   constructor(
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -36,6 +37,20 @@ export class TurnaroundComponent {
       { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
       { property: 'og:type', content: 'website' },
     ]);
+  }
+
+
+  private _turnaroundDuration: string = '';
+  public get turnaroundDuration(): string { return this._turnaroundDuration; }
+
+  ngOnInit(){
+    const start = dayjs('2021-06-09');
+    const today = dayjs();
+    const totalMonths = today.diff(start, 'months');
+    const remainingMonths = totalMonths % 12;
+    const monthString = remainingMonths === 1 ? '1 month': remainingMonths + ' months';
+    const totalYears = Math.floor(totalMonths/12);
+    this._turnaroundDuration = totalYears + " years and " + monthString;
   }
 
 }

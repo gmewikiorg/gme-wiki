@@ -1,5 +1,5 @@
 
-.quote-section-container{
+.quote-section-container, .table-container{
     width: 100%;
     display:flex;
     flex-direction: row;
@@ -10,4 +10,13 @@
     width: 100%;
     max-width: 650px;
     padding: 40px;
+}
+
+table{
+    width: 100%;
+    max-width: 850px;
+    border-collapse: collapse;
+}
+td{
+
 }
