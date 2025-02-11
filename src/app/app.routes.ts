@@ -32,6 +32,9 @@ import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component
 import { FaqComponent } from './info-pages/faq/faq.component';
 import { StartPageComponent } from './main-pages/start-page/start-page.component';
 import { FtdComponent } from './info-pages/ftd/ftd.component';
+import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.component';
+import { InvestorsComponent } from './info-pages/investors/investors.component';
+import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
 
 
 
@@ -57,6 +60,8 @@ export const routes: Routes = [
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
 
 
+    { path: 'downfall-era', component: DownfallEraComponent },
+
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
     { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
@@ -71,6 +76,10 @@ export const routes: Routes = [
 
 
     { path: 'guide', component: SummaryGuideComponent },
+
+    { path: 'investors', component: InvestorsComponent },
+
+    
 
     { path: 'media', component: MediaComponent },
     { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
@@ -104,6 +113,7 @@ export const routes: Routes = [
     { path: 'stores', component: StoresComponent },
 
 
+    { path: 'trading-cards', component: TradingCardsComponent },
     { path: 'turnaround', component: TurnaroundComponent },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },

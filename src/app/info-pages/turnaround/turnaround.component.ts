@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
   templateUrl: './turnaround.component.html',
   styleUrl: './turnaround.component.scss'
 })
-export class TurnaroundComponent implements OnInit{
+export class TurnaroundComponent implements OnInit {
   constructor(
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -43,14 +43,25 @@ export class TurnaroundComponent implements OnInit{
   private _turnaroundDuration: string = '';
   public get turnaroundDuration(): string { return this._turnaroundDuration; }
 
-  ngOnInit(){
+  ngOnInit() {
     const start = dayjs('2021-06-09');
     const today = dayjs();
     const totalMonths = today.diff(start, 'months');
     const remainingMonths = totalMonths % 12;
-    const monthString = remainingMonths === 1 ? '1 month': remainingMonths + ' months';
-    const totalYears = Math.floor(totalMonths/12);
-    this._turnaroundDuration = totalYears + " years and " + monthString;
+
+    const monthString = remainingMonths === 1 ? '1 month' : remainingMonths + ' months';
+    const totalYears = Math.floor(totalMonths / 12);
+    let duratingString = ''
+    if (remainingMonths < 3) {
+      duratingString = totalYears + ' years';
+    } else if (remainingMonths >= 3 && remainingMonths < 6) {
+      duratingString = 'over ' + totalYears + ' years';
+    } else if (remainingMonths >= 6 && remainingMonths < 9) {
+      duratingString = totalYears + ' and a half years';
+    } else if (remainingMonths >= 9) {
+      duratingString = '' + (totalYears + 1) + ' years';
+    }
+    this._turnaroundDuration = duratingString;
   }
 
 }
