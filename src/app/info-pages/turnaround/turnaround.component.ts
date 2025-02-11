@@ -33,8 +33,9 @@ export class TurnaroundComponent implements OnInit {
     ]);
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop Turnaround' },
-      { property: 'og:description', content: 'GameStop Turnaround' },
+      { property: 'og:description', content: 'GameStop Turnaround:  fewer stores, higher value, renewed profitability ' },
       { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
+      { property: 'og:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png' },
       { property: 'og:type', content: 'website' },
     ]);
   }
