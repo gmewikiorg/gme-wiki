@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { TimelineEvent } from './timeline-item/timeline-event.class';
 import { TimelineEventType } from './timeline-item/timeline-event-type.enum';
-import { EarningsResult } from '../../financials/earnings-results/earnings-result.class';
+import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
 
 @Injectable({
   providedIn: 'root'

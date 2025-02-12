@@ -1,5 +1,5 @@
 
-import { EarningsResult } from "../earnings-results/earnings-result.class";
+import { EarningsResult } from "../../../shared/services/earnings-results/earnings-result.class";
 import { ReleaseOverview } from "./release-overview/release-overview-interface";
 
 export class EarningsTableRow{

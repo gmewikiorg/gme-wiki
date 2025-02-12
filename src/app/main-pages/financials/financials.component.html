@@ -9,8 +9,10 @@
 
     <div class="page-content">
 
-        <div class="page-section">
+        <div class="page-section" *ngIf="isBrowser">
             <app-choose-earnings-chart ></app-choose-earnings-chart>
+        </div>
+        <div class="page-section" *ngIf="!isBrowser" style="height: 650px;">
         </div>
         <div class="page-section">
             <div class="section-heading">Earnings table</div>

@@ -4,8 +4,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FinancialChartService } from '../choose-earnings-chart/earnings-chart.service';
-import { EarningsResult } from '../earnings-results/earnings-result.class';
-import { Import10KDataService } from '../../../shared/services/import-10k-data.service';
+import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
+import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { EarningsChartOption } from '../choose-earnings-chart/earnings-chart-option.enum';
@@ -42,7 +42,7 @@ export class EarningsChartComponent {
   public get chartOption(): EarningsChartOption { return this._chartService.chartOption; }
 
   async ngOnInit() {
-    await this._loadingService.loadEarnings();
+    // await this._loadingService.loadEarnings();
     this._updateChartDataAndOptions();
     this._isLoaded = true;
   }

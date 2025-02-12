@@ -4,13 +4,12 @@ import { ImportGmeDataService } from './import-gme-data.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SettingsService } from './settings.service';
 import { GmePriceEntry } from './gme-price-entry.interface';
-import { EarningsResult } from '../../main-pages/financials/earnings-results/earnings-result.class';
+import { EarningsResult } from './earnings-results/earnings-result.class';
 import { TimelineEvent } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
 import { ChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
 import { TimelineItemsService } from '../../main-pages/timeline/timeline-items/timeline-items.service';
-import { DdEntry } from './dd-entry.interface';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
-import { Import10KDataService } from './import-10k-data.service';
+import { Import10KDataService } from './earnings-results/import-10k-data.service';
 import { ImportEventsService } from './import-events.service';
 import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/timeline-items-builder.class';
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
@@ -100,10 +99,8 @@ export class LoadingService {
 
 
   public async loadEarnings() {
-    let quarterlyResults: EarningsResult[] = [];
-    let annualResults: EarningsResult[] = [];
-    annualResults = await this._import10KService.load10KData$();
-    quarterlyResults = await this._import10KService.load10QData$();
+    let quarterlyResults: EarningsResult[] = this._import10KService.load10QData();
+    let annualResults: EarningsResult[] = this._import10KService.load10KData();
     this._settingsService.setEarningsData(annualResults, quarterlyResults);
     this._import10KService.setQuarterlyResults(quarterlyResults);
     this._import10KService.setAnnualResults(annualResults);

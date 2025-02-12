@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { EarningsTableRow } from './earnings-table-row.class';
-import { EarningsResult } from '../earnings-results/earnings-result.class';
+import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
 import { IconDefinition, faNoteSticky, faSquareMinus, faSquarePlus, faLink, faFile } from '@fortawesome/free-solid-svg-icons';
-import { EarningsResultInterface } from '../earnings-results/earnings-result.interface';
+import { EarningsResultInterface } from '../../../shared/services/earnings-results/earnings-result.interface';
 import dayjs from 'dayjs';
-import { Import10KDataService } from '../../../shared/services/import-10k-data.service';
+import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
 import { releaseOverviews } from './release-overview/release-overviews';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
@@ -91,7 +91,7 @@ export class EarningsTableComponent {
     if (value === 'QUARTERS') {
       this._displayMode = 'QUARTER';
       this._timePeriod = 'Fiscal Quarter';
-      this._importFinancialsService.load10QData$();
+      // this._importFinancialsService.load10QData();
     } else {
       this._displayMode = 'ANNUAL';
       this._timePeriod = 'Fiscal Year';
@@ -143,7 +143,7 @@ export class EarningsTableComponent {
       minMax = this._getMinMax(results.map(item => item.stockholdersEquity / 1000000));
       backgroundColor = this._getNonRedColor(0, minMax.max, propertyValue);
     } else if (column === 'OPERATINGLOSSGAIN') {
-      propertyValue = quarterResult.operatingGainLoss / 1000000;
+      propertyValue = quarterResult.operatingIncome / 1000000;
       backgroundColor = this._getColorZeroBased(propertyValue);
     } else if (column === 'EPS') {
       propertyValue = quarterResult.netEPS / 1000000;

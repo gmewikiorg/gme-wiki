@@ -1,6 +1,6 @@
 import { Context } from "chartjs-plugin-datalabels";
 import { ScreenService } from "../../../shared/services/screen-size.service";
-import { EarningsResult } from "../earnings-results/earnings-result.class";
+import { EarningsResult } from "../../../shared/services/earnings-results/earnings-result.class";
 import { ChartDataset } from "chart.js";
 import { EarningsChartOption } from "../choose-earnings-chart/earnings-chart-option.enum";
 import { EARNINGS_METRIC_CONFIG, EarningsMetric, EarningsMetricConfig } from "../choose-earnings-chart/earnings-metric.enum";
@@ -14,7 +14,7 @@ export class EarningsDatasetBuilder {
         const netIncomeDataItems: number[] = results.map(r => r.netEarnings).reverse();
         const costOfSalesDataItems: number[] = results.map(r => r.costOfSales).reverse();
         const grossProfitDataItems: number[] = results.map(r => r.grossProfit).reverse();
-        const operatingIncomeDataItems: number[] = results.map(r => r.operatingGainLoss).reverse();
+        const operatingIncomeDataItems: number[] = results.map(r => r.operatingIncome).reverse();
         const sgaDataItems: number[] = results.map(r => r.sga).reverse();
         const interestIncomeDataItems: number[] = results.map(r => r.interestIncome).reverse();
         const equityDataItems: number[] = results.map(r => r.stockholdersEquity).reverse();

@@ -2,7 +2,7 @@ import { GmePriceEntry } from "../../../../shared/services/gme-price-entry.inter
 import { TimelineEventConfig } from "./timeline-event-config.interface";
 import { TimelineEventType } from "./timeline-event-type.enum";
 import { TimelineEventURL, TimelineEventViewType } from "./timeline-event-url.interface";
-import { EarningsResult } from "../../../financials/earnings-results/earnings-result.class";
+import { EarningsResult } from "../../../../shared/services/earnings-results/earnings-result.class";
 import dayjs from "dayjs";
 
 export class TimelineEvent{
