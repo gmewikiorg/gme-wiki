@@ -98,7 +98,7 @@ export class LoadingService {
   }
 
 
-  public async loadEarnings() {
+  public loadEarnings() {
     let quarterlyResults: EarningsResult[] = this._import10KService.load10QData();
     let annualResults: EarningsResult[] = this._import10KService.load10KData();
     this._settingsService.setEarningsData(annualResults, quarterlyResults);

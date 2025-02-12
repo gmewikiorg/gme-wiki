@@ -40,6 +40,7 @@ export class AppComponent {
   }
 
   async ngOnInit() {
+    this._loadingService.loadEarnings();
     this._settingsService.getSettings();
     if(this._isBrowser){
       this._router.events.subscribe(event => {

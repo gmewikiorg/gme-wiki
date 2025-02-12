@@ -47,7 +47,9 @@ export class Import10KDataService {
         reportingPeriod: 'FY'
       }
     });
-    return results.map(resultInterface => new EarningsResult(resultInterface));
+    const annualResults = results.map(resultInterface => new EarningsResult(resultInterface));
+    this._annualResults = annualResults;
+    return annualResults;
   }
 
   public load10QData(): EarningsResult[] {
@@ -76,7 +78,9 @@ export class Import10KDataService {
         reportingPeriod: 'FY'
       }
     });
-    return results.map(resultInterface => new EarningsResult(resultInterface));
+    const quarterlyResults = results.map(resultInterface => new EarningsResult(resultInterface));
+    this._quarterlyResults = quarterlyResults;
+    return quarterlyResults;
   }
 
 
