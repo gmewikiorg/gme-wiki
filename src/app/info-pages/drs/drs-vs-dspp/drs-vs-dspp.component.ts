@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OwnershipData } from '../../../main-pages/ownership/ownership-data.class';
+import { OwnershipData } from '../../../main-pages/ownership/ownership-data/ownership-data.class';
 
 @Component({
   selector: 'app-drs-vs-dspp',

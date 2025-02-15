@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { OwnershipData } from './ownership-data.class';
+import { OwnershipData } from './ownership-data/ownership-data.class';
 import dayjs from 'dayjs';
 import { RouterModule } from '@angular/router';
 import { OwnershipChartComponent } from './ownership-chart/ownership-chart.component';

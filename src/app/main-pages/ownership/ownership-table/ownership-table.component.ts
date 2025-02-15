@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
-import { OwnershipData } from '../ownership-data.class';
+import { OwnershipData } from '../ownership-data/ownership-data.class';
 import dayjs from 'dayjs';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -27,24 +27,24 @@ export class OwnershipTableComponent {
 
   public get tso(): string { return (this.data.tso / 1000000).toFixed(1); }
 
-  public get drsNumber(): number { return this.data.drsData.value / 1000000; }
-  public get dsppNumber(): number { return this.data.dsppData.value / 1000000; }
+  public get drsNumber(): number { return this.data.drsShares / 1000000; }
+  public get dsppNumber(): number { return this.data.dsppShares / 1000000; }
   public get totalRegistered(): number { return this.drsNumber + this.dsppNumber; }
 
-  public get rkNumber(): number { return this.data.rkData.value / 1000000; }
+  public get rkNumber(): number { return this.data.keithGillShares / 1000000; }
 
-  public get rcNumber(): number { return this.data.rcData.value / 1000000; }
-  public get otherInsiders(): number { return this.data.otherInsidersData.value / 1000000; }
+  public get rcNumber(): number { return this.data.rcShares / 1000000; }
+  public get otherInsiders(): number { return this.data.insidersOtherShares / 1000000; }
   public get insidersTotal(): number { return this.rcNumber + this.otherInsiders; }
 
-  public get vanguard(): number { return this.data.vanguardData.value / 1000000; }
-  public get blackrock(): number { return this.data.blackrockData.value / 1000000; }
-  public get statestreet(): number { return this.data.statestreetData.value / 1000000; }
-  public get otherInst(): number { return this.data.otherInstitutionalData.value / 1000000; }
+  public get vanguard(): number { return this.data.vanguardShares / 1000000; }
+  public get blackrock(): number { return this.data.blackrockShares / 1000000; }
+  public get statestreet(): number { return this.data.stateStreetShares / 1000000; }
+  public get otherInst(): number { return this.data.otherInstShares / 1000000; }
   public get instTotal(): number { return this.vanguard + this.blackrock + this.statestreet + this.otherInst; }
 
   public get remainderTotal(): number { return this.data.remainderTotal;  }
-  public get beneficial(): number { return this.data.totalBeneficial; }
+  public get beneficial(): number { return this.data.totalCede; }
   
   private _showSources: boolean = false;
   private _buttonLabel: string = 'Show data sources'
@@ -53,7 +53,7 @@ export class OwnershipTableComponent {
 
 
 
-  public get recent10Q10Kurl(): string { return this.data.link; }
+  public get recent10Q10Kurl(): string { return this.data.filingLink; }
   public get recent10Q10KDate(): string { return this.data.date; }
   public get recentFormType(): string { return this.data.formType; }
 

@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DrsGmeChartComponent } from './drs-gme-chart/drs-gme-chart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { OwnershipData } from '../../main-pages/ownership/ownership-data.class';
+import { OwnershipData } from '../../main-pages/ownership/ownership-data/ownership-data.class';
 import { Meta, Title } from '@angular/platform-browser';
 import { FooterComponent } from '../../layout/footer/footer.component';
 
@@ -16,7 +16,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 export class DrsComponent {
 
   private _ownershipData: OwnershipData = new OwnershipData();
-  private _drsPercent = (this._ownershipData.drsData.value / this._ownershipData.tso) * 100;
+  private _drsPercent = (this._ownershipData.drsShares / this._ownershipData.tso) * 100;
 
   private _recentDrsUpdate = new OwnershipData();
   public get recentDrsUpdate(): OwnershipData { return this._recentDrsUpdate; }

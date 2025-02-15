@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, } from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions, TooltipItem, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { OwnershipData } from '../ownership-data.class';
+import { OwnershipData } from '../ownership-data/ownership-data.class';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { CommonModule } from '@angular/common';
 import { ImportGmeDataService } from '../../../shared/services/import-gme-data.service';

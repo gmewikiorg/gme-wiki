@@ -28,13 +28,14 @@
             <p>
                 GameStop reports the number of shares that are held by all registered holders in their 10-Q / 10-K
                 filings.<br>
-                For example, in <a [href]="recentDrsUpdate.link" target="_blank">
-                    the most recent {{recentDrsUpdate.formType}} posted on {{recentDrsUpdate.date}}:
+                For example, in <a [href]="recentDrsUpdate.filingLink" target="_blank">
+                    <!-- the most recent {{recentDrsUpdate.formType}} posted on {{recentDrsUpdate.date}}: -->
+                    the most recent {{recentDrsUpdate.formType}}:
                 </a>
             </p>
             <p
                 style="padding: 15px; border-radius: 5px; background-color: rgba(148, 148, 148, 0.137); font-size: 0.9em;">
-                {{recentDrsUpdate.text}}
+                {{recentDrsUpdate.registeredText}}
             </p>
             <p>
                 This number reported by GameStop includes all registered shares held by registered holders with

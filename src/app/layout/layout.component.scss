@@ -104,6 +104,7 @@
   background-color: white;
   color: gray;
   cursor: pointer;
+
 }
 .night-mode-button:hover{
   cursor: pointer;
@@ -142,6 +143,7 @@
   background-color: white;
   color: gray;
   cursor: pointer;
+  z-index: 101;
 }
 .night-mode-button-mobile:hover{
   cursor: pointer;
