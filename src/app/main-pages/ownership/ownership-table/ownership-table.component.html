@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td class="border-bottom drs-row"></td>
-                <td class="border-bottom drs-row" style="font-weight: bold;">Total Registered</td>
+                <td class="border-bottom drs-row" style="font-weight: bold;"><a [routerLink]="'/investors'">Total Registered</a></td>
                 <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered}} M</td>
                 <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{percent(totalRegistered)}} %
                 </td>
@@ -80,8 +80,8 @@
             <tr>
                 <td rowspan="3" class="border-bottom insiders-row" *ngIf="!showSources">Insiders</td>
                 <td rowspan="5" class="border-bottom insiders-row" *ngIf="showSources">Insiders</td>
-                <td class="insiders-row">Ryan Cohen</td>
-                <td class="number-cell insiders-row">{{rcNumber}} M</td>
+                <td class="insiders-row"><a [routerLink]="'/ryan-cohen'">Ryan Cohen</a></td>
+                <td class="number-cell insiders-row">{{rcNumber.toFixed(1)}} M</td>
                 <td class="number-cell insiders-row">{{percent(rcNumber)}} %</td>
             </tr>
             <tr *ngIf="showSources">
@@ -111,7 +111,7 @@
             </tr>
             <tr>
                 <td class="rk-row"></td>
-                <td class="rk-row">Roaring Kitty</td>
+                <td class="rk-row"><a [routerLink]="'/keith-gill'">Keith Gill</a></td>
                 <td class="number-cell rk-row">{{(rkNumber).toFixed(1)}} M</td>
                 <td class="number-cell rk-row">{{percent(rkNumber)}} %</td>
             </tr>
@@ -278,7 +278,7 @@
             </tr>
             <tr>
                 <td class="insiders-row">Ryan Cohen</td>
-                <td class="number-cell insiders-row">{{rcNumber}} M</td>
+                <td class="number-cell insiders-row">{{rcNumber.toFixed(1)}} M</td>
                 <td class="number-cell insiders-row">{{percent(rcNumber)}} %</td>
             </tr>
             <tr *ngIf="showSources">

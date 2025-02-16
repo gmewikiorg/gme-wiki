@@ -38,8 +38,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   }
 
-  private _isServer: boolean;
-  private _isBrowser: boolean;
+  private _isServer: boolean = false;
+  private _isBrowser: boolean = true;
   private _isMobile: boolean = false;
   private _isLoading: boolean = true;
   public get isLoading(): boolean { return this._isLoading; }

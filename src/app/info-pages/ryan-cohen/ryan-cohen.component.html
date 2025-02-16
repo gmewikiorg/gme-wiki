@@ -9,16 +9,35 @@
         <div class="page-section">
             <div class="section-heading">Summary</div>
             <ul>
-                <li>Largest individual shareholder of the company (excluding institutions)</li>
+                <li>Largest individual shareholder of GameStop (excluding institutions)</li>
                 <li>Chairman of the board of directors since June 2021</li>
-                <li>CEO of the company since September 2023</li>
+                <li>CEO of GameStop since September 2023</li>
                 <li>Does not receive compensation</li>
-                <li>"We are focused on building shareholder value over the long term."</li>
+                <li>"We are focused on building shareholder value over the long term."<br>
+                -- <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">June 17, 2024</a> </li>
             </ul>
         </div>
-        <!-- <div class="page-section">
-            <app-help-contribute></app-help-contribute>
-        </div> -->
+        <div class="page-section" style="width:100%; display:flex; flex-direction:column; align-items: center;"
+            *ngIf="isBrowser">
+            <div style="max-width: 650px;">
+                <app-image-carousel [carousel]="rcCarousel"></app-image-carousel>
+                <!-- <img [src]="rcImagePaths[0]" alt="" style="width: 100%;"> -->
+                <!-- <img *ngFor="let imagePath of rcImagePaths" [src]="imagePath" alt="" style="width: 100%;"> -->
+            </div>
+        </div>
+        <div class="page-section">
+            <div class="section-heading">Before GameStop</div>
+            <p>Ryan Cohen built Chewy into the top online pet retailer, sold it for $3.35 billion in 2017.</p>
+        </div>
+        <div class="page-section">
+            <div class="section-heading">More links</div>
+            <div >
+                <a href="https://en.wikipedia.org/wiki/Ryan_Cohen" target="_blank" style="display:flex;flex-direction: row; align-items: center;">
+                    <img src="assets/icons/wikipedia-logo.png" alt="" style="height: 20px;width: 20px;margin-right: 10px;"> Ryan Cohen - Wikipedia
+                </a>
+                
+            </div>
+        </div>
     </div>
 
     <div style="margin-top:50px;"></div>

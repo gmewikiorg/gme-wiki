@@ -1,0 +1,32 @@
+<div class="carousel-root" *ngIf="carousel" style="min-height: 400px; min-width: 600px;">
+
+    <div class="image-row">
+        <div class="chevron-container" (click)="onClickImageIndex(currentIndex-1)">
+            <fa-icon [icon]="faChevronLeft" class="chevron-icon"></fa-icon>
+        </div>
+        <div class="image-container" *ngIf="currentItem">
+            <a href="" *ngIf="currentItem.imageUrl !== ''" [href]="currentItem.imageUrl" target="_blank">
+                <img [src]="currentItem.imagePath" alt=""
+                [style.maxWidth]="maxWidthPx" [style.maxHeight]="maxHeightPx"
+                style="border-radius: 15px;">
+            </a>
+            <img *ngIf="currentItem.imageUrl === ''" [src]="currentItem.imagePath" alt=""
+            [style.maxWidth]="maxWidthPx" [style.maxHeight]="maxHeightPx"
+            style="border-radius: 15px;">
+        </div>
+        <div class="chevron-container" (click)="onClickImageIndex(currentIndex+1)">
+            <fa-icon [icon]="faChevronRight" class="chevron-icon"></fa-icon>
+        </div>
+    </div>
+
+
+    <div class="description">
+        {{ currentItem?.description }}
+    </div>
+    <div class="dots-container">
+        <div *ngFor="let item of items; let i = index" class="dot" [ngClass]="i === currentIndex ? 'active-dot': ''"
+            (click)="onClickImageIndex(i)">
+
+        </div>
+    </div>
+</div>

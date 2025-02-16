@@ -1,0 +1,85 @@
+.carousel-root {
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.image-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-container {
+
+    min-height: 400px;
+    min-width: 400px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.description{
+    width: 100%;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.chevron-container {
+    padding: 10px;
+    height: 100%;
+}
+
+.chevron-icon {
+    font-size: 1.5em;
+    color: rgba(128, 128, 128, 0.445);
+}
+
+.chevron-container:hover {
+    cursor: pointer;
+
+    .chevron-icon {
+
+        cursor: pointer;
+        color: black;
+
+    }
+}
+
+
+.dots-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 10px;
+    color: rgba(128, 128, 128, 0);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(128, 128, 128, 0.05);
+}
+
+.dot:hover {
+    cursor: pointer;
+    border: 1px solid gray;
+}
+
+.active-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.2);
+}

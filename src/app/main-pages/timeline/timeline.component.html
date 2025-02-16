@@ -1,5 +1,5 @@
 <div class="component-root">
-    <div [ngClass]="isMobile? 'mobile-title' : 'page-title'">
+    <div [ngClass]="isMobile? 'mobile-title' : 'page-title'" *ngIf="!isMobile">
         GME Timeline
     </div>
     <!-- <div class="page-subtitle">
@@ -14,7 +14,7 @@
 
             <div class="timeline-root ">
                 <app-timeline-controls class="timeline-controls" *ngIf="!isMobile"></app-timeline-controls>
-                <div class="section-heading" [style.margin]="isMobile? '0px' : ''" *ngIf="!isMobile">{{chartTitle}}</div>
+                <div class="section-heading" [style.margin]="isMobile? '0px' : ''">{{chartTitle}}</div>
                 <div class="timeline-chart-grid">
                     <app-timeline-chart class="app-chart " *ngIf="chartIsLoaded"></app-timeline-chart>
                     <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
