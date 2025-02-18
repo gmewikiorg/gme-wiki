@@ -70,12 +70,6 @@ export class RyanCohenComponent {
         imageUrl: 'https://x.com/ryancohen/status/1888098643732811864',
       },
       {
-        description: 'Ryan Cohen and his father Ted Cohen',
-        imagePath: 'assets/ryan-cohen/rc_ted_cohen.jpg',
-        imageUrl: 'https://x.com/ryancohen/status/1670558014678654983',
-      },
-
-      {
         description: 'Ryan Cohen with Donald Trump and Bill Pulte, November 2024',
         imagePath: 'assets/ryan-cohen/rc_trump_pulte.jpg',
         imageUrl: '',
