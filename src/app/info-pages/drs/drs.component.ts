@@ -17,7 +17,7 @@ export class DrsComponent {
 
   private _ownershipData: OwnershipData = new OwnershipData();
   private _drsPercent = (this._ownershipData.drsShares / this._ownershipData.tso) * 100;
-
+  public get drsPercent(): string { return this._drsPercent.toFixed(0); }
   private _recentDrsUpdate = new OwnershipData();
   public get recentDrsUpdate(): OwnershipData { return this._recentDrsUpdate; }
 
@@ -51,6 +51,6 @@ export class DrsComponent {
   private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
-  public get drsPercent(): string { return this._drsPercent.toFixed(0); }
+  
 
 }

@@ -1,7 +1,8 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { OwnershipData } from '../ownership/ownership-data/ownership-data.class';
 
 @Component({
   selector: 'app-start-page',
@@ -11,7 +12,7 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrl: './start-page.component.scss'
 })
 export class StartPageComponent {
-constructor(
+  constructor(
     private meta: Meta,
     private titleService: Title) {
 
@@ -36,5 +37,9 @@ constructor(
       { property: 'og:type', content: 'website' },
     ]);
   }
+
+  private _ownershipData: OwnershipData = new OwnershipData();
+  private _registeredPercent = (this._ownershipData.totalRegistered / this._ownershipData.tso) * 100;
+  public get registeredPercent(): string { return this._registeredPercent.toFixed(0); }
 
 }

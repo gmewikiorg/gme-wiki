@@ -8,12 +8,11 @@
 
 
     <div class="page-content">
-        <div class="page-section menu-item" [routerLink]="'/timeline'" >
+        <div class="page-section menu-item" [routerLink]="'/timeline'">
             <div class="section-heading">GME Timeline</div>
             <div class="section-body">
 
-                <img src="assets/main-pages/timeline.png"
-                        alt="gme timeline" class="page-image">
+                <img src="assets/main-pages/timeline.png" alt="gme timeline" class="page-image">
                 <p class="section-p">Explore the history of GameStop and see noteworthy
                     events in their relationship to the changes of GME
                     stock</p>
@@ -24,8 +23,7 @@
         <div class="page-section menu-item" [routerLink]="'/earnings'">
             <div class="section-heading">GME Earnings and Financial Information</div>
             <div class="section-body">
-                <img src="assets/main-pages/earnings.png"
-                        alt="gme earnings" class="page-image">
+                <img src="assets/main-pages/earnings.png" alt="gme earnings" class="page-image">
                 <p class="section-p">View the status and history of GameStop revenue, net
                     earnings, stockholders' equity, and related
                     information</p>
@@ -37,14 +35,36 @@
         <div class="page-section menu-item" [routerLink]="'/ownership'">
             <div class="section-heading">GME Ownership</div>
             <div class="section-body">
-                <div style="max-width: 400px;"> <img src="assets/main-pages/ownership.png" 
-                    alt="gme ownership" class="page-image"></div>
-                
+                <div style="max-width: 400px;"> <img src="assets/main-pages/ownership.png" alt="gme ownership"
+                        class="page-image"></div>
+
                 <p class="section-p">Who owns GameStop?<br>
                     See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith Gill,
                     and
                     institutions</p>
             </div>
+        </div>
+
+        <div class="page-section menu-item" [routerLink]="'/turnaround'">
+            <div class="section-heading">GameStop Company Turnaround</div>
+            <div class="section-body">
+                <div> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround"
+                        class="page-image"></div>
+                <p>Since 2021, GameStop has been undergoing a transformation: fewer stores, higher value, renewed
+                    profitability.</p>
+            </div>
+
+        </div>
+
+        <div class="page-section menu-item" [routerLink]="'/stores'">
+            <div class="section-heading">Store count information</div>
+            <p>See how GameStop's physical store count has changed over the years</p>
+        </div>
+
+        <div class="page-section menu-item" [routerLink]="'/drs'">
+            <div class="section-heading">DRS (Direct Registration System)</div>
+            <p>Unlike most publicly traded companies, a significant portion of all GME shares ({{ registeredPercent }}%)
+                are held by registered shareholders via DRS.</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/social-media'">
