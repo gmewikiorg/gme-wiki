@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BarController, BarElement, CategoryScale, Chart, ChartConfiguration, ChartDataset, ChartOptions, Legend, LinearScale, Tooltip, TooltipItem } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ScreenService } from '../../../shared/services/screen-size.service';
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { EarningsChartOption } from '../choose-earnings-chart/earnings-chart-option.enum';
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -18,7 +19,7 @@ import { EarningsDatasetBuilder } from './earnings-datasets.class';
   templateUrl: './earnings-chart.component.html',
   styleUrl: './earnings-chart.component.scss'
 })
-export class EarningsChartComponent {
+export class EarningsChartComponent implements OnInit, OnDestroy {
 
   private _datasetBuilder: EarningsDatasetBuilder;
   constructor(private _screenService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService, private _loadingService: LoadingService) {
@@ -27,7 +28,11 @@ export class EarningsChartComponent {
     this._datasetBuilder = new EarningsDatasetBuilder(this._screenService);
     this.barChartOptions = this._setOptions();
     this.barChartData = this._updateDatasets();
+    
   }
+
+
+  @Input() isFY23Earnings: boolean = false;
 
 
   public barChartData: ChartConfiguration<'bar'>['data'];
@@ -43,14 +48,25 @@ export class EarningsChartComponent {
 
   async ngOnInit() {
     // await this._loadingService.loadEarnings();
+    if(this.isFY23Earnings){
+      this._chartService.setChartOption(EarningsChartOption.REVENUE_VS_NET_INCOME);
+    }
     this._updateChartDataAndOptions();
     this._isLoaded = true;
   }
 
+  private _subscriptions: Subscription[] = [];
+  ngOnDestroy(): void {
+    this._subscriptions.forEach(s => s.unsubscribe())
+  }
+
   ngAfterViewInit(): void {
-    this._chartService.chartOption$.subscribe(() => { this._updateChartDataAndOptions(); })
-    this._chartService.chartPeriod$.subscribe(() => { this._updateChartDataAndOptions(); })
-    this._screenService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); });
+    this._subscriptions = [
+      this._chartService.chartOption$.subscribe(() => { this._updateChartDataAndOptions(); }),
+      this._chartService.chartPeriod$.subscribe(() => { this._updateChartDataAndOptions(); }),
+      this._screenService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); }),
+    ];
+
   }
 
   private _updateChartDataAndOptions() {
@@ -63,18 +79,26 @@ export class EarningsChartComponent {
 
   private _updateDatasets(dataEntryCount = 19): ChartConfiguration<'bar'>['data'] {
     /**   Total of 19 items from FY05 to FY23 inclusive    */
+    if(this.isFY23Earnings){
+      dataEntryCount = 15;
+      // this._chartService.setChartOption(EarningsChartOption.REVENUE_VS_NET_INCOME);
+    }
     this.showCustomLegend = false;
     let results: EarningsResult[] = this._financeService.annualResults;
     if (this.chartPeriod === 'ANNUAL') {
       results = this._financeService.annualResults;
-
+      if(this.isFY23Earnings){
+        results = results.filter(item => item.fiscalYear <= 2023)
+      }
       this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     } else if (this.chartPeriod === 'QUARTER') {
       results = this._financeService.quarterlyResults;
+      if(this.isFY23Earnings){
+        results = results.filter(item => item.fiscalYear <= 2023)
+      }
       this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     }
-    
-    // console.log("Xaxis", this._xAxisLabels)
+
 
     if (this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
       this.showCustomLegend = true;

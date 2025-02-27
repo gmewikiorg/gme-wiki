@@ -53,32 +53,8 @@
                 2022, was unprofitable.</p>
             <!-- Revenue and Net Income chart from Google Sheets -->
 
-            <app-earnings-chart *ngIf="isBrowser"></app-earnings-chart>
+            <app-earnings-chart *ngIf="isBrowser" [isFY23Earnings]="true"></app-earnings-chart>
             <div *ngIf="!isBrowser" style="height: 600px; width: 100%;"></div>
-            <!-- <div class="chart-container">
-
-                <iframe *ngIf="moreThan1680Px" width="1280" height="720" frameborder="0" scrolling="no"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT7n4mmCwtjREaCkJVUkHe_ujHBod7vGtEB5iI_kbYToT5dU9cQSq-d3XO2PuFEZ64GCuU70jVayE0R/pubchart?oid=1680346632&amp;format=interactive"></iframe>
-
-                <iframe *ngIf="moreThan800Px" style="max-width: 800px;" width="800" height="600" seamless
-                    frameborder="0" scrolling="no"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT7n4mmCwtjREaCkJVUkHe_ujHBod7vGtEB5iI_kbYToT5dU9cQSq-d3XO2PuFEZ64GCuU70jVayE0R/pubchart?oid=1937296424&amp;format=interactive"></iframe>
-
-                <a href="assets/info-pages/fy23-revenue-netincome-by-year.png"
-                    *ngIf="!moreThan800Px && !moreThan1680Px">
-                    <img src="assets/info-pages/fy23-revenue-netincome-by-year.png"
-                        alt="GameStop Revenue and Net Income by Fiscal Year" style="max-width: 800px; width: 100%;">
-                </a>
-
-                <div class="source-link-container">
-                    Source:
-                    <a style="margin-left: 10px;"
-                        href="https://docs.google.com/spreadsheets/d/1kKTpWC96HO3jfOdoLl_eUxivg6rzD-axJ_il2mOyRfk/edit?usp=sharing"
-                        target="_blank">
-                        GameStop 10-K filings - Google Sheets
-                    </a>
-                </div>
-            </div> -->
 
 
             <p>

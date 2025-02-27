@@ -16,7 +16,8 @@
                 <app-timeline-controls class="timeline-controls" *ngIf="!isMobile"></app-timeline-controls>
                 <div class="section-heading" [style.margin]="isMobile? '0px' : ''">{{chartTitle}}</div>
                 <div class="timeline-chart-grid">
-                    <app-timeline-chart class="app-chart " *ngIf="chartIsLoaded"></app-timeline-chart>
+                    <app-loading class="app-chart" *ngIf="!chartIsLoaded" ></app-loading>
+                    <app-timeline-chart class="app-chart" *ngIf="chartIsLoaded"></app-timeline-chart>
                     <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
                         <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
                     </div>

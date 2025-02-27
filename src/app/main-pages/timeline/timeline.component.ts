@@ -12,6 +12,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 import { TimelineAnnotationBoxComponent } from './timeline-annotation-box/timeline-annotation-box.component';
 import { TimelineControlsService } from './timeline-controls/timeline-controls.service';
 import { TimelineEvent } from './timeline-items/timeline-item/timeline-event.class';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-timeline',
@@ -92,7 +93,6 @@ export class TimelineComponent {
     this._loadingService.loadingMessage = "Building chart...";
     if (this._isBrowser) {
       await this._loadingService.loadData$();
-
       this._isLoading = false;
       this._chartIsLoaded = true;
     } else {
