@@ -1,42 +1,43 @@
 import { Routes } from '@angular/router';
 
-
-import { TimelineComponent } from './main-pages/timeline/timeline.component';
-import { OwnershipComponent } from './main-pages/ownership/ownership.component';
-import { AboutComponent } from './main-pages/about/about.component';
-import { SocialMediaComponent } from './main-pages/social-media/social-media.component';
-import { FinancialsComponent } from './main-pages/financials/financials.component';
-
-
-import { DrsComponent } from './info-pages/drs/drs.component';
-import { Fy23ProfitabilityComponent } from './info-pages/fy23-profitability/fy23-profitability.component';
-import { Atms2024Component } from './info-pages/atms-2024/atms-2024.component';
-import { DrsFullTimelineComponent } from './info-pages/drs/drs-full-timeline/drs-full-timeline.component';
-import { SummaryGuideComponent } from './info-pages/summary-guide/summary-guide.component';
-import { MediaComponent } from './info-pages/media/media.component';
-import { MoassComponent } from './info-pages/moass/moass.component';
-import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-interview-2022.component';
-import { RedditComponent } from './info-pages/reddit/reddit.component';
-import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
-import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
-import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
-import { CNBCVsNakedShortsComponent } from './info-pages/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
-import { FudComponent } from './info-pages/fud/fud.component';
-import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
-import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
-import { StoresComponent } from './info-pages/stores/stores.component';
-import { BurpComponent } from './info-pages/burp/burp.component';
-import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
-import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
-import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
-import { FaqComponent } from './info-pages/faq/faq.component';
 import { StartPageComponent } from './main-pages/start-page/start-page.component';
-import { FtdComponent } from './info-pages/ftd/ftd.component';
-import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.component';
-import { InvestorsComponent } from './info-pages/investors/investors.component';
-import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
-import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
+import { TimelineComponent } from './main-pages/timeline/timeline.component';
+import { FinancialsComponent } from './main-pages/financials/financials.component';
+import { OwnershipComponent } from './main-pages/ownership/ownership.component';
+import { SocialMediaComponent } from './main-pages/social-media/social-media.component';
+import { AboutComponent } from './main-pages/about/about.component';
 
+import { Atms2024Component } from './info-pages/atms-2024/atms-2024.component';
+import { BurpComponent } from './info-pages/burp/burp.component';
+import { CNBCVsNakedShortsComponent } from './info-pages/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
+import { ConflictComponent } from './info-pages/conflict/conflict.component';
+import { CompetitionComponent } from './info-pages/competition/competition.component';
+
+import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.component';
+import { DrsComponent } from './info-pages/drs/drs.component';
+import { DrsFullTimelineComponent } from './info-pages/drs/drs-full-timeline/drs-full-timeline.component';
+import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
+import { FaqComponent } from './info-pages/faq/faq.component';
+import { FtdComponent } from './info-pages/ftd/ftd.component';
+import { FudComponent } from './info-pages/fud/fud.component';
+import { Fy23EarningsComponent } from './info-pages/fy23-earnings/fy23-earnings.component';
+import { InvestorsComponent } from './info-pages/investors/investors.component';
+import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
+import { MediaComponent } from './info-pages/media/media.component';
+import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
+
+import { MoassComponent } from './info-pages/moass/moass.component';
+import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
+import { RedditComponent } from './info-pages/reddit/reddit.component';
+import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
+import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-interview-2022.component';
+import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
+import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
+import { StoresComponent } from './info-pages/stores/stores.component';
+import { SummaryGuideComponent } from './info-pages/summary-guide/summary-guide.component';
+import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
+import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
+import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 
 
 export const routes: Routes = [
@@ -59,7 +60,9 @@ export const routes: Routes = [
     { path: 'burp-may-2024', component: BurpComponent },
 
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
-
+    { path: 'conflict', component: ConflictComponent },
+    { path: 'competition', component: CompetitionComponent },
+    
 
     { path: 'downfall-era', component: DownfallEraComponent },
 
@@ -68,19 +71,19 @@ export const routes: Routes = [
     { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
 
     { path: 'faq', component: FaqComponent },
-    { path: 'fy23-profitability', component: Fy23ProfitabilityComponent },
+
+    { path: 'fy23', component: Fy23EarningsComponent },
+    { path: 'fy23-earnings', component: Fy23EarningsComponent },
+    { path: 'fy23-profitability', component: Fy23EarningsComponent },
     
     { path: 'ftd', component: FtdComponent },
     { path: 'ftds', component: FtdComponent },
     { path: 'failure-to-deliver', component: FtdComponent },
     { path: 'fud', component: FudComponent },
 
-
     { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'investors', component: InvestorsComponent },
-
-    
 
     { path: 'media', component: MediaComponent },
     { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
@@ -90,7 +93,6 @@ export const routes: Routes = [
     { path: 'moass', component: MoassComponent },
 
     { path: 'naked-short-selling', component: NakedShortSellingComponent },
-
 
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
@@ -104,8 +106,6 @@ export const routes: Routes = [
     { path: 'keith-gill', component: KeithGillComponent },
     { path: 'roaring-kitty', component: KeithGillComponent },
 
-
-
     { path: 'sneeze', component: SneezeComponent },
     { path: 'squeeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
@@ -113,7 +113,6 @@ export const routes: Routes = [
     { path: 'sneeze-vs-squeeze', component: SneezeVsSqueezeComponent },
 
     { path: 'stores', component: StoresComponent },
-
 
     { path: 'trading-cards', component: TradingCardsComponent },
     { path: 'turnaround', component: TurnaroundComponent },

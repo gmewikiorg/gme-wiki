@@ -53,7 +53,12 @@
                 2022, was unprofitable.</p>
             <!-- Revenue and Net Income chart from Google Sheets -->
 
-            <app-earnings-chart *ngIf="isBrowser" [isFY23Earnings]="true"></app-earnings-chart>
+            <div *ngIf="isBrowser"
+                style="width: 100%;display:flex;flex-direction: column;align-items: center;margin-top:20px;margin-bottom: 40px;">
+                <app-earnings-chart [isFY23Earnings]="true"
+                    style="max-width: 100%; width: 1200px;"></app-earnings-chart>
+            </div>
+
             <div *ngIf="!isBrowser" style="height: 600px; width: 100%;"></div>
 
 
@@ -64,11 +69,11 @@
                 rather than in the form of physical discs such as can be purchased at a brick-and-mortar retail store
                 like GameStop.
             </p>
-            <p>Yet, even in fiscal years 2017 and 2018, it is clear that despite high revenues the company was not
+            <p>Yet, even in fiscal years 2017 and 2018, it is clear that despite higher revenues, the company was not
                 performing well. </p>
             <p>
                 Heading through 2020, GameStop was undeniably a struggling company facing significant challenges, and
-                according to many was destined for bankruptcy. The trading price of GME reflected this prevailing
+                according to many, was destined for bankruptcy. The trading price of GME reflected this prevailing
                 sentiment, and the financial media was dutifully critical.
             </p>
         </div>
@@ -129,12 +134,15 @@
                 GameStop was able to earn $49.5 million in interest income from this large cash position, which exceeded
                 the operating losses of the company and produced an overall net profitability.
             </p>
-            <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="max-width: 100%;"
-                *ngIf="moreThan800Px || moreThan1680Px">
-            <a href="assets/earnings-sankey/fy23-sankey.jpg">
-                <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="max-width: 100%;"
-                    *ngIf="!moreThan800Px && !moreThan1680Px">
-            </a>
+            <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;">
+                <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="width: 1400px; max-width: 100%; border-radius:10px;"
+                    *ngIf="moreThan800Px || moreThan1680Px">
+                <a href="assets/earnings-sankey/fy23-sankey.jpg">
+                    <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="max-width: 100%; border-radius:10px;"
+                        *ngIf="!moreThan800Px && !moreThan1680Px">
+                </a>
+            </div>
+
         </div>
 
         <!-- Media sentiment -->
@@ -144,20 +152,28 @@
             </div>
             <p>What does mainstream financial media have to say about GameStop achieving full-year profitability for the
                 first time in 6 years?</p>
+            <p>Searching for news about GameStop's FY23 earnings report yields mostly negative sentiment that <span
+                    style="color: red;font-weight: bold;">fails to even mention at
+                    all that</span> GameStop achieved full-year profitability.
+            </p>
 
+            <div *ngIf="screenWidth < 720">
+                <app-news-article *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-article>
+            </div>
+            <div *ngIf="screenWidth >= 720" style="margin-top:20px;margin-bottom:40px;">
+                <app-fy23-media-sentiment-table></app-fy23-media-sentiment-table>
+            </div>
 
-            <app-news-article *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-article>
 
 
             <!-- Store count chart from Google Sheets -->
             <!-- <iframe width="800" height="600" seamless frameborder="0" scrolling="no"
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT7n4mmCwtjREaCkJVUkHe_ujHBod7vGtEB5iI_kbYToT5dU9cQSq-d3XO2PuFEZ64GCuU70jVayE0R/pubchart?oid=2015565720&amp;format=interactive"></iframe> -->
 
-            <p>Searching for recent news about GameStop yields mostly negative sentiment that fails to even mention at
-                all that GameStop achieved full-year profitability for the first time in 6 years.
-            </p>
+
             <p>
-                Failing to mention this important detail is a deliberate decision that reveals a clear bias in the
+                Failing to mention this important detail is <span style="color: red;font-weight: bold;">a deliberate
+                    decision</span> that reveals a clear bias in the
                 media.
                 It goes beyond just reporting about true negative facts about GameStop. It demonstrates a deliberate
                 effort, by those culpable writers and media outlets, to propagate a specific sentiment about the company
