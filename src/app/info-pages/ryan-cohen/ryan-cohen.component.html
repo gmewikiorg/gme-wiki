@@ -17,12 +17,15 @@
                 -- <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">June 17, 2024</a> </li>
             </ul>
         </div>
-        <div class="page-section" style="width:100%; display:flex; flex-direction:column; align-items: center;"
+        <div class="page-section" style="width:100%; max-width: 100%; display:flex; flex-direction:column; align-items: center; padding: 0px;"
             *ngIf="isBrowser">
-            <div style="max-width: 650px;">
-                <app-image-carousel [carousel]="rcCarousel"></app-image-carousel>
+            <div *ngIf="!isMobile" style="max-width: 650px;">
+                <app-image-carousel [carousel]="rcCarousel" [maxWidth]="400"></app-image-carousel>
                 <!-- <img [src]="rcImagePaths[0]" alt="" style="width: 100%;"> -->
                 <!-- <img *ngFor="let imagePath of rcImagePaths" [src]="imagePath" alt="" style="width: 100%;"> -->
+            </div>
+            <div *ngIf="isMobile" style="max-width: 100%;" >
+                <app-image-carousel [carousel]="rcCarousel" [maxWidth]="screenWidth"></app-image-carousel>
             </div>
         </div>
         <div class="page-section">

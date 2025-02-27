@@ -3,12 +3,12 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
-  selector: 'app-ftd',
+  selector: 'app-sneeze-vs-squeeze',
   standalone: true,
   imports: [RouterModule,FooterComponent],
-  templateUrl: './ftd.component.html',
-  styleUrl: './ftd.component.scss'
+  templateUrl: './sneeze-vs-squeeze.component.html',
+  styleUrl: './sneeze-vs-squeeze.component.scss'
 })
-export class FtdComponent {
+export class SneezeVsSqueezeComponent {
 
 }

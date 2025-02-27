@@ -88,4 +88,7 @@ export class RyanCohenComponent {
   public get isBrowser(): boolean { return this._isBrowser; }
   private _rcCarousel: ImageCarousel;
   public get rcCarousel(): ImageCarousel { return this._rcCarousel; }
+
+  public get isMobile(): boolean { return this._screenService.isMobile; }
+  public get screenWidth(): number { return this._screenService.screenWidth;}
 }

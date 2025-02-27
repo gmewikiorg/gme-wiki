@@ -35,6 +35,7 @@ import { FtdComponent } from './info-pages/ftd/ftd.component';
 import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.component';
 import { InvestorsComponent } from './info-pages/investors/investors.component';
 import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
+import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
 
 
 
@@ -109,6 +110,7 @@ export const routes: Routes = [
     { path: 'squeeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
     { path: 'squeeze-january-2021', component: SneezeComponent },
+    { path: 'sneeze-vs-squeeze', component: SneezeVsSqueezeComponent },
 
     { path: 'stores', component: StoresComponent },
 

@@ -21,10 +21,10 @@ import { EarningsDatasetBuilder } from './earnings-datasets.class';
 export class EarningsChartComponent {
 
   private _datasetBuilder: EarningsDatasetBuilder;
-  constructor(private _sizeService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService, private _loadingService: LoadingService) {
+  constructor(private _screenService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService, private _loadingService: LoadingService) {
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend);
-    this._datasetBuilder = new EarningsDatasetBuilder(this._sizeService);
+    this._datasetBuilder = new EarningsDatasetBuilder(this._screenService);
     this.barChartOptions = this._setOptions();
     this.barChartData = this._updateDatasets();
   }
@@ -50,7 +50,7 @@ export class EarningsChartComponent {
   ngAfterViewInit(): void {
     this._chartService.chartOption$.subscribe(() => { this._updateChartDataAndOptions(); })
     this._chartService.chartPeriod$.subscribe(() => { this._updateChartDataAndOptions(); })
-    this._sizeService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); });
+    this._screenService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); });
   }
 
   private _updateChartDataAndOptions() {
@@ -67,14 +67,22 @@ export class EarningsChartComponent {
     let results: EarningsResult[] = this._financeService.annualResults;
     if (this.chartPeriod === 'ANNUAL') {
       results = this._financeService.annualResults;
+
+      this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     } else if (this.chartPeriod === 'QUARTER') {
       results = this._financeService.quarterlyResults;
+      this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     }
-    this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
+    
+    // console.log("Xaxis", this._xAxisLabels)
 
     if (this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
       this.showCustomLegend = true;
       // label = 'Revenue and Net Income ' + periodLabel;
+    }
+
+    if(this._screenService.isMobile){
+      dataEntryCount = EarningsDatasetBuilder.mobileItemCount;
     }
 
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartOption, this.chartPeriod, dataEntryCount);

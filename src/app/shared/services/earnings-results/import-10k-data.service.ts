@@ -75,7 +75,7 @@ export class Import10KDataService {
         stockholdersEquity: raw.stockholdersEquity,
         drs: raw.drs,
         url: raw.url,
-        reportingPeriod: 'FY'
+        reportingPeriod: this._getReportingPeriod(raw.quarter),
       }
     });
     const quarterlyResults = results.map(resultInterface => new EarningsResult(resultInterface));
@@ -239,19 +239,19 @@ export class Import10KDataService {
   //   return subject$.asObservable();
   // }
 
-  // private _getReportingPeriod(cellValue: string): 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY' {
-  //   if (cellValue === 'Q4') {
-  //     return 'Q4';
-  //   } else if (cellValue === 'Q3') {
-  //     return 'Q3';
-  //   } else if (cellValue === 'Q2') {
-  //     return 'Q2';
-  //   } else if (cellValue === 'Q1') {
-  //     return 'Q1';
-  //   } else if (cellValue === 'FY') {
-  //     return 'FY';
-  //   }
-  //   return 'FY';
-  // }
+  private _getReportingPeriod(cellValue: string): 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY' {
+    if (cellValue === 'Q4') {
+      return 'Q4';
+    } else if (cellValue === 'Q3') {
+      return 'Q3';
+    } else if (cellValue === 'Q2') {
+      return 'Q2';
+    } else if (cellValue === 'Q1') {
+      return 'Q1';
+    } else if (cellValue === 'FY') {
+      return 'FY';
+    }
+    return 'FY';
+  }
 
 }

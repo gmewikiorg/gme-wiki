@@ -38,48 +38,82 @@
                 <div style="max-width: 400px;"> <img src="assets/main-pages/ownership.png" alt="gme ownership"
                         class="page-image"></div>
 
-                <p class="section-p">Who owns GameStop?<br>
-                    See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith Gill,
-                    and
-                    institutions</p>
+                <div>
+                    <p class="section-p">Who owns GameStop?
+
+                    </p>
+                    <p class="section-p">
+                        See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith Gill,
+                        and
+                        institutions
+                    </p>
+
+                    <p class="section-p">
+                        As a publicly traded company, GameStop is unusual because a significant portion of all issued shares
+                        are owned by registered shareholders.
+                    </p>
+                </div>
+                
             </div>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/turnaround'">
             <div class="section-heading">GameStop Company Turnaround</div>
             <div class="section-body">
-                <div> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround"
-                        class="page-image"></div>
-                <p>Since 2021, GameStop has been undergoing a transformation: fewer stores, higher value, renewed
-                    profitability.</p>
+                <div> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround" class="page-image"></div>
+                <div>
+                    <p class="section-p">Since 2021, GameStop has been undergoing a transformation: fewer stores, higher
+                        value, renewed
+                        profitability.</p>
+                    <p class="section-p">Core financial metrics show significant improvements to the company since the
+                        turnaround efforts began.</p>
+                </div>
+
             </div>
 
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/stores'">
             <div class="section-heading">Store count information</div>
-            <p>See how GameStop's physical store count has changed over the years</p>
+            <div class="section-body">
+                <div style="max-width: 500px;"> <img src="assets/info-pages/stores-page.png" alt="Store counts"
+                        class="page-image"></div>
+                <div>
+                    <p class="section-p">See how GameStop's physical store count has changed over the years</p>
+                    <p class="section-p">
+                        "With respect to retail operations, we plan to continue reducing costs and focusing on
+                        profitability... This means a smaller network of stores with an expanded assortment of higher
+                        value
+                        items that fit into our trade-in model."
+                        <br>
+                        - CEO Ryan Cohen's statements from GameStop's 2024 annual meeting on June 17
+                    </p>
+                </div>
+
+            </div>
+
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/drs'">
             <div class="section-heading">DRS (Direct Registration System)</div>
-            <p>Unlike most publicly traded companies, a significant portion of all GME shares ({{ registeredPercent }}%)
+            <p class="section-p">Unlike most publicly traded companies, a significant portion of all GME shares ({{
+                registeredPercent }}%)
                 are held by registered shareholders via DRS.</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/social-media'">
             <div class="section-heading">GME Social Media</div>
-            <p>Connect with the GME shareholder community across numerous platforms</p>
+            <p class="section-p">Connect with the GME shareholder community across numerous platforms</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/faq'">
             <div class="section-heading">GME FAQ</div>
-            <p>Find answers to common questions pertaining to GME</p>
+            <p class="section-p">Find answers to generic questions pertaining to GME</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/about'">
             <div class="section-heading">About</div>
-            <p>About gmewiki.org</p>
+            <p class="section-p">About gmewiki.org</p>
         </div>
     </div>
 

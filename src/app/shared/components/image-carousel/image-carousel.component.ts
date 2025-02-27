@@ -33,10 +33,12 @@ export class ImageCarouselComponent implements OnInit {
         }
       }
     }
+    // this._isMobile = ;
 
   }
 
 
+  // private _isMobile: boolean = false;
   private _currentIndex: number = -1;
   private _currentItem: ImageCarouselItem | null = null;
   private _maxWidth: number = 400;
@@ -50,6 +52,7 @@ export class ImageCarouselComponent implements OnInit {
   public get maxHeight(): number { return this._maxHeight; }
   public get maxWidthPx(): string { return this._maxWidth + 'px';}
   public get maxHeightPx(): string { return this._maxHeight + 'px';}
+  public get isMobile(): boolean { return this._screenService.isMobile; }
 
   @Input() public set carousel(carousel: ImageCarousel) { this._carousel = carousel; }
   @Input() public set maxWidth(width: number) { this._maxWidth = width; }

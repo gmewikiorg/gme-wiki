@@ -295,6 +295,7 @@ export class EarningsDatasetBuilder {
         return minAlpha + (maxAlpha - minAlpha) * t;
     }
 
+    public static get mobileItemCount(): number { return 8; }
     public getSubsetArray(dataEntryCount: number, sourceArray: any[]): any[] {
         const screenWidth = this._sizeService.screenWidth;
         if (dataEntryCount <= sourceArray.length) {
@@ -304,7 +305,7 @@ export class EarningsDatasetBuilder {
                 itemCount = dataEntryCount - (Math.floor(difference / 30));
             }
             if (screenWidth < 480) {
-                itemCount = 5;
+                itemCount = EarningsDatasetBuilder.mobileItemCount;
             }
             const startIndex = sourceArray.length - itemCount;
             const endIndex = sourceArray.length;
