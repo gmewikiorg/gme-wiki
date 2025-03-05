@@ -9,6 +9,7 @@ export interface EarningsResultInterface {
     operatingIncome: number;
     interestIncome: number;
     ebit: number;
+    incomeTaxExpense: number;
     netEarnings: number;
     netEPS: number;
     weightedAverageSharesOutstanding: number;
@@ -16,6 +17,7 @@ export interface EarningsResultInterface {
     totalDebt: number;
     totalLiabilities: number;
     stockholdersEquity: number;
+    storeCount: number;
     drs: number;
     url: string;
     reportingPeriod: 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY';

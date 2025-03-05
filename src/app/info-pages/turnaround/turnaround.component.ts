@@ -1,14 +1,14 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { HelpContributeComponent } from '../../shared/components/help-contribute/help-contribute.component';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import dayjs from 'dayjs';
+import { TurnaroundTableComponent } from './turnaround-table/turnaround-table.component';
 
 @Component({
   selector: 'app-turnaround',
   standalone: true,
-  imports: [HelpContributeComponent, RouterModule, FooterComponent],
+  imports: [TurnaroundTableComponent, RouterModule, FooterComponent],
   templateUrl: './turnaround.component.html',
   styleUrl: './turnaround.component.scss'
 })

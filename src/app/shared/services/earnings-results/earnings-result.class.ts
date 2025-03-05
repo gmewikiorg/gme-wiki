@@ -26,6 +26,7 @@ export class EarningsResult{
     public get totalDebt(): number { return this._data.totalDebt; }
     public get totalLiabilities(): number { return this._data.totalLiabilities; }
     public get stockholdersEquity(): number { return this._data.stockholdersEquity; }
+    public get storeCount(): number { return this._data.storeCount; }
     public get reportingPeriod(): 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY' { return this._data.reportingPeriod; }
     public get drs(): number { return this._data.drs; }
     public get url(): string { return this._data.url; }

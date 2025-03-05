@@ -17,11 +17,6 @@
             </ul>
         </div>
 
-        <div class="page-section" *ngIf="isBrowser">
-            <div class="section-heading">Stores Chart</div>
-            <app-stores-chart></app-stores-chart>
-        </div>
-
         <div class="page-section">
             <div class="section-heading">Plans for further reduction in stores</div>
             <ul>
@@ -34,6 +29,12 @@
                         target="_blank">Ryan Cohen's statements on June 17</a> from GameStop's 2024 annual meeting</li>
             </ul>
         </div>
+        <div class="page-section" *ngIf="isBrowser">
+            <div class="section-heading">Stores Chart</div>
+            <app-stores-chart></app-stores-chart>
+        </div>
+
+        
         <div class="page-section">
             <div class="section-heading">Developments</div>
             <ul>

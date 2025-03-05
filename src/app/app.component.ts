@@ -27,7 +27,7 @@ export class AppComponent {
   ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
     const isServer: boolean = isPlatformServer(this.platformId);
-    
+
   }
 
   private _isBrowser: boolean;
@@ -38,11 +38,15 @@ export class AppComponent {
     const height: number = event.target.innerHeight;
     this._sizeService.updateScreenSize(width, height);
   }
+  @HostListener('window:beforeunload')
+  saveScrollPosition() {
+    sessionStorage.setItem('scrollPosition', String(window.scrollY));
+  }
 
   async ngOnInit() {
     this._loadingService.loadEarnings();
     this._settingsService.getSettings();
-    if(this._isBrowser){
+    if (this._isBrowser) {
       this._router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           // if (event.url === '/') {
@@ -53,12 +57,18 @@ export class AppComponent {
           // }
         }
         const element = document.querySelector('#app-component-root');
-        if(element){
-          element.scrollIntoView();
+        if (element) {
+          // element.scrollIntoView();
         }
       });
+      const savedScroll = sessionStorage.getItem('scrollPosition');
+      if (savedScroll) {
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScroll, 10));
+        }, 25); // Small delay to ensure content is loaded before scrolling
+      }
     }
-    
+
   }
 
   public get appNgClass(): string[] { return this._screenService.pageContentNgClass; }

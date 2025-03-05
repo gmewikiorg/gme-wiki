@@ -9,6 +9,7 @@ import { releaseOverviews } from './release-overview/release-overviews';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { ColorPicker } from '../../../shared/color-picker.class';
 @Component({
   selector: 'app-earnings-table',
   standalone: true,
@@ -125,29 +126,29 @@ export class EarningsTableComponent {
     /** Get a color between red --> yellow --> green */
     if (column === 'REVENUE') {
       propertyValue = quarterResult.revenue;
-      minMax = this._getMinMax(results.map(item => item.revenue));
-      backgroundColor = this._getNonRedColor(0, minMax.max, propertyValue);
+      minMax = ColorPicker.getMinMax(results.map(item => item.revenue));
+      backgroundColor = ColorPicker.getNonRedBGColor(0, minMax.max, propertyValue);
     } else if (column === 'NETINCOME') {
       propertyValue = quarterResult.netEarnings;
-      backgroundColor = this._getColorZeroBased(propertyValue);
+      backgroundColor = ColorPicker.getColorZeroBased(propertyValue);
     } else if (column === 'ASSETS') {
       propertyValue = quarterResult.totalAssets / 1000000;
-      minMax = this._getMinMax(results.map(item => item.totalAssets / 1000000));
-      backgroundColor = this._getNonRedColor(minMax.min, minMax.max, propertyValue);
+      minMax = ColorPicker.getMinMax(results.map(item => item.totalAssets / 1000000));
+      backgroundColor = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, propertyValue);
     } else if (column === 'LIABILITIES') {
       propertyValue = quarterResult.totalLiabilities / 1000000;
-      minMax = this._getMinMax(results.map(item => item.totalLiabilities / 1000000));
-      backgroundColor = this._getNonRedColor(minMax.min, minMax.max, propertyValue, true);
+      minMax = ColorPicker.getMinMax(results.map(item => item.totalLiabilities / 1000000));
+      backgroundColor = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, propertyValue, true);
     } else if (column === 'EQUITY') {
       propertyValue = quarterResult.stockholdersEquity / 1000000;
-      minMax = this._getMinMax(results.map(item => item.stockholdersEquity / 1000000));
-      backgroundColor = this._getNonRedColor(0, minMax.max, propertyValue);
+      minMax = ColorPicker.getMinMax(results.map(item => item.stockholdersEquity / 1000000));
+      backgroundColor = ColorPicker.getNonRedBGColor(0, minMax.max, propertyValue);
     } else if (column === 'OPERATINGLOSSGAIN') {
       propertyValue = quarterResult.operatingIncome / 1000000;
-      backgroundColor = this._getColorZeroBased(propertyValue);
+      backgroundColor = ColorPicker.getColorZeroBased(propertyValue);
     } else if (column === 'EPS') {
       propertyValue = quarterResult.netEPS / 1000000;
-      backgroundColor = this._getColorZeroBased(propertyValue);
+      backgroundColor = ColorPicker.getColorZeroBased(propertyValue);
     }
 
     /** Create a gradient on the table to fade out the lower rows from time past */
@@ -164,101 +165,20 @@ export class EarningsTableComponent {
     })
 
     if (thisResultRowIndex >= indexSegment0 && thisResultRowIndex < indexSegment1) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.08);
+      backgroundColor = ColorPicker.setAlpha(backgroundColor, 0.08);
     } else if (thisResultRowIndex >= indexSegment1 && thisResultRowIndex < indexSegment2) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.06);
+      backgroundColor = ColorPicker.setAlpha(backgroundColor, 0.06);
     } else if (thisResultRowIndex >= indexSegment2 && thisResultRowIndex < indexSegment3) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.04);
+      backgroundColor = ColorPicker.setAlpha(backgroundColor, 0.04);
     } else if (thisResultRowIndex >= indexSegment3 && thisResultRowIndex < indexSegment4) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.03);
+      backgroundColor = ColorPicker.setAlpha(backgroundColor, 0.03);
     } else if (thisResultRowIndex >= indexSegment4) {
-      backgroundColor = this._setAlpha(backgroundColor, 0.02);
+      backgroundColor = ColorPicker.setAlpha(backgroundColor, 0.02);
     }
     return backgroundColor;
   }
 
-  private _setAlpha(rgbaString: string, newAlpha: number): string {
-    // This regex will match both rgb(...) and rgba(...).
-    // Capturing groups:
-    //   1 => red
-    //   2 => green
-    //   3 => blue
-    //   4 => alpha (if present)
-    const regex = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)$/;
-
-    const match = rgbaString.trim().match(regex);
-    if (!match) {
-      throw new Error('Invalid RGBA or RGB color string.');
-    }
-
-    // Destructure the captured groups.
-    // "existingAlpha" may be undefined if it's just "rgb(...)".
-    const [, r, g, b, existingAlpha] = match;
-
-    // Return a proper "rgba(...)" string with the updated alpha.
-    return `rgba(${r}, ${g}, ${b}, ${newAlpha})`;
-  }
 
 
-  private _getMinMax(values: number[]): { min: number, max: number } {
-    let min = values[0];
-    let max = 0;
-    values.forEach(value => {
-      if (value > max) {
-        max = value;
-      }
-      if (value < min) {
-        min = value;
-      }
-    });
-    return { min: min, max: max };;
-  }
 
-  private _getColorZeroBased(value: number) {
-    /**
-     *  negative numbers: red
-     *  zero: white
-     *  positive numbers: green
-     */
-    if (value < 0) {
-      return 'rgba(255, 0, 0, 0.09)';
-    } else if (value === 0) {
-      return 'rgb(255, 255, 255)';
-    } else if (value > 0) {
-      return 'rgba(44, 186, 0, 0.1)';
-    }
-    return 'rgb(255, 255, 255)';
-  }
-
-  private _getNonRedColor(min: number, max: number, value: number, reverse: boolean = false) {
-    let scale = [
-      'rgba(255, 167, 0, 0.06)',
-      'rgba(255, 244, 0, 0.06)',
-      'rgba(163, 255, 0, 0.06)',
-      'rgba(44, 186, 0, 0.06)',
-      'rgba(44, 186, 0, 0.1)'
-    ];
-    if (reverse === true) {
-      scale = [
-        'rgba(44, 186, 0, 0.1)',
-        'rgba(44, 186, 0, 0.06)',
-        'rgba(163, 255, 0, 0.06)',
-        'rgba(255, 244, 0, 0.06)',
-        'rgba(255, 167, 0, 0.06)',
-      ];
-    }
-    const scales = scale.length;
-    const range = max - min;
-    const scaleSize = range / scales;
-    const valueDiff = value - min;
-    let valueScale = Math.round(valueDiff / scaleSize);
-    valueScale--;
-    if (valueScale < 0) {
-      valueScale = 0;
-    }
-    if (value === 0) {
-      return 'rgba(0,0,0,0)';
-    }
-    return scale[valueScale];
-  }
 }

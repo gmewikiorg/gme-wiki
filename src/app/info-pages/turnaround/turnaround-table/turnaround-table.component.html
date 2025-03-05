@@ -1,0 +1,58 @@
+<div class="table-controls-container">
+    <button class="table-control-button" [ngClass]="{'selected-option': optionIsFyVal === true}"
+        (click)="onClickOption('FY_VALUE')">Fiscal Year Value</button>
+    <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoY === true}"
+        (click)="onClickOption('YoY_CHANGE')">Year Over Year Change</button>
+    <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoYPercentage === true}"
+        (click)="onClickOption('YoY_PERCENTAGE')">YoY Change Percentage</button>
+</div>
+<div class="table-container">
+    <table [ngClass]="isMobile ? 'table-mobile': ''">
+
+        <thead>
+            <tr style="font-size:0.8em;">
+                <td style="border-top: none; border-left: none; width:15%; background-color: rgba(255, 255, 255, 0);"></td>
+                <td style="width: 17%; ">Pre turnaround <br><span style="font-size: 0.8em;">FY 2020</span></td>
+                <td style="width: 17%;">Turnaround beings <br>FY 2021</td>
+                <td style="width: 17%;">FY 2022</td>
+                <td style="width: 17%;">FY 2023</td>
+                <!-- <td style="width: 17%;"><b>Current status</b> <br><span style="font-size: 0.8em;">(February
+                        2024)</span><br>FY 2024</td> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="font-size: 0.9em;">Store Count</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('STORE_COUNT', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('STORE_COUNT', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Revenue</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('REVENUE', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('REVENUE', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Operating Income</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('OP_INCOME', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('OP_INCOME', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Interest Income</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('INT_INCOME', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('INT_INCOME', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Net Income</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('NET_INCOME', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('NET_INCOME', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Assets</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('ASSETS', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('ASSETS', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Liabilities</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('LIABILITIES', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('LIABILITIES', year) }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 0.9em;">Stockholders' Equity</td>
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('EQUITY', year)" [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('EQUITY', year) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

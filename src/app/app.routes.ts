@@ -21,6 +21,7 @@ import { FaqComponent } from './info-pages/faq/faq.component';
 import { FtdComponent } from './info-pages/ftd/ftd.component';
 import { FudComponent } from './info-pages/fud/fud.component';
 import { Fy23EarningsComponent } from './info-pages/fy23-earnings/fy23-earnings.component';
+import { Fy24EarningsComponent } from './info-pages/fy24-earnings/fy24-earnings.component';
 import { InvestorsComponent } from './info-pages/investors/investors.component';
 import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
 import { MediaComponent } from './info-pages/media/media.component';
@@ -38,6 +39,7 @@ import { SummaryGuideComponent } from './info-pages/summary-guide/summary-guide.
 import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
 import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
+
 
 
 export const routes: Routes = [
@@ -75,6 +77,10 @@ export const routes: Routes = [
     { path: 'fy23', component: Fy23EarningsComponent },
     { path: 'fy23-earnings', component: Fy23EarningsComponent },
     { path: 'fy23-profitability', component: Fy23EarningsComponent },
+    
+    { path: 'fy24', component: Fy24EarningsComponent },
+    { path: 'fy24-earnings', component: Fy24EarningsComponent },
+    { path: 'fy24-profitability', component: Fy24EarningsComponent },
     
     { path: 'ftd', component: FtdComponent },
     { path: 'ftds', component: FtdComponent },

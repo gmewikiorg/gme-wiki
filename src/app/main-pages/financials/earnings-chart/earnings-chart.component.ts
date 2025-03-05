@@ -77,11 +77,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   private _xAxisLabels: string[] = [];
   public get xAxisLabels(): string[] { return this._xAxisLabels; }
 
-  private _updateDatasets(dataEntryCount = 19): ChartConfiguration<'bar'>['data'] {
+  private _updateDatasets(dataEntryCount = 20): ChartConfiguration<'bar'>['data'] {
     /**   Total of 19 items from FY05 to FY23 inclusive    */
     if(this.isFY23Earnings){
       dataEntryCount = 15;
-      // this._chartService.setChartOption(EarningsChartOption.REVENUE_VS_NET_INCOME);
     }
     this.showCustomLegend = false;
     let results: EarningsResult[] = this._financeService.annualResults;
