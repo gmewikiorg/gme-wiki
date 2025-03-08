@@ -13,8 +13,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes,
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled', // Restore scroll position when navigating back
-        anchorScrolling: 'enabled',          // Enable anchor links to scroll properly
-        // scrollOffset: [0, 0],                // Adjust offset if needed (e.g., for a sticky navbar)
+      //   anchorScrolling: 'enabled',          // Enable anchor links to scroll properly
+      //   // scrollOffset: [0, 0],                // Adjust offset if needed (e.g., for a sticky navbar)
       })
     ), 
     provideClientHydration(),  

@@ -6,6 +6,8 @@ export enum EarningsMetric {
     COST_OF_SALES = 'COST_OF_SALES',
     GROSS_PROFIT = 'GROSS_PROFIT',
 
+    STORE_COUNT = 'STORE_COUNT',
+
     OPERATING_INCOME = 'OPERATING_INCOME',
     SGA = 'SGA',
 
@@ -18,8 +20,8 @@ export interface EarningsMetricConfig {
     colorScheme: 'BLUE' | 'RED_GREEN' | 'ORANGE' | 'GREEN';
     label: string;
     labelNegative: string;
-    tickScaleAnnually: 1000000000 | 1000000;
-    tickScaleQuarterly: 1000000000 | 1000000;
+    tickScaleAnnually: 1000000000 | 1000000 | 1000;
+    tickScaleQuarterly: 1000000000 | 1000000 | 1000;
     minYAnnual: number;
     minYQuarter: number;
 
@@ -102,5 +104,13 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         minYAnnual: 0,
         minYQuarter: 0,
     },
-
+    [EarningsMetric.STORE_COUNT]: {
+        colorScheme: 'ORANGE',
+        label: "Store Count",
+        labelNegative: "Store Count",
+        tickScaleAnnually: 1000,
+        tickScaleQuarterly: 1000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+    },
 };

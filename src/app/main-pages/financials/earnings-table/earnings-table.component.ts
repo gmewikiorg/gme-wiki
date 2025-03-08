@@ -51,7 +51,8 @@ export class EarningsTableComponent {
   async ngOnInit() {
     await this._loadingService.loadEarnings();
     this._quarterlyResults = this._importFinancialsService.quarterlyResults.filter(item => item.fiscalYear >= 2020);
-    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
+    // this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
+    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005 && item.fiscalYear < 2024);
     this._tableRows = this._buildTableRows();
     this._screenService.screenDimensions$.subscribe({
       next: (dimensions) => {

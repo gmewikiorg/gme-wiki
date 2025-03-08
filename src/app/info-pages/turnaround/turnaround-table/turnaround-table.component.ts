@@ -24,6 +24,7 @@ export class TurnaroundTableComponent {
   public get annual10KData(): EarningsResult[] { return this._10kService.annualResults; }
   private _currentTableOption: TurnaroundTableOption = 'FY_VALUE';
   public get isMobile(): boolean { return this._screenService.isMobile; }
+  public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
   public get currentOptionType(): TurnaroundTableOption { return this._currentTableOption; }
   public get optionIsFyVal(): boolean { return this.currentOptionType === 'FY_VALUE'; }
   public get optionIsYoY(): boolean { return this.currentOptionType === 'YoY_CHANGE'; }
@@ -31,8 +32,8 @@ export class TurnaroundTableComponent {
 
   public get yearsRangeStart(): number { return this.yearsRange[0]; }
   public get yearsRangeEnd(): number { return this.yearsRange[this.yearsRange.length-1]; }
-  // public get yearsRange(): number[] { return [2020, 2021, 2022, 2023, 2024]; }
-  public get yearsRange(): number[] { return [2020, 2021, 2022, 2023]; }
+  public get yearsRange(): number[] { return [2020, 2021, 2022, 2023, 2024]; }
+  // public get yearsRange(): number[] { return [2020, 2021, 2022, 2023]; }
 
   public getColor(valueProperty: TurnaroundTableRowProperty, fiscalYear: number): string {
     return this._getPropertyColor(fiscalYear, valueProperty);
@@ -74,7 +75,7 @@ export class TurnaroundTableComponent {
       }
       const minMax = ColorPicker.getMinMax(values);
       const value = this._getValue(property, fiscalYear, this.currentOptionType);
-      return ColorPicker.getNonRedColor(minMax.min, minMax.max, value, reverse);
+      return ColorPicker.getNonRedColor(minMax.min, minMax.max, value, reverse, this.isDarkMode);
     } else {
       const yearValues: number[] = [];
       this.yearsRange.forEach(year => {
@@ -83,7 +84,7 @@ export class TurnaroundTableComponent {
       })
       const minMax = ColorPicker.getMinMax(yearValues);
       const value = this._getValue(property, fiscalYear, this.currentOptionType);
-      return ColorPicker.getNonRedColor(minMax.min, minMax.max, value, reverse);
+      return ColorPicker.getNonRedColor(minMax.min, minMax.max, value, reverse, this.isDarkMode);
     }
 
   }

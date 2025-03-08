@@ -3,26 +3,27 @@ export class ColorPicker {
     public static getColor(min: number, max: number, value: number, reverse: boolean = false) {
         if (value < 0) {
             return 'rgb(255, 8, 0)';
-        }else{
+        } else {
             return this.getNonRedColor(min, max, value, reverse);
         }
-        
+
     }
-    public static getNonRedColor(min: number, max: number, value: number, reverse: boolean = false) {
+    public static getNonRedColor(min: number, max: number, value: number, reverse: boolean = false, isDarkMode: boolean = false) {
         let scale = [
-            'rgba(255, 167, 0, 1)',
+
+           'rgba(216, 194, 0, 0.97)',
             'rgba(169, 207, 0, 1)',
             'rgba(128, 202, 0, 1)',
             'rgba(44, 186, 0, 1)',
-            'rgba(44, 186, 0, 1)'
+            'rgba(0, 134, 11, 0.96)',
         ];
         if (reverse === true) {
             scale = [
-                'rgba(44, 186, 0, 1)',
+                'rgba(0, 134, 11, 0.96)',
                 'rgba(44, 186, 0, 1)',
                 'rgba(128, 202, 0, 1)',
                 'rgba(169, 207, 0, 1)',
-                'rgba(255, 167, 0, 1)',
+                'rgba(216, 194, 0, 0.97)',
             ];
         }
         const scales = scale.length;

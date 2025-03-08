@@ -1,11 +1,11 @@
-<div class="table-controls-container">
+<!-- <div class="table-controls-container">
     <button class="table-control-button" [ngClass]="{'selected-option': optionIsFyVal === true}"
         (click)="onClickOption('FY_VALUE')">Fiscal Year Value</button>
     <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoY === true}"
         (click)="onClickOption('YoY_CHANGE')">Year Over Year Change</button>
     <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoYPercentage === true}"
         (click)="onClickOption('YoY_PERCENTAGE')">YoY Change Percentage</button>
-</div>
+</div> -->
 <div class="table-container">
     <table [ngClass]="isMobile ? 'table-mobile': ''">
 
@@ -16,8 +16,8 @@
                 <td style="width: 17%;">Turnaround beings <br>FY 2021</td>
                 <td style="width: 17%;">FY 2022</td>
                 <td style="width: 17%;">FY 2023</td>
-                <!-- <td style="width: 17%;"><b>Current status</b> <br><span style="font-size: 0.8em;">(February
-                        2024)</span><br>FY 2024</td> -->
+                <td style="width: 17%;"><b>Current status</b> <br><span style="font-size: 0.8em;">(February
+                        2024)</span><br>FY 2024</td>
             </tr>
         </thead>
         <tbody>

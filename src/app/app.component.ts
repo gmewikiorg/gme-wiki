@@ -38,10 +38,10 @@ export class AppComponent {
     const height: number = event.target.innerHeight;
     this._sizeService.updateScreenSize(width, height);
   }
-  @HostListener('window:beforeunload')
-  saveScrollPosition() {
-    sessionStorage.setItem('scrollPosition', String(window.scrollY));
-  }
+  // @HostListener('window:beforeunload')
+  // saveScrollPosition() {
+  //   sessionStorage.setItem('scrollPosition', String(window.scrollY));
+  // }
 
   async ngOnInit() {
     this._loadingService.loadEarnings();
@@ -61,12 +61,12 @@ export class AppComponent {
           // element.scrollIntoView();
         }
       });
-      const savedScroll = sessionStorage.getItem('scrollPosition');
-      if (savedScroll) {
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(savedScroll, 10));
-        }, 25); // Small delay to ensure content is loaded before scrolling
-      }
+      // const savedScroll = sessionStorage.getItem('scrollPosition');
+      // if (savedScroll) {
+      //   setTimeout(() => {
+      //     window.scrollTo(0, parseInt(savedScroll, 10));
+      //   }, 25); // Small delay to ensure content is loaded before scrolling
+      // }
     }
 
   }

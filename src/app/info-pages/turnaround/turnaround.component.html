@@ -84,7 +84,7 @@
 
             </p>
 
-            <div style="display:flex;flex-direction: column; width: 100%; align-items: center;">
+            <div style="display:flex;flex-direction: column; width: 100%; align-items: center;" *ngIf="isBrowser">
                 <img src=" 
                 assets/ryan-cohen/rc-tweets/rc-tweet-2021-10-26.jpg" alt="David versus Goliath"
                     style="max-width: 100%; border-radius: 5px;">
@@ -192,13 +192,12 @@
 
         <div class="page-section">
             <div class="section-heading">Turnaround Status</div>
-            <p>The turnaround of GameStop has been in progress for about {{ turnaroundDuration }}, depending on
-                when the precise start point is. </p>
+            <p>The turnaround of GameStop has been in progress for about {{ turnaroundDuration }}.</p>
             <p>A look at the core financial metrics shows significant improvements to the financial standing of the
                 company.
             </p>
 
-            <app-turnaround-table></app-turnaround-table>
+            <!-- <app-turnaround-table></app-turnaround-table> -->
 
             <p>GameStop has raised
                 cash and eliminated practically all of the debt that it had. Now holding a large pile of cash, the

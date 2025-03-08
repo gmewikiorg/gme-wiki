@@ -13,3 +13,20 @@ td{
     flex-direction: row;
     justify-content: center;
 }
+
+
+.chart-container{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.chart{
+    width: 100%;
+    max-width: 1200px;
+}
+.chart-title{
+    font-weight: bold;
+}

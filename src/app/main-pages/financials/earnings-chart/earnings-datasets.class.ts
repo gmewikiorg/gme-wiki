@@ -18,6 +18,7 @@ export class EarningsDatasetBuilder {
         const sgaDataItems: number[] = results.map(r => r.sga).reverse();
         const interestIncomeDataItems: number[] = results.map(r => r.interestIncome).reverse();
         const equityDataItems: number[] = results.map(r => r.stockholdersEquity).reverse();
+        const storeCountDataItems: number[] = results.map(r => r.storeCount).reverse();
 
         const revenueDataSet = this._buildDataset(EarningsMetric.REVENUE, chartPeriod, dataEntryCount, revenueDataItems);
         const netIncomeDataset = this._buildDataset(EarningsMetric.NET_INCOME, chartPeriod, dataEntryCount, netIncomeDataItems);
@@ -27,6 +28,7 @@ export class EarningsDatasetBuilder {
         const sgaDataset = this._buildDataset(EarningsMetric.SGA, chartPeriod, dataEntryCount, sgaDataItems);
         const interestIncomeDataset = this._buildDataset(EarningsMetric.INTEREST_INCOME, chartPeriod, dataEntryCount, interestIncomeDataItems);
         const equityDataset = this._buildDataset(EarningsMetric.STOCKHOLDERS_EQUITY, chartPeriod, dataEntryCount, equityDataItems);
+        const storeCountDataset = this._buildDataset(EarningsMetric.STORE_COUNT, chartPeriod, dataEntryCount, storeCountDataItems);
 
         let datasets: ChartDataset<"bar", any[]>[] = [];
         if (chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
@@ -45,6 +47,10 @@ export class EarningsDatasetBuilder {
             datasets = [grossProfitDataset, sgaDataset];
         } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
             datasets = [operatingIncomeDataset, sgaDataset];
+        } else if (chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+            datasets = [revenueDataSet, storeCountDataset];
+        } else if (chartOption === EarningsChartOption.NET_INCOME){
+            datasets = [netIncomeDataset];
         }
 
         return datasets;
@@ -72,11 +78,15 @@ export class EarningsDatasetBuilder {
             title = 'Gross Profit vs SG&A ' + periodLabel;
         } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
             title = 'Operating Income vs SG&A ' + periodLabel;
+        } else if (chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+            title = 'Revenue vs stores ' + periodLabel;
+        } else if (chartOption === EarningsChartOption.NET_INCOME) {
+            title = 'Net Income ' + periodLabel;
         }
         return title;
     }
 
-    public getTickScale(chartOption: EarningsChartOption, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): 1000000 | 1000000000 {
+    public getTickScale(chartOption: EarningsChartOption, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): 1000 | 1000000 | 1000000000 {
         let tickScale: number = 1000000000;
         const revenueConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE];
         const netIncomeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_INCOME];
@@ -85,7 +95,9 @@ export class EarningsDatasetBuilder {
         const interestConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.INTEREST_INCOME];
         const equityConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STOCKHOLDERS_EQUITY];
         const operatingConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.OPERATING_INCOME];
-        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA]
+        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA];
+        const storesConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STORE_COUNT];
+
         if(chartPeriod === 'ANNUAL'){
             if (chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
                 tickScale = Math.max(revenueConfig.tickScaleAnnually, netIncomeConfig.tickScaleAnnually);
@@ -103,6 +115,10 @@ export class EarningsDatasetBuilder {
                 tickScale = Math.max(grossProfitConfig.tickScaleAnnually, sgaConfig.tickScaleAnnually);
             } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
                 tickScale = Math.max(operatingConfig.tickScaleAnnually, sgaConfig.tickScaleAnnually);
+            } else if (chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+                tickScale =  Math.max(revenueConfig.tickScaleAnnually);
+            }else if (chartOption === EarningsChartOption.NET_INCOME) {
+                tickScale =  Math.max(netIncomeConfig.tickScaleAnnually);
             }
         }else{
             if (chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
@@ -121,13 +137,20 @@ export class EarningsDatasetBuilder {
                 tickScale = Math.max(grossProfitConfig.tickScaleQuarterly, sgaConfig.tickScaleQuarterly);
             } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
                 tickScale = Math.max(operatingConfig.tickScaleQuarterly, sgaConfig.tickScaleQuarterly);
+            } else if (chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+                tickScale =  Math.max(revenueConfig.tickScaleAnnually);
+            }else if (chartOption === EarningsChartOption.NET_INCOME) {
+                tickScale =  Math.max(netIncomeConfig.tickScaleAnnually);
             }
         }
         if(tickScale === 1000000000){
             return 1000000000;
-        }else{
+        }else if(tickScale === 1000000){
             return 1000000;
+        }else if(tickScale === 1000){
+            return 1000;
         }
+        return 1000000000;
     }
 
     public getMinY(chartOption: EarningsChartOption, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): number {
@@ -157,6 +180,8 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(grossProfitConfig.minYAnnual, sgaConfig.minYAnnual);
             } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
                 minY = Math.min(operatingConfig.minYAnnual, sgaConfig.minYAnnual);
+            } else if(chartOption === EarningsChartOption.NET_INCOME){
+                minY = Math.min(-800000000);
             }
         }else{
             if (chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
@@ -175,6 +200,8 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(grossProfitConfig.minYQuarter, sgaConfig.minYQuarter);
             } else if (chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
                 minY = Math.min(operatingConfig.minYQuarter, sgaConfig.minYQuarter);
+            }else if(chartOption === EarningsChartOption.NET_INCOME){
+                minY = Math.min(netIncomeConfig.minYQuarter)
             }
         }
         return minY;
@@ -186,7 +213,8 @@ export class EarningsDatasetBuilder {
 
 
         const config: EarningsMetricConfig = EARNINGS_METRIC_CONFIG[metric];
-        const datasetColors = this._getDatasetColors(dataEntryCount, dataItems, config);
+        const datasetColorsFull = this._getDatasetColors(dataEntryCount, dataItems, config);
+        const datasetColors = this.getSubsetArray(datasetColorsFull.length, datasetColorsFull);
         const dataLabelColors = datasetColors.map(color => this._setNewAlpha(color, 0.9));
 
         let tickScale = config.tickScaleAnnually;
@@ -194,9 +222,14 @@ export class EarningsDatasetBuilder {
             tickScale = config.tickScaleQuarterly;
         }
 
+        let yAxisId = "y";
+        if(metric === EarningsMetric.STORE_COUNT){
+            yAxisId = "y2";
+        }
 
         return {
             label: config.label,
+            yAxisID: yAxisId,
             datalabels: {
                 color: function (context: Context) {
                     return dataLabelColors[context.dataIndex]
@@ -237,11 +270,16 @@ export class EarningsDatasetBuilder {
                 },
                 borderWidth: 1,
                 formatter: function (value: number, context: Context) {
-                    if (tickScale === 1000000000) {
-                        return '$' + (value / tickScale).toFixed(1) + " B";
-                    } else {
-                        return '$' + (value / tickScale).toFixed(0) + " M";
+                    if(metric !== EarningsMetric.STORE_COUNT){
+                        if (tickScale === 1000000000) {
+                            return '$' + (value / tickScale).toFixed(1) + " B";
+                        } else {
+                            return '$' + (value / tickScale).toFixed(0) + " M";
+                        }
+                    }else{
+                        return '' + (value / tickScale).toFixed(0) + " K";
                     }
+                    return '';
                 },
                 font: {
                     weight: 'bold',
@@ -257,7 +295,6 @@ export class EarningsDatasetBuilder {
     private _getDatasetColors(dataEntryCount: number, dataItems: number[], config: EarningsMetricConfig): string[] {
         let colors: string[] = [];
         const indexNegativeNumber = dataItems.findIndex(item => item < 0);
-
         if (config.colorScheme === 'BLUE') {
             colors = dataItems.map(item => ('rgba(3, 90, 252,' + String(this._getAlpha(dataItems.indexOf(item), dataItems.length)) + ')'));
         } else if (config.colorScheme === 'ORANGE') {
@@ -276,7 +313,8 @@ export class EarningsDatasetBuilder {
                 }
             });
         }
-        return colors.slice(-dataEntryCount);
+        const sliced = colors.slice(-dataEntryCount);
+        return sliced;
     }
 
 
@@ -302,7 +340,7 @@ export class EarningsDatasetBuilder {
             let itemCount = dataEntryCount;
             if (screenWidth < 800) {
                 const difference = 800 - screenWidth;
-                itemCount = dataEntryCount - (Math.floor(difference / 30));
+                itemCount = dataEntryCount - (Math.floor(difference / 45));
             }
             if (screenWidth < 480) {
                 itemCount = EarningsDatasetBuilder.mobileItemCount;

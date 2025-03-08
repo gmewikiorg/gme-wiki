@@ -1,5 +1,4 @@
 import { EarningsResultInterface } from "./earnings-result.interface";
-import { Filing_10k10q_raw } from "./filing-raw-type";
 
 export const filings_10q_raw: EarningsResultInterface[] = [
     {
