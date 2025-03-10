@@ -22,7 +22,7 @@ export class FaqComponent implements OnInit {
     private meta: Meta,
     private titleService: Title,
   ) {
-    this.titleService.setTitle('gmewiki.org - GME FAQ')
+    this.titleService.setTitle('GME FAQ | gmewiki.org')
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([

@@ -27,13 +27,15 @@ export class FinancialsComponent {
     private screenService: ScreenService,
     private meta: Meta,
   ) {
-    this.titleService.setTitle('GameStop Earnings and Financial Information');
+    const title = 'GameStop Earnings and Financial Information | gmewiki.org';
+    const description = 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings'
+    this.titleService.setTitle(title);
     this._isBrowser = isPlatformBrowser(this.platformId);
     
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'GameStop Earnings and Financial Information' },
+      { name: 'description', content: description },
       { name: 'keywords', content: 'GameStop, GME, Earnings, fiscal year, fiscal quarter, quarterly results, EPS, equity, assets, liabilities, financials, profit, net income, 10K, 10-K, 10Q, 10-Q' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -41,8 +43,8 @@ export class FinancialsComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'gmewiki.org - GameStop Earnings and Financial Information' },
-      { property: 'og:description', content: 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/earnings.png' },
       { property: 'og:url', content: 'https://gmewiki.org/financials' },
       { property: 'og:type', content: 'website' },

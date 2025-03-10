@@ -20,22 +20,24 @@ export class TurnaroundComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title, private _screenService: ScreenService) {
 
-    this.titleService.setTitle('GameStop Turnaround');
+      const title = 'GameStop Turnaround: 2021 to present | gmewiki.org'
+      const description = 'GameStop Turnaround:  fewer stores, higher value, renewed profitability'
+    this.titleService.setTitle(title);
 
 
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'GameStop Turnaround' },
-      { name: 'keywords', content: 'GameStop, GME, Turnaround, Ryan Cohen, Roaring Kitty, DeepFuckingValue, GameStop Turnaround, GameStop Turnaround 2021, GameStop Turnaround 2022, GameStop Turnaround 2023, GameStop Turnaround 2024' },
+      { name: 'description', content: description },
+      { name: 'keywords', content: ' GameStop Turnaround 2024' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'GameStop Turnaround' },
-      { property: 'og:description', content: 'GameStop Turnaround:  fewer stores, higher value, renewed profitability ' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
       { property: 'og:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png' },
       { property: 'og:type', content: 'website' },

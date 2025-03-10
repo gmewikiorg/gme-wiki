@@ -12,11 +12,13 @@ import { RouterModule } from '@angular/router';
 })
 export class SocialMediaComponent {
   constructor(private meta: Meta, private titleService: Title){
-    this.titleService.setTitle('Social Media for GME Shareholders');
+    const title = 'Social Media for GME Shareholders | gmewiki.org';
+    const description = 'Directory of places for GME shareholders on X, Reddit, Discord, BlueSky, Github'
+    this.titleService.setTitle(title);
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'Social Media for GME Shareholders' },
+      { name: 'description', content: description },
       { name: 'keywords', content: 'GameStop, GME, social media, X, Twitter, Reddit, fediverse, Spaces, YouTube, Roaring Kitty, DRS, Discord, X Spaces, federated apps, Lemmy, subreddits, superstonk, teddy, bluesky, github' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -24,8 +26,8 @@ export class SocialMediaComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'gmewiki.org - Social Media for GME Shareholders' },
-      { property: 'og:description', content: 'Links on X, Reddit, Discord, BlueSky, Github' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description},
       { property: 'og:url', content: 'https://gmewiki.org/social-media' },
       { property: 'og:type', content: 'website' },
     ]);

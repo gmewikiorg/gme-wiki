@@ -23,22 +23,24 @@ export class OwnershipComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title) {
 
-    this.titleService.setTitle('GameStop ownership (as of ' + this.lastUpdated + ')',);
+    const title = 'GameStop ownership (as of ' + this.lastUpdated + ') | gmewiki.org';
+    const description = 'Chart and table with data sources providing a breakdown of GME ownership';
+    this.titleService.setTitle(title);
     this._isBrowser = isPlatformBrowser(this.platformId);
 
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'GameStop Company Ownership' },
-      { name: 'keywords', content: 'GameStop, GME, ownership, shares, stockholders, shareholders, DRS, DTCC, Cede & Co, Ryan Cohen, Roaring Kitty, DeepFuckingValue, insiders, institutions, DSPP, Computershare, transfer agent, registered shares, vanguard group, blackrock inc, state street corporation' },
+      { name: 'description', content: description },
+      { name: 'keywords', content: 'GameStop, GME, ownership, shares' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'gmewiki.org - GameStop Company Ownership' },
-      { property: 'og:description', content: 'GameStop ownership pie chart and table with sources' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/ownership.png' },
       { property: 'og:url', content: 'https://gmewiki.org/ownership' },
       { property: 'og:type', content: 'website' },

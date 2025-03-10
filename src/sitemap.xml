@@ -32,6 +32,15 @@
         <loc>https://gmewiki.org/fy23-profitability</loc>
         <lastmod>2025-01-23</lastmod>
     </sitemap>
+        <sitemap>
+        <loc>https://gmewiki.org/fy23</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
+        </sitemap>
+        <sitemap>
+        <loc>https://gmewiki.org/fy24</loc>
+        <lastmod>2025-01-23</lastmod>
+    </sitemap>
     <sitemap>
         <loc>https://gmewiki.org/faq</loc>
         <lastmod>2025-01-23</lastmod>

@@ -24,7 +24,7 @@ export class Fy23EarningsComponent {
     @Inject(PLATFORM_ID) private platformId: Object, 
     private titleService: Title, 
     private _screenSizeService: ScreenService) {
-    this.titleService.setTitle('GameStop FY 2023 Earnings')
+    this.titleService.setTitle('GameStop FY 2023 Earnings Results | gmewiki.org')
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([

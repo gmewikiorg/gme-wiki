@@ -75,10 +75,12 @@ export const routes: Routes = [
     { path: 'faq', component: FaqComponent },
 
     { path: 'fy23', component: Fy23EarningsComponent },
+    { path: 'FY23', component: Fy23EarningsComponent },
     { path: 'fy23-earnings', component: Fy23EarningsComponent },
     { path: 'fy23-profitability', component: Fy23EarningsComponent },
     
     { path: 'fy24', component: Fy24EarningsComponent },
+    { path: 'FY24', component: Fy24EarningsComponent },
     { path: 'fy24-earnings', component: Fy24EarningsComponent },
     { path: 'fy24-profitability', component: Fy24EarningsComponent },
     

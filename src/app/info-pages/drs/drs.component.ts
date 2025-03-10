@@ -29,11 +29,11 @@ export class DrsComponent {
     private titleService: Title, 
   ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
-    this.titleService.setTitle('gmewiki.org - DRS - Direct Registration System')
+    this.titleService.setTitle('DRS - Direct Registration System | gmewiki.org')
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'DRS - Direct Registration System' },
+      { name: 'description', content: 'DRS - Direct Registration System: information pertaining to DRS and GME, , the history of DRS by GME investors, the distinction between DRS and DSPP' },
       { name: 'keywords', content: 'GameStop, GME, DRS, DRS GME, DRSGME, Direct Registration System, DSPP, Computershare, transfer agent, DRSyourGME' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -42,7 +42,7 @@ export class DrsComponent {
     ]);
     this.meta.addTags([
       { property: 'og:title', content: 'gmewiki.org - DRS - Direct Registration System' },
-      { property: 'og:description', content: 'Information pertaining to DRS and GME, the history of DRS by GME investors, distinction with DSPP' },
+      { property: 'og:description', content: 'DRS - Direct Registration System: Information pertaining to DRS and GME, the history of DRS by GME investors, distinction with DSPP' },
       { property: 'og:url', content: 'https://gmewiki.org/drs' },
       { property: 'og:type', content: 'website' },
     ]);

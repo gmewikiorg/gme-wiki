@@ -32,24 +32,32 @@ export class TimelineComponent {
     private _loadingService: LoadingService,
     private _controlsService: TimelineControlsService,
     private titleService: Title) {
-    this.titleService.setTitle('GameStop Interactive Timeline');
+    const title = 'GameStop Interactive Timeline | gmewiki.org';
+    const description = 'GME interactive annotated timeline and chart tools';
+    this.titleService.setTitle(title);
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'GameStop Interactive Timeline' },
-      { name: 'keywords', content: 'GameStop, GME, timeline, Ryan Cohen, Roaring Kitty, DeepFuckingValue, reddit, superstonk, wallstreetbets, DRS, teddy, moass' },
+      { name: 'description', content: 'GameStop: Interactive GME Stock Timeline of Events' },
+      { name: 'keywords', content: 'GameStop, GME, timeline' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'gmewiki.org - Interactive GME Timeline' },
-      { property: 'og:description', content: 'GME interactive annotated timeline and chart tools' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/timeline.png' },
       { property: 'og:url', content: 'https://gmewiki.org/timeline' },
       { property: 'og:type', content: 'website' },
     ]);
+    this.meta.addTags([
+      // { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: 'https://gmewiki.org/assets/main-pages/timeline.png' }
+    ])
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
 
@@ -80,12 +88,12 @@ export class TimelineComponent {
       },
     });
 
-    this._controlsService.period$.subscribe((period)=>{
-      if(period === 'CURRENT'){
+    this._controlsService.period$.subscribe((period) => {
+      if (period === 'CURRENT') {
         this._chartTitle = 'GME Sneeze & Turnaround timeline - from 2020 to present';
-      }else if(period === 'HISTORIC'){
+      } else if (period === 'HISTORIC') {
         this._chartTitle = 'GME Historic timeline';
-      }else if(period === '2_YEARS'){
+      } else if (period === '2_YEARS') {
         this._chartTitle = 'GME - timeline of recent 2 years';
       }
     })
@@ -98,11 +106,11 @@ export class TimelineComponent {
     } else {
       // console.log("Not browser")
     }
-    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null)=>{
-      if(timelineEvent !== null){
+    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null) => {
+      if (timelineEvent !== null) {
         this._showAnnotationBox = true;
-      }else{
-        this._showAnnotationBox = false;  
+      } else {
+        this._showAnnotationBox = false;
       }
     })
   }

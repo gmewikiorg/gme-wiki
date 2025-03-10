@@ -17,13 +17,13 @@ export class SneezeComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title) {
 
-    this.titleService.setTitle('GameStop Sneeze');
+    this.titleService.setTitle('GameStop Sneeze of January 2021 | gmewiki.org');
 
 
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'January 2021 GameStop GME Sneeze' },
+      { name: 'description', content: 'January 2021 GME Sneeze or "GME Short Squeeze" - the events of January 2021, whatever happened there, played an important role in the story of GameStop' },
       { name: 'keywords', content: 'GameStop, GME, GME sneeze, GameStop sneeze, GameStop short squeeze, GME short squeeze, wallstreetbets, Roaring Kitty, DeepFuckingValue, gme wiki, gme price' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -31,8 +31,8 @@ export class SneezeComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'January 2021 GameStop GME Sneeze' },
-      { property: 'og:description', content: 'January 2021 GameStop GME Sneeze - What happened?  Was it even a short squeeze?' },
+      { property: 'og:title', content: 'GameStop Sneeze of January 2021 | gmewiki.org' },
+      { property: 'og:description', content: 'January 2021 GME Sneeze or "GME Short Squeeze" - the events of January 2021, whatever happened there, played an important role in the story of GameStop' },
       { property: 'og:url', content: 'https://gmewiki.org/sneeze' },
       { property: 'og:type', content: 'website' },
     ]);

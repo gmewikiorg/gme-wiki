@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
 import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
 import { FinancialChartService } from './earnings-chart.service';
-import { EarningsChartOption } from './earnings-chart-option.enum';
+import { EarningsChartSelection } from './earnings-chart-selection.enum';
 import { timer } from 'rxjs';
 
 
@@ -16,7 +16,7 @@ import { timer } from 'rxjs';
   styleUrl: './choose-earnings-chart.component.scss'
 })
 export class ChooseEarningsChartComponent implements OnInit {
-  public EarningsChartOption = EarningsChartOption;
+  public EarningsChartOption = EarningsChartSelection;
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -44,26 +44,26 @@ export class ChooseEarningsChartComponent implements OnInit {
   }
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._financialsService.chartPeriod; }
-  public get chartOption(): EarningsChartOption { return this._financialsService.chartOption; }
+  public get chartOption(): EarningsChartSelection { return this._financialsService.chartOption; }
 
   public get periodIsAnnual(): boolean { return this.chartPeriod === 'ANNUAL'; }
   public get periodIsQuarter(): boolean { return this.chartPeriod === 'QUARTER'; }
   // public get periodIsQoverQ(): boolean { return this.chartPeriod === 'QOVERQ'; }
 
-  public get chartIsRevenueVsIncome(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME; }
-  public get chartIsRevenueVsCost(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_COST; }
-  public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartOption.REVENUE_VS_GROSS_PROFIT; }
+  public get chartIsRevenueVsIncome(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME; }
+  public get chartIsRevenueVsCost(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_COST; }
+  public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_GROSS_PROFIT; }
 
-  public get chartIsOperations(): boolean { return this.chartOption === EarningsChartOption.OPERATING_INCOME; }
-  public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartOption.GROSS_PROFIT_VS_SGA; }
-  public get chartIsOperationsVsSGA(): boolean { return this.chartOption === EarningsChartOption.OPERATIONS_VS_SGA; }
+  public get chartIsOperations(): boolean { return this.chartOption === EarningsChartSelection.OPERATING_INCOME; }
+  public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartSelection.GROSS_PROFIT_VS_SGA; }
+  public get chartIsOperationsVsSGA(): boolean { return this.chartOption === EarningsChartSelection.OPERATIONS_VS_SGA; }
 
-  public get chartIsInterest(): boolean { return this.chartOption === EarningsChartOption.INTEREST_INCOME; }
-  public get chartIsEquity(): boolean { return this.chartOption === EarningsChartOption.STOCKHOLDERS_EQUITY; }
+  public get chartIsInterest(): boolean { return this.chartOption === EarningsChartSelection.INTEREST_INCOME; }
+  public get chartIsEquity(): boolean { return this.chartOption === EarningsChartSelection.STOCKHOLDERS_EQUITY; }
 
 
 
-  public onClickChartOption(option: EarningsChartOption) {
+  public onClickChartOption(option: EarningsChartSelection) {
     this._financialsService.setChartOption(option);
   }
 

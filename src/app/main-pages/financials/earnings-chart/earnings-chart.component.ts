@@ -8,9 +8,10 @@ import { EarningsResult } from '../../../shared/services/earnings-results/earnin
 import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
-import { EarningsChartOption } from '../choose-earnings-chart/earnings-chart-option.enum';
+import { EarningsChartSelection } from '../choose-earnings-chart/earnings-chart-selection.enum';
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
 import { Subscription } from 'rxjs';
+import { earningsChartLabelContext } from './earnings-chart-label-context';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -33,7 +34,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
 
   @Input() isFY23Earnings: boolean = false;
-  @Input() componentConfig: { article: 'FY24', chart: EarningsChartOption, } | null = null;
+  @Input() componentConfig: { article: 'FY24', chart: EarningsChartSelection, } | null = null;
 
 
   public barChartData: ChartConfiguration<'bar'>['data'];
@@ -45,10 +46,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   public get isLoaded(): boolean { return this._isLoaded; }
 
   private _chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ' = 'ANNUAL';
-  private _chartOption: EarningsChartOption = EarningsChartOption.REVENUE_VS_NET_INCOME;
+  private _chartOption: EarningsChartSelection = EarningsChartSelection.REVENUE_VS_NET_INCOME;
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartPeriod; }
-  public get chartOption(): EarningsChartOption { return this._chartOption; }
+  public get chartOption(): EarningsChartSelection { return this._chartOption; }
 
   async ngOnInit() {
     // await this._loadingService.loadEarnings();
@@ -60,7 +61,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   private _setComponentConfig() {
     if (this.isFY23Earnings) {
       this._chartService.setChartPeriod('ANNUAL');
-      this._chartService.setChartOption(EarningsChartOption.REVENUE_VS_NET_INCOME);
+      this._chartService.setChartOption(EarningsChartSelection.REVENUE_VS_NET_INCOME);
     }
     if (this.componentConfig) {
       // E.G. in /FY24 component
@@ -154,7 +155,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     }
 
 
-    if (this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
+    if (this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
       this.showCustomLegend = true;
       // label = 'Revenue and Net Income ' + periodLabel;
     }
@@ -185,9 +186,15 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     const tickLabel = tickScale === 1000000 ? 'million' : 'billion';
     const minY = this._datasetBuilder.getMinY(this.chartOption, this.chartPeriod);
 
-    if (this.chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+    if (this.chartOption === EarningsChartSelection.REVENUE_VS_STORES) {
       this.barChartLegend = true;
     }
+
+    const tooltipCallbacks = {
+      label: (context: TooltipItem<"bar">) => { return this._labelContext(context) },
+      footer: (context: TooltipItem<"bar">[]) => { return this._footerContext(context) },
+      title: (context: TooltipItem<"bar">[]) => { return this._titleContext(context) }
+    };
 
     let chartOptions: ChartOptions<'bar'> = {
       responsive: true,
@@ -242,15 +249,11 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           display: false,
         },
         tooltip: {
-          callbacks: {
-            label: (context) => { return this._labelContext(context) },
-            footer: (context) => { return this._footerContext(context) },
-            title: (context) => { return this._titleContext(context) }
-          },
+          callbacks: tooltipCallbacks
         },
       },
     }
-    if (this.chartOption === EarningsChartOption.REVENUE_VS_STORES) {
+    if (this.chartOption === EarningsChartSelection.REVENUE_VS_STORES) {
       chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -320,11 +323,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             display: false,
           },
           tooltip: {
-            callbacks: {
-              label: (context) => { return this._labelContext(context) },
-              footer: (context) => { return this._footerContext(context) },
-              title: (context) => { return this._titleContext(context) }
-            },
+            callbacks: tooltipCallbacks
           },
         },
 
@@ -334,52 +333,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   }
 
   private _labelContext(context: TooltipItem<"bar">): string {
-    const numValue = Number(context.raw);
-    let label = '';
-    if (this.chartOption === EarningsChartOption.REVENUE_VS_NET_INCOME) {
-      if (context.datasetIndex === 0) {
-        label = "Revenue:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "Net Income:  $" + this.numberWithCommas(numValue);
-      }
-    } else if (this.chartOption === EarningsChartOption.REVENUE_VS_COST) {
-      if (context.datasetIndex === 0) {
-        label = "Revenue:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "Cost of Sales:  $" + this.numberWithCommas(numValue);
-      }
-    } else if (this.chartOption === EarningsChartOption.REVENUE_VS_GROSS_PROFIT) {
-      if (context.datasetIndex === 0) {
-        label = "Revenue:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "Gross Profit:  $" + this.numberWithCommas(numValue);
-      }
-    } else if (this.chartOption === EarningsChartOption.REVENUE_VS_STORES) {
-      if (context.datasetIndex === 0) {
-        label = "Revenue:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "Stores:  " + this.numberWithCommas(numValue);
-      }
-    } else if (this.chartOption === EarningsChartOption.INTEREST_INCOME) {
-      label = "Interest Income:  $" + this.numberWithCommas(numValue);
-    } else if (this.chartOption === EarningsChartOption.STOCKHOLDERS_EQUITY) {
-      label = "Stockholders' Equity:  $" + this.numberWithCommas(numValue);
-    } else if (this.chartOption === EarningsChartOption.OPERATING_INCOME) {
-      label = "Operating Income:  $" + this.numberWithCommas(numValue);
-    } else if (this.chartOption === EarningsChartOption.GROSS_PROFIT_VS_SGA) {
-      if (context.datasetIndex === 0) {
-        label = "Gross Profit:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "SG&A Expense:  $" + this.numberWithCommas(numValue);
-      }
-    } else if (this.chartOption === EarningsChartOption.OPERATIONS_VS_SGA) {
-      if (context.datasetIndex === 0) {
-        label = "Operating Income:  $" + this.numberWithCommas(numValue);
-      } else if (context.datasetIndex === 1) {
-        label = "SG&A Expense:  $" + this.numberWithCommas(numValue);
-      }
-    }
-    return label;
+    return earningsChartLabelContext(context, this.chartOption);
   }
   private _footerContext(context: TooltipItem<"bar">[]): string {
     const item = context[0];
@@ -389,7 +343,5 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     return this._xAxisLabels[context[0].dataIndex];
   }
 
-  numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+
 }
