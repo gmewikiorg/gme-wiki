@@ -35,10 +35,10 @@ import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-inte
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
 import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
 import { StoresComponent } from './info-pages/stores/stores.component';
-import { SummaryGuideComponent } from './info-pages/summary-guide/summary-guide.component';
 import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
 import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
+import { ShortInterestComponent } from './info-pages/short-interest/short-interest.component';
 
 
 
@@ -66,6 +66,7 @@ export const routes: Routes = [
     { path: 'competition', component: CompetitionComponent },
     
 
+    { path: 'downfall', component: DownfallEraComponent },
     { path: 'downfall-era', component: DownfallEraComponent },
 
     { path: 'drs', component: DrsComponent },
@@ -88,8 +89,6 @@ export const routes: Routes = [
     { path: 'ftds', component: FtdComponent },
     { path: 'failure-to-deliver', component: FtdComponent },
     { path: 'fud', component: FudComponent },
-
-    { path: 'guide', component: SummaryGuideComponent },
 
     { path: 'investors', component: InvestorsComponent },
 
@@ -114,6 +113,7 @@ export const routes: Routes = [
     { path: 'keith-gill', component: KeithGillComponent },
     { path: 'roaring-kitty', component: KeithGillComponent },
 
+    { path: 'short-interest', component: ShortInterestComponent },
     { path: 'sneeze', component: SneezeComponent },
     { path: 'squeeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
