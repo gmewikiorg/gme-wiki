@@ -34,7 +34,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
 
   @Input() isFY23Earnings: boolean = false;
-  @Input() componentConfig: { article: 'FY24', chart: EarningsChartSelection, } | null = null;
+  @Input() componentConfig: { article: 'FY24' | 'ATMs', chart: EarningsChartSelection, } | null = null;
 
 
   public barChartData: ChartConfiguration<'bar'>['data'];
@@ -69,6 +69,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         this._chartPeriod = 'ANNUAL';
         this._chartOption = this.componentConfig.chart;
       }
+      if(this.componentConfig.article === 'ATMs'){
+        this._chartPeriod = 'QUARTER';
+        this._chartOption = this.componentConfig.chart;
+      }
     }
   }
 
@@ -77,6 +81,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     this._subscriptions.forEach(s => s.unsubscribe())
     this.componentConfig = null;
     this.isFY23Earnings = false;
+    this._chartService.setChartTitle('');
   }
 
   ngAfterViewInit(): void {
@@ -114,6 +119,8 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
   private _updateDatasets(dataEntryCount = 20): ChartConfiguration<'bar'>['data'] {
     /**   Total of 19 items from FY05 to FY23 inclusive    */
+    const chartTitle = this._datasetBuilder.chartTitle(this.chartOption, this.chartPeriod);
+    this._chartService.setChartTitle(chartTitle);
 
     this.showCustomLegend = false;
     let results: EarningsResult[] = this._financeService.annualResults;
@@ -169,9 +176,9 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartOption, this.chartPeriod, dataEntryCount);
-    const chartTitle = this._datasetBuilder.chartTitle(this.chartOption, this.chartPeriod);
+
     const labels = this._datasetBuilder.getSubsetArray(dataEntryCount, this._xAxisLabels);
-    this._chartService.setChartTitle(chartTitle);
+
 
     return {
       labels: labels,

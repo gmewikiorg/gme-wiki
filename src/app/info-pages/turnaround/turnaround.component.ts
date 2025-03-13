@@ -21,7 +21,7 @@ export class TurnaroundComponent implements OnInit {
     private titleService: Title, private _screenService: ScreenService) {
 
       const title = 'GameStop Turnaround: 2021 to present | gmewiki.org'
-      const description = 'GameStop Turnaround:  fewer stores, higher value, renewed profitability'
+      const description = 'GameStop Turnaround:  fewer stores, higher value, renewed profitability | gmewiki.org'
     this.titleService.setTitle(title);
 
 

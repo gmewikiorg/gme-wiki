@@ -7,7 +7,7 @@ import { OwnershipComponent } from './main-pages/ownership/ownership.component';
 import { SocialMediaComponent } from './main-pages/social-media/social-media.component';
 import { AboutComponent } from './main-pages/about/about.component';
 
-import { Atms2024Component } from './info-pages/atms-2024/atms-2024.component';
+import { ATMsComponent } from './info-pages/atms/atms.component';
 import { BurpComponent } from './info-pages/burp/burp.component';
 import { CNBCVsNakedShortsComponent } from './info-pages/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
 import { ConflictComponent } from './info-pages/conflict/conflict.component';
@@ -56,7 +56,10 @@ export const routes: Routes = [
 
 
     /** Info pages / articles  */
-    { path: '2024-atms', component: Atms2024Component },
+    { path: 'atm', component: ATMsComponent },
+    { path: 'atms', component: ATMsComponent },
+    { path: '2021-atms', component: ATMsComponent },
+    { path: '2024-atms', component: ATMsComponent },
 
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },

@@ -19,11 +19,12 @@ export class FinancialChartService {
   public get chartPeriod$(): Observable<'ANNUAL' | 'QUARTER' | 'QOVERQ'> { return this._chartPeriod$.asObservable(); }
   public get chartOption$(): Observable<EarningsChartSelection> { return this._chartOption$.asObservable(); }
 
-  private _chartTitle: string = 'Revenue and Net Income by fiscal year';
-  public get chartTitle(): string { return this._chartTitle; }
+  private _chartTitle$: BehaviorSubject<string> = new BehaviorSubject<string>('Revenue and Net Income by fiscal year');
+  public get chartTitle(): string { return this._chartTitle$.getValue(); }
+  public get chartTitle$(): Observable<string> { return this._chartTitle$.asObservable(); }
 
   public setChartTitle(title: string){
-    this._chartTitle = title;
+    this._chartTitle$.next(title);
   }
 
   public setChartOption(option: EarningsChartSelection) {

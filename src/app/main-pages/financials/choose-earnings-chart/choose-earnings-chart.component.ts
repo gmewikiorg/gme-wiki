@@ -1,11 +1,11 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
 import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
 import { FinancialChartService } from './earnings-chart.service';
 import { EarningsChartSelection } from './earnings-chart-selection.enum';
-import { timer } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { timer } from 'rxjs';
   templateUrl: './choose-earnings-chart.component.html',
   styleUrl: './choose-earnings-chart.component.scss'
 })
-export class ChooseEarningsChartComponent implements OnInit {
+export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   public EarningsChartOption = EarningsChartSelection;
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
@@ -29,14 +29,26 @@ export class ChooseEarningsChartComponent implements OnInit {
   private _isLoading: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
-  public get chartTitle(): string { return this._financialsService.chartTitle; }
+  private _chartTitle: string = 'Revenue and Net Income by fiscal year';
+  public get chartTitle(): string { return this._chartTitle; }
   public get isLoading(): boolean { return this._isLoading; }
 
+  private _subscription: Subscription | null = null;
+
   ngOnInit() {
-    timer(0).subscribe(()=>{
+    this._chartTitle = this._financialsService.chartTitle;
+    timer(0).subscribe(() => {
       this._isLoading = false;
+      this._subscription = this._financialsService.chartTitle$.subscribe((title) => {
+        this._chartTitle = title;
+      })
     })
 
+
+  }
+
+  ngOnDestroy() {
+    this._subscription?.unsubscribe();
   }
 
   onClickMoreCharts() {

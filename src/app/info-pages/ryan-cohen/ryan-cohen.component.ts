@@ -5,6 +5,7 @@ import { ImageCarouselComponent } from '../../shared/components/image-carousel/i
 import { ImageCarousel } from '../../shared/components/image-carousel/image-carousel.class';
 import { ImageCarouselItem } from '../../shared/components/image-carousel/image-carousel-item.interface';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ryan-cohen',
@@ -17,7 +18,8 @@ export class RyanCohenComponent {
 
   // private _rcCarouselItems: ImageCarouselItem[] =
 
-  constructor(private _screenService: ScreenService) {
+  constructor(private _screenService: ScreenService, private meta: Meta,
+    private titleService: Title,) {
     const items: ImageCarouselItem[] = [
       {
         description: 'Ryan Cohen',
@@ -82,7 +84,29 @@ export class RyanCohenComponent {
     ].sort(() => Math.random() - 0.5);
     this._rcCarousel = new ImageCarousel(items);
     this._isBrowser = _screenService.isBrowser;
+
+    const title = 'Ryan Cohen: GameStop CEO and Chairman | gmewiki.org';
+    const description = 'Ryan Cohen: GameStop CEO and Chairman, largest individual GME shareholder, receives no compensation | gmewiki.org';
+    this.titleService.setTitle(title)
+    const metaTags = this.meta.getTags('name');
+    metaTags.forEach(tag => this.meta.removeTagElement(tag));
+    this.meta.addTags([
+      { name: 'description', content: description },
+      { name: 'keywords', content: 'GameStop, GME, Ryan Cohen, RC' },
+      { name: 'author', content: 'GME shareholder' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      { charset: 'UTF-8' }
+    ]);
+    this.meta.addTags([
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
+      { property: 'og:url', content: 'https://gmewiki.org/ryan-cohen' },
+      { property: 'og:type', content: 'website' },
+    ]);
   }
+
+
 
   private _isBrowser: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
@@ -90,5 +114,5 @@ export class RyanCohenComponent {
   public get rcCarousel(): ImageCarousel { return this._rcCarousel; }
 
   public get isMobile(): boolean { return this._screenService.isMobile; }
-  public get screenWidth(): number { return this._screenService.screenWidth;}
+  public get screenWidth(): number { return this._screenService.screenWidth; }
 }
