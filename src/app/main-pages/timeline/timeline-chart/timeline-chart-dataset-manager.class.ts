@@ -28,10 +28,10 @@ export class ChartDataSetManager {
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
   private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' = 'PRICE';
-  private _period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' = 'CURRENT';
+  private _period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE' = 'CURRENT';
 
   public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric; }
-  public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period; }
+  public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE' { return this._period; }
 
   private _isDarkMode: boolean;
   private _isMobile: boolean;
@@ -76,7 +76,7 @@ export class ChartDataSetManager {
     this.getAndUpdateDatasets();
   }
 
-  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'  | 'SNEEZE', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._period = period;
     this._startDateYYYYMMDD = startDateYYYYMMDD;
     this._endDateYYYYMMDD = endDateYYYYMMDD;
@@ -196,6 +196,12 @@ export class ChartDataSetManager {
         return 'HISTORIC_MOBILE';
       } else {
         return 'HISTORIC';
+      }
+    }else if (this.period === 'SNEEZE') {
+      if (this._isMobile) {
+        return 'SNEEZE_MOBILE';
+      } else {
+        return 'SNEEZE';
       }
     }
     return 'CURRENT';

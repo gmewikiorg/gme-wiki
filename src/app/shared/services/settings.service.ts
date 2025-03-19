@@ -229,15 +229,15 @@ export class SettingsService {
   }
 
   private _loadSignificanceFromLS(): number {
-    if(this._localStorage){
-      const significanceStr = this._localStorage.getItem('significance');
-      let significance: number = 3;
-      if (significanceStr !== null) {
-        significance = Number(significanceStr);
-      }
-      return significance;
-    }
-    return 3;
+    // if(this._localStorage){
+    //   const significanceStr = this._localStorage.getItem('significance');
+    //   let significance: number = 3;
+    //   if (significanceStr !== null) {
+    //     significance = Number(significanceStr);
+    //   }
+    //   return significance;
+    // }
+    return 1;
   }
 
   private _loadDirectionIsVerticalFromLS(): boolean {

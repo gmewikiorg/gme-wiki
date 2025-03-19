@@ -1,18 +1,18 @@
-import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 import { BarController, BarElement, CategoryScale, Chart, ChartConfiguration, ChartOptions, Decimation, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip, TooltipItem } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartDataManagerService } from './timeline-chart-data-manager-service';
-import { TimelineItemsService } from '../timeline-items/timeline-items.service';
+import { TimelineChartDataManagerService } from './timeline-chart-data-manager-service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import dayjs from 'dayjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { TimelineControlsService } from '../timeline-controls/timeline-controls.service';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { getAnnotationConfig } from '../timeline-controls/chart-options/annotations-historic';
+import { SneezeChartAnimation } from '../../../info-pages/sneeze/sneeze-chart-animation.class';
 
 
 @Component({
@@ -23,23 +23,31 @@ import { getAnnotationConfig } from '../timeline-controls/chart-options/annotati
   styleUrl: './timeline-chart.component.scss'
 })
 export class TimelineChartComponent implements OnDestroy {
-  @ViewChild(BaseChartDirective) public baseChart: BaseChartDirective | undefined;
-  @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) { }
+  // @ViewChild(BaseChartDirective) public baseChart: BaseChartDirective | undefined;
+  @HostListener('mousemove', ['$event']) onMousemove(event: MouseEvent) {
+    if (this.isSneezeComponent) {
+      return;
+    }
+  }
+
+
+  @Input() isSneezeComponent: boolean = false;
+  @Input() isBurpComponent: boolean = false;
 
   constructor(
-    private _chartDataService: ChartDataManagerService,
-    private _timelineItemService: TimelineItemsService,
+    private _chartDataService: TimelineChartDataManagerService,
     private _sizeService: ScreenService,
     private _controlsService: TimelineControlsService,
     private _router: Router
   ) {
     this._isDarkMode = this._sizeService.isDarkMode;
-    Chart.unregister(ChartDataLabels, annotationPlugin);
+    Chart.unregister(ChartDataLabels, annotationPlugin, Tooltip);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
     Chart.register(annotationPlugin, PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale, BarController, BarElement);
     this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
     this.lineChartData.datasets = this._chartDataService.dataSets;
     this.lineChartData.labels = this._chartDataService.chartLabels;
+    this._sneezeAnimator = new SneezeChartAnimation(this._chartDataService, this._controlsService);
   }
 
   public lineChartData: ChartConfiguration<'line'>['data'] = { labels: [], datasets: [] };
@@ -47,20 +55,28 @@ export class TimelineChartComponent implements OnDestroy {
   public lineChartLegend = false;
 
   private _isDarkMode: boolean;
-  private _timePeriod: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' = 'CURRENT';
+  private _timePeriod: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE' = 'CURRENT';
   private _subscriptions: Subscription[] = [];
 
   ngOnInit() {
-    this._controlsService.period$.subscribe((period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM') => {
-      this._timePeriod = period;
-      this._chartDataService.updatePeriod(period, this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
-    })
-    this._controlsService.metric$.subscribe(() => {
-      this._chartDataService.updateMetric(this._controlsService.metric)
-    })
+    if (this.isSneezeComponent) {
+      this._setSneezePeriod();
+    } else {
+      this._controlsService.period$.subscribe((period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE') => {
+        this._timePeriod = period;
+        this._chartDataService.updatePeriod(period, this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
+      })
+      this._controlsService.metric$.subscribe(() => {
+        this._chartDataService.updateMetric(this._controlsService.metric)
+      })
+    }
+
   }
+
   ngOnDestroy(): void {
     this._subscriptions.forEach(sub => sub.unsubscribe());
+    this._sneezeAnimator.stop();
+    Chart.unregister();
   }
 
   ngAfterViewInit() {
@@ -70,10 +86,16 @@ export class TimelineChartComponent implements OnDestroy {
         this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         this._chartDataService.updateDarkMode(isDarkMode);
       }
-    }) 
+    })
+
+    const receiveAnimationSignalSub = this._chartDataService.sneezeAnimation$.subscribe((animate: boolean) => {
+      if (animate === true) {
+        this._animateSneezeChart();
+      }
+    })
 
     const changedToMobileSub = this._sizeService.changedScreenFromToMobile$.subscribe({
-      next: ()=>{
+      next: () => {
         this._chartDataService.updateIsMobile(this._sizeService.isMobile);
       }
     })
@@ -90,12 +112,29 @@ export class TimelineChartComponent implements OnDestroy {
         this.lineChartData.datasets = datasets;
         this.lineChartOptions = this._setLineChartOptions(this._isDarkMode);
         // console.log("DATASETS UPDATE", this.lineChartData.datasets)
-        this.baseChart?.update();
+        // this.baseChart?.update();
       },
       error: () => { },
       complete: () => { }
     });
-    this._subscriptions = [darkModeSub, datasetSub,changedToMobileSub];
+
+    this._subscriptions = [darkModeSub, datasetSub, changedToMobileSub, receiveAnimationSignalSub];
+  }
+
+
+
+
+  private _sneezeAnimator: SneezeChartAnimation;
+
+  private _setSneezePeriod() {
+    this._timePeriod = 'SNEEZE';
+    let sneezeStartYYYYMMDD = this._sneezeAnimator._sneezeChartStartDateYYYYMMDD;
+    let sneezeCurrentEndYYYYMMDD = this._sneezeAnimator._sneezeChartStopDateYYYYMMDD;
+    this._chartDataService.updatePeriod('SNEEZE', sneezeStartYYYYMMDD, sneezeCurrentEndYYYYMMDD);
+  }
+
+  private _animateSneezeChart() {
+    this._sneezeAnimator.animateSneezeChart();
   }
 
   private _cursorNgStyle = { cursor: 'default', }
@@ -104,8 +143,8 @@ export class TimelineChartComponent implements OnDestroy {
   private _setLineChartOptions(isDarkMode: boolean): ChartOptions<'line'> {
     let scaleColor = 'rgba(128,128,128,0.2)';
     if (isDarkMode) { scaleColor = 'rgba(255,255,255,0.1)'; }
-    const img = new Image();
-    img.src = 'assets/icons/bluesky-logo.png';
+    // const img = new Image();
+    // img.src = 'assets/icons/bluesky-logo.png';
 
     const period = this._timePeriod;
     let annotation: any = {}
@@ -130,26 +169,28 @@ export class TimelineChartComponent implements OnDestroy {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
             this._controlsService.onHoverTimelineItem(timelineItem);
-            if(timelineItem.hasLocalArticle){
+            if (timelineItem.hasLocalArticle || timelineItem.hasUrls) {
               this._cursorNgStyle = { cursor: 'pointer' }
             }
           }
-          
+
         }
       },
       onClick: (event, array) => {
         if (array.length > 0) {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
-            if(timelineItem.hasLocalArticle && !this._sizeService.isMobile){
+            if (timelineItem.hasLocalArticle && !this._sizeService.isMobile) {
               this._router.navigate([timelineItem.localArticle!.url]);
+            }else if(timelineItem.hasUrls){
+              window.open(timelineItem.urls[0].url, '_blank');
             }
           }
         }
       },
       layout: {
         padding: 0,
-        
+
       },
       scales: {
         x: {
@@ -166,7 +207,8 @@ export class TimelineChartComponent implements OnDestroy {
         y: {
           grid: {
             color: scaleColor // Change the color of the lines along the Y axis
-          }
+          }, 
+          min: 0,
         }
       },
       plugins: {
@@ -208,12 +250,12 @@ export class TimelineChartComponent implements OnDestroy {
     const event = this._chartDataService.lookupEventByIndex(context.datasetIndex, context.dataIndex)
     let label = '';
 
-    if(this._sizeService.isMobile){
-      if(event?.hasShortTitle){
+    if (this._sizeService.isMobile) {
+      if (event?.hasShortTitle) {
         label += event.shortTitle;
       }
-    }else{
-      if(event?.hasLocalArticle){
+    } else {
+      if (event?.hasLocalArticle) {
         label += '📰';
       }
       label += event?.title
@@ -229,7 +271,7 @@ export class TimelineChartComponent implements OnDestroy {
     const event = this._chartDataService.lookupEventByIndex(context[0].datasetIndex, context[0].dataIndex)
     let title = '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY') + " - GME share price: $" + Number(context[0].raw).toFixed(2)
 
-    if(this._sizeService.isMobile){
+    if (this._sizeService.isMobile) {
       title = '' + dayjs(event?.dateYYYYMMDD).format('MMMM D, YYYY')
     }
 

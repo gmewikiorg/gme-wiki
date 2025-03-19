@@ -33,12 +33,14 @@ import { RedditComponent } from './info-pages/reddit/reddit.component';
 import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
 import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-interview-2022.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
-import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
+import { SneezeVsSqueezeComponent } from './info-pages/sneeze/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
 import { StoresComponent } from './info-pages/stores/stores.component';
 import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
 import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
 import { ShortInterestComponent } from './info-pages/short-interest/short-interest.component';
+import { BearCaseComponent } from './info-pages/bear-case/bear-case.component';
+import { BullCaseComponent } from './info-pages/bull-case/bull-case.component';
 
 
 
@@ -60,6 +62,10 @@ export const routes: Routes = [
     { path: 'atms', component: ATMsComponent },
     { path: '2021-atms', component: ATMsComponent },
     { path: '2024-atms', component: ATMsComponent },
+
+
+    { path: 'bear-case', component: BearCaseComponent },
+    { path: 'bull-case', component: BullCaseComponent },
 
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },

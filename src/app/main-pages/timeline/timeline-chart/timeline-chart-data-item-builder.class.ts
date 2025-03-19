@@ -16,7 +16,7 @@ export class ChartDataItemBuilder {
         startDateYYYYMMDD: string,
         endDateYYYYMMDD: string,
         metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
-        period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM',
+        period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE',
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
@@ -91,6 +91,8 @@ export class ChartDataItemBuilder {
                     chartLabels.push(condensedItem.dateYYYYMMDD);
                 } else if (period === 'HISTORIC') {
                     chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('YYYY'));
+                } else if (period === 'SNEEZE') {
+                    chartLabels.push(condensedItem.dateYYYYMMDD);
                 } else {
                     chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM YYYY'));
                 }
@@ -143,6 +145,9 @@ export class ChartDataItemBuilder {
             })
         });
         if (period === 'CURRENT') {
+            /**
+             *  Only display a date label every 6 months, or if mobile then every 12 months.
+             */
             let currentDate: dayjs.Dayjs = dayjs('2020-07-01');
             if (isMobile) {
                 currentDate = dayjs('2021-01-01');
@@ -174,6 +179,27 @@ export class ChartDataItemBuilder {
                         years.push(chartLabels[i]);
                     } else {
                         chartLabels[i] = "";
+                    }
+                } else {
+                    chartLabels[i] = "";
+                }
+            }
+        } else if (period === 'SNEEZE') {
+            /**
+             *  Only display a date label every 6 months, or if mobile then every 12 months.
+             */
+            let currentDate: dayjs.Dayjs = dayjs(startDateYYYYMMDD);
+            if (isMobile) {
+                currentDate = dayjs(startDateYYYYMMDD);
+            }
+            for (let i = 0; i < chartLabels.length; i++) {
+                if (dayjs(chartLabels[i]).isAfter(currentDate)) {
+                    if (isMobile) {
+                        chartLabels[i] = dayjs(chartLabels[i]).format('YYYY');
+                        currentDate = currentDate.add(1, 'months');
+                    } else {
+                        chartLabels[i] = dayjs(chartLabels[i]).format('MMM YYYY');
+                        currentDate = currentDate.add(1, 'months');
                     }
                 } else {
                     chartLabels[i] = "";

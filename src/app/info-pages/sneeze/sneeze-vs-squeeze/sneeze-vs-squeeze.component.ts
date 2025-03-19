@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent } from '../../layout/footer/footer.component';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-sneeze-vs-squeeze',

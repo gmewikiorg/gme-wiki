@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
+import { TimelinePeriodType } from './timeline-period-type';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,13 @@ export class TimelineControlsService {
   constructor() { }
 
 
-  private _period$: BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> = new BehaviorSubject<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'>('CURRENT');
+  private _period$: BehaviorSubject<TimelinePeriodType> = new BehaviorSubject<TimelinePeriodType>('CURRENT');
   private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' >('PRICE');
 
-  public get period(): '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' { return this._period$.getValue(); }
+  public get period(): TimelinePeriodType { return this._period$.getValue(); }
   public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric$.getValue(); }
 
-  public get period$(): Observable<'2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM'> { return this._period$.asObservable(); }
+  public get period$(): Observable<TimelinePeriodType> { return this._period$.asObservable(); }
   public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > { return this._metric$.asObservable(); }
 
   /** No data available for GME prior to 2002-02-13 */
@@ -30,12 +31,18 @@ export class TimelineControlsService {
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
 
+  public setTimeframe(startDateYYYYMMDD: string, endDateYYYYMMDD: string){
+    this._startDateYYYYMMDD = startDateYYYYMMDD;
+    this._endDateYYYYMMDD = endDateYYYYMMDD;
+  }
+
+
   public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' ) {
     this._timelineItemAnnotation$.next(null);
     this._metric$.next(metric);
   }
 
-  public setPeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM') {
+  public setPeriod(period: TimelinePeriodType) {
     this._timelineItemAnnotation$.next(null);
     if (period === '2_YEARS') {
       this._startDateYYYYMMDD = dayjs().add(-2, 'years').format('YYYY-MM-DD');
@@ -59,6 +66,10 @@ export class TimelineControlsService {
 
   public onHoverTimelineItem(timelineItem: TimelineEvent | null){
     this._timelineItemAnnotation$.next(timelineItem);
+  }
+
+  public removeAnnotation(){
+    this._timelineItemAnnotation$.next(null);
   }
 
 

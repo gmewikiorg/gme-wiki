@@ -13,8 +13,9 @@
         <div class="page-section">
             <div class="section-heading">Short Summary</div>
             <ul>
-                <li>In January 2021, the share price of GME was rising exponentially due mainly to the momentum of investor enthusiasm</li>
-                <li>On January 28, 2021, in an unprecedented maneuver,
+                <li>In January 2021, the share price of GME was rising exponentially due mainly to the momentum of
+                    investor enthusiasm</li>
+                <li>On the morning of January 28, 2021, in an unprecedented maneuver,
                     <!-- <a
                         href="https://www.reddit.com/r/GME/comments/1ivm2ei/proof_apex_clearing_demanded_gme_stock_buying_be/"
                         target="_blank">approximately
@@ -22,9 +23,30 @@
 
                     approximately
                     178 financial institutions, in unison, placed GME in "sell-only", disabling
-                    the ability for investors to purchase shares of GME
+                    the ability for investors to purchase shares of GME, reducing upward price momentum almost entirely.
                 </li>
             </ul>
+        </div>
+
+        <div class="page-section" *ngIf="isBrowser">
+            <div class="section-heading">Sneeze Timeline</div>
+            <div><button (click)="onClick()" [disabled]="animateButtonDisabled">Animate Timeline</button></div>
+            <!-- <div *ngIf="chartIsLoaded">
+                <app-timeline-chart class="app-chart" [isSneezeComponent]="true"></app-timeline-chart>
+            </div> -->
+            <!-- <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
+                <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
+            </div> -->
+
+            <div class="timeline-chart-grid" *ngIf="chartIsLoaded">
+                <!-- <app-loading class="app-chart" *ngIf="!chartIsLoaded"></app-loading> -->
+                <app-timeline-chart class="app-chart" [isSneezeComponent]="true"></app-timeline-chart>
+                <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
+                    <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
+                </div>
+            </div>
+
+            <app-loading class="app-chart" *ngIf="!chartIsLoaded"></app-loading>
         </div>
 
         <!-- Summary -->
@@ -52,13 +74,20 @@
                 <li>In January 2021, the share price of GME was rising exponentially</li>
                 <li>On January 28, 2021, in an unprecedented maneuver, most stock brokers, in unison, disabled the
                     ability for investors to purchase shares of GME</li>
-                <li>According to the
-                    <a href="https://www.sec.gov/files/staff-report-equity-options-market-struction-conditions-early-2021.pdf"
+                <li>Information from the <a
+                        href="https://www.sec.gov/files/staff-report-equity-options-market-struction-conditions-early-2021.pdf"
                         target="_blank">
                         SEC Staff Report on Equity and Options Market Structure Conditions in Early 2021
-                    </a>,
-                    "it was the positive sentiment, not the buying-to-cover, that sustained the weeks-long price
-                    appreciation of GameStop stock."
+                    </a> corroborates the idea that what happened was not definitively a short squeeze.
+                    <ul>
+                        <li>"... it was the positive sentiment, not the buying-to-cover, that sustained the weeks-long
+                            price
+                            appreciation of GameStop stock."</li>
+                        <li> "While a short squeeze did not appear to be the main driver of events, and a gamma squeeze
+                            less likely, the episode highlights the role and potential impact of short selling and short
+                            covering."</li>
+                    </ul>
+
                 </li>
                 <li>
                     In June 2022, the U.S. House Committee on Financial Services published the report

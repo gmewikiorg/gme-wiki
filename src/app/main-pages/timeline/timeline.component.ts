@@ -81,6 +81,7 @@ export class TimelineComponent {
   public get chartTitle(): string { return this._chartTitle; }
 
   async ngOnInit() {
+    this._controlsService.setPeriod('CURRENT');
     this._sizeService.screenDimensions$.subscribe({
       next: (dimensions) => {
         if (dimensions.width < 1050) {

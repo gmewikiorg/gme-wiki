@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { ChartDataSetManager } from './timeline-chart-dataset-manager.class';
 import { TimelineEventType } from '../timeline-items/timeline-item/timeline-event-type.enum';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
@@ -9,7 +9,7 @@ import { ChartDataset, ScatterDataPoint } from 'chart.js';
   providedIn: 'root'
 })
 
-export class ChartDataManagerService {
+export class TimelineChartDataManagerService {
   /**
    * The ChartDataManagerService manages the datasets for the chart.  As filters are applied, the datasets need to be updated.
    */
@@ -56,9 +56,26 @@ export class ChartDataManagerService {
   public updateDisplayedEvents(events: TimelineEvent[]) {
     this._dataManager.updateDisplayedEvents(events);
   }
-  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._dataManager.updatePeriod(period, startDateYYYYMMDD, endDateYYYYMMDD);
   }
+
+
+  public sneezeAnimation$: EventEmitter<boolean> = new EventEmitter();
+  private _currentlyAnimating$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public initiateSneezeAnimation() {
+    this._currentlyAnimating$.next(true);
+    this.sneezeAnimation$.emit(true);
+  }
+  public stopAnimation(){
+    this._currentlyAnimating$.next(false);
+  }
+  public animationComplete() {
+    this._currentlyAnimating$.next(false);
+  }
+  public get currentlyAnimating(): boolean { return this._currentlyAnimating$.getValue(); }
+  public get currentlyAnimating$(): Observable<boolean> { return this._currentlyAnimating$.asObservable(); }
+
   public updateMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
     this._dataManager.updateMetric(metric);
   }
@@ -66,7 +83,7 @@ export class ChartDataManagerService {
   public updateDarkMode(isDarkMode: boolean) {
     this._dataManager.updateDarkMode(isDarkMode);
   }
-  public updateIsMobile(isMobile: boolean){
+  public updateIsMobile(isMobile: boolean) {
     this._dataManager.updateIsMobile(isMobile);
   }
 

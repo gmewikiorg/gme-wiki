@@ -48,6 +48,7 @@ export class TimelineEvent{
     public get isSelected(): boolean { return this._isSelected; }
     public get hasImg(): boolean { return this._imgSrc !== ''; }
     public get hasLocalArticle(): boolean { return this._localArticle !== null;}
+    public get hasUrls(): boolean { return this._urls.length > 0; }
 
     public get gmePriceEntry(): GmePriceEntry | undefined { return this._gmePriceEntry;}
     public get gmePrice(): number { return this._gmePrice; }

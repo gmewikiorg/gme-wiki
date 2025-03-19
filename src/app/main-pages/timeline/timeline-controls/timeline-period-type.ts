@@ -1,0 +1,1 @@
+export type TimelinePeriodType = '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE';

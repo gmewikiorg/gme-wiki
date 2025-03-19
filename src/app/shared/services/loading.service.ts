@@ -6,7 +6,7 @@ import { SettingsService } from './settings.service';
 import { GmePriceEntry } from './gme-price-entry.interface';
 import { EarningsResult } from './earnings-results/earnings-result.class';
 import { TimelineEvent } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
-import { ChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
+import { TimelineChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
 import { TimelineItemsService } from '../../main-pages/timeline/timeline-items/timeline-items.service';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
 import { Import10KDataService } from './earnings-results/import-10k-data.service';
@@ -22,7 +22,7 @@ import { ScreenService } from './screen-size.service';
 export class LoadingService {
 
   constructor(
-    private _dataManagerService: ChartDataManagerService,
+    private _dataManagerService: TimelineChartDataManagerService,
     private _gmeDataService: ImportGmeDataService,
     private _timelineItemsService: TimelineItemsService,
     private _settingsService: SettingsService,

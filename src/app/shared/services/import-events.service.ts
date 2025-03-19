@@ -86,6 +86,8 @@ export class ImportEventsService {
         type = 'CURRENT_MOBILE';
       } else if (sourceType === 'HISTORIC_MOBILE') {
         type = 'HISTORIC_MOBILE';
+      }else if (sourceType === 'SNEEZE') {
+        type = 'SNEEZE';
       }
       if(type !== null){
         viewTypes.push(type);
