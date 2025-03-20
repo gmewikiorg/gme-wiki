@@ -12,7 +12,6 @@
     display: grid;
     grid-template-rows: 250px auto;
     grid-template-columns: auto;
-    height: 650px;
 }
 
 .app-chart {
@@ -22,11 +21,11 @@
     grid-column: 1 / span 1;
 }
 
-@media (max-width:500px) {
-    .timeline-chart-grid {
-        height: 300px;
-    }
-}
+// @media (max-width:500px) {
+//     .timeline-chart-grid {
+//         height: 300px;
+//     }
+// }
 
 
 

@@ -3,7 +3,7 @@ import { TimelineControlsService } from '../timeline-controls.service';
 import { CommonModule } from '@angular/common';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TimelinePeriodType } from '../timeline-period-type';
+import { TimelineEventViewType } from '../../timeline-items/timeline-item/timeline-event-url.interface';
 
 @Component({
   selector: 'app-timeline-chart-selection',
@@ -21,7 +21,7 @@ export class TimelineChartSelectionComponent {
     public get faX() { return faX; }
 
   public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._controlsService.metric; }
-  public get period(): TimelinePeriodType { return this._controlsService.period; }
+  public get period(): TimelineEventViewType { return this._controlsService.period; }
 
   public get metricIsPrice(): boolean { return this.metric === 'PRICE'; }
   public get metricIsVolume(): boolean { return this.metric === 'VOLUME'; }
@@ -41,7 +41,7 @@ export class TimelineChartSelectionComponent {
     this._controlsService.setMetric(metric);
   }
 
-  public onClickPeriod(period: TimelinePeriodType) {
+  public onClickPeriod(period: TimelineEventViewType) {
     this._controlsService.setPeriod(period);
   }
 

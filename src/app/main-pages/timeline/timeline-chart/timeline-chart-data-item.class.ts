@@ -2,6 +2,7 @@ import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.cl
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
 import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
 import dayjs from "dayjs";
+import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 
 export class ChartDataItem {
 
@@ -66,7 +67,7 @@ export class ChartDataItem {
     public get pToE(): number { return this._pToE; }
     public get volume(): number { return this._volume; } 
 
-    public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[]): {
+    public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[], currentView: TimelineEventViewType): {
         event: TimelineEvent | null,
         type: TimelineEventType,
         significance: number
@@ -74,12 +75,17 @@ export class ChartDataItem {
         let filteredEvents = this.events.filter(event => {
             const isSignificantEnough: boolean = allSignificances.includes(event.significance);
             let hasCategory: boolean = false;
+            let isViewType: boolean = false;
             event.types.forEach(type => {
                 if (currentCategoriesValue.includes(type)) {
                     hasCategory = true;
                 }
             });
-            return isSignificantEnough && hasCategory;
+            if(event.specificViews.includes(currentView)){
+                isViewType = true;
+            }
+
+            return isSignificantEnough && hasCategory && isViewType;
         });
         if (filteredEvents.length === 0) {
             return {

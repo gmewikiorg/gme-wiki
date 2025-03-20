@@ -13,6 +13,7 @@ import { TimelineControlsService } from '../timeline-controls/timeline-controls.
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { getAnnotationConfig } from '../timeline-controls/chart-options/annotations-historic';
 import { SneezeChartAnimation } from '../../../info-pages/sneeze/sneeze-chart-animation.class';
+import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 
 
 @Component({
@@ -55,14 +56,14 @@ export class TimelineChartComponent implements OnDestroy {
   public lineChartLegend = false;
 
   private _isDarkMode: boolean;
-  private _timePeriod: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE' = 'CURRENT';
+  private _timePeriod: TimelineEventViewType = 'CURRENT';
   private _subscriptions: Subscription[] = [];
 
   ngOnInit() {
     if (this.isSneezeComponent) {
       this._setSneezePeriod();
     } else {
-      this._controlsService.period$.subscribe((period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE') => {
+      this._controlsService.period$.subscribe((period: TimelineEventViewType) => {
         this._timePeriod = period;
         this._chartDataService.updatePeriod(period, this._controlsService.startDateYYYYMMDD, this._controlsService.endDateYYYYMMDD);
       })
@@ -128,8 +129,8 @@ export class TimelineChartComponent implements OnDestroy {
 
   private _setSneezePeriod() {
     this._timePeriod = 'SNEEZE';
-    let sneezeStartYYYYMMDD = this._sneezeAnimator._sneezeChartStartDateYYYYMMDD;
-    let sneezeCurrentEndYYYYMMDD = this._sneezeAnimator._sneezeChartStopDateYYYYMMDD;
+    let sneezeStartYYYYMMDD = this._sneezeAnimator.sneezeChartStartDateYYYYMMDD;
+    let sneezeCurrentEndYYYYMMDD = this._sneezeAnimator.sneezeChartStopDateYYYYMMDD;
     this._chartDataService.updatePeriod('SNEEZE', sneezeStartYYYYMMDD, sneezeCurrentEndYYYYMMDD);
   }
 
@@ -142,7 +143,7 @@ export class TimelineChartComponent implements OnDestroy {
 
   private _setLineChartOptions(isDarkMode: boolean): ChartOptions<'line'> {
     let scaleColor = 'rgba(128,128,128,0.2)';
-    if (isDarkMode) { scaleColor = 'rgba(255,255,255,0.1)'; }
+    if (isDarkMode) { scaleColor = 'rgba(255,255,255,0.15)'; }
     // const img = new Image();
     // img.src = 'assets/icons/bluesky-logo.png';
 
@@ -168,7 +169,7 @@ export class TimelineChartComponent implements OnDestroy {
         if (array.length > 0) {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
-            this._controlsService.onHoverTimelineItem(timelineItem);
+            this._controlsService.setTimelineAnnotation(timelineItem);
             if (timelineItem.hasLocalArticle || timelineItem.hasUrls) {
               this._cursorNgStyle = { cursor: 'pointer' }
             }
@@ -182,7 +183,7 @@ export class TimelineChartComponent implements OnDestroy {
           if (timelineItem) {
             if (timelineItem.hasLocalArticle && !this._sizeService.isMobile) {
               this._router.navigate([timelineItem.localArticle!.url]);
-            }else if(timelineItem.hasUrls){
+            } else if (timelineItem.hasUrls) {
               window.open(timelineItem.urls[0].url, '_blank');
             }
           }
@@ -195,7 +196,7 @@ export class TimelineChartComponent implements OnDestroy {
       scales: {
         x: {
           grid: {
-            // color: 'rgba(0,0,0,0.1)'
+            color: scaleColor,
           },
           ticks: {
             // autoSkip: period === 'HISTORIC' ? false : true,
@@ -207,7 +208,7 @@ export class TimelineChartComponent implements OnDestroy {
         y: {
           grid: {
             color: scaleColor // Change the color of the lines along the Y axis
-          }, 
+          },
           min: 0,
         }
       },

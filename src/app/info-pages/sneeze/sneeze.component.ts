@@ -75,8 +75,8 @@ export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy {
       this._chartIsLoaded = true;
 
     }
-    this._controlsSubscription = this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null) => {
-      if (timelineEvent !== null) {
+    this._controlsSubscription = this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null | undefined) => {
+      if (timelineEvent !== null && timelineEvent !== undefined) {
         this._showAnnotationBox = true;
       } else {
         this._showAnnotationBox = false;

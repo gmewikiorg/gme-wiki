@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
-import { TimelinePeriodType } from './timeline-period-type';
+import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,13 @@ export class TimelineControlsService {
   constructor() { }
 
 
-  private _period$: BehaviorSubject<TimelinePeriodType> = new BehaviorSubject<TimelinePeriodType>('CURRENT');
+  private _period$: BehaviorSubject<TimelineEventViewType> = new BehaviorSubject<TimelineEventViewType>('CURRENT');
   private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' >('PRICE');
 
-  public get period(): TimelinePeriodType { return this._period$.getValue(); }
+  public get period(): TimelineEventViewType { return this._period$.getValue(); }
   public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric$.getValue(); }
 
-  public get period$(): Observable<TimelinePeriodType> { return this._period$.asObservable(); }
+  public get period$(): Observable<TimelineEventViewType> { return this._period$.asObservable(); }
   public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > { return this._metric$.asObservable(); }
 
   /** No data available for GME prior to 2002-02-13 */
@@ -42,7 +42,7 @@ export class TimelineControlsService {
     this._metric$.next(metric);
   }
 
-  public setPeriod(period: TimelinePeriodType) {
+  public setPeriod(period: TimelineEventViewType) {
     this._timelineItemAnnotation$.next(null);
     if (period === '2_YEARS') {
       this._startDateYYYYMMDD = dayjs().add(-2, 'years').format('YYYY-MM-DD');
@@ -61,10 +61,10 @@ export class TimelineControlsService {
 
 
   
-  private _timelineItemAnnotation$: BehaviorSubject<TimelineEvent | null> = new BehaviorSubject<TimelineEvent | null>(null);
-  public get timelineItemAnnotation$(): Observable<TimelineEvent | null> { return this._timelineItemAnnotation$.asObservable(); }
+  private _timelineItemAnnotation$: BehaviorSubject<TimelineEvent | null | undefined> = new BehaviorSubject<TimelineEvent | null | undefined>(null);
+  public get timelineItemAnnotation$(): Observable<TimelineEvent | null | undefined> { return this._timelineItemAnnotation$.asObservable(); }
 
-  public onHoverTimelineItem(timelineItem: TimelineEvent | null){
+  public setTimelineAnnotation(timelineItem: TimelineEvent | null | undefined){
     this._timelineItemAnnotation$.next(timelineItem);
   }
 

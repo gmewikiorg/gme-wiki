@@ -4,6 +4,7 @@ import { ChartDataSetManager } from './timeline-chart-dataset-manager.class';
 import { TimelineEventType } from '../timeline-items/timeline-item/timeline-event-type.enum';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { ChartDataset, ScatterDataPoint } from 'chart.js';
+import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,7 @@ export class TimelineChartDataManagerService {
   public updateDisplayedEvents(events: TimelineEvent[]) {
     this._dataManager.updateDisplayedEvents(events);
   }
-  public updatePeriod(period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE', startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
+  public updatePeriod(period: TimelineEventViewType, startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
     this._dataManager.updatePeriod(period, startDateYYYYMMDD, endDateYYYYMMDD);
   }
 
@@ -101,6 +102,12 @@ export class TimelineChartDataManagerService {
   }
   public lookupIndexByEvent(event: TimelineEvent): { datasetIndex: number, itemIndex: number } {
     return this._dataManager.lookupIndexByTimelineItem(event);
+  }
+  public lookupEventByDate(dateYYYYMMDD: string){
+    return this._dataManager.lookupEventByDate(dateYYYYMMDD);
+  }
+  public lookupEventsByViewType(eventType: TimelineEventViewType): TimelineEvent[]{
+    return this._dataManager.lookupEventsByViewType(eventType);
   }
 
 

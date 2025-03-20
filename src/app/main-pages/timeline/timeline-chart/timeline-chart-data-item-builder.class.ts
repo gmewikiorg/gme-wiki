@@ -16,7 +16,7 @@ export class ChartDataItemBuilder {
         startDateYYYYMMDD: string,
         endDateYYYYMMDD: string,
         metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
-        period: '2_YEARS' | '5_YEARS' | 'CURRENT' | 'HISTORIC' | 'CUSTOM' | 'SNEEZE',
+        period: TimelineEventViewType,
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
         currentSignificanceValue: number,
@@ -121,7 +121,7 @@ export class ChartDataItemBuilder {
             pointHitRadius: 0,
             pointHoverRadius: 0,
         });
-        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, condensedItems, specificView);
+        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, specificView, condensedItems, specificView);
         datasetConfigs.forEach(datasetConfig => {
             datasets.push({
                 data: datasetConfig.dataPoints,
@@ -262,6 +262,7 @@ export class ChartDataItemBuilder {
         metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
+        currentViewType: TimelineEventViewType,
         condensedItems: ChartDataItem[],
         specificView: TimelineEventViewType): DatasetConfig[] {
         const datapointSets: {
@@ -286,7 +287,7 @@ export class ChartDataItemBuilder {
          * 
         */
         condensedItems.forEach(condensedItem => {
-            const priorityEvent = condensedItem.getPriorityEvent(allSignificances, currentCategoriesValue);
+            const priorityEvent = condensedItem.getPriorityEvent(allSignificances, currentCategoriesValue, currentViewType);
             // console.log("Priority Event, ", priorityEvent)
             datapointSets.forEach(datapointSet => {
                 if (priorityEvent.event?.specificViews.includes(specificView)) {
@@ -323,7 +324,7 @@ export class ChartDataItemBuilder {
             setIndex++;
         }
         const configs = datapointSets.map(set => {
-            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeColor(set.type), set.significance, metric);
+            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeColor(set.type), set.significance, metric, specificView);
         });
         return configs
     }

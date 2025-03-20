@@ -18,7 +18,7 @@ export class ImportEventsService {
    * The .csv document is picky, must remove the last empty line.
    * separated by ">"
    */
-  public async importEventsFromCSV$(){
+  public async importEventsFromCSV$() {
     const eventsSubject: Subject<TimelineEventConfig[]> = new Subject();
     const eventConfigs: TimelineEventConfig[] = [];
 
@@ -37,7 +37,7 @@ export class ImportEventsService {
     let lines = response.split('\n');
     lines = lines.slice(1);
     lines.forEach(line => {
-      if(line.length > 0){
+      if (line.length > 0) {
         let commaSplitLine = line.split('>');
         const title = commaSplitLine[0];
         const shortTitle = commaSplitLine[1];
@@ -67,7 +67,7 @@ export class ImportEventsService {
         }
         eventConfigs.push(eventConfig);
       }
-      
+
     });
     return eventConfigs;
   }
@@ -80,19 +80,26 @@ export class ImportEventsService {
       let type: TimelineEventViewType | null = null;
       if (sourceType === 'CURRENT') {
         type = 'CURRENT';
-      } else if (sourceType === 'HISTORIC') {
-        type = 'HISTORIC';
       } else if (sourceType === 'CURRENT_MOBILE') {
         type = 'CURRENT_MOBILE';
+      } else if (sourceType === 'HISTORIC') {
+        type = 'HISTORIC';
       } else if (sourceType === 'HISTORIC_MOBILE') {
         type = 'HISTORIC_MOBILE';
-      }else if (sourceType === 'SNEEZE') {
+      } else if (sourceType === 'SNEEZE') {
         type = 'SNEEZE';
+      } else if (sourceType === 'SNEEZE_MOBILE') {
+        type = 'SNEEZE_MOBILE';
+      } else if (sourceType === '2_YEARS') {
+        type = '2_YEARS';
+      } else if (sourceType === '5_YEARS') {
+        type = '5_YEARS';
+      } else if (sourceType === 'CUSTOM') {
+        type = 'CUSTOM';
       }
-      if(type !== null){
+      if (type !== null) {
         viewTypes.push(type);
       }
-
     })
     return viewTypes;
   }

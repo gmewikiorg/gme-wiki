@@ -5,7 +5,7 @@ import { TimelineEventType } from './timeline-event-type.enum';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 import { TimelineChartDataManagerService } from '../../timeline-chart/timeline-chart-data-manager-service';
 import dayjs from 'dayjs';
-import { TimelineEventUrlType } from './timeline-event-url.interface';
+import { TimelineEventUrlSrc } from './timeline-event-url.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -54,7 +54,7 @@ export class TimelineItemComponent {
     return dayjs(dateYYYYMMDD).format('MMMM D, YYYY')
   }
 
-  public linkTypeIsOther(linkType: TimelineEventUrlType) {
+  public linkTypeIsOther(linkType: TimelineEventUrlSrc) {
     if (linkType !== 'LEMMY' && linkType !== 'REDDIT' && linkType !== 'WIKIPEDIA'
       && linkType !== 'YOUTUBE' && linkType !== 'NEWS' && linkType !== 'DOCUMENT'
       && linkType !== 'GAMESTOP' && linkType !== 'X-TWITTER') {

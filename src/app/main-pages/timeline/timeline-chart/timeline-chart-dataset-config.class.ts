@@ -1,4 +1,5 @@
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
+import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.class";
 /** This class is used to configure a dataset.  each significance value and event type value combination has its own dataset. 
  *  
@@ -12,6 +13,7 @@ export class DatasetConfig {
     private _borderColor: string;
     private _significanceValue: number;
     private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE';
+    private _view: TimelineEventViewType;
 
     public get timelineItems(): (TimelineEvent | null)[] { return this._timelineItems; }
     public get dataPoints(): (number | null)[] {
@@ -50,9 +52,10 @@ export class DatasetConfig {
     public get color(): string { return this._color; }
     public get borderColor(): string { return this._borderColor; }
     public get significance(): number { return this._significanceValue; }
+    public get view(): TimelineEventViewType { return this._view; }
 
 
-    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
+    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE', viewType: TimelineEventViewType) {
         this._timelineItems = timelineItems;
         this._label = label;
         this._itemType = type;
@@ -60,6 +63,7 @@ export class DatasetConfig {
         this._borderColor = borderColor;
         this._significanceValue = significance;
         this._metric = metric;
+        this._view = viewType;
     }
 
     public get eventCount(): number {

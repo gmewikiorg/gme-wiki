@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 import dayjs from 'dayjs';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { RouterModule } from '@angular/router';
-import { TimelineEventUrlType } from '../timeline-items/timeline-item/timeline-event-url.interface';
-import { TimelinePeriodType } from '../timeline-controls/timeline-period-type';
+import { TimelineEventUrlSrc } from '../timeline-items/timeline-item/timeline-event-url.interface';
 
 @Component({
   selector: 'app-timeline-annotation-box',
@@ -17,11 +16,11 @@ import { TimelinePeriodType } from '../timeline-controls/timeline-period-type';
 })
 export class TimelineAnnotationBoxComponent implements OnInit {
 
-  private _timelineEvent: TimelineEvent | null = null;
+  private _timelineEvent: TimelineEvent | null | undefined= null;
   private _eventNgStyle: any = {};
   private _isLeftSide: boolean = false;
-  public get isEvent(): boolean { return this._timelineEvent !== null; }
-  public get event(): TimelineEvent | null { return this._timelineEvent; }
+  public get isEvent(): boolean { return this._timelineEvent !== null && this._timelineEvent !== undefined; }
+  public get event(): TimelineEvent | null | undefined { return this._timelineEvent; }
   public get eventStyle(): any { return this._eventNgStyle; }
   public get isLeftSide(): boolean { return this._isLeftSide; }
 
@@ -37,7 +36,7 @@ export class TimelineAnnotationBoxComponent implements OnInit {
       this._setPosition();
     });
 
-    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null) => {
+    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null | undefined) => {
       // const mainColor = TimelineEvent.getTypeColor(this._timelineEvent?.mainType, 0.01);
       const lightColor = TimelineEvent.getTypeColor(this._timelineEvent?.mainType, 0.1);
       const darkColor = TimelineEvent.getTypeColor(this._timelineEvent?.mainType, 0.2);
@@ -75,7 +74,7 @@ export class TimelineAnnotationBoxComponent implements OnInit {
     return dayjs(dateStringYYYYMMDD).format('MMM DD, YYYY');
   }
 
-  public linkTypeIsOther(linkType: TimelineEventUrlType) {
+  public linkTypeIsOther(linkType: TimelineEventUrlSrc) {
     if (linkType !== 'LEMMY' && linkType !== 'REDDIT' && linkType !== 'WIKIPEDIA'
       && linkType !== 'YOUTUBE' && linkType !== 'NEWS' && linkType !== 'DOCUMENT'
       && linkType !== 'GAMESTOP' && linkType !== 'X-TWITTER') {
