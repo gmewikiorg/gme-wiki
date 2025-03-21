@@ -11,12 +11,20 @@
     max-width: 1200px;
     font-size: 0.90em;  
 }
+.table-mobile{
+    font-size: 0.7em;
+}
+.table-mobile td{
+    padding: 0px;
+}
+
 table,td{
     border-collapse: collapse;
 
 }
 td{
     text-align: center;
+    
 }
 a{
     text-decoration: none;

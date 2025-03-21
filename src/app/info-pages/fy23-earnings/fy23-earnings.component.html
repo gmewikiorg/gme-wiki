@@ -51,12 +51,11 @@
                 every fiscal year from 2005 through 2016, with the exception of 2012.
                 Starting in fiscal year 2017, GameStop began showing reduced profitability, and from FY 2018 through FY
                 2022, was unprofitable.</p>
-            <!-- Revenue and Net Income chart from Google Sheets -->
 
             <div *ngIf="isBrowser"
-                style="width: 100%;display:flex;flex-direction: column;align-items: center;margin-top:20px;margin-bottom: 40px;">
+                style="display:flex;flex-direction: column;align-items: center;margin-top:20px;margin-bottom: 40px;max-width: 100%;">
                 <app-earnings-chart [isFY23Earnings]="true"
-                    style="max-width: 100%; width: 1200px;"></app-earnings-chart>
+                    style="max-width: 100%"></app-earnings-chart>
             </div>
 
             <div *ngIf="!isBrowser" style="height: 600px; width: 100%;"></div>
@@ -135,11 +134,11 @@
                 the operating losses of the company and produced an overall net profitability.
             </p>
             <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;">
-                <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="width: 1400px; max-width: 100%; border-radius:10px;"
-                    *ngIf="moreThan800Px || moreThan1680Px">
+                <img src="assets/earnings-sankey/fy23-sankey.jpg" alt=""
+                    style="width: 1400px; max-width: 100%; border-radius:10px;" *ngIf="moreThan800Px || moreThan1680Px">
                 <a href="assets/earnings-sankey/fy23-sankey.jpg">
-                    <img src="assets/earnings-sankey/fy23-sankey.jpg" alt="" style="max-width: 100%; border-radius:10px;"
-                        *ngIf="!moreThan800Px && !moreThan1680Px">
+                    <img src="assets/earnings-sankey/fy23-sankey.jpg" alt=""
+                        style="max-width: 100%; border-radius:10px;" *ngIf="!moreThan800Px && !moreThan1680Px">
                 </a>
             </div>
 
@@ -157,12 +156,12 @@
                     all that</span> GameStop achieved full-year profitability.
             </p>
 
-            <div *ngIf="screenWidth < 720">
+            <!-- <div *ngIf="screenWidth < 720">
                 <app-news-article *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-article>
-            </div>
-            <div *ngIf="screenWidth >= 720" style="margin-top:20px;margin-bottom:40px;">
+            </div> -->
+            <!-- <div *ngIf="screenWidth >= 720" style="margin-top:20px;margin-bottom:40px;"> -->
                 <app-fy23-media-sentiment-table></app-fy23-media-sentiment-table>
-            </div>
+            <!-- </div> -->
 
 
 
