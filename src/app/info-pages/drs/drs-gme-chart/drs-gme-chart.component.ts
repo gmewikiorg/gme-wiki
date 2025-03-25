@@ -53,10 +53,10 @@ export class DrsGmeChartComponent implements AfterViewInit {
   ]
 
   private _data_drsRegisteredAnnual: number[] = [
-    0, 35600000, 76000000, 75300000, 71000000
+    0, 35600000, 76000000, 75300000, 69500000
   ]
   private _data_tsoAnnual: number[] = [
-    0, (76339248 * 4), 304675439, 305873200, 446000000
+    0, (76339248 * 4), 304675439, 305873200, 447083981
   ]
 
   private _dataLabelsQuarterly: string[] = [
@@ -110,7 +110,8 @@ export class DrsGmeChartComponent implements AfterViewInit {
     351217517,       // Q1 24
     426509592,       // Q2 24
     446800365,      // Q3 24
-    394100000,      // Q4 24
+    447083981,      // Q4 24
+    
   ];
 
   private _data_drsPercentQuarterly: number[] = this._data_drsRegisteredQuarterly.map(drsRegistered => {
