@@ -17,7 +17,7 @@ export class SneezeChartAnimation {
     private _timelineEvents: TimelineEvent[];
 
     public get sneezeChartStopDateYYYYMMDD(): string { return '2021-04-30'; }
-    public get sneezeChartStartDateYYYYMMDD(): string { return '2019-01-01'; }
+    public get sneezeChartStartDateYYYYMMDD(): string { return '2018-12-31'; }
     private _sneezeCurrentEndYYYYMMDD: string = '2019-07-01';
     public get sneezeCurrentEndYYYYMMDD(): string { return this._sneezeCurrentEndYYYYMMDD; }
 

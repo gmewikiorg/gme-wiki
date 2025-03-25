@@ -1,20 +1,23 @@
 <div class="component-root">
     <div class="page-content">
         <h1 class="page-title">
-            GameStop Fiscal Year 2024 Results: Increasing Profitability and Value
+            GameStop Fiscal Year 2024 Earnings Results: Increasing Profitability and Value
         </h1>
         <h5 class="page-subtitle">
-            For the second year in a row, despite store closures and reduced revenues, GameStop is net profitable with a
-            year over year increase in profitability and highest equity valuation in its history
+            Despite store closures and reduced revenue, GameStop shows improved
+            profitability and the highest equity valuation in its history
         </h5>
         <div class="page-date">
-            March 2025
+            March 25, 2025
         </div>
 
-        <div class="page-section">
+        <!-- <div class="page-section">
             <div class="section-heading" style="color:orangered;">This post is currently using ESTIMATE values</div>
-            <p>Estimate calculations can be found <a href="https://www.reddit.com/r/GME/comments/1iy5a7t/gamestop_will_be_profitable_once_again_but_by_how/" target="_blank">here</a>.  When GameStop posts the FY24 real results, this page will be updated to reflect the true values.</p>
-        </div>
+            <p>Estimate calculations can be found <a
+                    href="https://www.reddit.com/r/GME/comments/1iy5a7t/gamestop_will_be_profitable_once_again_but_by_how/"
+                    target="_blank">here</a>. When GameStop posts the FY24 real results, this page will be updated to
+                reflect the true values.</p>
+        </div> -->
 
         <!-- Summary -->
         <div class="page-section">
@@ -22,13 +25,14 @@
                 Summary
             </div>
             <ul>
-                <li>GameStop's bottom line has increased possibly up to 500% year over year, with net income for the year
-                    estimated at $50 M</li>
-                <li>GameStop continues to close stores, which is shrinking the revenue base</li>
-                <li>At the same time, GameStop continues to modernize and improve its business, making more effective
-                    use of a smaller network of stores</li>
-                <li>In terms of stockholders' equity, GameStop is now more valuable than at any time in the
-                    company's history, at nearly $5 B</li>
+                <li>GameStop reported a net income of $131 million—a year-over-year increase of more than 1800% in
+                    bottom-line profitability.</li>
+                <li>GameStop's legacy business continues to shrink: the company is closing more stores, and revenue is
+                    down 27% year over year.</li>
+                <li>GameStop has introduced new product and service offerings for graded trading cards, demonstrating
+                    efforts to evolve the business.</li>
+                <li>In terms of stockholders' equity, GameStop is now more valuable than at any point in the
+                    company's history, at nearly $5 billion.</li>
                 <!-- <li>? Financial media continues to demonstrate willful blindness towards GameStop's improving situation,
                     and instead chooses to paint a bleak picture about GameStop's outlook</li> -->
             </ul>
@@ -36,125 +40,174 @@
 
 
         <div class="page-section">
-            <div class="section-heading">Year Over Year Changes</div>
-            <p>While there is clearly still room for improvement, the financial standing of the company has improved significantly since <a [routerLink]="'/turnaround'">the turnaround</a> efforts began in 2021.</p>
+            <div class="section-heading">Changes to Core Metrics and FY 24 Overview</div>
+            <p>The company’s financial standing has improved significantly since turnaround efforts began in 2021. While
+                GameStop continues to report operating losses as it manages store closures and the decline of its legacy
+                business, its holdings of cash and equivalents generate substantial interest income.</p>
+            <div style="width: 100%;text-align: center;font-weight: bold;">GameStop 5 year financial metrics table</div>
             <app-turnaround-table></app-turnaround-table>
+            <div style="margin-top:40px;">
+
+            </div>
         </div>
 
         <div class="page-section">
+            <div style="width: 100%;text-align: center;font-weight: bold;">GameStop FY 24 Earnings Overview</div>
+            <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;">
+                <img src="assets/info-pages/fy24-earnings-sankey.png" alt="GameStop FY 2024 Earnings Overview"
+                    style="width: 1200px; max-width: 100%; border-radius:10px;">
+                <!-- <a href="assets/earnings-sankey/fy23-sankey.jpg">
+                    <img src="assets/earnings-sankey/fy23-sankey.jpg" alt=""
+                        style="max-width: 100%; border-radius:10px;" *ngIf="!moreThan800Px && !moreThan1680Px">
+                </a> -->
+            </div>
+        </div>
+
+
+
+        <div class="page-section">
             <div class="section-heading">Revenue, Store Count: Decreasing</div>
-            <p>GameStop has reduced <a [routerLink]="'/stores'">its store count</a> every year since FY 16, a trend that
-                has continued through GameStop's <a [routerLink]="'/turnaround'">turnaround</a>.</p>
-            <p>As the store count has decreased, so has revenue in comparable proportions.</p>
-            <p>"With respect to retail operations, we plan to continue reducing costs and focusing on profitability...
-                This means a smaller network of stores with an expanded assortment of higher value items that fit into
-                our trade-in model."
-                - CEO Ryan Cohen (<a
-                    href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
-                    target="_blank">June 17, 2024</a>)
-            </p>
+            <p>GameStop's revenue continues to decline as its legacy business shrinks.</p>
+            <p>Accordingly, GameStop has reduced its <a [routerLink]="'/stores'">store count</a> every year since FY
+                16—a trend that has continued through the last four years of the company’s turnaround.</p>
+            <p>Numerous factors contribute to the decline of GameStop’s legacy business. Notably, gamers are
+                increasingly spending more on digital video game products and services over the internet, rather than on
+                physical products at brick-and-mortar retail stores such as GameStop. Furthermore, like all businesses,
+                GameStop is also contending with inflation and broader economic headwinds.</p>
+            <div style="display:flex;flex-direction: column;align-items: center;">
+                <div class="quote-section" style="display:flex;flex-direction: column; max-width: 850px;">
+                    <div style="max-width: 850px;">"With respect to retail operations, we plan to continue reducing
+                        costs
+                        and focusing on
+                        profitability...
+                        This means a smaller network of stores with an expanded assortment of higher value items that
+                        fit
+                        into
+                        our trade-in model."
+                    </div>
+                    <div class="quote-attribution" style="max-width: 850px;">GameStop CEO Ryan Cohen (<a
+                            href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
+                            target="_blank">June 17, 2024</a>)</div>
+                </div>
+            </div>
+
+
             <div *ngIf="isBrowser" class="chart-container">
                 <div class="chart-title">GameStop revenue and store count by fiscal year</div>
                 <app-earnings-chart [componentConfig]="storesChartConfig" class="chart"></app-earnings-chart>
             </div>
+            <p>While GameStop has been improving the e-commerce side of its business, this has not yet resulted in
+                significant revenue growth.</p>
+            <p>The company is demonstrating efforts to evolve its operations—for example, by offering new products and
+                services in <a [routerLink]="'/trading-cards'">graded
+                    trading cards</a>. The graded trading card market is large and growing, presenting an opportunity
+                for GameStop to increase its revenue.
+            </p>
         </div>
+
+
+
+
 
         <div class="page-section">
             <div class="section-heading">Operating Income: Still Negative</div>
-            <p>GameStop continues to report operating losses. There are numerous factors that contribute to this,
-                including an existing network of stores that remains too large and unprofitable, inflation and economic
-                headwinds, as well as the continuation of the trend of customers buying video games digitally rather
-                than physically. While we've seen reductions in operating losses over the last 5 years, it 
-                demonstrates that the core business is still losing money.</p>
+            <p>GameStop continues to report operating losses. While the company has reduced these losses over the past
+                five years, this indicates that the core business is still not profitable.</p>
             <div *ngIf="isBrowser" class="chart-container">
                 <div class="chart-title">GameStop operating income by fiscal year</div>
                 <app-earnings-chart [componentConfig]="operatingIncomeConfig" class="chart"></app-earnings-chart>
             </div>
-            <p>Something else worth consideration is that GameStop is undergoing a transformation that aims to modernize
-                the company and focus more on technology. While the specific details and goals of this transformation
-                remain
-                unclear with information that is publicly known, it can be assumed that the majority of expenses related
-                to such transformation efforts would fall under operating expenses. In consideration of this, it could
-                plausibly be the case that GameStop's core business isn't losing as much money as appears, rather, some
-                unknown amount of these expenses are investments into a company transformation.</p>
-            <p>In either case, GameStop's legacy business is either losing money, or barely breaking even at best.
-                Regardless, GameStop finds itself in a financially strong position that allows for operating losses for
-                the purpose of investing in transformative efforts.</p>
-
-
         </div>
+
+
+
+
 
         <div class="page-section">
             <div class="section-heading">Interest Income: Carrying the Company</div>
-            <p>In 2024 (and in 2021), GameStop was able to <a [routerLink]="'/atms'">raise money by selling shares
-                    at high market price</a>, and now holds over <b style="color:green;">$4.5 billion</b> in
+            <p>In 2024 (as in 2021), GameStop raised capital by <a [routerLink]="'/atms'">selling shares</a>
+                at relatively high market prices and now holds over <b style="color:green;">$4.7 billion</b> in
                 cash and
-                equivalents, which is used to generate interest income. </p>
-            <p>In fiscal year 2024, GameStop earned over <b style="color:green;">$160 million</b> in interest income, an
-                amount that far exceeds all operating losses and other losses, ensuring
-                net profitability for the company.</p>
+                equivalents. These funds are used for business operations and to generate interest income.
+            </p>
+
+            <p>In fiscal year 2024, GameStop earned over <b style="color:green;">$160 million</b> in interest income—an
+                amount that far exceeded its operating and other losses, resulting in strong net profitability for the
+                company.</p>
 
             <div *ngIf="isBrowser" class="chart-container">
                 <div class="chart-title">GameStop interest income by fiscal year</div>
                 <app-earnings-chart [componentConfig]="interestIncomeChartConfig" class="chart"></app-earnings-chart>
             </div>
-            <p>
-                It is common for companies to have debt, and to pay the interest expense on that debt, and to report net
-                interest expenses rather than net interest income. This was true of GameStop until it raised and
-                continues to hold billions of dollars in cash.
-                While it might be unusual for a publicly traded company to rely on interest income to offset operating
-                losses, it is a strategy that has put GameStop into a strong financial position.
-            </p>
         </div>
+
+
+
+
 
         <div class="page-section">
             <div class="section-heading">Net Income: Positive and Increasing</div>
             <p>In <a [routerLink]="'/fy23'">fiscal year 2023</a>, GameStop showed a return to net profitability for the
                 first time in 6 years.</p>
-            <p>Through 2024, among other things, GameStop closed stores, reduced liabilities, and raised cash, strengthening the financial
-                position of the company.
+
+
+            <p>Through 2024, GameStop strengthened its financial position by closing stores, reducing liabilities, and
+                raising cash.
             </p>
-            <p>At the 2024 annual meeting, CEO Ryan Cohen stated that "we plan to continue reducing costs and focusing
-                on profitability." </p>
-            <p>All told, GameStop was able to significantly improve net income year over year, in line with the CEO's
-                statements. GameStop now shows the highest net profitability since FY 16.</p>
+            <p>
+                As a result, the company significantly improved its net income year over year and now reports its
+                highest net profitability since fiscal year 2016.</p>
             <div *ngIf="isBrowser" class="chart-container">
                 <div class="chart-title">GameStop net income by fiscal year</div>
                 <app-earnings-chart [componentConfig]="netIncomeChartConfig" class="chart"></app-earnings-chart>
             </div>
-
         </div>
+
+
+
+
 
         <div class="page-section">
             <div class="section-heading">Stockholders' Equity: Higher Than Ever</div>
-            <p>By raising money from the market, GameStop has been able to pay down debts and other liabilities, and
-                generate interest income.</p>
-            <p>GameStop now has the largest value of assets that it has had in its history, as well as the lowest amount
-                of liabilities over the last 20 years. </p>
-            <p> In terms of stockholders' equity, this means GameStop is now more valuable than at any other time in the
-                history of the company, at nearly <b style="color:green;">$5 billion</b>.</p>
+            <p>By raising money from the market, GameStop now has the largest value of assets that it has had in its
+                history, as well as the lowest amount of liabilities over the last 20 years.</p>
+            <p> In terms of stockholders’ equity, GameStop is now more valuable than at any other time in its history,
+                with equity nearing <b style="color:green;">$5 billion</b>.</p>
             <div *ngIf="isBrowser" class="chart-container">
                 <div class="chart-title">GameStop stockholders' equity by fiscal year</div>
                 <app-earnings-chart [componentConfig]="equityChartConfig" class="chart"></app-earnings-chart>
             </div>
-
         </div>
+
+
+
+
 
         <div class="page-section">
-            <div class="section-heading">Conclusion: Stronger than Ever</div>
+            <div class="section-heading">Conclusion: Financially Strong, Despite Shrinking Legacy Business</div>
             <p>
                 GameStop has been undergoing <a [routerLink]="'/turnaround'">a turnaround</a> since the current
-                leadership team took over in 2021, and we are now starting to see clearly some strong positive results from these turnaround efforts.
+                leadership team took over in 2021, and we are now starting to see clear, positive results from these
+                efforts.
             </p>
-            <p>Adapting to the modern video gaming era, GameStop's legacy business of brick and mortar retail stores continues to get smaller ever year, with
-                fewer stores and reduced revenue.  Despite fewer stores and reduced revenue, the legacy business continues to be improved and modernized.</p>
-            <p>Aside from GameStop's legacy business, the company has been able to strategically take advantage of
-                market conditions and raise cash at various times.
-                GameStop's pile of cash and equivalents is now worth more than the entirety of its legacy business.
+            <p>Adapting to the modern video gaming era, GameStop's legacy business of brick-and-mortar retail stores
+                continues to shrink each year, with
+                fewer locations and reduced revenue. Despite this, the legacy business is steadily being improved and
+                modernized.
             </p>
-            <p>While GameStop's strategy may not be typical for a publicly traded company, it is a strategy that took a dying company and turned it into something more valuable than it has historically ever been.</p>
-            <p>The company continues to face challenges and still has room for improvement.  What is demonstrated clearly from GameStop's fiscal year 2024 results, however, is that the company is strong and improving.</p>
+            <p>Beyond its legacy operations, the company has strategically leveraged stock market conditions by raising
+                capital through share offerings at opportune times.
+                With this substantial position of cash and equivalents, GameStop now generates enough interest income to
+                offset operational losses, and more.
+            </p>
+            <p>While it remains unclear to what extent GameStop's legacy business will continue to shrink, it is clear
+                that GameStop's financial position is strong enough to manage this situation while generating growing
+                profits.</p>
         </div>
+
+
+
+
 
         <div style="margin-top:50px;"></div>
         <app-footer class="app-footer"></app-footer>

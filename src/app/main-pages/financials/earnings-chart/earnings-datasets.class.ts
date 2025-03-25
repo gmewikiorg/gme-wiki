@@ -1,6 +1,6 @@
 import { Context } from "chartjs-plugin-datalabels";
 import { ScreenService } from "../../../shared/services/screen-size.service";
-import { EarningsResult } from "../../../shared/services/earnings-results/earnings-result.class";
+import { EarningsResult } from "../earnings-results/earnings-result.class";
 import { ChartDataset } from "chart.js";
 import { EarningsChartSelection } from "../choose-earnings-chart/earnings-chart-selection.enum";
 import { EARNINGS_METRIC_CONFIG, EarningsMetric, EarningsMetricConfig } from "../choose-earnings-chart/earnings-metric.enum";

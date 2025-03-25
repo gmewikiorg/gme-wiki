@@ -70,7 +70,7 @@ export class ChartDataItemBuilder {
 
 
         const closePrices: number[] = [];
-        const chartLabels: string[] = [];
+        let chartLabels: string[] = [];
         condensedItems
             .filter(entry => entry.date.format('YYYY-MM-DD') >= startDateYYYYMMDD && entry.date.format('YYYY-MM-DD') <= endDateYYYYMMDD)
             .forEach(condensedItem => {
@@ -92,7 +92,7 @@ export class ChartDataItemBuilder {
                 } else if (period === 'HISTORIC') {
                     chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('YYYY'));
                 } else if (period === 'SNEEZE') {
-                    chartLabels.push(condensedItem.dateYYYYMMDD);
+                    chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('YYYY'));
                 } else {
                     chartLabels.push(dayjs(condensedItem.dateYYYYMMDD).format('MMM YYYY'));
                 }
@@ -144,6 +144,21 @@ export class ChartDataItemBuilder {
                 pointStyle: 'circle',
             })
         });
+
+        chartLabels = this._setChartLabelsByPeriod(chartLabels, startDateYYYYMMDD, period, isMobile);
+
+
+        const returnValue = {
+            datasets: datasets,
+            datasetConfigs: datasetConfigs,
+            labels: chartLabels,
+        }
+        // console.log("RETURN VALUE: " , returnValue)
+        return returnValue;
+    }
+
+
+    private static _setChartLabelsByPeriod(chartLabels: string[], startDateYYYYMMDD: string, period: TimelineEventViewType, isMobile: boolean): string[] {
         if (period === 'CURRENT') {
             /**
              *  Only display a date label every 6 months, or if mobile then every 12 months.
@@ -198,23 +213,17 @@ export class ChartDataItemBuilder {
                         chartLabels[i] = dayjs(chartLabels[i]).format('YYYY');
                         currentDate = currentDate.add(1, 'months');
                     } else {
-                        chartLabels[i] = dayjs(chartLabels[i]).format('MMM YYYY');
-                        currentDate = currentDate.add(1, 'months');
+                        chartLabels[i] = chartLabels[i];
+                        currentDate = currentDate.add(1, 'years');
                     }
                 } else {
                     chartLabels[i] = "";
                 }
             }
         }
-
-        const returnValue = {
-            datasets: datasets,
-            datasetConfigs: datasetConfigs,
-            labels: chartLabels,
-        }
-        // console.log("RETURN VALUE: " , returnValue)
-        return returnValue;
+        return chartLabels;
     }
+
 
     /** if there are more items than maxChartItems, then condense them so that they are reduced to approximately that maxChartItems value */
     private static _condenseItems(items: ChartDataItem[], reduceByFactor: number): ChartDataItem[] {

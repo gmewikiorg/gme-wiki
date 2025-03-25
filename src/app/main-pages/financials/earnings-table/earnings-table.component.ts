@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { EarningsTableRow } from './earnings-table-row.class';
-import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
+import { EarningsResult } from '../earnings-results/earnings-result.class';
 import { IconDefinition, faNoteSticky, faSquareMinus, faSquarePlus, faLink, faFile } from '@fortawesome/free-solid-svg-icons';
-import { EarningsResultInterface } from '../../../shared/services/earnings-results/earnings-result.interface';
+import { EarningsResultInterface } from '../earnings-results/earnings-result.interface';
 import dayjs from 'dayjs';
-import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
+import { Import10KDataService } from '../earnings-results/import-10k-data.service';
 import { releaseOverviews } from './release-overview/release-overviews';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
@@ -52,7 +52,7 @@ export class EarningsTableComponent {
     await this._loadingService.loadEarnings();
     this._quarterlyResults = this._importFinancialsService.quarterlyResults.filter(item => item.fiscalYear >= 2020);
     // this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
-    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005 && item.fiscalYear < 2024);
+    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
     this._tableRows = this._buildTableRows();
     this._screenService.screenDimensions$.subscribe({
       next: (dimensions) => {

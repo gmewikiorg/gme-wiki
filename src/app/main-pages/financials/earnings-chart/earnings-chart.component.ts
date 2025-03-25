@@ -4,8 +4,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FinancialChartService } from '../choose-earnings-chart/earnings-chart.service';
-import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
-import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
+import { EarningsResult } from '../earnings-results/earnings-result.class';
+import { Import10KDataService } from '../earnings-results/import-10k-data.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { EarningsChartSelection } from '../choose-earnings-chart/earnings-chart-selection.enum';
@@ -36,6 +36,8 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   @Input() isFY23Earnings: boolean = false;
   @Input() componentConfig: { article: 'FY24' | 'ATMs', chart: EarningsChartSelection, } | null = null;
 
+
+  public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
   public barChartData: ChartConfiguration<'bar'>['data'];
   public barChartOptions: ChartOptions<'bar'>;
@@ -105,6 +107,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         }
       }),
       this._screenService.screenDimensions$.subscribe((change) => { this._updateChartDataAndOptions(); }),
+      this._screenService.isDarkMode$.subscribe((change)=> {this._updateChartDataAndOptions();})
     ];
 
   }
@@ -140,7 +143,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     } else{
 
     }
-    
+
     if (this.chartPeriod === 'ANNUAL') {
       results = this._financeService.annualResults;
       if (this.isFY23Earnings) {
@@ -150,36 +153,23 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           results = results.filter(item => item.fiscalYear <= 2024);
         }
       }else {
-          /** This line is here until FY 2024 results are released.
-       * This omits the false 2024 data / 2024 esimate data, while allowing /fy24 article to work 
-        */
-          results = results.filter(item => item.fiscalYear < 2024);
+        
       }
       // this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     } else if (this.chartPeriod === 'QUARTER') {
       results = this._financeService.quarterlyResults;
       // this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     }
-
-
     if (this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
       this.showCustomLegend = true;
       // label = 'Revenue and Net Income ' + periodLabel;
     }
-
     if (this._screenService.isMobile) {
       dataEntryCount = EarningsDatasetBuilder.mobileItemCount;
     }
-
-
-
-
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartOption, this.chartPeriod, dataEntryCount);
-
     const labels = this._datasetBuilder.getSubsetArray(dataEntryCount, this._xAxisLabels);
-
-
     return {
       labels: labels,
       datasets: datasets,
@@ -203,6 +193,12 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
       title: (context: TooltipItem<"bar">[]) => { return this._titleContext(context) }
     };
 
+    let color = 'rgba(0,0,0,0.1)';
+    const darkMode = this.isDarkMode;
+    if(darkMode){
+      color = 'rgba(255,255,255,0.05)';
+    }
+
     let chartOptions: ChartOptions<'bar'> = {
       responsive: true,
       maintainAspectRatio: false,
@@ -213,9 +209,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           grid: {
             color: function (context) {
               if (context.tick.value === 0) {
-                return 'rgba(0,0,0,0.5)';
+                if(darkMode){
+                  return 'rgba(255,255,255,0.2)';
+                }else{
+                  return 'rgba(0,0,0,0.2)';
+                }
               }
-              return 'rgba(0,0,0,0.05)';
+              return color;
             },
           },
           ticks: {
@@ -235,6 +235,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             }
           }
         },
+        x: {
+          grid:{ 
+            color: function (context) {
+              return color;
+            },
+          }
+        }
       },
       layout: {
         padding: {
@@ -266,6 +273,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         maintainAspectRatio: false,
         animation: false,
         scales: {
+          x: {
+            grid:{ 
+              color: function (context) {
+                return color;
+              },
+            }
+          },
           y: {
             min: minY,
             title: {
@@ -275,9 +289,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             grid: {
               color: function (context) {
                 if (context.tick.value === 0) {
-                  return 'rgba(0,0,0,0.5)';
+                  if(darkMode){
+                    return 'rgba(255,255,255,0.2)';
+                  }else{
+                    return 'rgba(0,0,0,0.2)';
+                  }
                 }
-                return 'rgba(0,0,0,0.05)';
+                return color;
               },
             },
             ticks: {

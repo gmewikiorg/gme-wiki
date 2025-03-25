@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
-import { Import10KDataService } from '../../../shared/services/earnings-results/import-10k-data.service';
-import { EarningsResult } from '../../../shared/services/earnings-results/earnings-result.class';
+import { Import10KDataService } from '../../../main-pages/financials/earnings-results/import-10k-data.service';
+import { EarningsResult } from '../../../main-pages/financials/earnings-results/earnings-result.class';
 import { ColorPicker } from '../../../shared/color-picker.class';
 
 export type TurnaroundTableOption = 'FY_VALUE' | 'YoY_CHANGE' | 'YoY_PERCENTAGE';
@@ -39,6 +39,13 @@ export class TurnaroundTableComponent {
     return this._getPropertyColor(fiscalYear, valueProperty);
   }
 
+  public getTenKForm(year: number): string{
+    const foundItem = this.annual10KData.find(item => item.fiscalYear === year);
+    if(foundItem){
+      return foundItem.url;
+    }
+    return '';
+  }
 
   private _getPropertyColor(fiscalYear: number, property: TurnaroundTableRowProperty): string {
     let reverse = false;

@@ -5,24 +5,24 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     reportingPeriod: "FY",
     filingDateYYYYMMDD: "2025-03-26",
     reportDateYYYYMMDD: "2025-02-03",
-    revenue: 4250000000,
-    costOfSales: 3600000000,
-    grossProfit: 900000000,
-    sga: 105000000,
-    operatingIncome: -66500000,
-    interestIncome: 163000000,
-    ebit: 97000000,
-    incomeTaxExpense: 18000000,
-    netEarnings: 50000000,
-    netEPS: 0.11,
-    weightedAverageSharesOutstanding: 446000000,
-    totalAssets: 5600000000,
-    totalDebt: 10000000,
+    revenue: 3823000000,
+    costOfSales: 2709100000,
+    grossProfit: 1113900000,
+    sga: 1130400000,
+    operatingIncome: -26200000,
+    interestIncome: 163400000,
+    ebit: 137200000,
+    incomeTaxExpense: 5900000,
+    netEarnings: 131300000,
+    netEPS: 0.33,
+    weightedAverageSharesOutstanding: 394100000,
+    totalAssets: 5355000000,
+    totalDebt: 94560000,
     totalLiabilities: 1100000000,
-    stockholdersEquity: 4600000000,
-    drs: 71000000,
-    storeCount: 3500,
-    url: "estimate"
+    stockholdersEquity: 4929800000,
+    drs: 69500000,
+    storeCount: 3203,
+    url: "https://www.sec.gov/Archives/edgar/data/1326380/000162828025014731/gme-20250201.htm"
   },
   {
     fiscalYear: 2023,
@@ -46,7 +46,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1388600000,
     storeCount: 4169,
     drs: 75300000,
-    url: "https://investor.gamestop.com/node/20376/html"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638024000012/gme-20240203.htm"
   },
   {
     fiscalYear: 2022,
@@ -286,7 +286,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     stockholdersEquity: 2251400000,
     storeCount: 6675,
     drs: 0,
-    url: "https://gamestop.gcs-web.com/static-files/3eb3d63d-81ac-484b-a131-ed7ab2d0ecaa"
+    url: "https://www.sec.gov/Archives/edgar/data/1326380/000144530514001259/a10k-fy13q4.htm"
   },
   {
     fiscalYear: 2012,
