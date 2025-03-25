@@ -16,7 +16,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     incomeTaxExpense: 35600000,
     netEarnings: 131400000,
     netEPS: 0.33,
-    weightedAverageSharesOutstanding: 394100000,
+    weightedAverageSharesOutstanding: 447083981,
     totalAssets: 5355000000,
     totalDebt: 94560000,
     totalLiabilities: 1100000000,
