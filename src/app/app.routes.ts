@@ -25,7 +25,7 @@ import { Fy24EarningsComponent } from './info-pages/fy24-earnings/fy24-earnings.
 import { InvestorsComponent } from './info-pages/investors/investors.component';
 import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
 import { MediaComponent } from './info-pages/media/media.component';
-import { MediaOmitsDrsComponent } from './info-pages/media-omits-drs/media-omits-drs.component';
+import { MediaOmitsDrsComponent } from './info-pages/drs/media-omits-drs/media-omits-drs.component';
 
 import { MoassComponent } from './info-pages/moass/moass.component';
 import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
