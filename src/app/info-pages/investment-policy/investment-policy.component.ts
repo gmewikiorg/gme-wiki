@@ -14,7 +14,7 @@ export class InvestmentPolicyComponent {
   constructor(private _screenService: ScreenService, private titleService: Title, private meta: Meta) {
 
     const metaTags = this.meta.getTags('name');
-    const description = 'GameStop’s FY 2024 Earnings Results: Reduced revenue and stores, increasing profitability and equity';
+    const description = 'As legacy retail contracts, GameStop evolves into a capital allocator with a growing focus on strategic investments.';
     const title = 'GameStop Investment Policy | gmewiki.org'
     this.titleService.setTitle(title)
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
@@ -29,7 +29,7 @@ export class InvestmentPolicyComponent {
     this.meta.addTags([
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { property: 'og:url', content: 'https://gmewiki.org/fy24' },
+      { property: 'og:url', content: 'https://gmewiki.org/investment-policy' },
       { property: 'og:type', content: 'website' },
       // { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
       { name: 'twitter:title', content: title, },
