@@ -41,6 +41,7 @@ import { TurnaroundComponent } from './info-pages/turnaround/turnaround.componen
 import { ShortInterestComponent } from './info-pages/short-interest/short-interest.component';
 import { BearCaseComponent } from './info-pages/bear-case/bear-case.component';
 import { BullCaseComponent } from './info-pages/bull-case/bull-case.component';
+import { InvestmentPolicyComponent } from './info-pages/investment-policy/investment-policy.component';
 
 
 
@@ -100,6 +101,8 @@ export const routes: Routes = [
     { path: 'fud', component: FudComponent },
 
     { path: 'investors', component: InvestorsComponent },
+    { path: 'investment-policy', component: InvestmentPolicyComponent },
+    { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
 
     { path: 'media', component: MediaComponent },
     { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },

@@ -25,8 +25,6 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     drs: 69500000,
     url: "https://www.sec.gov/Archives/edgar/data/1326380/000162828025014731/gme-20250201.htm"
   },
-
-
   {
     fiscalYear: 2024,
     reportingPeriod: "Q3",

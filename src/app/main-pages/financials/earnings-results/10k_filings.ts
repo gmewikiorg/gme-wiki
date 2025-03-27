@@ -3,8 +3,8 @@ export const filings_10k_raw: EarningsResultInterface[] = [
   {
     fiscalYear: 2024,
     reportingPeriod: "FY",
-    filingDateYYYYMMDD: "2025-03-26",
-    reportDateYYYYMMDD: "2025-02-03",
+    filingDateYYYYMMDD: "2025-03-25",
+    reportDateYYYYMMDD: "2025-02-01",
     revenue: 3823000000,
     costOfSales: 2709100000,
     grossProfit: 1113900000,
@@ -17,6 +17,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     netEPS: 0.33,
     weightedAverageSharesOutstanding: 447083981,
     totalAssets: 5875400000,
+
     totalDebt: 6600000,
     totalLiabilities: 945600000,
     stockholdersEquity: 4929800000,
