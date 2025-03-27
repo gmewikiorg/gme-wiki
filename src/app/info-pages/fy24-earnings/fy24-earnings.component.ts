@@ -32,13 +32,13 @@ export class Fy24EarningsComponent {
     this.meta.addTags([
       { property: 'og:title', content: 'GameStop FY 2024 Earnings Results - gmewiki.org' },
       { property: 'og:description', content: 'GameStop’s FY24: Increasing Profitability and Value' },
-      // { property: 'og:image', content: 'https://gmewiki.org/assets/earnings-sankey/fy23-sankey.jpg'}, 
+      { property: 'og:image', content: 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png'}, 
       { property: 'og:url', content: 'https://gmewiki.org/fy24' },
       { property: 'og:type', content: 'website' },
       // { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
       { name: 'twitter:title', content: 'GameStop FY 2024 Earnings Results - gmewiki.org' },
       { name: 'twitter:description', content: 'GameStop’s FY24: Increasing Profitability and Value' },
-      // { name: 'twitter:image', content: 'https://yourwebsite.com/assets/images/evergreen-trees.jpg' }
+      { name: 'twitter:image', content: 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png'}, 
     ]);
 
   }
