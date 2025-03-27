@@ -16,7 +16,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     netEarnings: 131300000,
     netEPS: 0.33,
     weightedAverageSharesOutstanding: 447083981,
-    totalAssets: 5355000000,
+    totalAssets: 5875400000,
     totalDebt: 6600000,
     totalLiabilities: 945600000,
     stockholdersEquity: 4929800000,
