@@ -11,36 +11,26 @@
 
         <thead>
             <tr style="font-size:0.8em;">
-                <td style="border-top: none; border-left: none; width:15%; background-color: rgba(255, 255, 255, 0);">
+                <td style="border-top: none; border-left: none; min-width:15%; background-color: rgba(255, 255, 255, 0);">
                 </td>
 
-                <td style="width: 17%; ">
-                    <a [href]="getTenKForm(2020)" class="ten-k-link"  target="_blank">
+                <td style="min-width: 17%;" *ngFor="let year of yearsRange">
+                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2020">
                         Pre turnaround <br><span style="font-size: 0.8em;">FY 2020</span>
                     </a>
-                
-                </td>
-                <td style="width: 17%;">
-                    <a [href]="getTenKForm(2021)" class="ten-k-link"  target="_blank">
+                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2021">
                         Turnaround beings <br>FY 2021
                     </a>
-                </td>
-                <td style="width: 17%;">
-                    <a [href]="getTenKForm(2022)" class="ten-k-link"  target="_blank">
+                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2022">
                         FY 2022
                     </a>
-                </td>
-                <td style="width: 17%;">
-                    <a [href]="getTenKForm(2023)" class="ten-k-link"  target="_blank">
+                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2023">
                         FY 2023
                     </a>
-                </td>
-                <td style="width: 17%;">
-                    <a [href]="getTenKForm(2024)" class="ten-k-link" target="_blank">
+                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2024">
                         <b>Current status</b><br>FY 2024
                     </a>
                 </td>
-
             </tr>
         </thead>
         <tbody>
@@ -88,6 +78,11 @@
     </table>
 
     <div class="bottom-bar">
-        Click on the top box of each column for a link to the 10K form
+        <div style="width: 100px;"></div>
+        <div>Click on the top box of each column for a link to the 10K form</div> 
+        <div>
+            <button class="expand-button" (click)="onClickShowMore()" *ngIf="!showingMore">Show more</button>
+            <button class="expand-button" (click)="onClickShowMore()" *ngIf="showingMore">Show less</button>
+        </div>
     </div>
 </div>

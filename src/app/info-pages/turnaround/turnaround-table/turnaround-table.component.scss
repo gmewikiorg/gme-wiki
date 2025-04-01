@@ -66,12 +66,16 @@ td{
 
 .bottom-bar{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     font-size: 0.8em;
     color:gray;
     margin-top: 3px;
+}
+.expand-button{
+    font-size: 0.9em;
 }
 .ten-k-link{
     color: inherit;         /* Inherit color from surrounding text */

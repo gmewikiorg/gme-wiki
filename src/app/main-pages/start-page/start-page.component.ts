@@ -37,6 +37,10 @@ export class StartPageComponent {
       { property: 'og:image', content: 'https://gmewiki.org/assets/nav-icons/start.png' },
       { property: 'og:url', content: 'https://gmewiki.org/start' },
       { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary' }, // Optimized Twitter card format
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: 'https://gmewiki.org/assets/nav-icons/start.png'}, 
     ]);
   }
 

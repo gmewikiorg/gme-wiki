@@ -67,7 +67,6 @@ export class SidebarComponent {
     this._router.events.subscribe((event) => {
     })
     this.areaOutSideClicked.subscribe(() => {
-      console.log("Out of sidebar")
       this._menuIsOpen = false;
       this._clicked = false;
     })

@@ -18,11 +18,13 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 export class Fy24EarningsComponent {
 
   constructor(private _screenService: ScreenService, private titleService: Title, private meta: Meta) {
-    this.titleService.setTitle('GameStop FY 2024 Earnings Results | gmewiki.org')
+    const title = 'GameStop FY 2024 Earnings Results | gmewiki.org';
+    const description = 'GameStop’s FY 2024 Earnings Results: Reduced revenue and stores, increasing profitability and equity';
+    this.titleService.setTitle(title)
     const metaTags = this.meta.getTags('name');
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: 'GameStop’s FY 2024 Earnings Results: Reduced revenue and stores, increasing profitability and equity' },
+      { name: 'description', content: description },
       { name: 'keywords', content: 'GameStop, GME, GameStop turnaround, GameStop profitability, GameStop FY 2023 profitability, GameStop FY 23 earnings, earnings report, GameStop FY 2024, FY24' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -30,14 +32,14 @@ export class Fy24EarningsComponent {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: 'GameStop FY 2024 Earnings Results - gmewiki.org' },
-      { property: 'og:description', content: 'GameStop’s FY24: Increasing Profitability and Value' },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:image', content: 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png'}, 
       { property: 'og:url', content: 'https://gmewiki.org/fy24' },
       { property: 'og:type', content: 'website' },
-      // { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
-      { name: 'twitter:title', content: 'GameStop FY 2024 Earnings Results - gmewiki.org' },
-      { name: 'twitter:description', content: 'GameStop’s FY24: Increasing Profitability and Value' },
+      { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
       { name: 'twitter:image', content: 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png'}, 
     ]);
 

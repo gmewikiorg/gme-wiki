@@ -38,9 +38,13 @@ export class TurnaroundComponent implements OnInit {
     this.meta.addTags([
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
       { property: 'og:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png' },
+      { property: 'og:url', content: 'https://gmewiki.org/turnaround' },
       { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png'}, 
     ]);
   }
 

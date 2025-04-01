@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { Import10KDataService } from '../../../main-pages/financials/earnings-results/import-10k-data.service';
@@ -15,11 +15,34 @@ export type TurnaroundTableRowProperty = 'STORE_COUNT' | 'REVENUE' | 'ASSETS' | 
   templateUrl: './turnaround-table.component.html',
   styleUrl: './turnaround-table.component.scss'
 })
-export class TurnaroundTableComponent {
+export class TurnaroundTableComponent implements OnInit{
 
   constructor(private _screenService: ScreenService, private _10kService: Import10KDataService) {
 
   }
+  ngOnInit(): void {
+    if(this.isTurnaroundPage){
+      this._yearsRange = [2020,2024];
+    }
+    
+  }
+
+  
+  private _showingMore: boolean = false;
+  public onClickShowMore(){
+    if(this._showingMore === false){
+      this._yearsRange = [2020, 2021, 2022, 2023, 2024];
+      this._showingMore = true;
+    }else{
+      this._yearsRange = [2020, 2024];
+      this._showingMore = false;
+    }
+    
+  }
+
+  public get showingMore(): boolean { return this._showingMore; }
+
+  @Input() isTurnaroundPage: boolean = false;
 
   public get annual10KData(): EarningsResult[] { return this._10kService.annualResults; }
   private _currentTableOption: TurnaroundTableOption = 'FY_VALUE';
@@ -32,7 +55,8 @@ export class TurnaroundTableComponent {
 
   public get yearsRangeStart(): number { return this.yearsRange[0]; }
   public get yearsRangeEnd(): number { return this.yearsRange[this.yearsRange.length-1]; }
-  public get yearsRange(): number[] { return [2020, 2021, 2022, 2023, 2024]; }
+  private _yearsRange: number[] = [2020, 2021, 2022, 2023, 2024];
+  public get yearsRange(): number[] { return this._yearsRange; }
   // public get yearsRange(): number[] { return [2020, 2021, 2022, 2023]; }
 
   public getColor(valueProperty: TurnaroundTableRowProperty, fiscalYear: number): string {
