@@ -6,7 +6,7 @@ import { MobileTopBarComponent } from './mobile-top-bar/mobile-top-bar.component
 import { ScreenService } from '../shared/services/screen-size.service';
 import { LoadingService } from '../shared/services/loading.service';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
-import { timer } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
@@ -95,5 +95,10 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     //   const ssrElements = document.querySelectorAll('.ssr-hidden');
     //   ssrElements.forEach(el => el.classList.remove('ssr-hidden'));
     // }
+  }
+
+  public areaOutSideClicked$: Subject<boolean> = new Subject();
+  public onClickRouterOutlet(){
+    this.areaOutSideClicked$.next(true);
   }
 }

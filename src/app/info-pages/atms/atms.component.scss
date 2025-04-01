@@ -8,6 +8,11 @@
     background-color: rgba(0, 0, 0, 0.01);
 }
 
+.table-container{
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 td{
     // border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 8px;

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { trigger, state, style, animate, transition, keyframes, } from '@angular/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -11,6 +11,7 @@ import { SocialMediaIconComponent } from '../../shared/nav-icons/social-media-ic
 import { TimelineIconComponent } from '../../shared/nav-icons/timeline-icon/timeline-icon.component';
 import { EarningsIconComponent } from '../../shared/nav-icons/earnings-icon/earnings-icon.component';
 import { StartIconComponent } from '../../shared/nav-icons/start-icon/start-icon.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -48,41 +49,29 @@ import { StartIconComponent } from '../../shared/nav-icons/start-icon/start-icon
   ]
 })
 export class SidebarComponent {
-
   constructor(
     private _settingsService: SettingsService,
     private _router: Router,
     private _screenService: ScreenService
   ) { }
-
-
   public get faChartLine(): IconDefinition { return faChartLine; }
   public get faChartPie(): IconDefinition { return faChartPie; }
   public get faQuestion(): IconDefinition { return faQuestion; }
   public get faBars(): IconDefinition { return faBars; }
   public get faCircleInfo(): IconDefinition { return faCircleInfo; }
   public get faTableList(): IconDefinition { return faTableList; }
-
   public get showAsList(): boolean { return this._settingsService.chartListIsVertical; }
-
-
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
   ngOnInit(): void {
-    // this._renderer.listen('window', 'click', (e: Event) => {
-    //   if (this.menuButtonElement){
-    //     if(!this.menuButtonElement.nativeElement.contains(e.target)){
-    //     }else{
-    //     }
-    //   }
-
-    // });
     this._router.events.subscribe((event) => {
     })
+    this.areaOutSideClicked.subscribe(() => {
+      console.log("Out of sidebar")
+      this._menuIsOpen = false;
+      this._clicked = false;
+    })
   }
-
-  // public get browser(): string { return this._screenService.browser; }
-  // public get browserIsSafari(): boolean { return this._screenService.browserIsSafari; }
 
   private _message: string = '';
   public get message(): string { return this._message; }
@@ -91,6 +80,7 @@ export class SidebarComponent {
   }
 
   @ViewChild('menu') menuButtonElement: ElementRef | null = null;
+  @Input() areaOutSideClicked: Subject<boolean> = new Subject();
 
   private _menuIsOpen: boolean = false;
   public get menuIsOpen(): boolean { return this._menuIsOpen; }
@@ -99,19 +89,11 @@ export class SidebarComponent {
   }
   private _clicked = false;
   public onClick() {
-    // if(this._screenService.isLargeScreen){
-
-    // }else{
-    //   this._menuIsOpen = !this._menuIsOpen;
-    //   this._clicked = true;
-    // }
+    this._menuIsOpen = !this._menuIsOpen;
+    this._clicked = true;
   }
   public onMouseEnter() {
-    if (!this._clicked) {
       this._menuIsOpen = true;
-    } else {
-      this._clicked = false;
-    }
 
   }
 

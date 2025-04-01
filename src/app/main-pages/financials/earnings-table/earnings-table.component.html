@@ -10,7 +10,9 @@
                 Quarterly Results
             </button>
         </div>
+
     </div>
+
 
     <table class="table">
         <thead>
@@ -62,6 +64,10 @@
         </tbody>
     </table>
 
-    <div style="text-align: center; font-size: 0.8em; color: gray; padding: 5px;">For a link to the financial statements, click on the first box in each row</div>
+    <div style="text-align: center; font-size: 0.8em; color: gray; padding: 5px;">For a link to the financial
+        statements, click on the first box in each row</div>
+    <div class="more-rows-bar" *ngIf="showButton">
+        <button class="more-rows-button" (click)="onClickShowMoreRows()">Show more rows</button>
+    </div>
 
 </div>

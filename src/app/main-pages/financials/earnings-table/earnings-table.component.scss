@@ -44,6 +44,12 @@ td{
     cursor: pointer;
 }
 
+.more-rows-bar{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
 
 
 .selected-time{

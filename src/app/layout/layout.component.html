@@ -9,8 +9,8 @@
 
 <div class="component-root" *ngIf="!isMobile && !isLoading">
 
-    <app-sidebar class="app-sidebar" *ngIf="!isMobile"></app-sidebar>
-    <div class="router-outlet">
+    <app-sidebar class="app-sidebar" *ngIf="!isMobile" [areaOutSideClicked]="areaOutSideClicked$"></app-sidebar>
+    <div class="router-outlet" (click)="onClickRouterOutlet()">
         <router-outlet></router-outlet>
     </div>
 

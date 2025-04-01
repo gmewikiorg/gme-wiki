@@ -79,12 +79,26 @@ export class EarningsTableComponent {
     });
   }
 
+
+  private _showMoreRows: boolean = false;
+  private _showButton: boolean = true;
+  public get showButton(): boolean  {return this._showButton; }
+  public get showMoreRows(): boolean { return this._showMoreRows; }
+  public onClickShowMoreRows(){ 
+    this._showMoreRows = true; 
+    this._tableRows = this._buildTableRows();
+    this._showButton = false;
+  }
+
   private _buildTableRows(): EarningsTableRow[] {
     let tableRows: EarningsTableRow[] = [];
     if (this._displayMode === 'QUARTER') {
       tableRows = this._quarterlyResults.map(result => new EarningsTableRow(result, releaseOverviews));
     } else {
       tableRows = this._annualResults.map(result => new EarningsTableRow(result, releaseOverviews));
+    }
+    if(!this._showMoreRows){
+      tableRows = tableRows.slice(0, 8);
     }
     return tableRows;
   }

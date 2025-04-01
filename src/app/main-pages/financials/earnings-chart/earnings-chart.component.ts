@@ -133,12 +133,9 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     }else if (this.componentConfig) {
       if (this.componentConfig.article === 'FY24') {
         dataEntryCount = 15;
-
         if (this.componentConfig.chart === 'STORES_VS_REVENUE') {
           dataEntryCount = 10;
         }
-
-
       }
     } else{
 
@@ -166,6 +163,8 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     }
     if (this._screenService.isMobile) {
       dataEntryCount = EarningsDatasetBuilder.mobileItemCount;
+    } else{
+      // dataEntryCount = this._screenService.screenWidth
     }
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartOption, this.chartPeriod, dataEntryCount);

@@ -119,6 +119,7 @@ body {
     background-color: #121212;
     color: #ffffff;
   }
+
 }
 
 .page-subtitle {
@@ -301,5 +302,18 @@ fa-icon {
     display: flex;
     flex-direction: column;
     max-width: calc(100% - 400px);
+  }
+}
+@media(max-width: 925px) {
+
+  .page-title{
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .page-subtitle{
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
