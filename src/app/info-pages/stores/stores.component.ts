@@ -3,11 +3,12 @@ import { StoresChartComponent } from './stores-chart/stores-chart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-stores',
   standalone: true,
-  imports: [StoresChartComponent, CommonModule, FooterComponent],
+  imports: [StoresChartComponent, CommonModule, RouterModule, FooterComponent],
   templateUrl: './stores.component.html',
   styleUrl: './stores.component.scss'
 })

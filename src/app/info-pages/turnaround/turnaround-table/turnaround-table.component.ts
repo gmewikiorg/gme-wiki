@@ -23,11 +23,15 @@ export class TurnaroundTableComponent implements OnInit{
   ngOnInit(): void {
     if(this.isTurnaroundPage){
       this._yearsRange = [2020,2024];
+      this._displayButton = true;
+    }else{
+      this._displayButton = false;
     }
     
   }
 
-  
+  private _displayButton: boolean = true;
+  public get displayButton(): boolean { return this._displayButton; }
   private _showingMore: boolean = false;
   public onClickShowMore(){
     if(this._showingMore === false){

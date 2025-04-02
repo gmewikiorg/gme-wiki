@@ -120,7 +120,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   private _xAxisLabels: string[] = [];
   public get xAxisLabels(): string[] { return this._xAxisLabels; }
 
-  private _updateDatasets(dataEntryCount = 20): ChartConfiguration<'bar'>['data'] {
+  private _updateDatasets(dataEntryCount = 99): ChartConfiguration<'bar'>['data'] {
     /**   Total of 19 items from FY05 to FY23 inclusive    */
     const chartTitle = this._datasetBuilder.chartTitle(this.chartOption, this.chartPeriod);
     this._chartService.setChartTitle(chartTitle);

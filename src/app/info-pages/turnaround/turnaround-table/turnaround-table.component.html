@@ -36,42 +36,42 @@
         <tbody>
             <tr>
                 <td style="font-size: 0.9em;">Store Count</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('STORE_COUNT', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('STORE_COUNT', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('STORE_COUNT', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Revenue</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('REVENUE', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('REVENUE', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('REVENUE', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Operating Income</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('OP_INCOME', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('OP_INCOME', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('OP_INCOME', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Interest Income</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('INT_INCOME', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('INT_INCOME', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('INT_INCOME', year) }}</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Net Income</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('NET_INCOME', year)"
+                <td style="font-size: 0.9em;">Net Income</td> 
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('NET_INCOME', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('NET_INCOME', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Assets</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('ASSETS', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('ASSETS', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('ASSETS', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Liabilities</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('LIABILITIES', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('LIABILITIES', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('LIABILITIES', year) }}</td>
             </tr>
             <tr>
                 <td style="font-size: 0.9em;">Stockholders' Equity</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('EQUITY', year)"
+                <td *ngFor="let year of yearsRange" [style.color]="getColor('EQUITY', year)" style="min-width: 17%;"
                     [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('EQUITY', year) }}</td>
             </tr>
         </tbody>
@@ -80,9 +80,10 @@
     <div class="bottom-bar">
         <div style="width: 100px;"></div>
         <div>Click on the top box of each column for a link to the 10K form</div> 
-        <div>
+        <div *ngIf="displayButton">
             <button class="expand-button" (click)="onClickShowMore()" *ngIf="!showingMore">Show more</button>
             <button class="expand-button" (click)="onClickShowMore()" *ngIf="showingMore">Show less</button>
         </div>
+        <div *ngIf="!displayButton" style="width: 100px;"></div>
     </div>
 </div>

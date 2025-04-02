@@ -14,17 +14,20 @@
                 <li>CEO of GameStop since September 2023</li>
                 <li>Does not receive compensation</li>
                 <li>"We are focused on building shareholder value over the long term."<br>
-                -- <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/" target="_blank">June 17, 2024</a> </li>
+                    -- <a
+                        href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
+                        target="_blank">June 17, 2024</a> </li>
             </ul>
         </div>
-        <div class="page-section" style="width:100%; max-width: 100%; display:flex; flex-direction:column; align-items: center; padding: 0px;"
+        <div class="page-section"
+            style="width:100%; max-width: 100%; display:flex; flex-direction:column; align-items: center; padding: 0px;"
             *ngIf="isBrowser">
             <div *ngIf="!isMobile" style="max-width: 650px;">
                 <app-image-carousel [carousel]="rcCarousel" [maxWidth]="400"></app-image-carousel>
                 <!-- <img [src]="rcImagePaths[0]" alt="" style="width: 100%;"> -->
                 <!-- <img *ngFor="let imagePath of rcImagePaths" [src]="imagePath" alt="" style="width: 100%;"> -->
             </div>
-            <div *ngIf="isMobile" style="max-width: 100%;" >
+            <div *ngIf="isMobile" style="max-width: 100%;">
                 <app-image-carousel [carousel]="rcCarousel" [maxWidth]="screenWidth"></app-image-carousel>
             </div>
         </div>
@@ -34,15 +37,27 @@
         </div>
         <div class="page-section">
             <div class="section-heading">November 2022 Interview</div>
-            <p></p>
+            <p>Ryan Cohen does not give many public interviews or otherwise provide very much information publicly.</p>
+            <p>In November 2022, Ryan Cohen gave <a [routerLink]="'/rc-interview'">an interview with Joe Fonicello of
+                    GMEdd.com</a>, providing
+                one of the most extensive and candid public appearances to date.  This interview provides insight into Ryan Cohen's business and investing philosophy, as well as some off-beat humor.
+            </p>
+            <ul>
+                <li>Ryan Cohen discusses some of the differences and similarities between Chewy and GameStop</li>
+                <li>Cohen explains that they are focused on turning GameStop profitable</li>
+                <li>Cohen advocates for corporate leaders to have personal financial stakes in the businesses they oversee to ensure alignment with shareholder interests</li>
+            </ul>
+            <p>Joe Fonicello would later become <a href="https://www.linkedin.com/in/fonicello" target="_blank">GameStop's Head of Social Media</a>, as of July 2024.</p>
         </div>
         <div class="page-section">
             <div class="section-heading">More links</div>
-            <div >
-                <a href="https://en.wikipedia.org/wiki/Ryan_Cohen" target="_blank" style="display:flex;flex-direction: row; align-items: center;">
-                    <img src="assets/icons/wikipedia-logo.png" alt="" style="height: 20px;width: 20px;margin-right: 10px;"> Ryan Cohen - Wikipedia
+            <div>
+                <a href="https://en.wikipedia.org/wiki/Ryan_Cohen" target="_blank"
+                    style="display:flex;flex-direction: row; align-items: center;">
+                    <img src="assets/icons/wikipedia-logo.png" alt=""
+                        style="height: 20px;width: 20px;margin-right: 10px;"> Ryan Cohen - Wikipedia
                 </a>
-                
+
             </div>
         </div>
     </div>

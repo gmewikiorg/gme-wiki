@@ -229,6 +229,12 @@ export class EarningsDatasetBuilder {
         }
 
 
+        const isDarkMode = this._sizeService.isDarkMode;
+
+        let backgroundColor = 'white';
+        if(isDarkMode){
+            backgroundColor = 'black';
+        }
 
         let dataLabels: Options | undefined = {
             color: function (context: Context) {
@@ -240,10 +246,10 @@ export class EarningsDatasetBuilder {
                 }
             },
             display(context: Context) {
-                if (context.dataIndex === context.dataset.data.length - 1) {
+                if (context.dataIndex >= context.dataset.data.length - 1) {
                     return true;
                 }
-                return true;
+                return false;
             },
             align: function (context: Context) {
                 let value = Number(context.dataset.data[context.dataIndex]);
@@ -263,10 +269,15 @@ export class EarningsDatasetBuilder {
                 }
                 return 'start';
             },
-            backgroundColor: 'white',
+            backgroundColor: backgroundColor,
             borderRadius: 5,
             borderColor: function (context: Context) {
-                return 'rgba(0,0,255,0.1)';
+                if(isDarkMode){
+                    return 'rgba(255,255,255,0.1)';
+                }else{
+                    return 'rgba(0,0,0,0.1)';
+                }
+               
             },
             borderWidth: 1,
             formatter: function (value: number, context: Context) {

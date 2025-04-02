@@ -1,16 +1,41 @@
 .section-body{
     display:flex;
     flex-direction: row;
+    
 }
 
 
+.section-p{
+    padding-left:0px;
+    padding-right: 0px;
+    // text-align: center;
+    font-size: 1.2em;
+    margin-top: 0px;
+}
+.section-heading{
+    margin-top: 0px;
+}
 
+.page-image{
+    margin-right: 10px;
+}
 
-@media (max-width:900px) {
+@media (max-width:1300px) {
     .section-body{
         display:flex;
         flex-direction: column-reverse;
+        align-items: center;
     }
+    .section-heading{
+        text-align: center;
+    }
+    .section-p{
+        padding-left:30px;
+        padding-right: 30px;
+        // text-align: center;
+        font-size: 1.2em;
+    }
+    
   }
   
 
@@ -25,11 +50,9 @@
     border: 1px solid rgba(0, 0, 0, 0.507);
     cursor: pointer;
 }
-.section-p{
-    padding-left:30px;
-    padding-right: 30px;
-    // text-align: center;
-    font-size: 1.2em;
+.menu-item-dark:hover{
+    border: 1px solid rgba(255, 255, 255, 0.507);
+    cursor: pointer;
 }
 
 .page-image{

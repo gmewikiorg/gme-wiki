@@ -20,8 +20,8 @@ export class TurnaroundComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private titleService: Title, private _screenService: ScreenService) {
 
-      const title = 'GameStop Turnaround: 2021 to present | gmewiki.org'
-      const description = 'GameStop Turnaround:  fewer stores, higher value, renewed profitability | gmewiki.org'
+    const title = 'GameStop Turnaround: 2021 to present | gmewiki.org'
+    const description = 'GameStop Turnaround:  fewer stores, higher value, renewed profitability | gmewiki.org'
     this.titleService.setTitle(title);
 
 
@@ -44,7 +44,7 @@ export class TurnaroundComponent implements OnInit {
       { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png'}, 
+      { name: 'twitter:image', content: 'https://gmewiki.org/assets/info-pages/turnaround.png' },
     ]);
   }
 

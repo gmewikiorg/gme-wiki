@@ -6,11 +6,12 @@ import { ImageCarousel } from '../../shared/components/image-carousel/image-caro
 import { ImageCarouselItem } from '../../shared/components/image-carousel/image-carousel-item.interface';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-ryan-cohen',
   standalone: true,
-  imports: [FooterComponent, CommonModule, ImageCarouselComponent],
+  imports: [FooterComponent, CommonModule, ImageCarouselComponent, RouterModule],
   templateUrl: './ryan-cohen.component.html',
   styleUrl: './ryan-cohen.component.scss'
 })

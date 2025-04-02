@@ -8,7 +8,7 @@
 
 
     <div class="page-content">
-        <div class="page-section menu-item" [routerLink]="'/timeline'">
+        <div class="page-section menu-item" [routerLink]="'/timeline'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GME Timeline</div>
             <div class="section-body">
 
@@ -20,47 +20,55 @@
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/earnings'">
+        <div class="page-section menu-item" [routerLink]="'/earnings'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GME Earnings and Financial Information</div>
             <div class="section-body">
                 <img src="assets/main-pages/earnings.png" alt="gme earnings" class="page-image">
-                <p class="section-p">View the status and history of GameStop revenue, net
-                    earnings, stockholders' equity, and related
-                    information</p>
+                <div>
+                    <p class="section-p">View the status and history of GameStop revenue, net
+                        earnings, stockholders' equity, and related
+                        information</p>
+                    <p class="section-p">As of fiscal year 2024 results, GameStop had revenue
+                        of $3.8 billion, and net income of $133 million.</p>
+                </div>
+
 
             </div>
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/ownership'">
+        <div class="page-section menu-item" [routerLink]="'/ownership'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GME Ownership</div>
             <div class="section-body">
-                <div style="max-width: 400px;"> <img src="assets/main-pages/ownership.png" alt="gme ownership"
-                        class="page-image"></div>
+                <div style="max-width: 400px; margin-right: 10px;"> <img src="assets/main-pages/ownership.png"
+                        alt="gme ownership" class="page-image"></div>
 
                 <div>
                     <p class="section-p">Who owns GameStop?
 
                     </p>
                     <p class="section-p">
-                        See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith Gill,
+                        See a breakdown of the shares held by registered shareholders, Ryan Cohen and insiders, Keith
+                        Gill,
                         and
                         institutions
                     </p>
 
                     <p class="section-p">
-                        As a publicly traded company, GameStop is unusual because a significant portion of all issued shares
+                        As a publicly traded company, GameStop is unusual because a significant portion of all issued
+                        shares
                         are owned by registered shareholders.
                     </p>
                 </div>
-                
+
             </div>
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/turnaround'">
+        <div class="page-section menu-item" [routerLink]="'/turnaround'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GameStop Company Turnaround</div>
             <div class="section-body">
-                <div> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround" class="page-image"></div>
+                <div style="margin-right: 10px;"> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround"
+                        class="page-image"></div>
                 <div>
                     <p class="section-p">Since 2021, GameStop has been undergoing a transformation: fewer stores, higher
                         value, renewed
@@ -73,11 +81,11 @@
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/stores'">
+        <div class="page-section menu-item" [routerLink]="'/stores'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GameStop Store Count Information</div>
             <div class="section-body">
-                <div style="max-width: 500px;"> <img src="assets/info-pages/stores-page.png" alt="Store counts"
-                        class="page-image"></div>
+                <div style="margin-right: 10px;"> <img src="assets/info-pages/stores-page.png" alt="Store counts"
+                        class="page-image" style="min-width:500px;"></div>
                 <div>
                     <p class="section-p">See how GameStop's physical store count has changed over the years</p>
                     <p class="section-p">
@@ -86,41 +94,44 @@
                         value
                         items that fit into our trade-in model."
                         <br>
-                        - CEO Ryan Cohen's statements from GameStop's 2024 annual meeting on June 17
+                        - CEO Ryan Cohen (June 17, 2024)
                     </p>
                 </div>
             </div>
         </div>
 
 
-        <div class="page-section menu-item" [routerLink]="'/investment-policy'">
+        <div class="page-section menu-item" [routerLink]="'/investment-policy'"
+            [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GameStop Investment Policy</div>
             <div class="section-body">
                 <div class="section-p">
-                    GameStop has made significant changes to its Investment Policy, giving Ryan Cohen discretion over investments, as well as demonstating intent on obtaining bitcoin.
+                    GameStop has made significant changes to its Investment Policy, giving Ryan Cohen discretion over
+                    investments, as well as demonstating intent on obtaining bitcoin.
                 </div>
             </div>
         </div>
 
 
-        <div class="page-section menu-item" [routerLink]="'/drs'">
+        <div class="page-section menu-item" [routerLink]="'/drs'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">DRS (Direct Registration System)</div>
             <p class="section-p">Unlike most publicly traded companies, a significant portion of all GME shares ({{
                 registeredPercent }}%)
                 are held by registered shareholders via DRS.</p>
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/social-media'">
+        <div class="page-section menu-item" [routerLink]="'/social-media'"
+            [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GME Social Media</div>
             <p class="section-p">Connect with the GME shareholder community across numerous platforms</p>
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/faq'">
+        <div class="page-section menu-item" [routerLink]="'/faq'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">GME FAQ</div>
             <p class="section-p">Find answers to generic questions pertaining to GME</p>
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/about'">
+        <div class="page-section menu-item" [routerLink]="'/about'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
             <div class="section-heading">About</div>
             <p class="section-p">About gmewiki.org</p>
         </div>
