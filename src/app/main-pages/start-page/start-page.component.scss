@@ -19,9 +19,12 @@
 .image-container{
     width: 100%;
     max-width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 .page-image{
-    // margin-right: 10px;
+    border-radius: 10px;
     max-width: 100%;
 }
 
