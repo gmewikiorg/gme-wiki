@@ -138,7 +138,6 @@ export const routes: Routes = [
     { path: 'turnaround', component: TurnaroundComponent },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
-    { path: 't+35', component: TPlusThirtyFiveComponent },
     { path: 't-plus-thirty-five', component: TPlusThirtyFiveComponent },
 
 
