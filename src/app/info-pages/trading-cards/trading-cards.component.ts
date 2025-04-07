@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-trading-cards',
@@ -10,26 +10,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './trading-cards.component.scss'
 })
 export class TradingCardsComponent {
-  constructor(private titleService: Title, private meta: Meta) {
-    const title = 'Trading Cards at GameStop | gmewiki.org';
-    this.titleService.setTitle(title);
-    const description = 'Starting in 2024, GameStop has made efforts to expand into the market of graded trading cards';
-
-    const metaTags = this.meta.getTags('name');
-    metaTags.forEach(tag => this.meta.removeTagElement(tag));
-    this.meta.addTags([
-      { name: 'description', content: description },
-      { name: 'keywords', content: 'GameStop, GME, gme wiki, wiki, trading cards' },
-      { name: 'author', content: 'GME shareholder' },
-      { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { charset: 'UTF-8' }
-    ]);
-    this.meta.addTags([
-      { property: 'og:title', content: title, },
-      { property: 'og:description', content: description },
-      { property: 'og:url', content: 'https://gmewiki.org/sneeze' },
-      { property: 'og:type', content: 'website' },
-    ]);
+  constructor(private _screenService: ScreenService) {
+    const title = 'Graded Trading Cards at GameStop | gmewiki.org';
+    const description = 'Starting in 2024, GameStop has made efforts to expand into the market of graded trading cards ';
+    const url = 'https://gmewiki.org/trading-cards';
+    const image = '';
+    this._screenService.setPageInfo(title, description, url, image);
   }
 }

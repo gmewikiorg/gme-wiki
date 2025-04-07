@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ImageCarouselComponent } from '../../shared/components/image-carousel/image-carousel.component';
@@ -87,24 +87,11 @@ export class RyanCohenComponent {
     this._isBrowser = _screenService.isBrowser;
 
     const title = 'Ryan Cohen: GameStop CEO and Chairman | gmewiki.org';
-    const description = 'Ryan Cohen: GameStop CEO and Chairman, largest individual GME shareholder, receives no compensation | gmewiki.org';
-    this.titleService.setTitle(title)
-    const metaTags = this.meta.getTags('name');
-    metaTags.forEach(tag => this.meta.removeTagElement(tag));
-    this.meta.addTags([
-      { name: 'description', content: description },
-      { name: 'keywords', content: 'GameStop, GME, Ryan Cohen, RC' },
-      { name: 'author', content: 'GME shareholder' },
-      { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { charset: 'UTF-8' }
-    ]);
-    this.meta.addTags([
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:url', content: 'https://gmewiki.org/ryan-cohen' },
-      { property: 'og:type', content: 'website' },
-    ]);
+    const description = 'Ryan Cohen: GameStop CEO and Chairman, largest individual GME shareholder, receives no compensation';
+    const url = 'https://gmewiki.org/ryan-cohen';
+    const image = '';
+    this._screenService.setPageInfo(title, description, url, image);
+
   }
 
 

@@ -4,15 +4,13 @@ import { TimelineChartComponent } from './timeline-chart/timeline-chart.componen
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { LoadingService } from '../../shared/services/loading.service';
-import { Meta, Title } from '@angular/platform-browser';
-import { SettingsService } from '../../shared/services/settings.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { TimelineContentComponent } from './timeline-content/timeline-content.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { TimelineAnnotationBoxComponent } from './timeline-annotation-box/timeline-annotation-box.component';
 import { TimelineControlsService } from './timeline-controls/timeline-controls.service';
 import { TimelineEvent } from './timeline-items/timeline-item/timeline-event.class';
-import { timer } from 'rxjs';
+
 
 @Component({
   selector: 'app-timeline',
@@ -27,37 +25,14 @@ import { timer } from 'rxjs';
 export class TimelineComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    private meta: Meta,
-    private _sizeService: ScreenService,
+    private _screenService: ScreenService,
     private _loadingService: LoadingService,
-    private _controlsService: TimelineControlsService,
-    private titleService: Title) {
+    private _controlsService: TimelineControlsService,) {
     const title = 'GameStop Interactive Timeline | gmewiki.org';
     const description = 'GME interactive annotated timeline and chart tools';
-    this.titleService.setTitle(title);
-    const metaTags = this.meta.getTags('name');
-    metaTags.forEach(tag => this.meta.removeTagElement(tag));
-    this.meta.addTags([
-      { name: 'description', content: 'GameStop: Interactive GME Stock Timeline of Events' },
-      { name: 'keywords', content: 'GameStop, GME, timeline' },
-      { name: 'author', content: 'GME shareholder' },
-      { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { charset: 'UTF-8' }
-    ]);
-    this.meta.addTags([
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/timeline.png' },
-      { property: 'og:url', content: 'https://gmewiki.org/timeline' },
-      { property: 'og:type', content: 'website' },
-    ]);
-    this.meta.addTags([
-      // { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: 'https://gmewiki.org/assets/main-pages/timeline.png' }
-    ])
+    const url = 'https://gmewiki.org/timeline';
+    const image = 'https://gmewiki.org/assets/main-pages/timeline.png';
+    this._screenService.setPageInfo(title, description, url, image);
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
 
@@ -71,9 +46,9 @@ export class TimelineComponent {
 
   public get isBrowser(): boolean { return this._isBrowser; }
 
-  public get isMobile(): boolean { return this._sizeService.isMobile }
+  public get isMobile(): boolean { return this._screenService.isMobile }
 
-  public get isNarrow(): boolean { return this._sizeService.screenDimensions.width < 1050; }
+  public get isNarrow(): boolean { return this._screenService.screenDimensions.width < 1050; }
   public get isLoading(): boolean { return this._isLoading; }
   public get loadingMessage(): string { return this._loadingService.loadingMessage; }
 
@@ -82,7 +57,7 @@ export class TimelineComponent {
 
   async ngOnInit() {
     this._controlsService.setPeriod('CURRENT');
-    this._sizeService.screenDimensions$.subscribe({
+    this._screenService.screenDimensions$.subscribe({
       next: (dimensions) => {
         if (dimensions.width < 1050) {
         }

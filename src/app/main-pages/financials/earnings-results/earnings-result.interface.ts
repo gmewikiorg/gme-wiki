@@ -18,6 +18,10 @@ export interface EarningsResultInterface {
     totalLiabilities: number;
     stockholdersEquity: number;
     storeCount: number;
+    revenueHardware: number;
+    revenueSoftware: number;
+    revenueCollectibles: number;
+    revenueOther: number;
     drs: number;
     url: string;
     reportingPeriod: 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'FY';

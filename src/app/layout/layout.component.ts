@@ -5,7 +5,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MobileTopBarComponent } from './mobile-top-bar/mobile-top-bar.component';
 import { ScreenService } from '../shared/services/screen-size.service';
 import { LoadingService } from '../shared/services/loading.service';
-import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { Subject, timer } from 'rxjs';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +12,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, SidebarComponent, MobileTopBarComponent, LoadingComponent, FontAwesomeModule],
+  imports: [CommonModule, RouterModule, SidebarComponent, MobileTopBarComponent, FontAwesomeModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })

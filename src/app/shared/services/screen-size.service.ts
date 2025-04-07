@@ -2,13 +2,14 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, isSignal, PLATFORM_ID } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScreenService {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _settingsService: SettingsService) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _settingsService: SettingsService, private titleService: Title, private meta: Meta) {
     if (isPlatformBrowser(this.platformId)) {
       this._screenDimensions$ = new BehaviorSubject({ width: window.innerWidth, height: window.innerHeight });
       this._browser = window.navigator.userAgent;
@@ -22,6 +23,31 @@ export class ScreenService {
       this._screenDimensions$ = new BehaviorSubject({ width: 800, height: 600 });
     }
     this._setDarkMode(this._settingsService.getDarkMode());
+  }
+
+  public setPageInfo(title: string, description: string, url: string, image: string){
+    this.titleService.setTitle(title)
+    const metaTags = this.meta.getTags('name');
+    metaTags.forEach(tag => this.meta.removeTagElement(tag));
+    this.meta.addTags([
+      { name: 'description', content: description, },
+      { name: 'keywords', content: 'GameStop, GME, gmewiki, gme wiki, gmewiki.org' },
+      { name: 'author', content: 'GME shareholder' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      { charset: 'UTF-8' }
+    ]);
+    this.meta.addTags([
+      { property: 'og:title', content: title, },
+      { property: 'og:description', content: description, },
+      { property: 'og:image', content: image}, 
+      { property: 'og:url', content: url },
+      { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: image}, 
+    ]);
   }
 
 

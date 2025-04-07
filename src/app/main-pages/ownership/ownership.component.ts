@@ -1,12 +1,12 @@
-import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, HostListener } from '@angular/core';
 import { OwnershipData } from './ownership-data/ownership-data.class';
 import dayjs from 'dayjs';
 import { RouterModule } from '@angular/router';
 import { OwnershipChartComponent } from './ownership-chart/ownership-chart.component';
 import { OwnershipTableComponent } from './ownership-table/ownership-table.component';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-ownership',
@@ -17,34 +17,13 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 })
 export class OwnershipComponent {
 
-
-  constructor(
-    private meta: Meta,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private titleService: Title) {
-
+  constructor(private _screenService: ScreenService) {
     const title = 'GameStop ownership (as of ' + this.lastUpdated + ') | gmewiki.org';
     const description = 'Chart and table with data sources providing a breakdown of GME ownership';
-    this.titleService.setTitle(title);
-    this._isBrowser = isPlatformBrowser(this.platformId);
-
-    const metaTags = this.meta.getTags('name');
-    metaTags.forEach(tag => this.meta.removeTagElement(tag));
-    this.meta.addTags([
-      { name: 'description', content: description },
-      { name: 'keywords', content: 'GameStop, GME, ownership, shares' },
-      { name: 'author', content: 'GME shareholder' },
-      { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { charset: 'UTF-8' }
-    ]);
-    this.meta.addTags([
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: 'https://gmewiki.org/assets/main-pages/ownership.png' },
-      { property: 'og:url', content: 'https://gmewiki.org/ownership' },
-      { property: 'og:type', content: 'website' },
-    ]);
+    const url = 'https://gmewiki.org/ownership';
+    const image = 'https://gmewiki.org/assets/main-pages/ownership.png';
+    this._screenService.setPageInfo(title, description, url, image);
+    this._isBrowser = this._screenService.isBrowser;
   }
 
   private _isBrowser: boolean = false;

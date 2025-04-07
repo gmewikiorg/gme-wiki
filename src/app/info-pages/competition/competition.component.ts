@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-competition',
@@ -8,7 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './competition.component.scss'
 })
 export class CompetitionComponent {
-
+  constructor(private _screenService: ScreenService) {
+    const title = 'GameStop Business Competition | gmewiki.org';
+    const description = 'Some information about GameStops business competition';
+    const url = 'https://gmewiki.org/competition';
+    const image = '';
+    this._screenService.setPageInfo(title, description, url, image);
+  
+  }
 
   private _measureProperty: 'REVENUE' | 'NET_INCOME' | 'EQUITY' = 'EQUITY';
 

@@ -11,6 +11,30 @@ const drsVsDsppRatio2024: number = 0.824;
  */
 export const ownershipHistory: OwnershipHistoryItem[] = [
 
+
+
+    {
+        dateYYYYMMDD: '2025-04-03',
+        registeredText: "... approximately 69.5 million shares of our Class A Common Stock were held by registered holders with our transfer agent (or approximately 16% of our outstanding shares)",
+        filingLink: "https://www.sec.gov/Archives/edgar/data/1326380/000162828025014731/gme-20250201.htm",
+        filingType: '10K',
+        tso: 447083981,
+        heldByCede: 377600000,
+        heldByRegistered: 69500000,
+        registeredDRS: drsVsDsppRatio2024 * 69500000,
+        registeredDSPP: (1 - drsVsDsppRatio2024) * 69500000,
+        totalInsiders: 800000 + 37347842,
+        insidersRyanCohen: 37347842,
+        insidersRemainder: 800000,
+        keithGill: 9001000,
+        instVanguard: 39144063,
+        instBlackrock: 34821144,
+        instStateStreet: 12315631,
+        instAllOther: 57376321,
+        instTotal: 143657159,
+        remainder: 187277980,
+    },
+
     {
         dateYYYYMMDD: '2025-03-19',
         registeredText: "... approximately 69.5 million shares of our Class A Common Stock were held by registered holders with our transfer agent (or approximately 16% of our outstanding shares)",

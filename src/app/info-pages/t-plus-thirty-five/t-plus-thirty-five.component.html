@@ -1,10 +1,11 @@
 <div class="component-root">
     <div class="page-content">
         <h1 class="page-title">
-            T+35
+            T+35 Settlement Cycle
         </h1>
         <h5 class="page-subtitle">
-            An observed market cycle that can influence the price of a stock
+            An observed market cycle related to <a [routerLink]="'/ftd'">FTDs (fails-to-deliver)</a> that can influence
+            the price of a stock
         </h5>
 
 
@@ -15,17 +16,35 @@
             </div>
             <ul>
                 <li>
-                    Failure to deliver (FTD):  An FTD happens when the seller fails to deliver the required shares to the
-                    buyer by the settlement date (T+2)
+                    Failure to deliver (FTD): An FTD happens when the seller fails to deliver the required shares to the
+                    buyer by the standard settlement date (T+2)
                 </li>
-                <li>Persistent FTDs build up over time as short sellers and other market participants struggle to deliver shares</li>
-                <li>Roughly 35 trading days after a surge in FTDs, the accumulated pressure forces short sellers to cover their positions</li>
-                <li>This forced buying can drive up the stock’s price</li>
+                <li>
+                    <a href="https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions-8"
+                        target="_blank">SEC Rule 204 — Close-out Requirements</a> provides a special exemption that gives certain market
+                    participants—like
+                    market makers or authorized participants—up to 35 calendar days to deliver securities after a sale
+                    if they are deemed to own the shares but are temporarily unable to deliver them.
+                <ul>
+                    <li>
+                        "If delivery is not made within 35 days after the trade date, the broker-dealer that sold on behalf of the person must either borrow securities or close out the open position by purchasing securities of like kind and quantity."
+                    </li>
+                </ul></li>
+                <li>This forced buying can drive up a stock’s price</li>
             </ul>
         </div>
-        <!-- <div class="page-section">
-            <app-help-contribute></app-help-contribute>
-        </div> -->
+
+
+        <div class="page-section">
+            <div class="section-heading">
+                Formal Research
+            </div>
+            <p>In 2023, researchers from Mendel University in Brno, Czech Republic, published a paper titled: <a
+                    href="https://ideas.repec.org/a/fau/fauart/v73y2023i1p56-80.html">Confirmation of T+35
+                    Failures-To-Deliver Cycles: Evidence from GameStop Corp</a>, which provides empirical evidence that
+                ETF-related fails-to-deliver tied to GameStop stock formed consistent, non-random T+35 settlement
+                cycles, suggesting systematic exploitation of regulatory exemptions by market makers. </p>
+        </div>
     </div>
 
     <div style="margin-top:50px;"></div>
