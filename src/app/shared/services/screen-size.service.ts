@@ -31,7 +31,7 @@ export class ScreenService {
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
       { name: 'description', content: description, },
-      { name: 'keywords', content: 'GameStop, GME, gmewiki, gme wiki, gmewiki.org' },
+      { name: 'keywords', content: 'GameStop, GME, gmewiki, gme wiki, gmewiki.org, wiki' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },

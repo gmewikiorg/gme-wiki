@@ -18,13 +18,11 @@ import { Fy23MediaSentimentTableComponent } from './fy23-media-sentiment-table/f
 export class Fy23EarningsComponent {
 
   constructor(private _screenSizeService: ScreenService) {
-
     const title = 'GameStop FY 2023 Earnings Results | gmewiki.org';
     const description = 'GameStop’s FY 2023 Earnings Results: Profitable for the first time in 6 years';
     const url = 'https://gmewiki.org/fy23';
-    const image = 'https://gmewiki.org/assets/earnings-sankey/fy23-earnings-sankey.png';
+    const image = 'https://gmewiki.org/assets/earnings-sankey/fy23-earnings-sankey.jpg';
     this._screenSizeService.setPageInfo(title, description, url, image);
-
     this._isBrowser = this._screenSizeService.isBrowser;
   }
 
