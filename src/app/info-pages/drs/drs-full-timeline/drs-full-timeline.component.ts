@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-drs-full-timeline',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FooterComponent],
   templateUrl: './drs-full-timeline.component.html',
   styleUrl: './drs-full-timeline.component.scss'
 })

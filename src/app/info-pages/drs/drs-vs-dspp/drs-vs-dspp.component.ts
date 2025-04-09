@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { OwnershipData } from '../../../main-pages/ownership/ownership-data/ownership-data.class';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-drs-vs-dspp',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './drs-vs-dspp.component.html',
   styleUrl: './drs-vs-dspp.component.scss'
 })

@@ -54,12 +54,15 @@ export class ScreenService {
 
   private _isBrowser: boolean;
   private _isMobile$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _isTouchDevice$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _changedScreenFromToMobile$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _screenDimensions$: BehaviorSubject<{ width: number, height: number }>;
   public get screenDimensions$(): Observable<{ width: number, height: number }> { return this._screenDimensions$.asObservable(); }
   public get screenDimensions(): { width: number, height: number } { return this._screenDimensions$.getValue(); }
   public get isMobile(): boolean { return this._isMobile$.getValue(); }
   public get isMobile$(): Observable<boolean> { return this._isMobile$.asObservable(); }
+  public get isTouchDevice(): boolean { return this._isTouchDevice$.getValue(); }
+  public get isTouchDevice$(): Observable<boolean> { return this._isTouchDevice$.asObservable(); }
   public get isBrowser(): boolean { return this._isBrowser; }
   public get changedScreenFromToMobile$(): Observable<boolean> { return this._changedScreenFromToMobile$.asObservable();}
 
@@ -84,6 +87,9 @@ export class ScreenService {
       }
       this._isMobile$.next(false);
     }
+  }
+  public setIsTouchDevice(isTouchDevice: boolean){
+    this._isTouchDevice$.next(isTouchDevice);
   }
 
 

@@ -164,6 +164,7 @@ export class TimelineChartComponent implements OnDestroy {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      
       onHover: (event, array) => {
         this._cursorNgStyle = { cursor: 'default' }
         if (array.length > 0) {
@@ -181,9 +182,9 @@ export class TimelineChartComponent implements OnDestroy {
         if (array.length > 0) {
           const timelineItem = this._chartDataService.lookupEventByIndex(array[0].datasetIndex, array[0].index);
           if (timelineItem) {
-            if (timelineItem.hasLocalArticle && !this._sizeService.isMobile) {
+            if (timelineItem.hasLocalArticle && !this._sizeService.isMobile && !this._sizeService.isTouchDevice) {
               this._router.navigate([timelineItem.localArticle!.url]);
-            } else if (timelineItem.hasUrls) {
+            } else if (timelineItem.hasUrls && !this._sizeService.isMobile && !this._sizeService.isTouchDevice) {
               window.open(timelineItem.urls[0].url, '_blank');
             }
           }

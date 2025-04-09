@@ -351,12 +351,17 @@ export class EarningsDatasetBuilder {
         *  newer items are more opaque (higher alpha), e.g. 2023
         */
     private _getAlpha(index: number, totalCount: number) {
+        let minAlpha = 0.3;
+        const maxAlpha = 1.0;
+        const t = index / (totalCount - 1);
+        if(this._sizeService.isDarkMode){
+            minAlpha = 0.55;
+        }
+
         if (totalCount <= 1) {
             return 1.0;
         }
-        const minAlpha = 0.3;
-        const maxAlpha = 1.0;
-        const t = index / (totalCount - 1);
+
         return minAlpha + (maxAlpha - minAlpha) * t;
     }
 

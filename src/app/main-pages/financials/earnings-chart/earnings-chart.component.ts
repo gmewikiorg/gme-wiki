@@ -195,7 +195,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     let color = 'rgba(0,0,0,0.1)';
     const darkMode = this.isDarkMode;
     if(darkMode){
-      color = 'rgba(255,255,255,0.05)';
+      color = 'rgba(255,255,255,0.15)';
     }
 
     let chartOptions: ChartOptions<'bar'> = {
@@ -207,13 +207,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           min: minY,
           grid: {
             color: function (context) {
-              if (context.tick.value === 0) {
-                if(darkMode){
-                  return 'rgba(255,255,255,0.2)';
-                }else{
-                  return 'rgba(0,0,0,0.2)';
-                }
-              }
+              // if (context.tick.value === 0) {
+              //   if(darkMode){
+              //     return 'rgba(255,255,255,0.2)';
+              //   }else{
+              //     return 'rgba(0,0,0,0.2)';
+              //   }
+              // }
               return color;
             },
           },
@@ -287,13 +287,13 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             },
             grid: {
               color: function (context) {
-                if (context.tick.value === 0) {
-                  if(darkMode){
-                    return 'rgba(255,255,255,0.2)';
-                  }else{
-                    return 'rgba(0,0,0,0.2)';
-                  }
-                }
+                // if (context.tick.value === 0) {
+                //   if(darkMode){
+                //     return 'rgba(255,255,255,0.2)';
+                //   }else{
+                //     return 'rgba(0,0,0,0.2)';
+                //   }
+                // }
                 return color;
               },
             },

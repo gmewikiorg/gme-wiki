@@ -18,7 +18,6 @@ export class AppComponent {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private _titleService: Title,
     private _sizeService: ScreenService,
     private _settingsService: SettingsService,
     private _router: Router,
@@ -41,6 +40,27 @@ export class AppComponent {
   // @HostListener('window:beforeunload')
   // saveScrollPosition() {
   //   sessionStorage.setItem('scrollPosition', String(window.scrollY));
+  // }
+
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent): void {
+    this._screenService.setIsTouchDevice(true);
+  }
+
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent): void {
+    this._screenService.setIsTouchDevice(true);
+  }
+
+  // @HostListener('touchend', ['$event'])
+  // onTouchEnd(event: TouchEvent): void {
+  //   console.log('Touch ended', event);
+  // }
+
+  // @HostListener('touchcancel', ['$event'])
+  // onTouchCancel(event: TouchEvent): void {
+  //   console.log('Touch canceled', event);
   // }
 
   async ngOnInit() {
