@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-trading-cards',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FooterComponent],
   templateUrl: './trading-cards.component.html',
   styleUrl: './trading-cards.component.scss'
 })
