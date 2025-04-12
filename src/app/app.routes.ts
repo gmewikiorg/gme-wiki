@@ -72,6 +72,8 @@ export const routes: Routes = [
     { path: 'burp-may-2024', component: BurpComponent },
 
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
+    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
+    
     { path: 'conflict', component: ConflictComponent },
     { path: 'competition', component: CompetitionComponent },
     
@@ -105,7 +107,7 @@ export const routes: Routes = [
     { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
 
     { path: 'media', component: MediaComponent },
-    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
+
     { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
     { path: 'propaganda', component: MediaComponent },
 
