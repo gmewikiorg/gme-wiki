@@ -106,7 +106,7 @@ export class ChartDataItemBuilder {
         let pointHoverBorderColor = 'black';
         if (isDarkMode) {
             gmeBorderColor = 'rgba(0, 255, 0, 0.6)';
-            gmeBackgroundColor = 'rgba(0, 255, 0, 0.05)';
+            gmeBackgroundColor = 'rgba(0, 255, 0, 0.075)';
             pointHoverBorderColor = 'white';
         }
         datasets.push({
