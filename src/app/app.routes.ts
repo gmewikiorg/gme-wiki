@@ -42,6 +42,7 @@ import { ShortInterestComponent } from './info-pages/short-interest/short-intere
 import { BearCaseComponent } from './info-pages/bear-case/bear-case.component';
 import { BullCaseComponent } from './info-pages/bull-case/bull-case.component';
 import { InvestmentPolicyComponent } from './info-pages/investment-policy/investment-policy.component';
+import { CnbcVsGmeComponent } from './info-pages/cnbc-vs-gme/cnbc-vs-gme.component';
 
 
 
@@ -72,6 +73,7 @@ export const routes: Routes = [
     { path: 'burp-may-2024', component: BurpComponent },
 
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
+    { path: 'cnbc-vs-gme', component: CnbcVsGmeComponent },
     { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
     
     { path: 'conflict', component: ConflictComponent },

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-investors',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './investors.component.html',
   styleUrl: './investors.component.scss'
 })
