@@ -1,0 +1,3 @@
+[build]
+  publish = "dist/gme-timeline-3" # or your Angular output directory
+  functions = "netlify/functions"
