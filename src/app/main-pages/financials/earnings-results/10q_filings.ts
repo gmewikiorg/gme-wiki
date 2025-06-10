@@ -1,6 +1,34 @@
 import { EarningsResultInterface } from "./earnings-result.interface";
 
 export const filings_10q_raw: EarningsResultInterface[] = [
+    {
+    fiscalYear: 2025,
+    reportingPeriod: "Q1",
+    filingDateYYYYMMDD: "2025-06-10",
+    reportDateYYYYMMDD: "2025-05-03",   
+    revenue: 732400000,                
+    revenueHardware: 0,                 // ?
+    revenueSoftware: 0,                 // ?
+    revenueCollectibles: 0,             // ?
+    revenueOther: 0,                    // ?
+    costOfSales: 479600000,             
+    grossProfit: 252800000,             
+    sga: 228100000,                     
+    operatingIncome: -10800000,          
+    interestIncome: 56900000,           
+    ebit: 48300000,                    
+    incomeTaxExpense: 3500000,          
+    netEarnings: 44800000,             
+    netEPS: 0.10,                       
+    weightedAverageSharesOutstanding: 447100000,      
+    totalAssets: 7106700000,                          
+    totalDebt: 1480700000,                               
+    totalLiabilities: 2515200000,                      
+    stockholdersEquity: 4987400000,                   
+    storeCount: 3203,                                 // ?
+    drs: 68100000,                                    
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638025000035/gme-20250503.htm"
+  },
   {
     fiscalYear: 2024,
     reportingPeriod: "Q4",
