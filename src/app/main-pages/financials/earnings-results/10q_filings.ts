@@ -7,9 +7,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2025-06-10",
     reportDateYYYYMMDD: "2025-05-03",   
     revenue: 732400000,                
-    revenueHardware: 0,                 // ?
-    revenueSoftware: 0,                 // ?
-    revenueCollectibles: 0,             // ?
+    revenueHardware: 345300000,                 // ?
+    revenueSoftware: 175600000,                 // ?
+    revenueCollectibles: 211500000,             // ?
     revenueOther: 0,                    // ?
     costOfSales: 479600000,             
     grossProfit: 252800000,             

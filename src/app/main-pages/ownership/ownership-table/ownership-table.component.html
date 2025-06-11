@@ -61,7 +61,7 @@
             <tr>
                 <td class="border-bottom drs-row"></td>
                 <td class="border-bottom drs-row" style="font-weight: bold;">Total Registered</td>
-                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered}} M</td>
+                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered.toFixed(1)}} M</td>
                 <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{percent(totalRegistered)}} %
                 </td>
             </tr>
@@ -259,7 +259,7 @@
             </tr>
             <tr>
                 <td class="border-bottom-2 drs-row" style="font-weight: bold;">Total Registered</td>
-                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{totalRegistered}} M</td>
+                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{totalRegistered.toFixed(1)}} M</td>
                 <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{percent(totalRegistered)}}
                     %
                 </td>
@@ -277,7 +277,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="insiders-row">Ryan Cohen</td>
+                <td class="insiders-row"><a [routerLink]="'/ryan-cohen'">Ryan Cohen</a></td>
                 <td class="number-cell insiders-row">{{rcNumber.toFixed(1)}} M</td>
                 <td class="number-cell insiders-row">{{percent(rcNumber)}} %</td>
             </tr>
@@ -307,7 +307,7 @@
                 <td class="number-cell border-bottom total insiders-row">{{percent(insidersTotal)}} %</td>
             </tr>
             <tr>
-                <td class="rk-row">Roaring Kitty</td>
+                <td class="rk-row"><a [routerLink]="'/keith-gill'">Keith Gill</a></td>
                 <td class="number-cell rk-row">{{(rkNumber).toFixed(1)}} M</td>
                 <td class="number-cell rk-row">{{percent(rkNumber)}} %</td>
             </tr>
