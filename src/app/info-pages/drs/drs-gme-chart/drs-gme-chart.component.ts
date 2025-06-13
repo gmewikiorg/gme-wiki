@@ -36,12 +36,12 @@ export class DrsGmeChartComponent implements AfterViewInit {
     });
   }
 
-  public onClickDRSNumber(){
+  public onClickDRSNumber() {
     this._isPercentage = false;
     this.barChartData = this._setData();
     this.barChartOptions = this._setOptions();
   }
-  public onClickDRSPercent(){
+  public onClickDRSPercent() {
     this._isPercentage = true;
     this.barChartData = this._setData();
     this.barChartOptions = this._setOptions();
@@ -75,43 +75,45 @@ export class DrsGmeChartComponent implements AfterViewInit {
     'Q2 24',
     'Q3 24',
     'Q4 24',
+    'Q1 25'
   ];
 
   private _data_drsRegisteredQuarterly: number[] = [
-    0,          // Q2 21
-    20800000,   // Q3 21
-    35600000,   // Q4 21
-    50800000,   // Q1 22
-    71300000,   // Q2 22
-    71800000,   // Q3 22
-    76000000,   // Q4 22
-    76600000,   // Q1 23
-    75400000,   // Q2 23
-    75400000,   // Q3 23
-    75300000,   // Q4 23
-    74600000,    // Q1 24
-    72800000,    // Q2 24
-    71000000,   //Q3 24
-    69500000,   //Q4 24
+    0,          // Q2 2021
+    20800000,   // Q3 2021
+    35600000,   // Q4 2021
+    50800000,   // Q1 2022
+    71300000,   // Q2 2022
+    71800000,   // Q3 2022
+    76000000,   // Q4 2022
+    76600000,   // Q1 2023
+    75400000,   // Q2 2023
+    75400000,   // Q3 2023
+    75300000,   // Q4 2023
+    74600000,    // Q1 2024
+    72800000,    // Q2 2024
+    71000000,   //Q3 2024
+    69500000,   //Q4 2024
+    68100000,   //Q1 2025
   ];
 
   private _data_tsoQuarterly: number[] = [
-    0,              // Q2 21
-    (76350781 * 4),   // Q3 21
-    (76339248 * 4),   // Q4 21
-    (76129034 * 4),   // Q1 22
-    304529721,      // Q2 22
-    304578070,      // Q3 22
-    304675439,      // Q4 22
-    304751243,      // Q1 23
-    305241294,      // Q2 23
-    305514315,      // Q3 23
-    305873200,      // Q4 23
-    351217517,       // Q1 24
-    426509592,       // Q2 24
-    446800365,      // Q3 24
-    447083981,      // Q4 24
-    
+    0,              // Q2 2021
+    (76350781 * 4),   // Q3 2021
+    (76339248 * 4),   // Q4 2021
+    (76129034 * 4),   // Q1 2022
+    304529721,      // Q2 2022
+    304578070,      // Q3 2022
+    304675439,      // Q4 2022
+    304751243,      // Q1 2023
+    305241294,      // Q2 2023
+    305514315,      // Q3 2023
+    305873200,      // Q4 2023
+    351217517,       // Q1 2024
+    426509592,       // Q2 2024
+    446800365,      // Q3 2024
+    447083981,      // Q4 2024
+    447336306,      //Q1 2025
   ];
 
   private _data_drsPercentQuarterly: number[] = this._data_drsRegisteredQuarterly.map(drsRegistered => {
@@ -141,15 +143,15 @@ export class DrsGmeChartComponent implements AfterViewInit {
 
     let registered = this._data_drsRegisteredQuarterly;
     let labels = this._dataLabelsQuarterly;
-    if(isMobile){
+    if (isMobile) {
       labels = this._dataLabelsAnnual;
       registered = this._data_drsRegisteredAnnual;
     }
-    if(isPercentage){
-      if(isMobile){
+    if (isPercentage) {
+      if (isMobile) {
         labels = this._dataLabelsAnnual;
         registered = this._data_drsPercentAnnual;
-      }else{
+      } else {
         labels = this._dataLabelsQuarterly;
         registered = this._data_drsPercentQuarterly;
       }
@@ -174,7 +176,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
             backgroundColor: 'rgba(255,255,255,0.9)',
             borderRadius: 5,
             display(context) {
-              if(context.dataIndex === 0){
+              if (context.dataIndex === 0) {
                 return false;
               }
               if (context.dataIndex === context.dataset.data.length - 1) {
@@ -192,12 +194,12 @@ export class DrsGmeChartComponent implements AfterViewInit {
             },
             borderWidth: 1,
             formatter: function (value, context) {
-              if(isPercentage){
+              if (isPercentage) {
                 return (value).toFixed(1) + ' %';
-              }else{
+              } else {
                 return (value / 1000000).toFixed(1) + ' M';
               }
-              
+
             },
             font: {
               weight: 'bold',
@@ -223,7 +225,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
   private _setOptions(): ChartOptions<'bar'> {
     const isPercentage = this._isPercentage;
     let maxY = 100000000;
-    if(isPercentage){
+    if (isPercentage) {
       maxY = 100
     }
     return {
@@ -247,7 +249,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
             //   return value;
             // }
             callback(tickValue, index, ticks) {
-              if(isPercentage){
+              if (isPercentage) {
                 return Number(tickValue) + " %";
               }
               return (Number(tickValue) / 1000000) + " M";
