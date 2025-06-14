@@ -10,7 +10,7 @@
     <div class="page-content">
 
         <div class="page-section" *ngIf="isBrowser">
-            <app-choose-earnings-chart ></app-choose-earnings-chart>
+            <app-choose-earnings-chart></app-choose-earnings-chart>
         </div>
         <div class="page-section" *ngIf="!isBrowser" style="height: 650px;">
         </div>
@@ -21,13 +21,32 @@
 
 
         <div class="page-section">
+            <div class="section-heading">First quarter, 2025</div>
+            <div class="quote-section">
+                <p>
+                    The first quarter of 2025 was our first profitable first quarter since 2019.
+                </p>
+                <p>
+It's the results of cutting costs, reducing excess inventory, streamlining headcount, closing unprofitable stores, exiting under-performing geographies, and focusing on the core fundamentals of the business. 
+                </p>
+
+                <div class="quote-attribution">
+                    CEO Ryan Cohen (<a
+                        href="https://www.reddit.com/r/GME/comments/1l9ozu2/ryan_cohens_statements_from_the_gamestop_corp/"
+                        target="_blank">2025 Annual Meeting of Stockholders, June 12, 2025</a>)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-section">
             <div class="section-heading">
                 GameStop Fiscal Year 2024 Earnings Results
             </div>
             <div style="font-size:0.9em;color:gray;">March 25, 2025</div>
             <div class="news-report" [routerLink]="'/fy24'">
                 <img src="assets/icons/newspaper-icon.png" alt=""
-                style="margin-right: 10px; margin-top: 12px;height: 30px; width: 30px;">
+                    style="margin-right: 10px; margin-top: 12px;height: 30px; width: 30px;">
                 <div>
                     GameStop Fiscal Year 2024 Earnings Results: Increasing Profitability and Value
                 </div>
@@ -36,7 +55,8 @@
                 <img src="" alt="">
             </div> -->
 
-            <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;">
+            <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;cursor: pointer;"
+                [routerLink]="'/fy24'">
                 <img src="assets/info-pages/fy24-earnings-sankey.png" alt="GameStop FY 2024 Earnings Overview"
                     style="width: 1200px; max-width: 100%; border-radius:10px;">
             </div>
@@ -50,7 +70,7 @@
                 <img src="assets/icons/newspaper-icon.png" alt=""
                     style="margin-right: 10px; margin-top: 12px;height: 30px; width: 30px;">
                 <div>
-                    Outcome of GameStop's completion of 3 at-the-market equity offering programs
+                    In 2024, GameStop raised approximately $3.5 billion from 3 at-the-market equity offering programs ("ATMs")
                 </div>
 
             </div>
