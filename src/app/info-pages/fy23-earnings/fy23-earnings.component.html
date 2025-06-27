@@ -54,8 +54,7 @@
 
             <div *ngIf="isBrowser"
                 style="display:flex;flex-direction: column;align-items: center;margin-top:20px;margin-bottom: 40px;max-width: 100%;">
-                <app-earnings-chart [isFY23Earnings]="true"
-                    style="max-width: 100%"></app-earnings-chart>
+                <app-earnings-chart [isFY23Earnings]="true" style="max-width: 100%"></app-earnings-chart>
             </div>
 
             <div *ngIf="!isBrowser" style="height: 600px; width: 100%;"></div>
@@ -91,18 +90,21 @@
                 From this time onward, control of the company was completely in the hands of this new leadership team.
             </p>
 
-            <div class="quote-section">
-                "We inherited a bunch of legacy everything, and under-investment across the entire business –- people,
-                the entire technology stack, just decades of neglect, and so it’s hard to turn around a brick and mortar
-                retailer that’s under the kind of pressure that GameStop was and continues to be under, but that was
-                also part of the attraction going into GameStop was that a transformation the likes of GameStop was
-                really unprecedented and I was motivated by that."
-                <div class="quote-attribution">
-                    <a [routerLink]="'/rc-interview'">Ryan Cohen, November 2022</a>
+            <div class="quote-section-container">
+                <div class="quote-section">
+                    "We inherited a bunch of legacy everything, and under-investment across the entire business –-
+                    people,
+                    the entire technology stack, just decades of neglect, and so it’s hard to turn around a brick and
+                    mortar
+                    retailer that’s under the kind of pressure that GameStop was and continues to be under, but that was
+                    also part of the attraction going into GameStop was that a transformation the likes of GameStop was
+                    really unprecedented and I was motivated by that."
+                    <div class="quote-attribution">
+                        <a [routerLink]="'/rc-interview'">Ryan Cohen, November 2022</a>
 
+                    </div>
                 </div>
             </div>
-
 
 
             <p>The company went from a situation where it was losing
@@ -160,7 +162,7 @@
                 <app-news-article *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-article>
             </div> -->
             <!-- <div *ngIf="screenWidth >= 720" style="margin-top:20px;margin-bottom:40px;"> -->
-                <app-fy23-media-sentiment-table></app-fy23-media-sentiment-table>
+            <app-fy23-media-sentiment-table></app-fy23-media-sentiment-table>
             <!-- </div> -->
 
 
