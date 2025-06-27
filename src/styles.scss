@@ -213,14 +213,14 @@ body {
   align-items: center;
 }
 .quote-section {
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: rgb(240, 240, 240);
   margin: 5px;
   padding: 40px;
   font-size: 1.1em;
   display: flex;
   flex-direction: column;
-
+  font-style: italic;
   max-width: 650px;
 
   .dark-mode & {
@@ -229,19 +229,23 @@ body {
   }
 }
 
-.quote-attribution {
+.quote-attribution, .quote-attribution-2 {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
   font-size: 0.8em;
   color: rgb(48, 48, 48);
+  font-style: normal;
+  text-align: right;
 
   .dark-mode & {
     // background-color: #121212;
     color: #ffffff;
   }
 }
-
+.quote-attribution-2{
+  font-size: 0.7em;
+}
 
 
 .source-link {
@@ -324,4 +328,8 @@ fa-icon {
     padding-left: 60px;
     padding-right: 60px;
   }
+  // .quote-attribution{
+  //   flex-direction: column;
+  //   align-items: flex-end;
+  // }
 }
