@@ -51,7 +51,7 @@ export const routes: Routes = [
 
 
     // { path: '', component: StartPageComponent },
-    { path: 'start', component: StartPageComponent},
+    { path: 'start', component: StartPageComponent },
     { path: 'timeline', component: TimelineComponent },
     { path: 'ownership', component: OwnershipComponent },
     { path: 'earnings', component: FinancialsComponent },
@@ -76,10 +76,10 @@ export const routes: Routes = [
     { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
     { path: 'cnbc-vs-gme', component: CnbcVsGmeComponent },
     { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
-    
+
     { path: 'conflict', component: ConflictComponent },
     { path: 'competition', component: CompetitionComponent },
-    
+
 
     { path: 'downfall', component: DownfallEraComponent },
     { path: 'downfall-era', component: DownfallEraComponent },
@@ -96,12 +96,12 @@ export const routes: Routes = [
     { path: 'FY23', component: Fy23EarningsComponent },
     { path: 'fy23-earnings', component: Fy23EarningsComponent },
     { path: 'fy23-profitability', component: Fy23EarningsComponent },
-    
+
     { path: 'fy24', component: Fy24EarningsComponent },
     { path: 'FY24', component: Fy24EarningsComponent },
     { path: 'fy24-earnings', component: Fy24EarningsComponent },
     { path: 'fy24-profitability', component: Fy24EarningsComponent },
-    
+
     { path: 'ftd', component: FtdComponent },
     { path: 'ftds', component: FtdComponent },
     { path: 'failure-to-deliver', component: FtdComponent },
@@ -143,6 +143,7 @@ export const routes: Routes = [
 
     { path: 'trading-cards', component: TradingCardsComponent },
     { path: 'turnaround', component: TurnaroundComponent },
+    { path: 'transformation', component: TurnaroundComponent },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
     { path: 't-plus-thirty-five', component: TPlusThirtyFiveComponent },

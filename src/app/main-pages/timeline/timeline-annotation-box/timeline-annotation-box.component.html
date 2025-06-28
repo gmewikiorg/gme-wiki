@@ -25,8 +25,8 @@
                     <div *ngIf="event.urls.length > 0">
                         <div *ngFor="let link of event.urls" class="link-container">
                             <div *ngIf="!linkTypeIsOther(link.type)" class="link-container">
-                                <img *ngIf="link.type === 'LEMMY'" src="assets/icons/lemmy-icon.png" class="logo"
-                                    alt="Lemmy discussion">
+                                <!-- <img *ngIf="link.type === 'LEMMY'" src="assets/icons/lemmy-icon.png" class="logo"
+                                    alt="Lemmy discussion"> -->
                                 <img *ngIf="link.type === 'REDDIT'" src="assets/icons/reddit-icon.png" class="logo"
                                     alt="Reddit">
                                 <img *ngIf="link.type === 'WIKIPEDIA'" src="assets/icons/wikipedia-logo.png" class="logo"

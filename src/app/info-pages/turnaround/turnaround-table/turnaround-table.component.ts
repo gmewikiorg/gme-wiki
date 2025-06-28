@@ -201,7 +201,12 @@ export class TurnaroundTableComponent implements OnInit{
       if (valueProperty === 'STORE_COUNT') {
         stringValue = (numValue).toLocaleString('en-US');
       } else {
-        stringValue = formatCurrency(numValue);
+        if(valueProperty === 'LIABILITIES'){
+          stringValue = formatCurrency(numValue, false, 'B');
+        }else{
+        stringValue = formatCurrency(numValue, false);
+        }
+
       }
     } else if (this.optionIsYoY) {
       if (valueProperty === 'STORE_COUNT') {
@@ -238,13 +243,14 @@ function formatPercentage(percentage: number): string {
   }
 }
 
-function formatCurrency(value: number, showPlusSign: boolean = false): string {
+function formatCurrency(value: number, showPlusSign: boolean = false, multiple: '' | 'B' | 'M' = ''): string {
   const absValue = Math.abs(value);
   let formattedValue: string;
 
-  if (absValue >= 1_000_000_000) {
+
+  if (absValue >= 1_000_000_000 || multiple === 'B') {
     formattedValue = `$${(value / 1_000_000_000).toFixed(1)} B`;
-  } else if (absValue >= 1_000_000) {
+  } else if (absValue >= 1_000_000 || multiple === 'M') {
     formattedValue = `$${(value / 1_000_000).toFixed(0)} M`;
   } else {
     formattedValue = `$${value.toLocaleString()}`;
