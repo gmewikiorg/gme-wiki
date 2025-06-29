@@ -14,21 +14,33 @@
                 Summary
             </div>
             <ul>
-                <li>In the years preceding 2021, GameStop was a struggling company that was often viewed as likely
+                <li>In the years preceding 2021, GameStop was a <a [routerLink]="'/downfall'">struggling</a> company
+                    that was often viewed as likely
                     heading towards bankruptcy</li>
-                <li>The company continues to close stores, reducing <a [routerLink]="'/stores'">store count</a> from
-                    around 4,800 in 2020 to below 4,000 by the
-                    end of 2024, focusing on fewer, more profitable locations</li>
-                <li>CEO <a [routerLink]="'/ryan-cohen'">Ryan Cohen</a>’s strategy emphasizes cost-cutting, profitability, and a selection of
-                    higher-value items that align with GameStop’s trade-in model</li>
+                <li>In 2021, the entire board of directors was replaced; <a [routerLink]="'/ryan-cohen'">Ryan Cohen</a>
+                    became the chairman </li>
+                <li>The company continues to close <a [routerLink]="'/stores'">stores</a>, focusing on fewer, more
+                    profitable locations</li>
+                <!-- <li>CEO <a [routerLink]="'/ryan-cohen'">Ryan Cohen</a>’s strategy emphasizes cost-cutting,
+                    profitability, and a selection of
+                    higher-value items that align with GameStop’s trade-in model</li> -->
                 <li>Although revenue has declined dramatically since 2018, GameStop achieved <a
-                        [routerLink]="'/fy23'">net profitability in FY23
-                        for the first time in six years</a></li>
-                <li>By raising nearly $3.5 billion from <a [routerLink]="'/atms'">at-the-market offerings in
-                        2024</a>, GameStop built a large cash position, earning interest income that helps offset
+                        [routerLink]="'/fy23'">net profitability for the first time in six years</a> in fiscal year 2023
+                </li>
+                <li>By raising nearly <b>$3.5 billion</b> from <a [routerLink]="'/atms'">at-the-market offerings in
+                        2024</a>, GameStop built a large cash position, which has been used to earn substantial interest
+                    income that helps
+                    offset
                     operating losses and sustain profitability</li>
-                <li>Core financial metrics show significant improvements to the company since the turnaround efforts
+                <li>Core <a [routerLink]="'/financials'">financial metrics</a> show significant improvements to the
+                    company since the turnaround efforts
                     began</li>
+                <li>GameStop is evolving its legacy business model; since 2024, GameStop has placed increased emphasis
+                    on <a [routerLink]="'/trading-cards'">graded trading cards</a></li>
+                <li>
+                    GameStop is transforming into a capital allocator, with a growing focus on strategic <a
+                        [routerLink]="'/investment-policy'">investments</a>
+                </li>
             </ul>
         </div>
 
@@ -36,7 +48,8 @@
             <div class="section-heading">
                 Before 2021
             </div>
-            <p>GameStop was struggling, and a prevailing sentiment was that the company was headed towards bankruptcy.
+            <p>GameStop was struggling. The company was losing hundreds of millions of dollars per year, with too many
+                stores and dwindling revenue. The prevailing sentiment was that the company was doomed to bankruptcy.
             </p>
 
             <div style="font-size: 1.1em;">
@@ -46,29 +59,35 @@
 
         <div class="page-section">
             <div class="section-heading">
-                Enter Ryan Cohen
+                Ryan Cohen and a New Board of Directors
             </div>
-            <p>Activist investor Ryan Cohen became the largest individual shareholder of GameStop in the second half of
-                2020 and wrote <a
+            <p>In 2020, <a [routerLink]="'/ryan-cohen'">Ryan Cohen</a> purchased over 12 percent of the company,
+                becoming the largest individual
+                shareholder of GameStop. He wrote <a
                     href="https://www.sec.gov/Archives/edgar/data/1326380/000101359420000821/rc13da3-111620.pdf"
                     target="_blank">
-                    a letter to the then-board of directors</a> urging a decisive pivot from a traditional,
+                    a letter to the then-board of directors</a> urging a decisive pivot from the traditional
                 brick-and-mortar approach to a more
                 technology-driven model.
+            </p>
+            <p>
                 Ryan Cohen secured board seats and eventually ascended to the position of chairman of the board of
-                directors in June 2021.
-                Under his leadership, Cohen assembled a board aligned with his vision, aiming to modernize GameStop’s
-                operations and reimagine its business as a digitally-focused enterprise.</p>
+                directors in June 2021, replacing the entire former board with a new one that was aligned with his
+                vision to modernize the company.</p>
         </div>
 
         <div class="page-section">
             <div class="section-heading">
                 The Sneeze of January 2021
             </div>
-            <p>A social media and stock market phenomenon drew much attention and enthusiasm for GME and a large number
-                of new investors / shareholders. Enthusiastic
-                investing of GME has entailed elevated share prices which the company has been able to capitalize on and
-                raise billions of dollars, greatly strengthening the financial position of the company.</p>
+            <p>A social media and stock market phenomenon that began with <a [routerLink]="'/keith-gill'">Keith Gill</a>
+                in 2019 drew much attention and enthusiasm towards GME. This brought a large number
+                of new investors to GME, many of which ultimately becoming <a [routerLink]="'/drs'">long-term
+                    shareholders</a>. Enthusiastic
+                investing of GME entailed elevated share prices, which the company has been able to capitalize on and
+                <a [routerLink]="'/atms'">raise billions of dollars</a>, greatly strengthening the financial position of
+                the company.
+            </p>
 
             <div style="font-size: 1.1em;">
                 See <a [routerLink]="'/sneeze'">the sneeze</a>
@@ -112,7 +131,8 @@
                         was
                         really unprecedented and I was motivated by that.
                     </p>
-                    <div class="quote-attribution">GameStop CEO Ryan Cohen <a [routerLink]="'/rc-interview'">November 2022</a>
+                    <div class="quote-attribution">GameStop CEO Ryan Cohen <a [routerLink]="'/rc-interview'">November
+                            2022</a>
                     </div>
                 </div>
 
@@ -130,19 +150,32 @@
             <p>From June 2021 to June 2023, Matt Furlong was the CEO of the company. On Furlong's termination / end of
                 contract, Ryan Cohen became executive chairman on a temporary basis.</p>
             <p>In September 2023, Ryan Cohen became the CEO of the company. In December 2023, the board approved a
-                <a href="https://www.shacknews.com/article/138009/gamestop-gme-investment-policy-ryan-cohen?utm_source=dlvr.it&utm_medium=twitter"
-                    target="_blank">new
-                    investment policy which gave Ryan Cohen the authority to manage the company's investment
-                    portfolio</a>.
+                <a [routerLink]="'/investment-policy'">new
+                    investment policy</a> which gave Ryan Cohen the authority to manage the company's investment
+                portfolio.
+            </p>
+        </div>
+
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Demonstrable Results</div>
+
+            <p>In March 2024, the company reported <a [routerLink]="'/fy23'">fiscal year 2023 results</a>, showing
+                <b>full-year profitability for
+                    the first time in 6 years</b>.
             </p>
 
-            <p>In March 2024, the company reported <a [routerLink]="'/fy23'">full-year profitability for
-                    the first time in 6 years</a>.
+            <p>Subsequently, the company was able to complete <a [routerLink]="'/atms'">3 at-the-market equity offering
+                    programs</a> at relatively high stock prices, raising approximately <b>$3.5
+                    billion</b>, increasing the book value per share of GME to nearly $11.
             </p>
 
-            <p>In 2024, the company <a [routerLink]="'/atms'">completed 3 at-the-market equity offering
-                    programs</a>, raising approximately $3.5
-                billion in cash, raising the book value per share of GME to nearly $11.
+            <p>A look at the core financial metrics shows significant improvements to the financial standing of the
+                company.
             </p>
 
             <div class="quote-section-container">
@@ -156,49 +189,24 @@
                         higher value items that fit into our trade-in model.
                     </p>
                     <div class="quote-attribution">
-                        GameStop CEO Ryan Cohen <a
-                            href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
-                            target="_blank">June 17, 2024
-                        </a>
+                        GameStop CEO Ryan Cohen
                     </div>
+                    <div class="quote-attribution-2">
+                        2024 Annual Meeting of Stockholders
+                    </div>
+                    <a class="quote-attribution-2" href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
+                        target="_blank">June 17, 2024
+                    </a>
                 </div>
             </div>
-        </div>
-
-
-        <!-- New Initiatives -->
-
-        <div class="page-section">
-            <div class="section-heading">New Initiatives</div>
-            <p>In 2024, GameStop began selling new original products such as <a
-                    href="https://worldbranddesign.com/gamestop-shakes-up-the-gaming-scene-with-candy-con-personalised-controllers/"
-                    target="_blank">
-                    Candy con controllers</a> and the <a
-                    href="https://www.gamestop.com/gaming-accessories/controllers/pc/products/gamestop-raptor-8---mobile-gaming-controller-for-android-and-iphone-usb-c/20012913.html"
-                    target="_blank">Raptor 8 mobile gaming controller</a>.
-            </p>
-            <p>In addition to the release of new original products, GameStop has also <a
-                    href="https://x.com/nytemodeonly/status/1810362437381882314" target="_blank">expanded into the
-                    graded trading card market</a>.
-            </p>
-            <div style="font-size: 1.1em;">
-                See <a [routerLink]="'/trading-cards'">trading cards</a>
-            </div>
-        </div>
-
-
-
-        <div class="page-section">
-            <div class="section-heading">Turnaround Status</div>
-            <p>The turnaround of GameStop has been in progress for about 4 years.</p>
-            <p>A look at the core financial metrics shows significant improvements to the financial standing of the
-                company.
-            </p>
 
             <app-turnaround-table [isTurnaroundPage]="true"></app-turnaround-table>
 
+
+
             <p>GameStop has raised
-                cash and eliminated practically all of the debt that it had. Now holding a large pile of cash, the
+                cash and eliminated practically all of the debt that it had. Now holding a large pile of cash and
+                equivalents, the
                 company earns interest income rather than paying interest on debts.</p>
             <p>
                 GameStop continues to close more stores every year, a trend that began before the initiation of the
@@ -209,19 +217,26 @@
         </div>
 
 
+        <!-- New Initiatives -->
 
+        <div class="page-section">
+            <div class="section-heading">New Initiatives</div>
+            <p>In 2024, GameStop began selling new original products such as <a href="https://www.gamestop.com/candycon"
+                    target="_blank">
+                    Candy con controllers</a> and the <a
+                    href="https://www.gamestop.com/gaming-accessories/controllers/pc/products/gamestop-raptor-8---mobile-gaming-controller-for-android-and-iphone-usb-c/20012913.html"
+                    target="_blank">Raptor 8 mobile gaming controller</a>.
+            </p>
+            <p>In addition to the release of new original products, GameStop has also expanded into the
+                <a [routerLink]="'/trading-cards'">graded trading card</a> market.
+            </p>
+        </div>
 
 
         <div class="page-section">
             <div class="section-heading">Transformation</div>
-            <p>There is growing evidence that GameStop is undergoing some kind of transformation into a different kind
-                of company than it has traditionally been known for.
+            <p>There is growing evidence that GameStop is undergoing a transformation into a more modern, technology-focused company.
             </p>
-            <!--
-            possible example from FY 2023 10-K:  
-            "Cash used in investing activities during fiscal 2023 was primarily due to purchases of marketable securities, <b>ongoing technological investments</b>..."
-            
-            -->
             <p>As one example, on <a
                     href="https://www.reddit.com/r/Superstonk/comments/1ioh39j/new_job_posting_transforming_gamestop_into_a/"
                     target="_blank">a GameStop job posting for a principal software engineer that was open on February

@@ -24,7 +24,10 @@ export class TimelineControlsService {
   /** No data available for GME prior to 2002-02-13 */
   private _minStartDateYYYYMMDD: string = '2002-02-13'
 
-  private _startDateYYYYMMDD: string = '2020-07-01';
+  // private _contemporaryViewStartYYYYMMDD: string = '2019-07-01';
+  private _contemporaryViewStartYYYYMMDD: string = '2020-06-01';
+
+  private _startDateYYYYMMDD: string = this._contemporaryViewStartYYYYMMDD;
   private _endDateYYYYMMDD: string = dayjs().format('YYYY-MM-DD');
 
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
@@ -50,7 +53,7 @@ export class TimelineControlsService {
       this._startDateYYYYMMDD = dayjs().add(-5, 'years').format('YYYY-MM-DD');
     } else if (period === 'CURRENT') {
       /** The Current GME era, starting some time in 2020 */
-      this._startDateYYYYMMDD = '2020-06-01';
+      this._startDateYYYYMMDD = this._contemporaryViewStartYYYYMMDD;
     } else if (period === 'HISTORIC') {
       this._startDateYYYYMMDD = this._minStartDateYYYYMMDD;
     } else if (period === 'CUSTOM') {
