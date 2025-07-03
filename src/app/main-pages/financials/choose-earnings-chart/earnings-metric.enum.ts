@@ -16,7 +16,11 @@ export enum EarningsMetric {
 
     HARDWARE_REVENUE = 'HARDWARE_REVENUE',
     SOFTWARE_REVENUE = 'SOFTWARE_REVENUE',
-    COLLECTIBLES_REVENUE = 'COLLECTIBLES_REVENUE'
+    COLLECTIBLES_REVENUE = 'COLLECTIBLES_REVENUE',
+
+    HARDWARE_REVENUE_PERCENTAGE = 'HARDWARE_REVENUE_PERCENTAGE',
+    SOFTWARE_REVENUE_PERCENTAGE = 'SOFTWARE_REVENUE_PERCENTAGE',
+    COLLECTIBLES_REVENUE_PERCENTAGE = 'COLLECTIBLES_REVENUE_PERCENTAGE',
 }
 
 
@@ -24,8 +28,8 @@ export interface EarningsMetricConfig {
     colorScheme: 'BLUE' | 'RED_GREEN' | 'ORANGE' | 'GREEN';
     label: string;
     labelNegative: string;
-    tickScaleAnnually: 1000000000 | 1000000 | 1000;
-    tickScaleQuarterly: 1000000000 | 1000000 | 1000;
+    tickScaleAnnually: 1000000000 | 1000000 | 1000 | 100;
+    tickScaleQuarterly: 1000000000 | 1000000 | 1000 | 100;
     minYAnnual: number;
     minYQuarter: number;
 
@@ -126,7 +130,15 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 1000000,
         minYAnnual: 0,
         minYQuarter: 0,
-
+    },
+    [EarningsMetric.HARDWARE_REVENUE_PERCENTAGE]: {
+        colorScheme: 'BLUE',
+        label: 'Hardware Revenue %',
+        labelNegative: 'Hardware Revenue %',
+        tickScaleAnnually: 100,
+        tickScaleQuarterly: 100,
+        minYAnnual: 0,
+        minYQuarter: 0,
     },
 
     [EarningsMetric.SOFTWARE_REVENUE]: {
@@ -137,7 +149,15 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 1000000,
         minYAnnual: 0,
         minYQuarter: 0,
-
+    },
+    [EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE]: {
+        colorScheme: 'ORANGE',
+        label: 'Software Revenue %',
+        labelNegative: 'Software Revenue %',
+        tickScaleAnnually: 100,
+        tickScaleQuarterly: 100,
+        minYAnnual: 0,
+        minYQuarter: 0,
     },
 
     [EarningsMetric.COLLECTIBLES_REVENUE]: {
@@ -148,6 +168,14 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 1000000,
         minYAnnual: 0,
         minYQuarter: 0,
-
+    },
+    [EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE]: {
+        colorScheme: 'GREEN',
+        label: 'Collectibles Revenue %',
+        labelNegative: 'Collectibles Revenue %',
+        tickScaleAnnually: 100,
+        tickScaleQuarterly: 100,
+        minYAnnual: 0,
+        minYQuarter: 0,
     },
 };

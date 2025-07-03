@@ -67,6 +67,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_GROSS_PROFIT; }
 
   public get chartIsRevenueType(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE; }
+  public get chartIsRevenueTypePercent(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE; }
 
   public get chartIsOperations(): boolean { return this.chartOption === EarningsChartSelection.OPERATING_INCOME; }
   public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartSelection.GROSS_PROFIT_VS_SGA; }

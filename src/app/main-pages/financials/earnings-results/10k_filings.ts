@@ -55,7 +55,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1388600000,
     storeCount: 4169,
     drs: 75300000,
-    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638024000012/gme-20240203.htm"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638024000012/gme-20240203.htm"
   },
   {
     fiscalYear: 2022,
@@ -83,7 +83,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1322300000,
     storeCount: 4413,
     drs: 76000000,
-    url: "https://www.sec.gov/Archives/edgar/data/1326380/000132638023000019/gme-20230128.htm"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000019/gme-20230128.htm"
   },
   {
     fiscalYear: 2021,
@@ -111,7 +111,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1602500000,
     storeCount: 4573,
     drs: 8900000,
-    url: "https://www.sec.gov/Archives/edgar/data/1326380/000132638022000021/gme-20220129.htm"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000021/gme-20220129.htm"
   },
   {
     fiscalYear: 2020,

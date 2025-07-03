@@ -46,6 +46,22 @@ export function earningsChartLabelContext(context: TooltipItem<"bar">, chartOpti
       } else if (context.datasetIndex === 1) {
         label = "SG&A Expense:  $" + numberWithCommas(numValue);
       }
+     }else if (chartOption === EarningsChartSelection.REVENUE_TYPE) {
+      if (context.datasetIndex === 0) {
+        label = "Hardware:  $" + numberWithCommas(numValue);
+      } else if (context.datasetIndex === 1) {
+        label = "Software:  $" + numberWithCommas(numValue);
+      } else if (context.datasetIndex === 2){
+        label = "Collectibles: $" + numberWithCommas(numValue);
+      }
+    }else if (chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE) {
+      if (context.datasetIndex === 0) {
+        label = "Hardware: " + (numValue).toFixed(1) + " %";
+      } else if (context.datasetIndex === 1) {
+        label = "Software: " + (numValue).toFixed(1) + " %";
+      } else if (context.datasetIndex === 2){
+        label = "Collectibles: " + (numValue).toFixed(1) + " %";
+      }
     }
     return label;
 }

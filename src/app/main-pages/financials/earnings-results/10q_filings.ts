@@ -167,7 +167,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1388600000,
     storeCount: -1,
     drs: 75300000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-k/0001326380-24-000012"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638024000012/gme-20240203.htm"
   },
   {
     fiscalYear: 2023,
@@ -195,7 +195,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1262800000,
     storeCount: -1,
     drs: 75400000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-23-000063"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000063/gme-20231028.htm"
   },
   {
     fiscalYear: 2023,
@@ -223,7 +223,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1267200000,
     storeCount: -1,
     drs: 75400000,
-    url: "https://gamestop.gcs-web.com/sec-filings/sec-filing/10-q/0001326380-23-000047"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000047/gme-20230729.htm"
   },
   {
     fiscalYear: 2023,
@@ -259,9 +259,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2023-03-21",
     reportDateYYYYMMDD: "2023-01-28",
     revenue: 2226400000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 1242800000,
+    revenueSoftware: 670400000,
+    revenueCollectibles: 313200000,
     revenueOther: 0,
     costOfSales: 1726600000,
     grossProfit: 499800000,
@@ -279,7 +279,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1322300000,
     storeCount: -1,
     drs: 76000000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-k/0001326380-23-000019"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000019/gme-20230128.htm"
   },
   {
     fiscalYear: 2022,
@@ -287,9 +287,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2022-12-07",
     reportDateYYYYMMDD: "2022-10-29",
     revenue: 1186400000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 627000000,
+    revenueSoftware: 352100000,
+    revenueCollectibles: 207300000,
     revenueOther: 0,
     costOfSales: 894800000,
     grossProfit: 291600000,
@@ -307,7 +307,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1245000000,
     storeCount: -1,
     drs: 71800000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-22-000137"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000137/gme-20221029.htm"
   },
   {
     fiscalYear: 2022,
@@ -315,9 +315,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2022-09-07",
     reportDateYYYYMMDD: "2022-07-30",
     revenue: 1136000000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 596400000,
+    revenueSoftware: 316400000,
+    revenueCollectibles: 223200000,
     revenueOther: 0,
     costOfSales: 853800000,
     grossProfit: 282200000,
@@ -335,7 +335,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1343500000,
     storeCount: -1,
     drs: 71300000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-22-000126"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000126/gme-20220730.htm"
   },
   {
     fiscalYear: 2022,
@@ -343,9 +343,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2022-06-01",
     reportDateYYYYMMDD: "2022-06-01",
     revenue: 1378400000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 673800000,
+    revenueSoftware: 483700000,
+    revenueCollectibles: 220900000,
     revenueOther: 0,
     costOfSales: 1079900000,
     grossProfit: 298500000,
@@ -363,7 +363,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1450700000,
     storeCount: -1,
     drs: 12700000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-22-000072"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000072/gme-20220430.htm"
   },
   {
     fiscalYear: 2021,
@@ -371,9 +371,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2022-03-17",
     reportDateYYYYMMDD: "2022-01-29",
     revenue: 2253900000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 1188700000,
+    revenueSoftware: 785800000,
+    revenueCollectibles: 279400000,
     revenueOther: 0,
     costOfSales: 1875700000,
     grossProfit: 378200000,
@@ -391,7 +391,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1602500000,
     storeCount: -1,
     drs: 8900000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-k/0001326380-22-000021"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000021/gme-20220129.htm"
   },
   {
     fiscalYear: 2021,
@@ -399,9 +399,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2021-10-30",
     revenue: 1296600000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 669900000,
+    revenueSoftware: 434500000,
+    revenueCollectibles: 192200000,
     revenueOther: 0,
     costOfSales: 978000000,
     grossProfit: 318600000,
@@ -419,7 +419,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1754900000,
     storeCount: -1,
     drs: 5200000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-21-000129"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000129/gme-20211030.htm"
   },
   {
     fiscalYear: 2021,
@@ -427,9 +427,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2021-07-31",
     revenue: 1183400000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 609600000,
+    revenueSoftware: 396600000,
+    revenueCollectibles: 177200000,
     revenueOther: 0,
     costOfSales: 862500000,
     grossProfit: 320900000,
@@ -447,7 +447,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1852000000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-21-000090"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000090/gme-20210731.htm"
   },
   {
     fiscalYear: 2021,
@@ -455,9 +455,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2021-05-01",
     revenue: 1276800000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 703500000,
+    revenueSoftware: 397900000,
+    revenueCollectibles: 175400000,
     revenueOther: 0,
     costOfSales: 946700000,
     grossProfit: 330100000,
@@ -475,7 +475,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 879500000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-21-000066"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000066/gme-20210501.htm"
   },
   {
     fiscalYear: 2020,
@@ -483,9 +483,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2021-01-30",
     revenue: 2122100000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 1162700000,
+    revenueSoftware: 731200000,
+    revenueCollectibles: 228200000,
     revenueOther: 0,
     costOfSales: 1673500000,
     grossProfit: 448600000,
@@ -503,7 +503,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 436700000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/node/18661/html"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000032/gme-20210130.htm"
   },
   {
     fiscalYear: 2020,
@@ -511,9 +511,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2020-10-31",
     revenue: 1004700000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 413400000,
+    revenueSoftware: 444400000,
+    revenueCollectibles: 146900000,
     revenueOther: 0,
     costOfSales: 728400000,
     grossProfit: 276300000,
@@ -531,7 +531,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 332200000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-20-000134"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000134/gme-20201031.htm"
   },
   {
     fiscalYear: 2020,
@@ -539,9 +539,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2020-08-01",
     revenue: 942000000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 441600000,
+    revenueSoftware: 386500000,
+    revenueCollectibles: 113900000,
     revenueOther: 0,
     costOfSales: 689800000,
     grossProfit: 252200000,
@@ -559,7 +559,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 352300000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-20-000119"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000119/gme-20200801.htm"
   },
   {
     fiscalYear: 2020,
@@ -567,9 +567,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: '',
     reportDateYYYYMMDD: "2020-05-02",
     revenue: 1021000000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 513100000,
+    revenueSoftware: 417000000,
+    revenueCollectibles: 90900000,
     revenueOther: 0,
     costOfSales: 738600000,
     grossProfit: 282400000,
@@ -587,7 +587,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 435000000,
     storeCount: -1,
     drs: 0,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-20-000060"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000060/gme-20200502.htm"
   },
 
 ];
