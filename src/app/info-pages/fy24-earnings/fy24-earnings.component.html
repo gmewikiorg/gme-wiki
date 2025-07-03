@@ -189,7 +189,8 @@
             <div class="section-heading">Conclusion: GameStop is Financially Strong, Despite Shrinking Legacy Business
             </div>
             <p>
-                GameStop has been undergoing a <a [routerLink]="'/turnaround'">turnaround and transformation</a> since the current
+                GameStop has been undergoing a <a [routerLink]="'/turnaround'">turnaround and transformation</a> since
+                the current
                 leadership team took over in 2021, and we are now starting to see clear, positive results from these
                 efforts.
             </p>
@@ -211,14 +212,23 @@
 
         <div class="page-section">
             <div class="section-heading">Investment Policy</div>
-            <p>Following its FY24 earnings release on March 25, GameStop made significant changes to its investment
-                policy, including authorizing the acquisition of Bitcoin and raising $1.5 billion through convertible
-                debt to support its strategic initiatives.</p>
-            <div>See <a [routerLink]="'/investment-policy'">GameStop Investment Policy</a></div>
+            <p>Following its FY24 earnings release on March 25, GameStop made significant changes to its <a
+                    [routerLink]="'/investment-policy'">Investment Policy</a>.
+                The company raised over <b>$4 billion</b> from private offerings of convertible senior notes, and used
+                some of that money to purchase bitcoin.
+            </p>
         </div>
 
 
-        <div style="margin-top:50px;"></div>
-        <app-footer class="app-footer"></app-footer>
+        <div class="page-section">
+            <div class="section-heading">See also</div>
+
+            <div><a [routerLink]="'/fy23'">Fiscal Year 2023 Results: Profitable for the First Time in Six Years</a>
+            </div>
+
+        </div>
+
     </div>
+    <div style="margin-top:50px;"></div>
+    <app-footer class="app-footer"></app-footer>
 </div>

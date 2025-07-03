@@ -14,7 +14,9 @@
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsCost}"
                         (click)="onClickChartOption(EarningsChartOption.REVENUE_VS_COST)">Revenue vs Cost of Sales
                     </button>
-
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueType}"
+                        (click)="onClickChartOption(EarningsChartOption.REVENUE_TYPE)">Revenue Type
+                    </button>
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsGrossProfit}"
                         (click)="onClickChartOption(EarningsChartOption.REVENUE_VS_GROSS_PROFIT)">Revenue vs Gross
                         Profit

@@ -35,14 +35,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2025-03-25",
     reportDateYYYYMMDD: "2025-02-01",
     revenue: 1282600000,
-
-    // revenueHardware: 2099700000 - (Q1 + Q2 + Q3)
-    // revenueSoftware: 1005400000  - (Q1 + Q2 + Q3)
-    // revenueCollectibles: 717900000  - (Q1 + Q2 + Q3)
-
-    revenueHardware: 0,  
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 725800001,  // this value has been artificially increased by 1, because otherwise it matches the same value as Q1 2023, by pure coincidence, and would share the same color as that quarter
+    revenueSoftware: 286200000,
+    revenueCollectibles: 270600000,
     revenueOther: 0,
     costOfSales: 919200000,
     grossProfit: 363400000,
@@ -152,9 +147,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2024-03-26",
     reportDateYYYYMMDD: "2024-02-03",
     revenue: 1793600000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 1094600000,
+    revenueSoftware: 465400000,
+    revenueCollectibles: 233600000,
     revenueOther: 0,
     costOfSales: 1374400000,
     grossProfit: 419200000,
@@ -256,7 +251,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     stockholdersEquity: 1271600000,
     storeCount: -1,
     drs: 76600000,
-    url: "https://investor.gamestop.com/sec-filings/sec-filing/10-q/0001326380-23-000028"
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000028/gme-20230429.htm"
   },
   {
     fiscalYear: 2022,

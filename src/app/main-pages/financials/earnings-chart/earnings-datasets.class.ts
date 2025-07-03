@@ -21,6 +21,10 @@ export class EarningsDatasetBuilder {
         const equityDataItems: number[] = results.map(r => r.stockholdersEquity).reverse();
         const storeCountDataItems: number[] = results.map(r => r.storeCount).reverse();
 
+        const hardwareRevDataItems: number[] = results.map(r => r.hardwareRevenue).reverse();
+        const softwareRevDataItems: number[] = results.map(r => r.softwareRevenue).reverse();
+        const collectiblesRevDataItems: number[] = results.map(r => r.collectiblesRevenue).reverse();
+
         const revenueDataSet = this._buildDataset(EarningsMetric.REVENUE, chartPeriod, dataEntryCount, revenueDataItems, chartSelection);
         const netIncomeDataset = this._buildDataset(EarningsMetric.NET_INCOME, chartPeriod, dataEntryCount, netIncomeDataItems, chartSelection);
         const costOfSalesProfitDataset = this._buildDataset(EarningsMetric.COST_OF_SALES, chartPeriod, dataEntryCount, costOfSalesDataItems, chartSelection);
@@ -30,6 +34,10 @@ export class EarningsDatasetBuilder {
         const interestIncomeDataset = this._buildDataset(EarningsMetric.INTEREST_INCOME, chartPeriod, dataEntryCount, interestIncomeDataItems, chartSelection);
         const equityDataset = this._buildDataset(EarningsMetric.STOCKHOLDERS_EQUITY, chartPeriod, dataEntryCount, equityDataItems, chartSelection);
         const storeCountDataset = this._buildDataset(EarningsMetric.STORE_COUNT, chartPeriod, dataEntryCount, storeCountDataItems, chartSelection);
+
+        const hardwareRevenueDataset = this._buildDataset(EarningsMetric.HARDWARE_REVENUE, chartPeriod, dataEntryCount, hardwareRevDataItems, chartSelection);
+        const softwareRevenueDataset = this._buildDataset(EarningsMetric.SOFTWARE_REVENUE, chartPeriod, dataEntryCount, softwareRevDataItems, chartSelection);
+        const collectiblesRevenueDataset = this._buildDataset(EarningsMetric.COLLECTIBLES_REVENUE, chartPeriod, dataEntryCount, collectiblesRevDataItems, chartSelection); 
 
         let datasets: ChartDataset<"bar", any[]>[] = [];
         if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
@@ -52,6 +60,8 @@ export class EarningsDatasetBuilder {
             datasets = [revenueDataSet, storeCountDataset];
         } else if (chartSelection === EarningsChartSelection.NET_INCOME) {
             datasets = [netIncomeDataset];
+        } else if (chartSelection === EarningsChartSelection.REVENUE_TYPE){
+            datasets = [hardwareRevenueDataset, softwareRevenueDataset, collectiblesRevenueDataset];
         }
 
         return datasets;
@@ -246,6 +256,9 @@ export class EarningsDatasetBuilder {
                 }
             },
             display(context: Context) {
+                if(chartSelection === EarningsChartSelection.REVENUE_TYPE){
+                    return false;
+                }
                 if (context.dataIndex >= context.dataset.data.length - 1) {
                     return true;
                 }

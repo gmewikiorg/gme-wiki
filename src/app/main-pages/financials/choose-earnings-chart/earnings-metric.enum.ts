@@ -13,6 +13,10 @@ export enum EarningsMetric {
 
     INTEREST_INCOME = 'INTEREST_INCOME',
     STOCKHOLDERS_EQUITY = 'STOCKHOLDERS_EQUITY',
+
+    HARDWARE_REVENUE = 'HARDWARE_REVENUE',
+    SOFTWARE_REVENUE = 'SOFTWARE_REVENUE',
+    COLLECTIBLES_REVENUE = 'COLLECTIBLES_REVENUE'
 }
 
 
@@ -112,5 +116,38 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 1000,
         minYAnnual: 0,
         minYQuarter: 0,
+    },
+
+    [EarningsMetric.HARDWARE_REVENUE]: {
+        colorScheme: 'BLUE',
+        label: 'Hardware Revenue',
+        labelNegative: 'Hardware Revenue',
+        tickScaleAnnually: 1000000000,
+        tickScaleQuarterly: 1000000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+
+    },
+
+    [EarningsMetric.SOFTWARE_REVENUE]: {
+        colorScheme: 'ORANGE',
+        label: 'Software Revenue',
+        labelNegative: 'Software Revenue',
+        tickScaleAnnually: 1000000000,
+        tickScaleQuarterly: 1000000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+
+    },
+
+    [EarningsMetric.COLLECTIBLES_REVENUE]: {
+        colorScheme: 'GREEN',
+        label: 'Collectibles Revenue',
+        labelNegative: 'Collectibles Revenue',
+        tickScaleAnnually: 1000000000,
+        tickScaleQuarterly: 1000000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+
     },
 };

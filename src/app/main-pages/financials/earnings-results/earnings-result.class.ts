@@ -13,6 +13,9 @@ export class EarningsResult{
     public get filingDateYYYYMMDD(): string | null { return this._data.filingDateYYYYMMDD; }
     public get reportDateYYYYMMDD(): string { return this._data.reportDateYYYYMMDD; }
     public get revenue(): number { return this._data.revenue; }
+    public get hardwareRevenue(): number { return this._data.revenueHardware; }
+    public get softwareRevenue(): number { return this._data.revenueSoftware; }
+    public get collectiblesRevenue(): number { return this._data.revenueCollectibles; }
     public get costOfSales(): number { return this._data.costOfSales; }
     public get grossProfit(): number { return this._data.grossProfit; }
     public get sga(): number { return this._data.sga; }
