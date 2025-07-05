@@ -16,7 +16,7 @@ import { Subscription, timer } from 'rxjs';
   styleUrl: './choose-earnings-chart.component.scss'
 })
 export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
-  public EarningsChartOption = EarningsChartSelection;
+  public earningsChartSelection = EarningsChartSelection;
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -63,16 +63,16 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   // public get periodIsQoverQ(): boolean { return this.chartPeriod === 'QOVERQ'; }
 
   public get chartIsRevenueVsIncome(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME; }
+  public get chartIsNetProfitMargin(): boolean { return this.chartOption === this.earningsChartSelection.NET_PROFIT_MARGIN; }
   public get chartIsRevenueVsCost(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_COST; }
   public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_GROSS_PROFIT; }
-
+  public get chartIsRevenueVsStores(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_STORES; }
+  public get chartIsRevenuePerStore(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_PER_STORES; }
   public get chartIsRevenueType(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE; }
   public get chartIsRevenueTypePercent(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE; }
-
   public get chartIsOperations(): boolean { return this.chartOption === EarningsChartSelection.OPERATING_INCOME; }
   public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartSelection.GROSS_PROFIT_VS_SGA; }
   public get chartIsOperationsVsSGA(): boolean { return this.chartOption === EarningsChartSelection.OPERATIONS_VS_SGA; }
-
   public get chartIsInterest(): boolean { return this.chartOption === EarningsChartSelection.INTEREST_INCOME; }
   public get chartIsEquity(): boolean { return this.chartOption === EarningsChartSelection.STOCKHOLDERS_EQUITY; }
 

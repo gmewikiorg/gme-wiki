@@ -81,7 +81,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 10900000,
     totalLiabilities: 1099600000,
     stockholdersEquity: 4804500000,
-    storeCount: -1,
+    storeCount: 4169,
     drs: 71000000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638024000170/gme-20241102.htm"
   },
@@ -109,7 +109,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 12400000,
     totalLiabilities: 1152900000,
     stockholdersEquity: 4383400000,
-    storeCount: -1,
+    storeCount: 4169,
     drs: 72800000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638024000109/gme-20240803.htm"
   },
@@ -137,7 +137,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 14900000,
     totalLiabilities: 1279800000,
     stockholdersEquity: 1307300000,
-    storeCount: -1,
+    storeCount: 4169,
     drs: 74600000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638024000030/gme-20240504.htm"
   },
@@ -165,7 +165,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 17700000,
     totalLiabilities: 1370400000,
     stockholdersEquity: 1388600000,
-    storeCount: -1,
+    storeCount: 4169,
     drs: 75300000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638024000012/gme-20240203.htm"
   },
@@ -193,7 +193,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 20000000,
     totalLiabilities: 1884100000,
     stockholdersEquity: 1262800000,
-    storeCount: -1,
+    storeCount: 4413,
     drs: 75400000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000063/gme-20231028.htm"
   },
@@ -221,7 +221,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 23600000,
     totalLiabilities: 1536500000,
     stockholdersEquity: 1267200000,
-    storeCount: -1,
+    storeCount: 4413,
     drs: 75400000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000047/gme-20230729.htm"
   },
@@ -249,7 +249,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 26300000,
     totalLiabilities: 1798600000,
     stockholdersEquity: 1271600000,
-    storeCount: -1,
+    storeCount: 4413,
     drs: 76600000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000028/gme-20230429.htm"
   },
@@ -277,7 +277,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 28700000,
     totalLiabilities: 1791100000,
     stockholdersEquity: 1322300000,
-    storeCount: -1,
+    storeCount: 4413,
     drs: 76000000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638023000019/gme-20230128.htm"
   },
@@ -305,7 +305,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 28800000,
     totalLiabilities: 2077500000,
     stockholdersEquity: 1245000000,
-    storeCount: -1,
+    storeCount: 4573,
     drs: 71800000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000137/gme-20221029.htm"
   },
@@ -333,7 +333,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 32100000,
     totalLiabilities: 1456000000,
     stockholdersEquity: 1343500000,
-    storeCount: -1,
+    storeCount: 4573,
     drs: 71300000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000126/gme-20220730.htm"
   },
@@ -361,7 +361,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 35700000,
     totalLiabilities: 1674800000,
     stockholdersEquity: 1450700000,
-    storeCount: -1,
+    storeCount: 4573,
     drs: 12700000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000072/gme-20220430.htm"
   },
@@ -389,7 +389,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 40500000,
     totalLiabilities: 1896800000,
     stockholdersEquity: 1602500000,
-    storeCount: -1,
+    storeCount: 4573,
     drs: 8900000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638022000021/gme-20220129.htm"
   },
@@ -417,7 +417,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 44800000,
     totalLiabilities: 2007100000,
     stockholdersEquity: 1754900000,
-    storeCount: -1,
+    storeCount: 4816,
     drs: 5200000,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000129/gme-20211030.htm"
   },
@@ -445,7 +445,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 47500000,
     totalLiabilities: 1693800000,
     stockholdersEquity: 1852000000,
-    storeCount: -1,
+    storeCount: 4816,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000090/gme-20210731.htm"
   },
@@ -473,7 +473,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 0,
     totalLiabilities: 1683200000,
     stockholdersEquity: 879500000,
-    storeCount: -1,
+    storeCount: 4816,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000066/gme-20210501.htm"
   },
@@ -501,7 +501,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 362700000,
     totalLiabilities: 2035900000,
     stockholdersEquity: 436700000,
-    storeCount: -1,
+    storeCount: 4816,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638021000032/gme-20210130.htm"
   },
@@ -529,7 +529,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 216000000,
     totalLiabilities: 2269200000,
     stockholdersEquity: 332200000,
-    storeCount: -1,
+    storeCount: 5509,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000134/gme-20201031.htm"
   },
@@ -557,7 +557,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 215900000,
     totalLiabilities: 2022900000,
     stockholdersEquity: 352300000,
-    storeCount: -1,
+    storeCount: 5509,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000119/gme-20200801.htm"
   },
@@ -585,7 +585,7 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 0,
     totalLiabilities: 2034000000,
     stockholdersEquity: 435000000,
-    storeCount: -1,
+    storeCount: 5509,
     drs: 0,
     url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638020000060/gme-20200502.htm"
   },

@@ -3,10 +3,13 @@
 export enum EarningsMetric {
     REVENUE = 'REVENUE',
     NET_INCOME = 'NET_INCOME',
+    NET_PROFIT_MARGIN = 'NET_PROFIT_MARGIN',
+
     COST_OF_SALES = 'COST_OF_SALES',
     GROSS_PROFIT = 'GROSS_PROFIT',
 
     STORE_COUNT = 'STORE_COUNT',
+    REVENUE_PER_STORE = 'REVENUE_PER_STORE',
 
     OPERATING_INCOME = 'OPERATING_INCOME',
     SGA = 'SGA',
@@ -55,6 +58,15 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 1000000,
         minYAnnual: -1000000000,
         minYQuarter: -175000000,
+    },
+    [EarningsMetric.NET_PROFIT_MARGIN]: {
+        colorScheme: 'RED_GREEN',
+        label: 'Net Profit Margin',
+        labelNegative: 'Net Loss Margin',
+        tickScaleAnnually: 100,
+        tickScaleQuarterly: 100,
+        minYAnnual: -10,
+        minYQuarter: -20,
 
     },
     [EarningsMetric.COST_OF_SALES]: {
@@ -117,6 +129,15 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         label: "Store Count",
         labelNegative: "Store Count",
         tickScaleAnnually: 1000,
+        tickScaleQuarterly: 1000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+    },
+    [EarningsMetric.REVENUE_PER_STORE]: {
+        colorScheme: 'BLUE',
+        label: "Revenue per store",
+        labelNegative: "Reveue per store",
+        tickScaleAnnually: 1000000,
         tickScaleQuarterly: 1000,
         minYAnnual: 0,
         minYQuarter: 0,

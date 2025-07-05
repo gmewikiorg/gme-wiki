@@ -44,6 +44,7 @@ import { BullCaseComponent } from './info-pages/bull-case/bull-case.component';
 import { InvestmentPolicyComponent } from './info-pages/investment-policy/investment-policy.component';
 import { CnbcVsGmeComponent } from './info-pages/cnbc-vs-gme/cnbc-vs-gme.component';
 import { EquityComponent } from './info-pages/equity/equity.component';
+import { MediaVsGmeComponent } from './info-pages/media-vs-gme/media-vs-gme.component';
 
 
 
@@ -112,6 +113,7 @@ export const routes: Routes = [
     { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
 
     { path: 'media', component: MediaComponent },
+    { path: 'media-vs-gme', component: MediaVsGmeComponent },
 
     { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
     { path: 'propaganda', component: MediaComponent },

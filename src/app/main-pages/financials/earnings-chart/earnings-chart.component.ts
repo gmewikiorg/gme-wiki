@@ -12,6 +12,7 @@ import { EarningsChartSelection } from '../choose-earnings-chart/earnings-chart-
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
 import { Subscription } from 'rxjs';
 import { earningsChartLabelContext } from './earnings-chart-label-context';
+import { setEarningsChartLegend } from './earnings-chart-set-legend';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -27,15 +28,16 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend);
     this._datasetBuilder = new EarningsDatasetBuilder(this._screenService);
-    this.barChartOptions = this._setOptions();
+    this.barChartOptions = this._setChartOptions();
     this.barChartData = this._updateDatasets();
 
   }
 
 
   @Input() isFY23Earnings: boolean = false;
+  // @Input() isFY24Earnings: boolean = false;
   @Input() componentConfig: { article: 'FY24' | 'ATMs', chart: EarningsChartSelection, } | null = null;
-
+  public get isFY24Earnings(): boolean { return this.componentConfig?.article === 'FY24'; }
 
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
@@ -49,10 +51,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   public get isLoaded(): boolean { return this._isLoaded; }
 
   private _chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ' = 'ANNUAL';
-  private _chartOption: EarningsChartSelection = EarningsChartSelection.REVENUE_VS_NET_INCOME;
+  private _chartSelection: EarningsChartSelection = EarningsChartSelection.REVENUE_VS_NET_INCOME;
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartPeriod; }
-  public get chartOption(): EarningsChartSelection { return this._chartOption; }
+  public get chartSelection(): EarningsChartSelection { return this._chartSelection; }
 
   async ngOnInit() {
     // await this._loadingService.loadEarnings();
@@ -70,11 +72,11 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
       // E.G. in /FY24 component
       if (this.componentConfig.article === 'FY24') {
         this._chartPeriod = 'ANNUAL';
-        this._chartOption = this.componentConfig.chart;
+        this._chartSelection = this.componentConfig.chart;
       }
       if (this.componentConfig.article === 'ATMs') {
         this._chartPeriod = 'QUARTER';
-        this._chartOption = this.componentConfig.chart;
+        this._chartSelection = this.componentConfig.chart;
       }
     }
   }
@@ -97,7 +99,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     this._subscriptions = [
       this._chartService.chartOption$.subscribe((chartOption) => {
         if (!this.componentConfig) {
-          this._chartOption = chartOption;
+          this._chartSelection = chartOption;
           this._updateChartDataAndOptions();
         }
       }),
@@ -114,7 +116,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   }
 
   private _updateChartDataAndOptions() {
-    this.barChartOptions = this._setOptions();
+    this.barChartOptions = this._setChartOptions();
     this.barChartData = this._updateDatasets();
   }
 
@@ -123,7 +125,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
   private _updateDatasets(dataEntryCount = 99): ChartConfiguration<'bar'>['data'] {
     /**   Total of 19 items from FY05 to FY23 inclusive    */
-    const chartTitle = this._datasetBuilder.chartTitle(this.chartOption, this.chartPeriod);
+    const chartTitle = this._datasetBuilder.chartTitle(this.chartSelection, this.chartPeriod);
     this._chartService.setChartTitle(chartTitle);
 
     this.showCustomLegend = false;
@@ -138,8 +140,15 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           dataEntryCount = 10;
         }
       }
-    } else {
-
+    }
+    const isRevenueType = this.chartSelection === EarningsChartSelection.REVENUE_TYPE || this.chartSelection === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE
+    if (isRevenueType && this.chartPeriod === 'ANNUAL') {
+      dataEntryCount = 7;
+      /**
+       * 2018 through 2025.
+       * prior to FY 2018, revenue fell under numerous different categories, then in FY18 was simplified into Hardware, Software, Collectibles.
+       * this value can be updated to 8 when FY 2025 results come out, etc.
+       */
     }
 
     if (this.chartPeriod === 'ANNUAL') {
@@ -157,55 +166,20 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     } else if (this.chartPeriod === 'QUARTER') {
       results = this._financeService.quarterlyResults;
       // this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
+      if (this.componentConfig?.article === 'ATMs') {
+        results = results.filter(item => item.fiscalYear <= 2024)
+      }
     }
-    if (this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
-      this.customLegendItems = [
-        { title: 'Revenue ($ billions)', color: 'rgba(3, 90, 252, 0.9)' },
-        { title: 'Net Income ($ millions)', color: 'rgba(0, 145, 10, 0.9)' },
-        { title: 'Net Loss ($ millions)', color: 'rgba(255, 0, 0, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-      // label = 'Revenue and Net Income ' + periodLabel;
-    } else if (this.chartOption === EarningsChartSelection.REVENUE_TYPE || this.chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE) {
-      this.customLegendItems = [
-        { title: 'Hardware Revenue', color: 'rgba(3, 90, 252, 0.9)' },
-        { title: 'Software Revenue', color: 'rgba(255, 165, 0, 0.9)' },
-        { title: 'Collectibles Revenue', color: 'rgba(7, 145, 7, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-    } else if (this.chartOption === EarningsChartSelection.REVENUE_VS_COST) {
-      this.customLegendItems = [
-        { title: 'Revenue', color: 'rgba(3, 90, 252, 0.9)' },
-        { title: 'Cost of sales', color: 'rgba(255, 165, 0, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-    } else if (this.chartOption === EarningsChartSelection.REVENUE_VS_GROSS_PROFIT) {
-      this.customLegendItems = [
-        { title: 'Revenue', color: 'rgba(3, 90, 252, 0.9)' },
-        { title: 'Gross Profit', color: 'rgba(7, 145, 7, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-    } else if (this.chartOption === EarningsChartSelection.OPERATIONS_VS_SGA) {
-      this.customLegendItems = [
-        { title: 'Operating Income', color: 'rgba(0, 145, 10, 0.9)' },
-        { title: 'Operating Loss', color: 'rgba(255, 0, 0, 0.9)' },
-        { title: 'SG&A Expense', color: 'rgba(255, 165, 0, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-    }else if (this.chartOption === EarningsChartSelection.GROSS_PROFIT_VS_SGA) {
-      this.customLegendItems = [
-        { title: 'Gross Profit', color: 'rgba(0, 145, 10, 0.9)' },
-        { title: 'SG&A Expense', color: 'rgba(255, 165, 0, 0.9)' },
-      ];
-      this.showCustomLegend = true;
-    }
+    const chartLegendSettings = setEarningsChartLegend(this.chartSelection, this.chartPeriod);
+    this.customLegendItems = chartLegendSettings.customLegendItems;
+    this.showCustomLegend = chartLegendSettings.showCustomLegend;
     if (this._screenService.isMobile) {
       dataEntryCount = EarningsDatasetBuilder.mobileItemCount;
     } else {
       // dataEntryCount = this._screenService.screenWidth
     }
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
-    const datasets = this._datasetBuilder.updateDatasets(results, this.chartOption, this.chartPeriod, dataEntryCount);
+    const datasets = this._datasetBuilder.updateDatasets(results, this.chartSelection, this.chartPeriod, dataEntryCount);
     const labels = this._datasetBuilder.getSubsetArray(dataEntryCount, this._xAxisLabels);
     return {
       labels: labels,
@@ -214,16 +188,22 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   }
 
 
-  private _setOptions(): ChartOptions<'bar'> {
+  private _setChartOptions(): ChartOptions<'bar'> {
 
-    const tickScale: 100 | 1000 | 1000000 | 1000000000 = this._datasetBuilder.getTickScale(this.chartOption, this.chartPeriod);
+    const tickScale: 100 | 1000 | 1000000 | 1000000000 = this._datasetBuilder.getTickScale(this.chartSelection, this.chartPeriod);
     const tickLabel = tickScale === 1000000 ? 'million' : 'billion';
-    const minY = this._datasetBuilder.getMinY(this.chartOption, this.chartPeriod);
+    const minY = this._datasetBuilder.getMinY(this.chartSelection, this.chartPeriod);
+    let maxY = undefined;
+  
 
-    if (this.chartOption === EarningsChartSelection.REVENUE_VS_STORES) {
+    if (this.chartSelection === EarningsChartSelection.REVENUE_VS_STORES && this.isFY24Earnings) {
       this.barChartLegend = true;
     }
-    const isRevenueTypePercent = this.chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE;
+    if(this.chartSelection === EarningsChartSelection.STOCKHOLDERS_EQUITY){
+      maxY = 6000000000
+    }
+    const isRevenueTypePercent = this.chartSelection === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE;
+    const isNetProfitMarginPercent = this.chartSelection === EarningsChartSelection.NET_PROFIT_MARGIN;
 
     const tooltipCallbacks = {
       label: (context: TooltipItem<"bar">) => { return this._labelContext(context) },
@@ -244,6 +224,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
       scales: {
         y: {
           min: minY,
+          max: maxY,
           grid: {
             color: function (context) {
               // if (context.tick.value === 0) {
@@ -260,7 +241,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             backdropColor: 'black',
             // Include a dollar sign in the ticks
             callback: function (value, index, ticks) {
-              if (isRevenueTypePercent) {
+              if (isRevenueTypePercent || isNetProfitMarginPercent) {
                 return Number(value) + "%";
               } else {
                 const numVal = Number(value);
@@ -310,7 +291,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         },
       },
     }
-    if (this.chartOption === EarningsChartSelection.REVENUE_VS_STORES) {
+    if (this.chartSelection === EarningsChartSelection.REVENUE_VS_STORES) {
       chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -359,6 +340,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
             }
           },
           y2: {
+            min: minY,
             type: "linear",
             position: "right",
             beginAtZero: true,
@@ -401,7 +383,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   }
 
   private _labelContext(context: TooltipItem<"bar">): string {
-    return earningsChartLabelContext(context, this.chartOption);
+    return earningsChartLabelContext(context, this.chartSelection);
   }
   private _footerContext(context: TooltipItem<"bar">[]): string {
     const item = context[0];

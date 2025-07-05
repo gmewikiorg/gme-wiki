@@ -8,41 +8,53 @@
                 <div class="chart-options-row-title">Chart type</div>
                 <div class="chart-options-group">
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsIncome}"
-                        (click)="onClickChartOption(EarningsChartOption.REVENUE_VS_NET_INCOME)">Revenue and Net Income
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_NET_INCOME)">Revenue and Net
+                        Income
+                    </button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsNetProfitMargin}"
+                        (click)="onClickChartOption(earningsChartSelection.NET_PROFIT_MARGIN)">Net Profit Margin
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsCost}"
-                        (click)="onClickChartOption(EarningsChartOption.REVENUE_VS_COST)">Revenue vs Cost of Sales
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_COST)">Revenue vs Cost of Sales
+                    </button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsStores}"
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_STORES)">Revenue vs Store Count
+                    </button>
+                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenuePerStore}"
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_PER_STORES)">Revenue per Store
                     </button>
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueType}"
-                        (click)="onClickChartOption(EarningsChartOption.REVENUE_TYPE)">Revenue Type
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_TYPE)">Revenue Type
                     </button>
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueTypePercent}"
-                        (click)="onClickChartOption(EarningsChartOption.REVENUE_TYPE_PERCENTAGE)">Revenue Type as %
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_TYPE_PERCENTAGE)">Revenue Type as %
                     </button>
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsGrossProfit}"
-                        (click)="onClickChartOption(EarningsChartOption.REVENUE_VS_GROSS_PROFIT)">Revenue vs Gross
+                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_GROSS_PROFIT)">Revenue vs Gross
                         Profit
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsOperations}"
-                        (click)="onClickChartOption(EarningsChartOption.OPERATING_INCOME)">Operating Income
+                        (click)="onClickChartOption(earningsChartSelection.OPERATING_INCOME)">Operating Income
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsOperationsVsSGA}"
-                        (click)="onClickChartOption(EarningsChartOption.OPERATIONS_VS_SGA)">Operating Income versus SG&A
+                        (click)="onClickChartOption(earningsChartSelection.OPERATIONS_VS_SGA)">Operating Income versus
+                        SG&A
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsGrossProfitVsSGA}"
-                        (click)="onClickChartOption(EarningsChartOption.GROSS_PROFIT_VS_SGA)">Gross Profit versus SG&A
+                        (click)="onClickChartOption(earningsChartSelection.GROSS_PROFIT_VS_SGA)">Gross Profit versus
+                        SG&A
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsInterest}"
-                        (click)="onClickChartOption(EarningsChartOption.INTEREST_INCOME)">Interest Income
+                        (click)="onClickChartOption(earningsChartSelection.INTEREST_INCOME)">Interest Income
                     </button>
 
                     <button class="chart-option-button" [ngClass]="{'selected': chartIsEquity}"
-                        (click)="onClickChartOption(EarningsChartOption.STOCKHOLDERS_EQUITY)">Stockholders' Equity
+                        (click)="onClickChartOption(earningsChartSelection.STOCKHOLDERS_EQUITY)">Stockholders' Equity
                     </button>
                 </div>
             </div>
