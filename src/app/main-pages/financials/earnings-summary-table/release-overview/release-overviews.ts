@@ -314,13 +314,13 @@ export const releaseOverviews: ReleaseOverview[] = [
             'Adjusted EBITDA of ($0.7) million compared to ($75.5) million in the fiscal 2020 first quarter, and;',
             'Income tax expense was $1.3 million compared to income tax expense of $50.4 million in the fiscal 2020 first quarter.  ',
         ],
-        capitalAllocationPoints:[
+        capitalAllocationPoints: [
             'As of May 1, 2021, the Company had $770.8 million in cash and restricted cash, compared to $583.9 million in cash and restricted cash in the prior year. The Company had no borrowings under its asset-based revolving credit facility and no long-term debt.',
             'On April 26, 2021, the Company announced it raised approximately $551.7 million in net proceeds through the issuance of 3.5 million shares of common stock under its “at-the-market” equity offering program, resulting in total shares outstanding of approximately 71.9 million. The Company has used and intends to continue using net proceeds to accelerate GameStop’s transformation as well as for general corporate purposes and further strengthening the balance sheet.',
             'On April 30, 2021, the Company completed its voluntary early redemption of $216.4 million in principal amount of its 10.0% Senior Notes due 2023 on April 30, 2021. This voluntary early redemption covered the entire amount of the outstanding 10.0% Senior Notes, which represented all of the Company’s long-term debt.',
             'In addition, the Company intends to file with the U.S. Securities and Exchange Commission a prospectus supplement to the base prospectus included in the Company’s shelf registration statement on Form S-3 (File No. 333-251197) under which the Company may offer and sell up to 5 million shares of its common stock, from time to time, in “at-the-market” offerings. The Company intends to use net proceeds for general corporate purposes as well as for investing in growth initiatives and maintaining a strong balance sheet. The timing and amount of any sales of shares, if any, will depend on a variety of factors, including prevailing market conditions, the trading price of shares and other factors as determined by the Company.',
         ],
-        corporateUpdatePoints:[
+        corporateUpdatePoints: [
             'GameStop today announced the appointments of Matt Furlong as Chief Executive Officer and Mike Recupero as Chief Financial Officer. Messrs. Furlong and Recupero join from Amazon, where they held senior roles and oversaw various growth initiatives during their respective tenures. The Company is continuing to actively pursue senior talent with gaming, retail and technology experience.',
         ]
     },
@@ -348,7 +348,7 @@ export const releaseOverviews: ReleaseOverview[] = [
             'Established new offices in Seattle, Washington and Boston, Massachusetts, which are technology hubs with established talent markets. ',
             'Secured a new $500 million ABL facility, which closed in November just after the end of the third quarter, with improved liquidity and terms, including reduced borrowing costs, lighter covenants and additional flexibility. ',
         ],
-        quarterOverviewPoints: [], 
+        quarterOverviewPoints: [],
     },
     {
         quarter: 'Q4',
@@ -362,7 +362,7 @@ export const releaseOverviews: ReleaseOverview[] = [
             'Launched a redesigned app, which includes an enhanced user interface, improved scalability for a larger product catalog and more functionality to support exclusive offers and promotions. ',
             'Hired dozens of additional individuals with experience in areas such as blockchain gaming, ecommerce and technology, product refurbishment and operations. ',
         ],
-        yearOverviewPoints:[
+        yearOverviewPoints: [
             'Generated net sales of $6.011 billion for the fiscal year, compared to $5.090 billion for fiscal year 2020. ',
             'Expanded the product catalog to include a broader set of consumer electronics, PC gaming equipment and refurbished hardware. ',
             'Made significant and long-term investments in the Company’s fulfillment network, systems and teams. ',
@@ -423,7 +423,7 @@ export const releaseOverviews: ReleaseOverview[] = [
             'Cash, cash equivalents and marketable securities were $1.391 billion at the close of the quarter. ',
             'Long-term debt remains limited to a low-interest, unsecured term loan associated with the French government’s response to COVID-19. ',
         ],
-        yearOverviewPoints:[
+        yearOverviewPoints: [
             'Generated net sales of $5.927 billion for the fiscal year, compared to $6.011 billion for fiscal year 2021. ',
             'Increased full-year sales in the collectibles category, which is an area in which the Company continues prioritizing long-term growth. ',
             'Completed the majority of implementations and upgrades related to the Company’s infrastructure, systems, shipping capabilities, and online and mobile platforms. ',

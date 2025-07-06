@@ -1,0 +1,38 @@
+<div class="quarterly-table-root">
+    <div class="section-heading">Net Income 📊 per Fiscal Quarter</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td *ngIf="!isMobile">Fiscal Year</td>
+                <td *ngIf="isMobile">FY</td>
+                <td>Q1</td>
+                <td>Q2</td>
+                <td>Q3</td>
+                <td>Q4</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of tableRows">
+                <td> {{row[0].fiscalYear}}</td>
+                <td *ngFor="let i of counter(4)" class="td-container" [ngStyle]="styler(row, i)">
+
+                    <div *ngIf="row.length >= i+1" [ngClass]="isMobile? 'td-value-mobile' : 'td-value'">
+                        <a [href]="row[i].url" target="_blank"
+                            style="text-decoration: none; color: inherit; width:100%; height:100%;">
+                            <span *ngIf="valueIsPositive(row[i])">&nbsp;</span>
+                            <span>{{ formatter(row[i])}}</span>
+                            <span>M</span>
+                        </a>
+                    </div>
+                    <div *ngIf="row.length < i+1" [ngClass]="isMobile? 'td-value-mobile' : 'td-value'">
+                        <!-- Blank cell for quarters that have not happened yet -->
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="display:flex;flex-direction: column;width: 100%;align-items: center;font-size: 0.9em;color:gray;">
+        Click on the value in the table cells for a link to the financial statements for that fiscal quarter
+    </div>
+</div>

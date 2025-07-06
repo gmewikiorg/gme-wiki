@@ -3,16 +3,16 @@ import { BarController, BarElement, CategoryScale, Chart, ChartConfiguration, Ch
 import { BaseChartDirective } from 'ng2-charts';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { FinancialChartService } from '../choose-earnings-chart/earnings-chart.service';
 import { EarningsResult } from '../earnings-results/earnings-result.class';
 import { Import10KDataService } from '../earnings-results/import-10k-data.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
-import { EarningsChartSelection } from '../choose-earnings-chart/earnings-chart-selection.enum';
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
 import { Subscription } from 'rxjs';
 import { earningsChartLabelContext } from './earnings-chart-label-context';
 import { setEarningsChartLegend } from './earnings-chart-set-legend';
+import { FinancialChartService } from './choose-earnings-chart/earnings-chart.service';
+import { EarningsChartSelection } from './choose-earnings-chart/earnings-chart-selection.enum';
 
 @Component({
   selector: 'app-earnings-chart',

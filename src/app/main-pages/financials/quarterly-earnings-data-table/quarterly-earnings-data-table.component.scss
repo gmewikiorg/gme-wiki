@@ -1,0 +1,28 @@
+.table {
+    width: 100%;
+    // min-width: 600px;
+
+    border-collapse: collapse;
+
+}
+
+.td-container {
+    // display: block;
+}
+
+.td-value {
+    padding: 5px;
+    // color: rgba(0, 255, 0, 0.801);
+    font-family: 'Inter', Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    height: 100%;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+.td-value-mobile {
+    font-size: 0.9em;
+    padding: 0px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+}

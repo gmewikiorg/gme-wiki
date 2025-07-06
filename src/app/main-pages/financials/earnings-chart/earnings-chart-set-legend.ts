@@ -1,4 +1,5 @@
-import { EarningsChartSelection } from "../choose-earnings-chart/earnings-chart-selection.enum";
+import { EarningsChartSelection } from "./choose-earnings-chart/earnings-chart-selection.enum";
+
 
 export function setEarningsChartLegend(chartOption: EarningsChartSelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ' ){
 

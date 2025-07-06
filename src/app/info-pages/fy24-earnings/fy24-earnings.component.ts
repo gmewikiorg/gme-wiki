@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { ScreenService } from '../../shared/services/screen-size.service';
-import { EarningsChartSelection } from '../../main-pages/financials/choose-earnings-chart/earnings-chart-selection.enum';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { EarningsChartSelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-selection.enum';
 
 @Component({
   selector: 'app-fy24-earnings',

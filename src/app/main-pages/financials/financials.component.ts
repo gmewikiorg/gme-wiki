@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { EarningsTableComponent } from './earnings-table/earnings-table.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ChooseEarningsChartComponent } from './choose-earnings-chart/choose-earnings-chart.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { ChooseEarningsChartComponent } from './earnings-chart/choose-earnings-chart/choose-earnings-chart.component';
+import { QuarterlyEarningsDataTableComponent } from './quarterly-earnings-data-table/quarterly-earnings-data-table.component';
+import { EarningsTableComponent } from './earnings-summary-table/earnings-summary-table.component';
 
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule, FooterComponent],
+  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule, FooterComponent, QuarterlyEarningsDataTableComponent],
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })

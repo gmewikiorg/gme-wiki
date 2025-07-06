@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EarningsTableRow } from './earnings-table-row.class';
+import { EarningsTableRow } from './earnings-summary-table-row.class';
 import { EarningsResult } from '../earnings-results/earnings-result.class';
 import { IconDefinition, faNoteSticky, faSquareMinus, faSquarePlus, faLink, faFile } from '@fortawesome/free-solid-svg-icons';
 import { EarningsResultInterface } from '../earnings-results/earnings-result.interface';
@@ -11,11 +11,11 @@ import { LoadingService } from '../../../shared/services/loading.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { ColorPicker } from '../../../shared/color-picker.class';
 @Component({
-  selector: 'app-earnings-table',
+  selector: 'app-earnings-summary-table',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './earnings-table.component.html',
-  styleUrl: './earnings-table.component.scss'
+  templateUrl: './earnings-summary-table.component.html',
+  styleUrl: './earnings-summary-table.component.scss'
 })
 export class EarningsTableComponent {
   constructor(
@@ -125,6 +125,10 @@ export class EarningsTableComponent {
 
   public columnWidth(): string {
     return (100 / this.columnCount) + "%";
+  }
+
+  public absoluteValue(number: number): number{
+    return Math.abs(number);
   }
 
   public backgroundColor(

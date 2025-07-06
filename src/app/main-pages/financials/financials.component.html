@@ -14,10 +14,16 @@
         </div>
         <div class="page-section" *ngIf="!isBrowser" style="height: 650px;">
         </div>
+        
         <div class="page-section">
-            <div class="section-heading">Earnings table</div>
-            <app-earnings-table></app-earnings-table>
+            <div class="section-heading">Earnings Summary Table</div>
+            <app-earnings-summary-table></app-earnings-summary-table>
         </div>
+
+        <div class="page-section">
+            <app-quarterly-earnings-data-table></app-quarterly-earnings-data-table>
+        </div>
+
 
 
         <div class="page-section">

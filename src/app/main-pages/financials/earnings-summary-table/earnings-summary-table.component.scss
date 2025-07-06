@@ -1,11 +1,12 @@
-.table-root{
+.table-root {
     width: 100%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.table{
+
+.table {
     width: 100%;
     // min-width: 600px;
 
@@ -13,23 +14,32 @@
     font-size: 1.2em;
 
 }
+
 @media (max-width:500px) {
-    .table{
+    .table {
         font-size: 1.0em;
     }
 }
-td{
+
+td {
     border: 1px solid rgba(206, 206, 206, 0.5);
     padding: 5px;
 }
 
-.toolbar{
+.td-num-value {
+    font-family: 'Inter', Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.0em;
+}
+
+.toolbar {
     margin-bottom: 15px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.tool-button{
+
+.tool-button {
     font-size: 1.2em;
     padding: 8px;
     border-radius: 5px;
@@ -39,12 +49,13 @@ td{
     margin-left: 5px;
     margin-right: 5px;
 }
-.tool-button:hover{
+
+.tool-button:hover {
     color: var(--color-special);
     cursor: pointer;
 }
 
-.more-rows-bar{
+.more-rows-bar {
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
@@ -52,60 +63,63 @@ td{
 
 
 
-.selected-time{
+.selected-time {
     font-weight: 600;
 }
 
-.earnings-release-cell{
-    display:flex;
+.earnings-release-cell {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border: none;
 }
-.earnings-button{
+
+.earnings-button {
     border: 1px solid rgb(133, 133, 133);
     border-style: none;
     background-color: white;
     font-size: 1.1em;
     color: rgb(197, 197, 197);
 }
-.earnings-button:hover{
+
+.earnings-button:hover {
     cursor: pointer;
     color: var(--color-special);
 }
 
-.earnings-content{
-    max-height: 600px; 
+.earnings-content {
+    max-height: 600px;
     overflow-y: scroll;
-    font-size:0.85em;
+    font-size: 0.85em;
     background-color: rgb(245, 245, 245);
     padding: 10px;
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
-.earnings-top-bar{
+.earnings-top-bar {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-.earnings-release-button{
+.earnings-release-button {
     border: 1px solid rgba(212, 212, 212, 0);
     text-decoration: none;
     margin: 3px;
     padding: 5px;
     border-radius: 4px;
 }
-.earnings-release-button:hover{
+
+.earnings-release-button:hover {
     text-decoration: none;
     border: 1px solid rgb(212, 212, 212);
 }
 
 
 
-.sankey-chart-container{
+.sankey-chart-container {
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -114,15 +128,15 @@ td{
     align-items: center;
 }
 
-.sankey-chart{
+.sankey-chart {
     min-width: 340px;
     max-height: 550px;
     border-radius: 10px;
     border: 1px solid rgb(192, 192, 192);
 }
 
-.date-url{
+.date-url {
     text-decoration: none;
     font-size: 0.7em;
-    color: gray;
+    // color: gray;
 }

@@ -2,10 +2,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChartSimple, faX } from '@fortawesome/free-solid-svg-icons';
-import { EarningsChartComponent } from '../earnings-chart/earnings-chart.component';
 import { FinancialChartService } from './earnings-chart.service';
 import { EarningsChartSelection } from './earnings-chart-selection.enum';
 import { Subscription, timer } from 'rxjs';
+import { EarningsChartComponent } from '../earnings-chart.component';
 
 
 @Component({

@@ -1,5 +1,6 @@
 import { TooltipItem } from "chart.js";
-import { EarningsChartSelection } from "../choose-earnings-chart/earnings-chart-selection.enum";
+import { EarningsChartSelection } from "./choose-earnings-chart/earnings-chart-selection.enum";
+
 
 export function earningsChartLabelContext(context: TooltipItem<"bar">, chartOption: EarningsChartSelection): string {
   const numValue = Number(context.raw);

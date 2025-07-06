@@ -3,7 +3,7 @@ import { ScreenService } from '../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
-import { EarningsChartSelection } from '../../main-pages/financials/choose-earnings-chart/earnings-chart-selection.enum';
+import { EarningsChartSelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-selection.enum';
 
 @Component({
   selector: 'app-atms',
