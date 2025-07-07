@@ -1,13 +1,9 @@
 .table {
     width: 100%;
-    // min-width: 600px;
-
     border-collapse: collapse;
-
 }
 
 .td-container {
-    // display: block;
 }
 
 .td-value {
@@ -25,4 +21,13 @@
     padding: 0px;
     font-family: 'Inter', Arial, sans-serif;
     font-variant-numeric: tabular-nums;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: 550;
+    margin-bottom: 10px;
 }

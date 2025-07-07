@@ -1,0 +1,8 @@
+<div class="dropdown-menu-root" (mouseleave)="onMouseLeave()" (mouseenter)="onMouseEnter()">
+    <button class="dropdown-option-button" (click)="onClickMenu()">{{ currentItem }}</button>
+    <div *ngIf="showDropdown" class="dropdown-menu" [style.backgroundColor]="menuBackgroundColor">
+        <div *ngFor="let menuItem of menuItems" class="dropdown-menu-item" (click)="onClickMenuItem(menuItem)">
+            {{ menuItem }}
+        </div>
+    </div>
+</div>
