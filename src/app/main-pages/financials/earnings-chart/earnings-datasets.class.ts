@@ -22,10 +22,10 @@ export class EarningsDatasetBuilder {
         const equityDataItems: number[] = results.map(r => r.stockholdersEquity).reverse();
         const storeCountDataItems: number[] = results.map(r => r.storeCount).reverse();
         const revenuePerStoreDataItems: number[] = results.map(r => r.revenue / r.storeCount).reverse();
-        const hardwareRevDataItems: number[] = results.map(r => r.softwareRevenue).reverse();
+        const hardwareRevDataItems: number[] = results.map(r => r.hardwareRevenue).reverse();
         const softwareRevDataItems: number[] = results.map(r => r.softwareRevenue).reverse();
         const collectiblesRevDataItems: number[] = results.map(r => r.collectiblesRevenue).reverse();
-        const hardwareRevPercentDataItems: number[] = results.map(r => ((r.softwareRevenue / r.revenue) * 100)).reverse();
+        const hardwareRevPercentDataItems: number[] = results.map(r => ((r.hardwareRevenue / r.revenue) * 100)).reverse();
         const softwareRevPercentDataItems: number[] = results.map(r => ((r.softwareRevenue / r.revenue) * 100)).reverse();
         const collectiblesRevPercentDataItems: number[] = results.map(r => ((r.collectiblesRevenue / r.revenue) * 100)).reverse();
 
