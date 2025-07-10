@@ -23,6 +23,10 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     private _screenService: ScreenService) {
   }
 
+  private _mouseIsIn: boolean = false;
+  public get mouseIsIn(): boolean { return this._mouseIsIn; }
+  public onMouseEnter() { this._mouseIsIn = true; }
+  public onMouseLeave() { this._mouseIsIn = false; }
 
   private _quarterlyResults: EarningsResult[] = []
   private _annualResults: EarningsResult[] = [];
@@ -37,15 +41,15 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
   }
 
   private _dropdownMenuItems: string[] = [
-    'Net Income 📊',
+    'Net Income',
     'Revenue',
-    'Net Profit Margin %',
-    'Hardware Sales $',
-    'Hardware Sales % of Total',
-    'Software Sales $',
-    'Software Sales % of Total',
-    'Collectibles Sales $',
-    'Collectibles Sales % of Total',
+    'Net Profit Margin',
+    'Hardware Sales',
+    'Hardware Sales as Percent of Total',
+    'Software Sales',
+    'Software Sales as Percent of Total',
+    'Collectibles Sales',
+    'Collectibles Sales as Percent of Total',
     'Gross Profit',
     'Operating Income',
     'SG&A Expense',
@@ -79,6 +83,17 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     this._tableRows = tableRows.reverse();
   }
 
+
+  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Hide Table Menus'
+  public onClickShowHideMenus() {
+    if (this.showHideMenus === 'Show Table Menus') {
+      this.showHideMenus = 'Hide Table Menus';
+    } else if (this.showHideMenus === 'Hide Table Menus') {
+      this.showHideMenus = 'Show Table Menus';
+    }
+  }
+  public get showMenus(): boolean { return this.showHideMenus === 'Hide Table Menus'; }
+
   public counter(limit: number): number[] {
     return Array.from({ length: limit }, (_, i) => i);
   }
@@ -87,7 +102,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
 
   public formatter(earningsResult: EarningsResult): string {
     const currentProperty: string = this._dropdownMenu.currentMenuItem;
-    if (currentProperty === 'Net Income 📊') {
+    if (currentProperty === 'Net Income') {
       const value = earningsResult.netEarnings;
       if (value > 0) {
         return '$' + (earningsResult.netEarnings / 1000000).toFixed(0) + 'M';
@@ -96,19 +111,19 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
       }
     } else if (currentProperty === 'Revenue') {
       return '$' + (earningsResult.revenue / 1000000000).toFixed(1) + 'B';
-    } else if (currentProperty === 'Net Profit Margin %') {
+    } else if (currentProperty === 'Net Profit Margin') {
       return ((earningsResult.netEarnings / earningsResult.revenue) * 100).toFixed(1) + '%';
-    } else if (currentProperty === 'Hardware Sales $') {
+    } else if (currentProperty === 'Hardware Sales') {
       return '$' + (earningsResult.hardwareRevenue / 1000000).toFixed(0) + 'M';
-    } else if (currentProperty === 'Hardware Sales % of Total') {
+    } else if (currentProperty === 'Hardware Sales as Percent of Total') {
       return ((earningsResult.hardwareRevenue / earningsResult.revenue) * 100).toFixed(0) + '%';
-    } else if (currentProperty === 'Software Sales $') {
+    } else if (currentProperty === 'Software Sales') {
       return '$' + (earningsResult.softwareRevenue / 1000000).toFixed(0) + 'M';
-    } else if (currentProperty === 'Software Sales % of Total') {
+    } else if (currentProperty === 'Software Sales as Percent of Total') {
       return ((earningsResult.softwareRevenue / earningsResult.revenue) * 100).toFixed(0) + '%';
-    } else if (currentProperty === 'Collectibles Sales $') {
+    } else if (currentProperty === 'Collectibles Sales') {
       return '$' + (earningsResult.collectiblesRevenue / 1000000).toFixed(0) + 'M';
-    } else if (currentProperty === 'Collectibles Sales % of Total') {
+    } else if (currentProperty === 'Collectibles Sales as Percent of Total') {
       return ((earningsResult.collectiblesRevenue / earningsResult.revenue) * 100).toFixed(0) + '%';
     } else if (currentProperty === 'Gross Profit') {
       return '$' + (earningsResult.grossProfit / 1000000).toFixed(0) + 'M';
@@ -143,7 +158,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     if (row.length >= index + 1) {
       const earningsResult = row[index];
       const currentProperty: string = this._dropdownMenu.currentMenuItem;
-      if (currentProperty === 'Net Income 📊') {
+      if (currentProperty === 'Net Income') {
         const value = earningsResult.netEarnings;
         if (value > 0) {
           return {
@@ -162,7 +177,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Net Profit Margin %') {
+      } else if (currentProperty === 'Net Profit Margin') {
         const value = earningsResult.netEarnings / earningsResult.revenue;
         if (value > 0) {
           return {
@@ -173,7 +188,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
             'backgroundColor': 'rgba(255, 0, 0, 0.1)',
           };
         }
-      } else if (currentProperty === 'Hardware Sales $') {
+      } else if (currentProperty === 'Hardware Sales') {
         const hardwareValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
@@ -184,7 +199,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Hardware Sales % of Total') {
+      } else if (currentProperty === 'Hardware Sales as Percent of Total') {
         const hardwarePercentValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .map(r => ((r.hardwareRevenue / r.revenue) * 100))
@@ -194,7 +209,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Software Sales $') {
+      } else if (currentProperty === 'Software Sales') {
         const softwareValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
@@ -205,7 +220,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Software Sales % of Total') {
+      } else if (currentProperty === 'Software Sales as Percent of Total') {
         const softwarePercentValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .map(r => ((r.softwareRevenue / r.revenue) * 100))
@@ -215,7 +230,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Collectibles Sales $') {
+      } else if (currentProperty === 'Collectibles Sales') {
         const collectiblesValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
@@ -226,7 +241,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      } else if (currentProperty === 'Collectibles Sales % of Total') {
+      } else if (currentProperty === 'Collectibles Sales as Percent of Total') {
         const collectiblesPercentValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .map(r => ((r.collectiblesRevenue / r.revenue) * 100))
@@ -317,7 +332,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
   public valueIsPositive(earningsResult: EarningsResult): boolean {
 
     const currentProperty: string = this._dropdownMenu.currentMenuItem;
-    if (currentProperty === 'Net Income 📊') {
+    if (currentProperty === 'Net Income') {
       const value = earningsResult.netEarnings;
       if (value > 0) {
         return true;
@@ -326,24 +341,24 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
       }
     } else if (currentProperty === 'Revenue') {
       return true;
-    } else if (currentProperty === 'Net Profit Margin %') {
+    } else if (currentProperty === 'Net Profit Margin') {
       const value = earningsResult.netEarnings / earningsResult.revenue;
       if (value > 0) {
         return true;
       } else {
         return false;
       }
-    } else if (currentProperty === 'Hardware Sales $') {
+    } else if (currentProperty === 'Hardware Sales') {
       return true;
-    } else if (currentProperty === 'Hardware Sales % of Total') {
+    } else if (currentProperty === 'Hardware Sales as Percent of Total') {
       return true;
-    } else if (currentProperty === 'Software Sales $') {
+    } else if (currentProperty === 'Software Sales') {
       return true;
-    } else if (currentProperty === 'Software Sales % of Total') {
+    } else if (currentProperty === 'Software Sales as Percent of Total') {
       return true;
-    } else if (currentProperty === 'Collectibles Sales $') {
+    } else if (currentProperty === 'Collectibles Sales') {
       return true;
-    } else if (currentProperty === 'Collectibles Sales % of Total') {
+    } else if (currentProperty === 'Collectibles Sales as Percent of Total') {
       return true;
     } else if (currentProperty === 'Gross Profit') {
       return true;

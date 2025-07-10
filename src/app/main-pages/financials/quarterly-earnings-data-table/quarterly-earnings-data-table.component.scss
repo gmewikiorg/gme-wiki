@@ -31,3 +31,32 @@
     font-weight: 550;
     margin-bottom: 10px;
 }
+.title-mobile{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.title-row{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.buttons-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+.options-button{
+    margin: 5px;
+    color: inherit;
+    background-color: inherit;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+.options-button:hover{
+        cursor: pointer;
+    border: 1px solid gray;
+    background-color: rgba(128, 128, 128, 0.5);
+}

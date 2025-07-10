@@ -1,6 +1,8 @@
 .dropdown-menu-root {
     display: flex;
     flex-direction: column;
+    margin-right: 6px;
+    margin-left: 6px;
 }
 
 .title-row {
@@ -13,7 +15,18 @@
 
 .dropdown-option-button {
     color: inherit;
-    margin-right: 6px;
+
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: 600;
+    font-size: 1.0em;
+    background-color: rgba(128, 128, 128, 0);
+}
+.dropdown-option-button-mobile{
+    color: inherit;
+
     border: 1px solid rgba(128, 128, 128, 0.3);
     border-radius: 8px;
     padding-left: 8px;
@@ -41,12 +54,33 @@
     border: 1px solid rgba(128, 128, 128, 0.5);
 }
 
+.dropdown-menu-mobile {
+    border-radius: 5px;
+    margin-top: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+    padding: 10px;
+    font-size: small;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
 .dropdown-menu-item {
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
     font-weight: normal;
-    display:flex;flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+.dropdown-menu-item-mobile {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: small;
+    display: flex;
+    flex-direction: row;
 }
 
 .dropdown-menu-item:hover {

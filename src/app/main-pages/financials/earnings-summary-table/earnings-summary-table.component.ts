@@ -10,10 +10,12 @@ import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { ColorPicker } from '../../../shared/color-picker.class';
+import { CustomDropdownMenuComponent } from '../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.component';
+import { CustomDropdownMenu } from '../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.class';
 @Component({
   selector: 'app-earnings-summary-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CustomDropdownMenuComponent],
   templateUrl: './earnings-summary-table.component.html',
   styleUrl: './earnings-summary-table.component.scss'
 })
@@ -30,6 +32,8 @@ export class EarningsTableComponent {
   public get faLink(): IconDefinition { return faLink; }
   public get faFile(): IconDefinition { return faFile; }
 
+  public get isMobile(): boolean { return this._screenService.isMobile; }
+
   private _displayMode: 'QUARTER' | 'ANNUAL' = 'ANNUAL';
   private _timePeriod: string = "Fiscal Year";
   private _tableRows: EarningsTableRow[] = [];
@@ -38,6 +42,9 @@ export class EarningsTableComponent {
   private _columnCount: number = 9;
   private _pageWidth: number = 0;
   private _fontSize: string = "0.9em";
+
+  private _dropdownMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Year', 'Fiscal Quarter'])
+  public get dropdownMenu(): CustomDropdownMenu { return this._dropdownMenu; }
 
   public get displayMode(): 'QUARTER' | 'ANNUAL' { return this._displayMode; }
   public get timePeriod(): string { return this._timePeriod; }
@@ -80,15 +87,31 @@ export class EarningsTableComponent {
   }
 
 
-  private _showMoreRows: boolean = false;
+  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Hide Table Menus'
+  public onClickShowHideMenus(){
+    if(this.showHideMenus === 'Show Table Menus'){
+      this.showHideMenus = 'Hide Table Menus';
+    }else if(this.showHideMenus === 'Hide Table Menus'){
+      this.showHideMenus = 'Show Table Menus';
+    }
+  }
+  public get showMenus(): boolean { return this.showHideMenus === 'Hide Table Menus'; }
+
+
   private _showButton: boolean = true;
   public get showButton(): boolean  {return this._showButton; }
-  public get showMoreRows(): boolean { return this._showMoreRows; }
+  public get showMoreRows(): boolean { return this.showHideRows === 'Hide Extra Rows'}
   public onClickShowMoreRows(){ 
-    this._showMoreRows = true; 
+    if(this.showHideRows === 'Show More Rows'){
+      this.showHideRows = 'Hide Extra Rows';
+    }else if(this.showHideRows === 'Hide Extra Rows'){
+      this.showHideRows = 'Show More Rows';
+    }
     this._tableRows = this._buildTableRows();
     this._showButton = false;
   }
+
+  public showHideRows: 'Show More Rows' | 'Hide Extra Rows' = 'Show More Rows';
 
   private _buildTableRows(): EarningsTableRow[] {
     let tableRows: EarningsTableRow[] = [];
@@ -97,23 +120,34 @@ export class EarningsTableComponent {
     } else {
       tableRows = this._annualResults.map(result => new EarningsTableRow(result, releaseOverviews));
     }
-    if(!this._showMoreRows){
+    if(!this.showMoreRows){
       tableRows = tableRows.slice(0, 8);
     }
     return tableRows;
   }
 
-  public onClickQuartersYears(value: 'QUARTERS' | 'YEARS') {
-    if (value === 'QUARTERS') {
+  public onMenuItemSelected(menuItem: string){
+    if(menuItem === 'Fiscal Quarter'){
       this._displayMode = 'QUARTER';
       this._timePeriod = 'Fiscal Quarter';
-      // this._importFinancialsService.load10QData();
-    } else {
+    }else if(menuItem === 'Fiscal Year'){
       this._displayMode = 'ANNUAL';
       this._timePeriod = 'Fiscal Year';
     }
     this._tableRows = this._buildTableRows();
   }
+
+  // public onClickQuartersYears(value: 'QUARTERS' | 'YEARS') {
+  //   if (value === 'QUARTERS') {
+  //     this._displayMode = 'QUARTER';
+  //     this._timePeriod = 'Fiscal Quarter';
+  //     // this._importFinancialsService.load10QData();
+  //   } else {
+  //     this._displayMode = 'ANNUAL';
+  //     this._timePeriod = 'Fiscal Year';
+  //   }
+  //   this._tableRows = this._buildTableRows();
+  // }
 
   public date(dateYYYYMMDD: string): string {
     return dayjs(dateYYYYMMDD).format('MMM D, YYYY');

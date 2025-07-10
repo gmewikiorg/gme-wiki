@@ -6,22 +6,49 @@ import { FinancialChartService } from './earnings-chart.service';
 import { EarningsChartSelection } from './earnings-chart-selection.enum';
 import { Subscription, timer } from 'rxjs';
 import { EarningsChartComponent } from '../earnings-chart.component';
+import { CustomDropdownMenu } from '../../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.class';
+import { CustomDropdownMenuComponent } from '../../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.component';
+import { ScreenService } from '../../../../shared/services/screen-size.service';
 
 
 @Component({
   selector: 'app-choose-earnings-chart',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, EarningsChartComponent],
+  imports: [CommonModule, FontAwesomeModule, EarningsChartComponent, CustomDropdownMenuComponent],
   templateUrl: './choose-earnings-chart.component.html',
   styleUrl: './choose-earnings-chart.component.scss'
 })
 export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   public earningsChartSelection = EarningsChartSelection;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private _financialsService: FinancialChartService) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, 
+    private _financialsService: FinancialChartService,
+    private _screenService: ScreenService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
   public get faChartSimple() { return faChartSimple; }
   public get faX() { return faX; }
+
+  public get isMobile(): boolean { return this._screenService.isMobile; }
+
+  private _chartMenu: CustomDropdownMenu = new CustomDropdownMenu([
+    'Revenue and Net Income',
+    'Net Profit Margin',
+    'Revenue vs Cost of Sales',
+    'Revenue vs Store Count',
+    'Revenue per Store',
+    'Revenue by Category',
+    'Revenue by Category as Percent of Total',
+    'Revenue vs Gross Profit',
+    'Operating Income',
+    'Operating Income vs SG&A Expense',
+    'Gross Profit vs SG&A Expense',
+    'Interest Income',
+    "Stockholders' Equity"
+  ]);
+  private _periodMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Year', 'Fiscal Quarter']);
+
+  public get chartMenu(): CustomDropdownMenu { return this._chartMenu; }
+  public get periodMenu(): CustomDropdownMenu { return this._periodMenu; }
 
   private _showMoreChartOptions: boolean = false;
   public get showMoreChartOptions(): boolean { return this._showMoreChartOptions; }
@@ -43,8 +70,6 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
         this._chartTitle = title;
       })
     })
-
-
   }
 
   ngOnDestroy() {
@@ -55,35 +80,51 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     this._showMoreChartOptions = !this._showMoreChartOptions;
   }
 
-  public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._financialsService.chartPeriod; }
-  public get chartOption(): EarningsChartSelection { return this._financialsService.chartOption; }
+  public get menuIsHidden(): boolean { return this.hideShowMenus === 'Hide';}
 
-  public get periodIsAnnual(): boolean { return this.chartPeriod === 'ANNUAL'; }
-  public get periodIsQuarter(): boolean { return this.chartPeriod === 'QUARTER'; }
-  // public get periodIsQoverQ(): boolean { return this.chartPeriod === 'QOVERQ'; }
-
-  public get chartIsRevenueVsIncome(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME; }
-  public get chartIsNetProfitMargin(): boolean { return this.chartOption === this.earningsChartSelection.NET_PROFIT_MARGIN; }
-  public get chartIsRevenueVsCost(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_COST; }
-  public get chartIsRevenueVsGrossProfit(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_GROSS_PROFIT; }
-  public get chartIsRevenueVsStores(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_VS_STORES; }
-  public get chartIsRevenuePerStore(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_PER_STORES; }
-  public get chartIsRevenueType(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE; }
-  public get chartIsRevenueTypePercent(): boolean { return this.chartOption === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE; }
-  public get chartIsOperations(): boolean { return this.chartOption === EarningsChartSelection.OPERATING_INCOME; }
-  public get chartIsGrossProfitVsSGA(): boolean { return this.chartOption === EarningsChartSelection.GROSS_PROFIT_VS_SGA; }
-  public get chartIsOperationsVsSGA(): boolean { return this.chartOption === EarningsChartSelection.OPERATIONS_VS_SGA; }
-  public get chartIsInterest(): boolean { return this.chartOption === EarningsChartSelection.INTEREST_INCOME; }
-  public get chartIsEquity(): boolean { return this.chartOption === EarningsChartSelection.STOCKHOLDERS_EQUITY; }
-
-
-
-  public onClickChartOption(option: EarningsChartSelection) {
-    this._financialsService.setChartOption(option);
+  public onClickHideChartMenus(){
+    if(this.hideShowMenus === 'Hide'){
+      this.hideShowMenus = 'Show';
+    }else if(this.hideShowMenus === 'Show'){
+      this.hideShowMenus = 'Hide';
+    }
   }
-
-  public onClickChartPeriod(option: 'ANNUAL' | 'QUARTER' | 'QOVERQ') {
-    this._financialsService.setChartPeriod(option);
+  public hideShowMenus: 'Hide' | 'Show' = 'Hide';
+  public onSelectPeriod(period: string){
+    if(period === 'Fiscal Year'){
+      this._financialsService.setChartPeriod('ANNUAL');
+    }else if(period === 'Fiscal Quarter'){
+      this._financialsService.setChartPeriod('QUARTER');
+    }
+  }
+  public onSelectChartMenuItem(item: string){
+    if(item === 'Revenue and Net Income'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_NET_INCOME);
+    }else if(item === 'Net Profit Margin'){
+      this._financialsService.setChartOption(EarningsChartSelection.NET_PROFIT_MARGIN);
+    }else if(item === 'Revenue vs Cost of Sales'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_COST);
+    }else if(item === 'Revenue vs Store Count'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_STORES);
+    }else if(item === 'Revenue per Store'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_PER_STORES);
+    }else if(item === 'Revenue by Category'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_TYPE);
+    }else if(item === 'Revenue by Category as Percent of Total'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_TYPE_PERCENTAGE);
+    }else if(item === 'Revenue vs Gross Profit'){
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_GROSS_PROFIT);
+    }else if(item === 'Operating Income'){
+      this._financialsService.setChartOption(EarningsChartSelection.OPERATING_INCOME);
+    }else if(item === 'Operating Income vs SG&A Expense'){
+      this._financialsService.setChartOption(EarningsChartSelection.OPERATIONS_VS_SGA);
+    }else if(item === 'Gross Profit vs SG&A Expense'){
+      this._financialsService.setChartOption(EarningsChartSelection.GROSS_PROFIT_VS_SGA);
+    }else if(item === 'Interest Income'){
+      this._financialsService.setChartOption(EarningsChartSelection.INTEREST_INCOME);
+    }else if(item === "Stockholders' Equity"){
+      this._financialsService.setChartOption(EarningsChartSelection.STOCKHOLDERS_EQUITY);
+    }
   }
 
 }

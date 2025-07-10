@@ -1,19 +1,25 @@
-<div class="table-root">
-    <div class="toolbar">
-        <div>
-            <button (click)="onClickQuartersYears('YEARS')" class="tool-button"
-                [ngClass]="{'selected-time': displayIsAnnual === true}">
-                Annual Results
-            </button>
-            <button (click)="onClickQuartersYears('QUARTERS')" class="tool-button"
-                [ngClass]="{'selected-time': displayIsQuarter === true}">
-                Quarterly Results
-            </button>
+<div class="toolbar">
+    <div style="display:flex;flex-direction: column;" *ngIf="showMenus && isMobile">
+
+        GameStop Earnings Summary
+
+        <div style="display:flex;flex-direction: row; align-items: center; font-size: normal;">
+            per
+            <app-custom-dropdown-menu [menu]="dropdownMenu"
+                (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu>
         </div>
 
     </div>
-
-
+    <div style="display:flex;flex-direction: row; align-items: center;" *ngIf="showMenus && !isMobile">
+        GameStop Earnings Summary per
+        <app-custom-dropdown-menu [menu]="dropdownMenu"
+            (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu>
+    </div>
+    <div style="display:flex;flex-direction: row; align-items: center;" *ngIf="!showMenus">
+        GameStop Earnings Summary per {{ dropdownMenu.currentMenuItem }}
+    </div>
+</div>
+<div class="table-root">
     <table class="table">
         <thead>
             <tr style="font-weight: 500;" [style.fontSize]="fontSize">
@@ -73,8 +79,9 @@
 
     <div style="text-align: center; font-size: 0.8em; color: gray; padding: 5px;">For a link to the financial
         statements, click on the first box in each row</div>
-    <div class="more-rows-bar" *ngIf="showButton">
-        <button class="more-rows-button" (click)="onClickShowMoreRows()">Show more rows</button>
+    <div class="buttons-bar">
+        <button class="options-button" (click)="onClickShowMoreRows()">{{ showHideRows }}</button>
+        <button class="options-button" (click)="onClickShowHideMenus()">{{ showHideMenus }}</button>
     </div>
 
 </div>

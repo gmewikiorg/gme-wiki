@@ -1,89 +1,37 @@
 <div class="choose-chart-root">
 
-
-    <div class="controls-row">
-
-        <div class="chart-options-buttons">
-            <div *ngIf="showMoreChartOptions" class="chart-options-row">
-                <div class="chart-options-row-title">Chart type</div>
-                <div class="chart-options-group">
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsIncome}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_NET_INCOME)">Revenue and Net
-                        Income
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsNetProfitMargin}"
-                        (click)="onClickChartOption(earningsChartSelection.NET_PROFIT_MARGIN)">Net Profit Margin
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsCost}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_COST)">Revenue vs Cost of Sales
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsStores}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_STORES)">Revenue vs Store Count
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenuePerStore}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_PER_STORES)">Revenue per Store
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueType}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_TYPE)">Revenue Type
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueTypePercent}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_TYPE_PERCENTAGE)">Revenue Type as %
-                    </button>
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsRevenueVsGrossProfit}"
-                        (click)="onClickChartOption(earningsChartSelection.REVENUE_VS_GROSS_PROFIT)">Revenue vs Gross
-                        Profit
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsOperations}"
-                        (click)="onClickChartOption(earningsChartSelection.OPERATING_INCOME)">Operating Income
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsOperationsVsSGA}"
-                        (click)="onClickChartOption(earningsChartSelection.OPERATIONS_VS_SGA)">Operating Income versus
-                        SG&A
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsGrossProfitVsSGA}"
-                        (click)="onClickChartOption(earningsChartSelection.GROSS_PROFIT_VS_SGA)">Gross Profit versus
-                        SG&A
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsInterest}"
-                        (click)="onClickChartOption(earningsChartSelection.INTEREST_INCOME)">Interest Income
-                    </button>
-
-                    <button class="chart-option-button" [ngClass]="{'selected': chartIsEquity}"
-                        (click)="onClickChartOption(earningsChartSelection.STOCKHOLDERS_EQUITY)">Stockholders' Equity
-                    </button>
-                </div>
-            </div>
-            <div *ngIf="showMoreChartOptions" class="chart-options-row">
-                <div class="chart-options-row-title">Time period</div>
-                <div class="chart-options-group">
-                    <button class="chart-option-button" [ngClass]="{'selected': periodIsAnnual}"
-                        (click)="onClickChartPeriod('ANNUAL')">Annually</button>
-                    <button class="chart-option-button" [ngClass]="{'selected': periodIsQuarter}"
-                        (click)="onClickChartPeriod('QUARTER')">Quarterly</button>
-                    <!-- <button class="chart-option-button"  [ngClass]="{'selected': periodIsQoverQ}"
-                        (click)="onClickChartPeriod('QOVERQ')">Quarter over
-                        quarter</button> -->
-                </div>
-            </div>
+    <div class="section-heading" *ngIf="!isMobile && menuIsHidden">
+        <span>GameStop</span>
+        <!-- <span>{{ chartTitle }}</span> -->
+        <app-custom-dropdown-menu [menu]="chartMenu"
+            (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
+        <span>by</span>
+        <app-custom-dropdown-menu [menu]="periodMenu"
+            (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
+        <span></span>
+    </div>
+    <div class="section-heading-mobile" *ngIf="isMobile && menuIsHidden">
+        <div class="heading-row">
+            GameStop
         </div>
-        <div>
-            <button (click)="onClickMoreCharts()" class="more-charts-button" *ngIf="!showMoreChartOptions">
-                <fa-icon [icon]="faChartSimple" style="color:rgb(0, 89, 255);"></fa-icon>
-                Chart Options</button>
-            <button (click)="onClickMoreCharts()" class="more-charts-button" style="font-size:0.8em; color: gray;"
-                *ngIf="showMoreChartOptions">
-                <fa-icon [icon]="faX"></fa-icon>
-            </button>
+        <div class="heading-row">
+
+            <app-custom-dropdown-menu [menu]="chartMenu"
+                (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
+        </div>
+        <div class="heading-row">
+            by
+            <app-custom-dropdown-menu [menu]="periodMenu"
+                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
         </div>
     </div>
+    <div class="section-heading" *ngIf="!menuIsHidden">
+        GameStop {{ chartMenu.currentMenuItem }} by {{ periodMenu.currentMenuItem }}
+    </div>
 
-    <div class="section-heading" style="margin-bottom: 10px; margin-top: 5px;">{{ chartTitle }}</div>
     <!-- <div *ngIf="isLoading && isBrowser" style="height: 650px; background-color: rgba(255, 255, 255, 0); width: 100%;" ></div> -->
     <app-earnings-chart class="earnings-chart-container" *ngIf="!isLoading && isBrowser"></app-earnings-chart>
-
+    <div class="options-button-container">
+        <button class="options-button" (click)="onClickHideChartMenus()">{{hideShowMenus}} Chart Menus</button>
+    </div>
 </div>

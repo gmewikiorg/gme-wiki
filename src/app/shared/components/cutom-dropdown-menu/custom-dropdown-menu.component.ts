@@ -26,9 +26,19 @@ export class CustomDropdownMenuComponent {
   public get showDropdown(): boolean { return this._showDropdown; }
 
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
+  public get isMobile(): boolean { return this._screenService.isMobile; }
 
   public onClickMenu() {
-    this._showDropdown = !this._showDropdown;
+    if (this.dropdownMenu.menuItems.length === 2) {
+      if (this.dropdownMenu.currentSelectionIndex === 0) {
+        this.dropdownMenu.setMenuItem(1);
+      } else {
+        this.dropdownMenu.setMenuItem(0);
+      }
+      this.menuItemSelected.emit(this.dropdownMenu.currentMenuItem);
+    } else {
+      this._showDropdown = !this._showDropdown;
+    }
   }
 
   public get menuBackgroundColor(): string {

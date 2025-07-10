@@ -1,7 +1,24 @@
-<div class="quarterly-table-root">
-    <div class="title">
-        <app-custom-dropdown-menu [menu]="dropdownMenu"
-            (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu> per fiscal quarter
+<div class="quarterly-table-root" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+
+    <div class="title" *ngIf="showMenus && !isMobile">
+        <span>GameStop</span> <app-custom-dropdown-menu [menu]="dropdownMenu"
+            (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu> per Fiscal Quarter
+    </div>
+    <div class="title-mobile" *ngIf="showMenus && isMobile">
+        <div class="title-row">
+            GameStop
+        </div>
+        <div class="title-row">
+            <app-custom-dropdown-menu [menu]="dropdownMenu"
+                (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu>
+        </div>
+        <div class="title-row">
+            per Fiscal Quarter
+        </div>
+
+    </div>
+    <div class="title" *ngIf="!showMenus">
+        GameStop {{dropdownMenu.currentMenuItem}} per Fiscal Quarter
     </div>
 
     <table class="table">
@@ -38,5 +55,8 @@
     </table>
     <div style="display:flex;flex-direction: column;width: 100%;align-items: center;font-size: 0.9em;color:gray;">
         Click on the value in the table cells for a link to the financial statements for that fiscal quarter
+    </div>
+    <div class="buttons-bar">
+        <button class="options-button" (click)="onClickShowHideMenus()">{{ showHideMenus }}</button>
     </div>
 </div>
