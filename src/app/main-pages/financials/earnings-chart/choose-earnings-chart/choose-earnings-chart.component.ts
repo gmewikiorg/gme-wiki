@@ -80,7 +80,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     this._showMoreChartOptions = !this._showMoreChartOptions;
   }
 
-  public get menuIsHidden(): boolean { return this.hideShowMenus === 'Hide';}
+  public get menuIsHidden(): boolean { return this.hideShowMenus === 'Show';}
 
   public onClickHideChartMenus(){
     if(this.hideShowMenus === 'Hide'){
@@ -89,7 +89,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
       this.hideShowMenus = 'Hide';
     }
   }
-  public hideShowMenus: 'Hide' | 'Show' = 'Hide';
+  public hideShowMenus: 'Hide' | 'Show' = 'Show';
   public onSelectPeriod(period: string){
     if(period === 'Fiscal Year'){
       this._financialsService.setChartPeriod('ANNUAL');

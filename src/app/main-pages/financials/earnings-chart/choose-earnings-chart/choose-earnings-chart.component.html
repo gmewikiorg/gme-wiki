@@ -1,6 +1,6 @@
 <div class="choose-chart-root">
 
-    <div class="section-heading" *ngIf="!isMobile && menuIsHidden">
+    <div class="section-heading" *ngIf="!isMobile && !menuIsHidden">
         <span>GameStop</span>
         <!-- <span>{{ chartTitle }}</span> -->
         <app-custom-dropdown-menu [menu]="chartMenu"
@@ -10,22 +10,32 @@
             (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
         <span></span>
     </div>
-    <div class="section-heading-mobile" *ngIf="isMobile && menuIsHidden">
-        <div class="heading-row">
+    <div class="section-heading-mobile" *ngIf="isMobile && !menuIsHidden">
+        <!-- <div class="heading-row">
             GameStop
         </div>
         <div class="heading-row">
 
             <app-custom-dropdown-menu [menu]="chartMenu"
                 (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
-        </div>
+        </div> -->
+
+        <span>
+            GameStop
+
+
+            <app-custom-dropdown-menu [menu]="chartMenu"
+                (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
+        </span>
+
+
         <div class="heading-row">
             by
             <app-custom-dropdown-menu [menu]="periodMenu"
                 (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
         </div>
     </div>
-    <div class="section-heading" *ngIf="!menuIsHidden">
+    <div class="section-heading" *ngIf="menuIsHidden">
         GameStop {{ chartMenu.currentMenuItem }} by {{ periodMenu.currentMenuItem }}
     </div>
 

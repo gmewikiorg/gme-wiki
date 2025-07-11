@@ -195,10 +195,6 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     const minY = this._datasetBuilder.getMinY(this.chartSelection, this.chartPeriod);
     let maxY = undefined;
   
-
-    if (this.chartSelection === EarningsChartSelection.REVENUE_VS_STORES && this.isFY24Earnings) {
-      this.barChartLegend = true;
-    }
     if(this.chartSelection === EarningsChartSelection.STOCKHOLDERS_EQUITY){
       maxY = 6000000000
     }

@@ -1,5 +1,7 @@
 <div class="dropdown-menu-root" (mouseleave)="onMouseLeave()" (mouseenter)="onMouseEnter()">
-    <button [ngClass]="isMobile ? 'dropdown-option-button-mobile' : 'dropdown-option-button'" (click)="onClickMenu()">{{ currentItem }}</button>
+    <button [ngClass]="isMobile ? 'dropdown-option-button-mobile' : 'dropdown-option-button'" (click)="onClickMenu()">
+        {{ currentItem }} 🔽
+    </button>
     <div *ngIf="showDropdown" [ngClass]="isMobile ? 'dropdown-menu-mobile' : 'dropdown-menu'" [style.backgroundColor]="menuBackgroundColor">
         <div *ngFor="let menuItem of menuItems" class="dropdown-menu-item" (click)="onClickMenuItem(menuItem)" >
             {{ menuItem }}

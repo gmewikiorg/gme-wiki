@@ -84,7 +84,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
   }
 
 
-  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Hide Table Menus'
+  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Show Table Menus';
   public onClickShowHideMenus() {
     if (this.showHideMenus === 'Show Table Menus') {
       this.showHideMenus = 'Hide Table Menus';
