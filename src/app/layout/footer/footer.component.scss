@@ -1,31 +1,49 @@
-.footer-root{
-    display:flex;
+.footer-root {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-root-mobile {
+    display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
     justify-content: center;
 }
 
-.title{
+.title {
     font-size: 0.8em;
-    color:gray;
+    color: gray;
 }
-.icons{
-    display:flex;
+
+.icons {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.icon-url{
+.icon-url {
     margin: 5px;
     font-size: 1.2em;
 }
-.icon-image{
+
+.icon-image {
     width: 30px;
     height: 30px;
     // padding: 2px;
     // background-color: white;
     // border: 1px solid white;
     border-radius: 30px;
+}
+
+.directory{
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    text-align: left;
+    // padding: 5px;
 }

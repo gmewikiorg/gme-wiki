@@ -1,4 +1,4 @@
-import { FAQ } from "./faq.interface";
+import { FAQ } from "./faq-old.interface";
 
 export const faqs: FAQ[] = [
     { question: 'What is GameStop?', answerText: ['GameStop is a retail company specializing in video games, gaming merchandise, and consumer electronics.'], answerUrls: [], id: 0, section: 'GENERAL' },

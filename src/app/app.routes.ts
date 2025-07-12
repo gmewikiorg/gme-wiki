@@ -17,7 +17,7 @@ import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.com
 import { DrsComponent } from './info-pages/drs/drs.component';
 import { DrsFullTimelineComponent } from './info-pages/drs/drs-full-timeline/drs-full-timeline.component';
 import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
-import { FaqComponent } from './info-pages/faq/faq.component';
+import { FaqOldComponent } from './info-pages/faq-old/faq-old.component';
 import { FtdComponent } from './info-pages/ftd/ftd.component';
 import { FudComponent } from './info-pages/fud/fud.component';
 import { Fy23EarningsComponent } from './info-pages/fy23-earnings/fy23-earnings.component';
@@ -45,6 +45,7 @@ import { InvestmentPolicyComponent } from './info-pages/investment-policy/invest
 import { CnbcVsGmeComponent } from './info-pages/cnbc-vs-gme/cnbc-vs-gme.component';
 import { EquityComponent } from './info-pages/equity/equity.component';
 import { MediaVsGmeComponent } from './info-pages/media-vs-gme/media-vs-gme.component';
+import { DirectoryComponent } from './info-pages/directory/directory.component';
 
 
 
@@ -82,6 +83,8 @@ export const routes: Routes = [
     { path: 'competition', component: CompetitionComponent },
 
 
+    { path: 'directory', component: DirectoryComponent },
+
     { path: 'downfall', component: DownfallEraComponent },
     { path: 'downfall-era', component: DownfallEraComponent },
 
@@ -91,7 +94,7 @@ export const routes: Routes = [
 
     { path: 'equity', component: EquityComponent },
 
-    { path: 'faq', component: FaqComponent },
+    { path: 'faq-old', component: FaqOldComponent },
 
     { path: 'fy23', component: Fy23EarningsComponent },
     { path: 'FY23', component: Fy23EarningsComponent },
