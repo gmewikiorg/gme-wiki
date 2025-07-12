@@ -51,6 +51,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     'Collectibles Sales',
     'Collectibles Sales as Percent of Total',
     'Gross Profit',
+    'Gross Margin',
     'Operating Income',
     'SG&A Expense',
     'Interest Income',
@@ -127,6 +128,8 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
       return ((earningsResult.collectiblesRevenue / earningsResult.revenue) * 100).toFixed(0) + '%';
     } else if (currentProperty === 'Gross Profit') {
       return '$' + (earningsResult.grossProfit / 1000000).toFixed(0) + 'M';
+    } else if (currentProperty === 'Gross Margin') {
+      return ((earningsResult.grossProfit / earningsResult.revenue)*100).toFixed(1) + '%';
     } else if (currentProperty === 'Operating Income') {
       const value = earningsResult.operatingIncome;
       if (value > 0) {
@@ -259,6 +262,17 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         const minMax = ColorPicker.getMinMax(grossProfitValues);
         const grossProfitValue = earningsResult.grossProfit;
         const color = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, grossProfitValue);
+        return {
+          'backgroundColor': color,
+        };
+      }else if (currentProperty === 'Gross Margin') {
+        const grossMarginValues = this._quarterlyResults
+          .filter(result => result.fiscalYear >= this.startYear)
+          .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
+          .map(r => ((r.grossProfit/r.revenue)*100))
+        const minMax = ColorPicker.getMinMax(grossMarginValues);
+        const grossMarginValue = (earningsResult.grossProfit/earningsResult.revenue)*100;
+        const color = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, grossMarginValue);
         return {
           'backgroundColor': color,
         };
