@@ -1,11 +1,11 @@
 <div class="component-root">
     <div class="page-content">
         <h1 class="page-title">
-            FTD
+            FTDs
         </h1>
         <h5 class="page-subtitle">
-            Failure to deliver
-
+            Failure to deliver / fails-to-deliver: a structural loophole that enables market participants to exploit the
+            financial system for profit
         </h5>
 
         <div class="page-section">
@@ -13,31 +13,89 @@
                 Summary
             </div>
             <ul>
-                <li>FTDs (fails-to-deliver) occur when a party in a stock transaction fails to deliver the security to
-                    the buyer by the settlement date</li>
+                <li>FTDs occur when a party in a stock transaction fails to deliver the security to
+                    the buyer by the <a href="https://www.investopedia.com/terms/s/settlement_period.asp"
+                        target="_blank">settlement date</a></li>
+                <li>While FTDs can be caused by administrative errors or system issues, they most frequently occur in
+                    conjunction with short selling and <a [routerLink]="'/naked-short-selling'">naked short selling</a>
+                </li>
             </ul>
-
-
         </div>
 
         <div class="page-section">
             <div class="section-heading">
-                Causes
+                History of the Normal Settlement Period
             </div>
-            <ul>
-                <li>Short selling without borrowing: A trader sells a stock short without borrowing or locating shares
-                    to deliver, leading to a failure to provide them when the buyer expects delivery.</li>
-                <li>Administrative errors: Mistakes in processing trades, such as incorrect recording or communication
-                    between brokers, can cause a failure to settle.</li>
-                <li>Stock recall or unavailability: Borrowed shares are recalled by the lender, or shares are
-                    unavailable for borrowing at settlement, causing a delivery failure.</li>
-                <li>Insufficient inventory: The seller does not possess or cannot acquire the required securities due to
-                    a shortage in the market.</li>
-                <li>Market disruptions: Technical glitches, trading halts, or other unforeseen events can prevent timely
-                    settlement of securities.</li>
-            </ul>
+            <p>In the age before there were computers and electronic networks, trading stocks involved hand-delivering
+                stock certificates.
+            </p>
+            <p>The <a href="https://www.investopedia.com/terms/s/settlement_period.asp" target="_blank">settlement
+                    period</a> for many years was five business days after the transaction date, providing adequate time
+                for the delivery of physical stock certificates. Once the seller received the money and the buyer
+                received the stock, the transaction was settled.</p>
+            <p>As the volume of stock transactions increased over the years, this eventually led to a paperwork crisis
+                in the 1960s, and eventually the formation of the <a
+                    href="https://en.wikipedia.org/wiki/Depository_Trust_Company" target="_blank">Depository Trust
+                    Company (DTC)</a>, a centralized security depository.</p>
+            <p>As technology progressed, paper stock certificates were mostly replaced by electronic record-keeping,
+                centrally maintained by the DTC. This transition greatly improved efficiency and allowed for the
+                settlement period to be reduced from five days (T+5), to three days in the 1990s (T+3), to two days in
+                2017 (T+2), and then finally to one day as of May 2024 (T+1).</p>
+        </div>
 
+        <div class="page-section">
+            <div class="section-heading">Normal Settlement Mechanics</div>
 
+            <p>In the current system, when a transaction takes place, the seller must deliver the securities by the end
+                of
+                the following business day (T+1).</p>
+            <p>The trade information is sent to a clearinghouse, normally the <a
+                    href="https://www.investopedia.com/terms/n/nscc.asp" target="_blank">NSCC</a>, who acts as a
+                middleman for the transaction. The buyer sends their money to the clearinghouse, and the seller sends
+                the shares to the clearinghouse, exchanging the money for shares for each party, settling the
+                transaction.
+            </p>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Failure To Deliver</div>
+            <p>If the seller of a stock transaction does not deliver the shares by the end of the following business day
+                (T+1), a fail-to-deliver occurs.
+            </p>
+            <p>
+                The trade is not cancelled, but it is incomplete. The buyer paid for shares but never received them. The
+                FTD remains open until the seller finally provides the shares or buys them on the open market to settle
+                the trade.
+            </p>
+            <p>When this happens, the seller is expected to resolve the FTD by the next trading day. However, the rules
+                and clauses are complicated and they provide for a variety of exceptions under different circumstantces
+                that allow for additional delays.
+            </p>
+            <p>If the FTD is still unresolved by the latest allowable date, the participant is required to purchase
+                shares from the market in order to resolve the FTD.</p>
+            <p>Failing to resolve the FTD can result in fines, disciplinary action, investigations, or lawsuits.
+                However, enforcement of this remains weak, and sometimes the fines are smaller than the profit made from
+                doing it.</p>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Selling Something They Don't Have</div>
+            <p>How can a market participant sell something that they do not have?</p>
+            <p>Due to the history of how the market system formed, there exists the window of time that is the normal
+                settlement period, currently T+1, where an institutional seller in a transaction does not immediately
+                have to deliver
+                the shares
+                that they promised to sell.</p>
+            <p>This is a systemic vulnerability that can be exploited by large institutions such as hedge funds, market
+                makers,
+                and proprietary trading desks, in the pursuit of profit. These institutions have relationships with
+                prime brokerages, direct
+                access to clearing firms, as well as high-frequency trading systems. This enables them to execute a
+                sale, even if they haven't confirmed that they possess the shares or can borrow the shares to do so,
+                under the
+                assumption based on trust that they'll be able to obtain possession of those shares to deliver them
+                before settlement.
+            </p>
         </div>
 
         <div class="page-section">
@@ -45,8 +103,9 @@
                 Persistent FTDs
             </div>
             <ul>
-                <li>Indicators of market manipulation: Persistent FTDs may result from practices like <a [routerLink]="'/naked-short-selling'">naked short
-                    selling</a>, where traders sell shares they haven't borrowed, artificially increasing supply and
+                <li>Indicators of market manipulation: Persistent FTDs may result from practices like <a
+                        [routerLink]="'/naked-short-selling'">naked short
+                        selling</a>, where traders sell shares they haven't borrowed, artificially increasing supply and
                     pressuring the stock price downward.</li>
                 <li>Liquidity and pricing issues: Ongoing FTDs can distort the true value of a security, creating supply
                     and demand imbalances that harm market stability and investor confidence.</li>
@@ -57,16 +116,26 @@
             <div class="section-heading">
                 T+35 Settlement Cycle
             </div>
-            <p>The <a [routerLink]="'/t-plus-35'">T+35 settlement cycle</a>:  SEC Rule 204 gives market participants, such as market makers or authorized participants, up to 35 calendar days to deliver securities after a sale.  Various observations corroborate that this cycle can impact the price of a stock.</p>
+            <p>The <a [routerLink]="'/t-plus-35'">T+35 settlement cycle</a>: SEC Rule 204 gives market participants,
+                such as market makers or authorized participants a special exemption up to 35 calendar days to deliver
+                securities after a
+                sale. Various observations corroborate that this cycle can impact the price of a stock.</p>
         </div>
 
         <div class="page-section">
             <div class="section-heading">
-                Other links
+                See Also
             </div>
-            <div><a href="https://en.wikipedia.org/wiki/Failure_to_deliver" target="_blank">FTD on Wikipedia</a></div>
-            <div><a href="https://www.investopedia.com/terms/f/failuretodeliver.asp" target="_blank">FTD on
-                    investopedia</a></div>
+            <ul>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Failure_to_deliver" target="_blank">Failure to deliver -
+                        Wikipedia</a>
+                </li>
+                <li>
+                    <a href="https://www.investopedia.com/terms/f/failuretodeliver.asp" target="_blank">What Is Failure
+                        to Deliver, and What Happens With FTDs? - Investopedia</a>
+                </li>
+            </ul>
         </div>
     </div>
 

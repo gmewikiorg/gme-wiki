@@ -75,9 +75,7 @@ export const routes: Routes = [
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },
 
-    { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
-    { path: 'cnbc-vs-gme', component: CnbcVsGmeComponent },
-    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
+
 
     { path: 'conflict', component: ConflictComponent },
     { path: 'competition', component: CompetitionComponent },
@@ -124,6 +122,10 @@ export const routes: Routes = [
     { path: 'moass', component: MoassComponent },
 
     { path: 'naked-short-selling', component: NakedShortSellingComponent },
+    { path: 'naked-shorts-cnbc', component: CNBCVsNakedShortsComponent },
+    { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
+    { path: 'cnbc-vs-gme', component: CnbcVsGmeComponent },
+    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
 
     { path: 'rc-interview', component: RcInterview2022Component },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
