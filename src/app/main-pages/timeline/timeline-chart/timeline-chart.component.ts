@@ -41,7 +41,6 @@ export class TimelineChartComponent implements OnDestroy {
     private _controlsService: TimelineControlsService,
     private _router: Router
   ) {
-    console.log("timeline chart constructor")
     this._isDarkMode = this._sizeService.isDarkMode;
     Chart.unregister(ChartDataLabels, annotationPlugin, Tooltip);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
@@ -61,7 +60,6 @@ export class TimelineChartComponent implements OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   ngOnInit() {
-    console.log("timeline chart oninit")
     if (this.isSneezeComponent) {
       this._setSneezePeriod();
     } else {
@@ -77,7 +75,6 @@ export class TimelineChartComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("timeline chart ondestroy")
     this._subscriptions.forEach(sub => sub.unsubscribe());
     this._sneezeAnimator.stop();
     Chart.unregister();
