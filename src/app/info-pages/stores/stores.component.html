@@ -18,15 +18,23 @@
             </ul>
         </div>
 
+
+        <div class="page-section" *ngIf="isBrowser">
+            <div class="section-heading">Store Count by Fiscal Year</div>
+            <app-stores-chart></app-stores-chart>
+        </div>
+
         <div class="page-section">
             <div class="section-heading">Plans for Further Reduction of Store Count</div>
-            <p>In line with ongoing <a [routerLink]="'/turnaround'">turnaround and transformation</a> efforts, GameStop continues to close
+            <p>In line with ongoing <a [routerLink]="'/turnaround'">turnaround and transformation</a> efforts, GameStop
+                continues to close
                 stores.</p>
             <div class="quote-section-container">
                 <div class="quote-section">
                     <p>
                         With respect to retail operations, we plan to continue reducing costs and focusing on
-                        profitability... This means <b>a smaller network of stores</b> with an expanded assortment of higher
+                        profitability... This means <b>a smaller network of stores</b> with an expanded assortment of
+                        higher
                         value
                         items that fit
                         into our trade-in model.
@@ -48,7 +56,8 @@
                     </p>
                     <p>
                         It's the results of cutting costs, reducing excess inventory, streamlining headcount, <b>closing
-                        unprofitable stores</b>, exiting under-performing geographies, and focusing on the core fundamentals
+                            unprofitable stores</b>, exiting under-performing geographies, and focusing on the core
+                        fundamentals
                         of
                         the business.
                     </p>
@@ -63,10 +72,6 @@
                         target="_blank">June 12, 2025</a>
                 </div>
             </div>
-        </div>
-        <div class="page-section" *ngIf="isBrowser">
-            <div class="section-heading">Store Count by Fiscal Year</div>
-            <app-stores-chart></app-stores-chart>
         </div>
 
 
@@ -94,7 +99,9 @@
 
             </ul>
             <p>As of the completion of GameStop's winding down and sale of the operations in the countries listed above,
-                GameStop will then have continued operations only in the following countries (<a href="https://www.sec.gov/Archives/edgar/data/1326380/000162828025014731/gme-20250201.htm" target="_blank">FY 2024 numbers</a>):</p>
+                GameStop will then have continued operations only in the following countries (<a
+                    href="https://www.sec.gov/Archives/edgar/data/1326380/000162828025014731/gme-20250201.htm"
+                    target="_blank">FY 2024 numbers</a>):</p>
             <ul>
                 <li>USA 🇺🇸 (2,325 stores)</li>
                 <li>Australia 🇦🇺 (336 stores)</li>
