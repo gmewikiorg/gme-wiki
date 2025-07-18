@@ -48,7 +48,7 @@ body {
 }
 
 .app-footer-short-pages {
-  margin-top:250px;
+  margin-top: 250px;
   width: 100%;
   display: flex;
 }
@@ -121,6 +121,8 @@ body {
   }
 
 }
+
+
 
 .page-subtitle {
   color: rgb(51, 51, 51);
@@ -206,14 +208,15 @@ body {
   }
 }
 
-.quote-section-container{
+.quote-section-container {
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .quote-section {
-  width: 100%;
+  // width: 100%;
   border-radius: 8px;
   background-color: rgb(240, 240, 240);
   margin: 5px;
@@ -230,7 +233,8 @@ body {
   }
 }
 
-.quote-attribution, .quote-attribution-2 {
+.quote-attribution,
+.quote-attribution-2 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -244,7 +248,8 @@ body {
     color: #ffffff;
   }
 }
-.quote-attribution-2{
+
+.quote-attribution-2 {
   font-size: 0.7em;
 }
 
@@ -269,13 +274,14 @@ td {
 }
 
 
-.see-also{
+.see-also {
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
-.see-also-list{
-  display:flex; 
+
+.see-also-list {
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
@@ -329,18 +335,22 @@ fa-icon {
     max-width: calc(100% - 400px);
   }
 }
+
 @media(max-width: 925px) {
 
-  .page-title{
+  .page-title {
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-size: 1.5em;
+  }
+
+  .page-subtitle {
     text-align: center;
     padding-left: 60px;
     padding-right: 60px;
   }
-  .page-subtitle{
-    text-align: center;
-    padding-left: 60px;
-    padding-right: 60px;
-  }
+
   // .quote-attribution{
   //   flex-direction: column;
   //   align-items: flex-end;

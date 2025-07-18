@@ -1,6 +1,6 @@
 <div class="carousel-root" *ngIf="carousel">
 
-    <div class="image-row" *ngIf="!isMobile" style="min-height: 400px; min-width: 600px;">
+    <div class="image-row" *ngIf="!isMobile" style="min-height: 400px; min-width: 340px;">
         <div class="chevron-container" (click)="onClickImageIndex(currentIndex-1)">
             <fa-icon [icon]="faChevronLeft" class="chevron-icon"></fa-icon>
         </div>
@@ -20,12 +20,12 @@
     <div *ngIf="isMobile" class="image-row-mobile">
 
         <div class="image-container-mobile" *ngIf="currentItem">
-            <a href="" *ngIf="currentItem.imageUrl !== ''" [href]="currentItem.imageUrl" target="_blank">
-                <img [src]="currentItem.imagePath" alt="" [style.maxWidth]="maxWidthPx" [style.maxHeight]="maxHeightPx"
-                    style="border-radius: 15px;">
+            <a href="" *ngIf="currentItem.imageUrl !== ''" [href]="currentItem.imageUrl" target="_blank"  class="image-container-mobile">
+                <img [src]="currentItem.imagePath" alt=""  [style.maxHeight]="maxHeightPx"
+                    style="border-radius: 15px; max-width: 90%;">
             </a>
-            <img *ngIf="currentItem.imageUrl === ''" [src]="currentItem.imagePath" alt="" [style.maxWidth]="maxWidthPx" [style.maxHeight]="maxHeightPx"
-                 style="border-radius: 15px;">
+            <img *ngIf="currentItem.imageUrl === ''" [src]="currentItem.imagePath" alt="" [style.maxHeight]="maxHeightPx"
+                 style="border-radius: 15px; max-width: 90%;">
         </div>
         <div class="chevron-container-mobile">
             <div class="chevron-container" (click)="onClickImageIndex(currentIndex-1)">
