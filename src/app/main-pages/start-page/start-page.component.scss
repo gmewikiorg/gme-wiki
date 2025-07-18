@@ -1,64 +1,71 @@
-.section-body{
-    display:flex;
+.section-body {
+    display: flex;
     flex-direction: row;
-    
+
 }
 
 
-.section-p{
-    padding-left:0px;
+.section-p {
+    padding-left: 0px;
     padding-right: 0px;
     // text-align: center;
     font-size: 1.2em;
     margin-top: 0px;
 }
-.section-heading{
+
+.section-heading {
     margin-top: 0px;
 }
 
-.image-container{
+.image-container {
     width: 100%;
     max-width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
-.page-image{
+
+.page-image {
     border-radius: 10px;
     max-width: 100%;
 }
 
 // @media (max-width:1300px) {
-    .section-body{
-        display:flex;
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-    .section-heading{
-        text-align: center;
-    }
-    .section-p{
-        padding-left:30px;
-        padding-right: 30px;
-        // text-align: center;
-        font-size: 1.2em;
-    }
-    
-//   }
-  
+.section-body {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
 
-.menu-item{
+.section-heading {
+    text-align: center;
+}
+
+.section-p {
+    padding-left: 30px;
+    padding-right: 30px;
+    // text-align: center;
+    font-size: 1.2em;
+}
+
+//   }
+
+
+.menu-item {
     // width: 100%;
 
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0);
     padding: 15px;
+    margin-bottom: 25px;
 }
-.menu-item:hover{
+
+.menu-item:hover {
     border: 1px solid rgba(0, 0, 0, 0.507);
     cursor: pointer;
 }
-.menu-item-dark:hover{
+
+.menu-item-dark:hover {
     border: 1px solid rgba(255, 255, 255, 0.507);
     cursor: pointer;
 }
@@ -66,13 +73,12 @@
 
 @media (max-width:600px) {
 
-    .page-image{
+    .page-image {
         // width: 100%;
         max-width: 100%;
         height: auto;
         border-radius: 10px;
     }
-    
-    
-  }
-  
+
+
+}

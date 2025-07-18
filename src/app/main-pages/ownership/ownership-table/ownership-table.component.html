@@ -1,7 +1,7 @@
 <div style="width: 100%;" *ngIf="!isMobile">
     <div style="display:flex;justify-content: space-between; align-items: center;">
         <div class="section-heading">
-            GME ownership table (as of {{lastUpdated}})
+            GME Ownership Table (as of {{lastUpdated}})
         </div>
         <div>
             <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
@@ -28,7 +28,8 @@
                     Held by registered holders with Computershare
                     <div class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}: {{recent10Q10KDate}}</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}:
+                            {{recent10Q10KDate}}</a>
                     </div>
                 </td>
                 <td class="drs-row"><a [routerLink]="'/drs'">DRS</a></td>
@@ -61,7 +62,8 @@
             <tr>
                 <td class="border-bottom drs-row"></td>
                 <td class="border-bottom drs-row" style="font-weight: bold;">Total Registered</td>
-                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{totalRegistered.toFixed(1)}}
+                    M</td>
                 <td class="number-cell border-bottom drs-row" style="font-weight: bold;">{{percent(totalRegistered)}} %
                 </td>
             </tr>
@@ -73,7 +75,8 @@
                     Held by Cede & Co on behalf of DTCC
                     <div *ngIf="showSources" class="source-link">
                         This number is provided in GameStop's quarterly 10Q / 10K filings.<br>
-                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}: {{recent10Q10KDate}}</a>
+                        Most recent filing: <a [href]="recent10Q10Kurl" target="_blank">{{recentFormType}}:
+                            {{recent10Q10KDate}}</a>
                     </div>
                 </td>
             </tr>
@@ -118,23 +121,27 @@
             <tr *ngIf="showSources">
                 <td class="rk-row"></td>
                 <td colspan="3" class="rk-row source">
-                    <!-- Source: <a href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
-                    target="_blank">
-                    GME YOLO update - June 13 2024 on Reddit
-                </a></td> -->
+                    <div style="font-size: 0.9em; display:flex;flex-direction: column; font-weight: normal;">
+                        <div>
+                            Source: <a
+                                href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
+                                target="_blank">
+                                GME YOLO update - June 13 2024 on Reddit
 
-                    <div>
-                        Source: <a
-                            href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
-                            target="_blank">
-                            GME YOLO update - June 13 2024 on Reddit
+                            </a>
+                        </div>
 
-                        </a>
-                    </div>
-                    <div style="font-size: 0.9em; font-weight: normal;">
-                        This position is credible as of June 13. However, it is entirely possible that RK could have at
-                        any
-                        time after June 13 changed this position without providing this information publicly.
+                        <div>
+                            This position is credible as of information published on June 13, 2024 and generally
+                            corroborated by <a href="https://www.youtube.com/watch?v=U1prSyyIco0" target="_blank">Keith
+                                Gill's live stream on June 7, 2024</a>.
+                        </div>
+                        <div>
+                            However, it is entirely possible, and even probable, that Keith Gill could have at
+                            any
+                            time after June 13 2024 changed this position without providing this information publicly.
+                        </div>
+
                     </div>
             </tr>
             <tr>
@@ -259,7 +266,8 @@
             </tr>
             <tr>
                 <td class="border-bottom-2 drs-row" style="font-weight: bold;">Total Registered</td>
-                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{totalRegistered.toFixed(1)}} M</td>
+                <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">
+                    {{totalRegistered.toFixed(1)}} M</td>
                 <td class="number-cell border-bottom-2 drs-row" style="font-weight: bold;">{{percent(totalRegistered)}}
                     %
                 </td>
@@ -313,18 +321,27 @@
             </tr>
             <tr *ngIf="showSources">
                 <td colspan="3" class="rk-row source">
-                    <div>
-                        Source: <a
-                            href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
-                            target="_blank">
-                            GME YOLO update - June 13 2024 on Reddit
+                    <div style="font-size: 0.9em; display:flex;flex-direction: column; font-weight: normal;">
+                        <div>
+                            Source: <a
+                                href="https://www.reddit.com/r/Superstonk/comments/1df8jno/gme_yolo_update_june_13_2024/"
+                                target="_blank">
+                                GME YOLO update - June 13 2024 on Reddit
 
-                        </a>
-                    </div>
-                    <div style="font-size: 0.9em; font-weight: normal;">
-                        This position is credible as of June 13. However, it is entirely possible that RK could have at
-                        any
-                        time after June 13 changed this position without providing this information publicly.
+                            </a>
+                        </div>
+
+                        <div>
+                            This position is credible as of information published on June 13, 2024 and generally
+                            corroborated by <a href="https://www.youtube.com/watch?v=U1prSyyIco0" target="_blank">Keith
+                                Gill's live stream on June 7, 2024</a>.
+                        </div>
+                        <div>
+                            However, it is entirely possible, and even probable, that Keith Gill could have at
+                            any
+                            time after June 13 2024 changed this position without providing this information publicly.
+                        </div>
+
                     </div>
                 </td>
             </tr>
