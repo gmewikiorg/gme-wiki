@@ -27,6 +27,7 @@ export class SocialMediaComponent {
     // 'seymourbutts741',
     // 'squeezistChrist',
     'mikeal_man',
+    'DSquadRadio'
   ].sort(() => Math.random() - 0.5);
 
   public get xSpacesAccounts(): string[] {

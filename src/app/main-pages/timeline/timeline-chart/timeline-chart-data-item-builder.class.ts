@@ -109,6 +109,7 @@ export class ChartDataItemBuilder {
             gmeBackgroundColor = 'rgba(0, 255, 0, 0.075)';
             pointHoverBorderColor = 'white';
         }
+        const pointBorderColor = this._getPointBorderColor(isDarkMode);
         datasets.push({
             data: closePrices,
             label: 'GME price $ ',
@@ -120,8 +121,9 @@ export class ChartDataItemBuilder {
             pointRadius: 0,
             pointHitRadius: 0,
             pointHoverRadius: 0,
+            pointHoverBorderColor: pointHoverBorderColor,
         });
-        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, specificView, condensedItems, specificView);
+        let datasetConfigs = this._getDatasetConfigs(metric, currentSignificanceValue, currentCategoriesValue, specificView, condensedItems, specificView, isDarkMode);
         datasetConfigs.forEach(datasetConfig => {
             datasets.push({
                 data: datasetConfig.dataPoints,
@@ -130,16 +132,16 @@ export class ChartDataItemBuilder {
                 tension: 0.5,
 
                 pointBackgroundColor: datasetConfig.color,
-                pointBorderColor: datasetConfig.color,
+                pointBorderColor: datasetConfig.borderColor,
                 pointBorderWidth: 3,
 
                 pointHoverBorderColor: datasetConfig.borderColor,
-                pointHoverBackgroundColor: datasetConfig.borderColor,
+                pointHoverBackgroundColor: datasetConfig.color,
                 pointHoverBorderWidth: 5,
 
 
-                pointRadius: this._getPointRadius(datasetConfig.significance),
-                pointHitRadius: this._getPointHitRadius(datasetConfig.significance),
+                pointRadius: this._getPointRadius(datasetConfig.significance, isMobile),
+                pointHitRadius: this._getPointHitRadius(datasetConfig.significance, isMobile),
                 pointHoverRadius: 5 + (4 * datasetConfig.significance),
                 pointStyle: 'circle',
             })
@@ -273,7 +275,8 @@ export class ChartDataItemBuilder {
         currentCategoriesValue: TimelineEventType[],
         currentViewType: TimelineEventViewType,
         condensedItems: ChartDataItem[],
-        specificView: TimelineEventViewType): DatasetConfig[] {
+        specificView: TimelineEventViewType,
+        isDarkMode: boolean): DatasetConfig[] {
         const datapointSets: {
             type: TimelineEventType,
             significance: number,
@@ -333,11 +336,14 @@ export class ChartDataItemBuilder {
             setIndex++;
         }
         const configs = datapointSets.map(set => {
-            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeColor(set.type), set.significance, metric, specificView);
+            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeBorderColor(isDarkMode, set.type), set.significance, metric, specificView);
         });
         return configs
     }
 
+    private static _getPointBorderColor(isDarkMode: boolean): string {
+        return '';
+    }
 
     private static _getSignificances(currentValue: number): number[] {
         let value = currentValue;
@@ -349,37 +355,71 @@ export class ChartDataItemBuilder {
         return significances;
     }
 
-    private static _getPointRadius(significance: number): number {
-        if (significance === 0) {
-            return 2;
-        } else if (significance === 1) {
-            return 4;
-        } else if (significance === 2) {
-            return 6;
-        } else if (significance === 3) {
-            return 9;
-        } else if (significance === 4) {
-            return 13;
-        } else if (significance === 5) {
-            return 18;
+    private static _getPointRadius(significance: number, isMobile: boolean): number {
+        if (isMobile) {
+            if (significance === 0) {
+                return 1;
+            } else if (significance === 1) {
+                return 2;
+            } else if (significance === 2) {
+                return 3;
+            } else if (significance === 3) {
+                return 5;
+            } else if (significance === 4) {
+                return 8;
+            } else if (significance === 5) {
+                return 12;
+            }
+        } else {
+            if (significance === 0) {
+                return 2;
+            } else if (significance === 1) {
+                return 4;
+            } else if (significance === 2) {
+                return 6;
+            } else if (significance === 3) {
+                return 9;
+            } else if (significance === 4) {
+                return 13;
+            } else if (significance === 5) {
+                return 18;
+            }
         }
+
         return 1;
     }
 
-    private static _getPointHitRadius(significance: number): number {
-        if (significance === 0) {
-            return 2;
-        } else if (significance === 1) {
-            return 4;
-        } else if (significance === 2) {
-            return 5;
-        } else if (significance === 3) {
-            return 7;
-        } else if (significance === 4) {
-            return 10;
-        } else if (significance === 5) {
-            return 15;
+    private static _getPointHitRadius(significance: number, isMobile: boolean): number {
+        if (isMobile) {
+            if (significance === 0) {
+                return 2;
+            } else if (significance === 1) {
+                return 4;
+            } else if (significance === 2) {
+                return 8;
+            } else if (significance === 3) {
+                return 12;
+            } else if (significance === 4) {
+                return 16;
+            } else if (significance === 5) {
+                return 20;
+            }
+        } else {
+            if (significance === 0) {
+                return 2;
+            } else if (significance === 1) {
+                return 4;
+            } else if (significance === 2) {
+                return 5;
+            } else if (significance === 3) {
+                return 7;
+            } else if (significance === 4) {
+                return 10;
+            } else if (significance === 5) {
+                return 15;
+            }
         }
+
         return 1;
     }
 }
