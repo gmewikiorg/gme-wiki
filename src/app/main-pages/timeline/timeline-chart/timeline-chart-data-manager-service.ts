@@ -5,6 +5,7 @@ import { TimelineEventType } from '../timeline-items/timeline-item/timeline-even
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { ChartDataset, ScatterDataPoint } from 'chart.js';
 import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
+import { TimelineChartMetric } from '../timeline-controls/chart-options/timeline-chart-metric';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,7 @@ export class TimelineChartDataManagerService {
   public get currentlyAnimating(): boolean { return this._currentlyAnimating$.getValue(); }
   public get currentlyAnimating$(): Observable<boolean> { return this._currentlyAnimating$.asObservable(); }
 
-  public updateMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
+  public updateMetric(metric: TimelineChartMetric) {
     this._dataManager.updateMetric(metric);
   }
 

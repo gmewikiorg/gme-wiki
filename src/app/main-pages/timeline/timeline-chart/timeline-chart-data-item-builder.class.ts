@@ -6,6 +6,7 @@ import { ChartDataset, ScatterDataPoint } from "chart.js";
 import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
 import dayjs from "dayjs";
 import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
+import { TimelineChartMetric } from "../timeline-controls/chart-options/timeline-chart-metric";
 
 /** This class has static methods to be used by chart-dataset-manager.classs.ts */
 export class ChartDataItemBuilder {
@@ -15,7 +16,7 @@ export class ChartDataItemBuilder {
     public static buildChartDataItems(
         startDateYYYYMMDD: string,
         endDateYYYYMMDD: string,
-        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
+        metric: TimelineChartMetric,
         period: TimelineEventViewType,
         gmePriceEntries: GmePriceEntry[],
         timelineEvents: TimelineEvent[],
@@ -86,6 +87,8 @@ export class ChartDataItemBuilder {
                     closePrices.push(condensedItem.pToS);
                 } else if (metric === 'PTOE') {
                     closePrices.push(condensedItem.pToE);
+                } else if (metric === 'FTDs') {
+                    closePrices.push(condensedItem.ftds);
                 }
                 if (period === 'CURRENT') {
                     chartLabels.push(condensedItem.dateYYYYMMDD);
@@ -270,7 +273,7 @@ export class ChartDataItemBuilder {
      * Build each datapoint configuration, a unique set based on significance + type combination.
      */
     private static _getDatasetConfigs(
-        metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE',
+        metric: TimelineChartMetric,
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
         currentViewType: TimelineEventViewType,

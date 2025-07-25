@@ -5,8 +5,8 @@ import { LoadingService } from '../../../shared/services/loading.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import dayjs from 'dayjs';
-import { CustomDropdownMenuComponent } from '../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.component';
-import { CustomDropdownMenu } from '../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.class';
+import { CustomDropdownMenuComponent } from '../../../shared/components/custom-dropdown-menu/custom-dropdown-menu.component';
+import { CustomDropdownMenu } from '../../../shared/components/custom-dropdown-menu/custom-dropdown-menu.class';
 import { ColorPicker } from '../../../shared/color-picker.class';
 
 @Component({

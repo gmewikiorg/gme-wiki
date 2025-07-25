@@ -6,8 +6,8 @@ import { FinancialChartService } from './earnings-chart.service';
 import { EarningsChartSelection } from './earnings-chart-selection.enum';
 import { Subscription, timer } from 'rxjs';
 import { EarningsChartComponent } from '../earnings-chart.component';
-import { CustomDropdownMenu } from '../../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.class';
-import { CustomDropdownMenuComponent } from '../../../../shared/components/cutom-dropdown-menu/custom-dropdown-menu.component';
+import { CustomDropdownMenu } from '../../../../shared/components/custom-dropdown-menu/custom-dropdown-menu.class';
+import { CustomDropdownMenuComponent } from '../../../../shared/components/custom-dropdown-menu/custom-dropdown-menu.component';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 
 

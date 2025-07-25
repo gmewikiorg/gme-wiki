@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-bear-case',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './bear-case.component.html',
   styleUrl: './bear-case.component.scss'
 })

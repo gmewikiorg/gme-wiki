@@ -10,4 +10,5 @@ export interface GmePriceEntry{
     trailingSales: number,
     equity: number,
     trailingEarnings: number,
+    ftds: number,
 }

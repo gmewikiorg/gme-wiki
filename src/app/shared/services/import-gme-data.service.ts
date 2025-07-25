@@ -110,6 +110,7 @@ export class ImportGmeDataService {
         trailingSales: Number(cells[7]),
         equity: Number(cells[8]),
         trailingEarnings: Number(cells[9]),
+        ftds: Number(cells[10]),
       }
       priceEntries.push(priceEntry);
     }
@@ -210,6 +211,7 @@ export class ImportGmeDataService {
           trailingSales: prevEntry.trailingSales,
           equity: prevEntry.equity,
           trailingEarnings: prevEntry.trailingEarnings,
+          ftds: prevEntry.ftds,
         });
       }
       currentDateYYYYMMDD = dayjs(currentDateYYYYMMDD).add(1, 'days').format('YYYY-MM-DD');

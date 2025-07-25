@@ -46,6 +46,8 @@ import { CnbcVsGmeComponent } from './info-pages/cnbc-vs-gme/cnbc-vs-gme.compone
 import { EquityComponent } from './info-pages/equity/equity.component';
 import { MediaVsGmeComponent } from './info-pages/media-vs-gme/media-vs-gme.component';
 import { DirectoryComponent } from './info-pages/directory/directory.component';
+import { BbbyComponent } from './info-pages/bbby/bbby.component';
+import { TeddyComponent } from './info-pages/teddy/teddy.component';
 
 
 
@@ -75,7 +77,7 @@ export const routes: Routes = [
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },
 
-
+    { path: 'bbby', component: BbbyComponent },
 
     { path: 'conflict', component: ConflictComponent },
     { path: 'competition', component: CompetitionComponent },
@@ -147,6 +149,8 @@ export const routes: Routes = [
     { path: 'sneeze-vs-squeeze', component: SneezeVsSqueezeComponent },
 
     { path: 'stores', component: StoresComponent },
+
+    { path: 'teddy', component: TeddyComponent },
 
     { path: 'trading-cards', component: TradingCardsComponent },
     { path: 'turnaround', component: TurnaroundComponent },

@@ -7,6 +7,7 @@ import { ChartDataItemBuilder } from "./timeline-chart-data-item-builder.class";
 import { ChartDataset, ScatterDataPoint } from "chart.js";
 import dayjs from "dayjs";
 import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
+import { TimelineChartMetric } from "../timeline-controls/chart-options/timeline-chart-metric";
 
 
 export class ChartDataSetManager {
@@ -27,10 +28,10 @@ export class ChartDataSetManager {
   public get startDateYYYYMMDD(): string { return this._startDateYYYYMMDD; }
   public get endDateYYYYMMDD(): string { return this._endDateYYYYMMDD; }
 
-  private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' = 'PRICE';
+  private _metric: TimelineChartMetric = TimelineChartMetric.PRICE;
   private _period: TimelineEventViewType = 'CURRENT';
 
-  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric; }
+  public get metric(): TimelineChartMetric { return this._metric; }
   public get period(): TimelineEventViewType { return this._period; }
 
   private _isDarkMode: boolean;
@@ -82,7 +83,7 @@ export class ChartDataSetManager {
     this._endDateYYYYMMDD = endDateYYYYMMDD;
     this.getAndUpdateDatasets();
   }
-  public updateMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE') {
+  public updateMetric(metric: TimelineChartMetric) {
     this._metric = metric;
     this.getAndUpdateDatasets();
   }

@@ -7,18 +7,20 @@
             <div class="options-choices">
 
                 <button class="option-button" [ngClass]="{'selected': metricIsPrice}"
-                    (click)="onClickMetric('PRICE')">Share
+                    (click)="onClickMetricPrice()">Share
                     price (timeline)</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsVolume}"
-                    (click)="onClickMetric('VOLUME')">Volume</button>
+                    (click)="onClickMetricVolume()">Volume</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoB}"
-                    (click)="onClickMetric('PTOB')">Price-to-Book Ratio</button>
+                    (click)="onClickMetricPTOB()">Price-to-Book Ratio</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoS}"
-                    (click)="onClickMetric('PTOS')">Price-to-Sales Ratio</button>
+                    (click)="onClickMetricPTOS()">Price-to-Sales Ratio</button>
                 <button class="option-button" [ngClass]="{'selected': metricIsPtoE}"
-                    (click)="onClickMetric('PTOE')">Price-to-Earnings Ratio</button>
-                <button class="option-button" [ngClass]="{'selected': metricIsEquity}"
-                    (click)="onClickMetric('EQUITY')">Stockholders' Equity</button>
+                    (click)="onClickMetricPTOE()">Price-to-Earnings Ratio</button>
+                <!-- <button class="option-button" [ngClass]="{'selected': metricIsEquity}"
+                    (click)="onClickMetric('EQUITY')">Stockholders' Equity</button> -->
+                <button class="option-button" [ngClass]="{'selected': metricIsFTDs}"
+                    (click)="onClickMetricFTDs()">Fails-to-Deliver</button>
                 <!-- <button class="option-button">FTDs</button> -->
 
             </div>

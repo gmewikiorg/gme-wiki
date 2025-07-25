@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-bull-case',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './bull-case.component.html',
   styleUrl: './bull-case.component.scss'
 })

@@ -22,6 +22,15 @@ body {
 }
 
 
+.external-link {
+  background-image: url('/external_link.svg');
+  background-size: contain;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 0.857em;
+  padding-right: 1em;
+}
+
 .no-select {
   -webkit-touch-callout: none;
   /* iOS Safari */

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
 import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
+import { TimelineChartMetric } from './chart-options/timeline-chart-metric';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ export class TimelineControlsService {
 
 
   private _period$: BehaviorSubject<TimelineEventViewType> = new BehaviorSubject<TimelineEventViewType>('CURRENT');
-  private _metric$: BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > = new BehaviorSubject<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' >('PRICE');
+  private _metric$: BehaviorSubject<TimelineChartMetric> = new BehaviorSubject<TimelineChartMetric>(TimelineChartMetric.PRICE);
 
   public get period(): TimelineEventViewType { return this._period$.getValue(); }
-  public get metric(): 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' { return this._metric$.getValue(); }
+  public get metric(): TimelineChartMetric { return this._metric$.getValue(); }
 
   public get period$(): Observable<TimelineEventViewType> { return this._period$.asObservable(); }
-  public get metric$(): Observable<'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' > { return this._metric$.asObservable(); }
+  public get metric$(): Observable<TimelineChartMetric> { return this._metric$.asObservable(); }
 
   /** No data available for GME prior to 2002-02-13 */
   private _minStartDateYYYYMMDD: string = '2002-02-13'
@@ -40,7 +41,7 @@ export class TimelineControlsService {
   }
 
 
-  public setMetric(metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE' ) {
+  public setMetric(metric: TimelineChartMetric ) {
     this._timelineItemAnnotation$.next(null);
     this._metric$.next(metric);
   }

@@ -31,12 +31,14 @@ export class ChartDataItem {
             this._pToS = (finalItem.close * finalItem.tso) / finalItem.trailingSales;
             this._pToB = (finalItem.close * finalItem.tso) / finalItem.equity;
             this._pToE = (finalItem.close * finalItem.tso) / finalItem.trailingEarnings;
-            if(finalItem.dateYYYYMMDD < '2022-07-21'){
+            if(finalItem.dateYYYYMMDD < '2022-07-22'){
+                //acounting for the stock split which occurred end of July 21, start of July 22
                 this._pToS = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingSales;
                 this._pToB = ((finalItem.close*4) * finalItem.tso) / finalItem.equity;
                 this._pToE = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingEarnings;
             }
             this._volume = finalItem.volume;
+            this._ftds = finalItem.ftds;
         }
     }
 
@@ -52,6 +54,7 @@ export class ChartDataItem {
     private _pToS: number = 0;
     private _pToE: number = 0;
     private _volume: number = 0;
+    private _ftds: number = 0;
 
     public get date(): dayjs.Dayjs { return dayjs(this._dateYYYYMMDD); }
     public get dateYYYYMMDD(): string { return this._dateYYYYMMDD; }
@@ -66,6 +69,7 @@ export class ChartDataItem {
     public get pToS(): number { return this._pToS; }
     public get pToE(): number { return this._pToE; }
     public get volume(): number { return this._volume; } 
+    public get ftds(): number { return this._ftds; }
 
     public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[], currentView: TimelineEventViewType): {
         event: TimelineEvent | null,

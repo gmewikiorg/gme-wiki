@@ -1,3 +1,4 @@
+import { TimelineChartMetric } from "../timeline-controls/chart-options/timeline-chart-metric";
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
 import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.class";
@@ -12,7 +13,7 @@ export class DatasetConfig {
     private _color: string;
     private _borderColor: string;
     private _significanceValue: number;
-    private _metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE';
+    private _metric: TimelineChartMetric;
     private _view: TimelineEventViewType;
 
     public get timelineItems(): (TimelineEvent | null)[] { return this._timelineItems; }
@@ -55,7 +56,7 @@ export class DatasetConfig {
     public get view(): TimelineEventViewType { return this._view; }
 
 
-    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: 'PRICE' | 'VOLUME' | 'EQUITY' | 'PTOB' | 'PTOS' | 'PTOE', viewType: TimelineEventViewType) {
+    constructor(timelineItems: (TimelineEvent | null)[], label: string, type: TimelineEventType, color: string, borderColor: string, significance: number, metric: TimelineChartMetric, viewType: TimelineEventViewType) {
         this._timelineItems = timelineItems;
         this._label = label;
         this._itemType = type;
