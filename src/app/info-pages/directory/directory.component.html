@@ -7,28 +7,92 @@
             List of pages on gmewiki.org
         </h5>
 
-
-        <div class="page-section">
-            <div class="section-heading">
-                Page List
+        <div class="page-section" style="margin-bottom: 40px;">
+            <div class="section-heading" style="margin-bottom: 40px;">
+                Main Pages
             </div>
+            <div class="directory-item">
+                <div class="item-title">
+                    About
+                </div>
+                <div class="item-description">
+                    About gmewiki.org
+                </div>
+                <div class="item-jump-to">
+                    <a [routerLink]="'/about'">Go to About page</a>
+                </div>
+                <div class="item-url">
+                    <span>gmewiki.org/about</span>
+                </div>
+            </div>
+            <div class="directory-item">
+                <div class="item-title">
+                    Financial Statements
+                </div>
+                <div class="item-description">
+                    Earnings results and related company financial information
+                </div>
+                <div class="item-jump-to">
+                    <a [routerLink]="'/financials'">Go to GameStop Financials page</a>
+                </div>
+                <div class="item-url">
+                    <span>gmewiki.org/financials</span>
+                </div>
+            </div>
+            <div class="directory-item">
+                <div class="item-title">
+                    GameStop Company Ownership
+                </div>
+                <div class="item-description">
+                    Who owns GameStop?
+                </div>
+                <div class="item-jump-to">
+                    <a [routerLink]="'/ownership'">Go to Ownership page</a>
+                </div>
+                <div class="item-url">
+                    <span>gmewiki.org/ownership</span>
+                </div>
+            </div>
+            <div class="directory-item">
+                <div class="item-title">
+                    Social Media for GME shareholders
+                </div>
+                <div class="item-description">
+                    Connect with GME shareholders across various social media platforms
+                </div>
+                <div class="item-jump-to">
+                    <a [routerLink]="'/social-media'">Go to Social Media page</a>
+                </div>
+                <div class="item-url">
+                    <span>gmewiki.org/social-media</span>
+                </div>
+            </div>
+            <div class="directory-item">
+                <div class="item-title">
+                    GME Timeline
+                </div>
+                <div class="item-description">
+                    Explore the history of GameStop and see noteworthy events in their relationship to the changes
+                    of GME stock
+                </div>
+                <div class="item-jump-to">
+                    <a [routerLink]="'/timeline'">Go to Timeline page</a>
+                </div>
+                <div class="item-url">
+                    <span>gmewiki.org/timeline</span>
+                </div>
+            </div>
+
+
+        </div>
+        <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
+        <div class="page-section">
+            <div class="section-heading">Information Pages</div>
+
 
             <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
 
-                <div class="directory-item">
-                    <div class="item-title">
-                        About
-                    </div>
-                    <div class="item-description">
-                        About gmewiki.org
-                    </div>
-                    <div class="item-jump-to">
-                        <a [routerLink]="'/about'">Go to About page</a>
-                    </div>
-                    <div class="item-url">
-                        <span>gmewiki.org/about</span>
-                    </div>
-                </div>
+
 
 
                 <div class="directory-item">
@@ -171,20 +235,7 @@
                     </div>
                 </div>
 
-                <div class="directory-item">
-                    <div class="item-title">
-                        Financial Statements
-                    </div>
-                    <div class="item-description">
-                        Earnings results and related company financial information
-                    </div>
-                    <div class="item-jump-to">
-                        <a [routerLink]="'/financials'">Go to GameStop Financials page</a>
-                    </div>
-                    <div class="item-url">
-                        <span>gmewiki.org/financials</span>
-                    </div>
-                </div>
+
 
                 <div class="directory-item">
                     <div class="item-title">
@@ -223,7 +274,8 @@
                         FTDs
                     </div>
                     <div class="item-description">
-                        Failure to deliver / fails-to-deliver:  a structural loophole that enables market participants to exploit the financial system for profit 
+                        Failure to deliver / fails-to-deliver: a structural loophole that enables market participants to
+                        exploit the financial system for profit
                     </div>
                     <div class="item-jump-to">
                         <a [routerLink]="'/ftd'">Go to FTD page</a>
@@ -341,20 +393,7 @@
                     </div>
                 </div>
 
-                <div class="directory-item">
-                    <div class="item-title">
-                        GameStop Company Ownership
-                    </div>
-                    <div class="item-description">
-                        Who owns GameStop?
-                    </div>
-                    <div class="item-jump-to">
-                        <a [routerLink]="'/ownership'">Go to Ownership page</a>
-                    </div>
-                    <div class="item-url">
-                        <span>gmewiki.org/ownership</span>
-                    </div>
-                </div>
+
 
 
                 <div class="directory-item">
@@ -433,20 +472,7 @@
                     </div>
                 </div>
 
-                <div class="directory-item">
-                    <div class="item-title">
-                        Social Media for GME shareholders
-                    </div>
-                    <div class="item-description">
-                        Connect with GME shareholders across various social media platforms
-                    </div>
-                    <div class="item-jump-to">
-                        <a [routerLink]="'/social-media'">Go to Social Media page</a>
-                    </div>
-                    <div class="item-url">
-                        <span>gmewiki.org/social-media</span>
-                    </div>
-                </div>
+
 
                 <div class="directory-item">
                     <div class="item-title">
@@ -479,21 +505,7 @@
                     </div>
                 </div>
 
-                <div class="directory-item">
-                    <div class="item-title">
-                        GME Timeline
-                    </div>
-                    <div class="item-description">
-                        Explore the history of GameStop and see noteworthy events in their relationship to the changes
-                        of GME stock
-                    </div>
-                    <div class="item-jump-to">
-                        <a [routerLink]="'/timeline'">Go to Timeline page</a>
-                    </div>
-                    <div class="item-url">
-                        <span>gmewiki.org/timeline</span>
-                    </div>
-                </div>
+
 
                 <div class="directory-item">
                     <div class="item-title">

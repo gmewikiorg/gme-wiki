@@ -48,6 +48,7 @@ import { MediaVsGmeComponent } from './info-pages/media-vs-gme/media-vs-gme.comp
 import { DirectoryComponent } from './info-pages/directory/directory.component';
 import { BbbyComponent } from './info-pages/bbby/bbby.component';
 import { TeddyComponent } from './info-pages/teddy/teddy.component';
+import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
 
 
 
@@ -142,6 +143,7 @@ export const routes: Routes = [
     { path: 'roaring-kitty', component: KeithGillComponent },
 
     { path: 'short-interest', component: ShortInterestComponent },
+    { path: 'shorts-never-closed', component: ShortsNeverClosedComponent },
     { path: 'sneeze', component: SneezeComponent },
     { path: 'squeeze', component: SneezeComponent },
     { path: 'sneeze-january-2021', component: SneezeComponent },
