@@ -113,6 +113,19 @@
         </div>
 
         <div class="page-section">
+
+            <div class="section-heading">Collectibles Segment Increasing</div>
+            <p>
+                As GameStop has increased its focus on trading cards, the collectibles segment as a percent of all revenue has been increasing.
+            </p>
+
+            <div *ngIf="isBrowser" class="chart-container">
+                <!-- <div class="chart-title">GameStop interest income by fiscal quarter</div> -->
+                <app-earnings-chart [componentConfig]="collectiblesConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+        <div class="page-section">
             <div class="section-heading">Power Packs</div>
             <p>GameStop's new <a href="https://x.com/gamestop/status/1950297041705586988" target="_blank"
                     class="external-link" rel="nofollow">Power Packs</a> service introduces a fun, novel, and modern way

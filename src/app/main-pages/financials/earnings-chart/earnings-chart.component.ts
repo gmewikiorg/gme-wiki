@@ -35,9 +35,9 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
 
   @Input() isFY23Earnings: boolean = false;
-  // @Input() isFY24Earnings: boolean = false;
-  @Input() componentConfig: { article: 'FY24' | 'ATMs', chart: EarningsChartSelection, } | null = null;
+  @Input() componentConfig: { article: 'FY24' | 'ATMs' | 'collectibles', chart: EarningsChartSelection, } | null = null;
   public get isFY24Earnings(): boolean { return this.componentConfig?.article === 'FY24'; }
+  public get isCollectiblesPage(): boolean { return this.componentConfig?.article === 'collectibles'; }
 
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
 
@@ -75,6 +75,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         this._chartSelection = this.componentConfig.chart;
       }
       if (this.componentConfig.article === 'ATMs') {
+        this._chartPeriod = 'QUARTER';
+        this._chartSelection = this.componentConfig.chart;
+      }
+      if(this.componentConfig.article === 'collectibles'){
         this._chartPeriod = 'QUARTER';
         this._chartSelection = this.componentConfig.chart;
       }

@@ -304,7 +304,10 @@ td {
 // }
 
 .light-mode a {
-  color: #6200ea;
+  color: #0059ff;
+  color: #b10000;
+  // color: rgb(255, 68, 0);
+  text-decoration: none;
   // background-color: #ffffff;
 }
 
@@ -325,6 +328,7 @@ fa-icon {
 
 .dark-mode a {
   color: #03dac6;
+  text-decoration: none;
   // background-color: #121212;
 }
 

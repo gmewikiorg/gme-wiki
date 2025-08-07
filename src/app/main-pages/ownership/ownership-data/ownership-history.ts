@@ -3,15 +3,52 @@ import { OwnershipHistoryItem } from "./ownership-history-item.interface";
 /** This value comes from the DRSGME.org June 2024 viewing of the stockholder list  
  * https://www.drsgme.org/2024-stockholder-list-viewing */
 const drsVsDsppRatio2024: number = 0.824;
-
+const drsVsDsppRatio2025: number = 0.813;
 
 
 /**
- * 4 times per year should be more than adequate
+ * 
+ * 
+ * 
+
+Insiders:
+Total non-RC:  850,553
+Total:  38,198,395
+
+ROBINSON MARK HAYMOND  -  116,751
+MOORE DANIEL WILLIAM - 48,899  
+GRUBE JAMES - 29,439 
+ATTAL ALAIN - 572,464
+COHEN RYAN - 37,347,842 
+CHENG LAWRENCE - 83,000 
+ */
+
+/**
+ *  To do an update on the data, copy the most recent data object and add it to the top and make changes
  */
 export const ownershipHistory: OwnershipHistoryItem[] = [
-
-{
+    {
+        dateYYYYMMDD: '2025-08-07',
+        registeredText: "... approximately 68.1 million shares of our Class A common stock were held by registered holders with our transfer agent (or approximately 15% of our outstanding shares)",
+        filingLink: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638025000035/gme-20250503.htm",
+        filingType: '10Q',
+        tso: 447336306,
+        heldByCede: 379236306,
+        heldByRegistered: 68100000,
+        registeredDRS: drsVsDsppRatio2025 * 68100000,
+        registeredDSPP: (1 - drsVsDsppRatio2025) * 68100000,
+        totalInsiders: 850553 + 37347842,
+        insidersRyanCohen: 37347842,
+        insidersRemainder: 850553,
+        keithGill: 9001000,
+        instVanguard: 39237789,
+        instBlackrock: 34842991,
+        instStateStreet: 12475894,
+        instAllOther: 67316804,
+        instTotal: 153873478,
+        remainder: 178163433,
+    },
+    {
         dateYYYYMMDD: '2025-06-05',
         registeredText: "... approximately 68.1 million shares of our Class A common stock were held by registered holders with our transfer agent (or approximately 15% of our outstanding shares)",
         filingLink: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638025000035/gme-20250503.htm",
