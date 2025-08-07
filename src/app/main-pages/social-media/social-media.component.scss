@@ -31,6 +31,12 @@
     height: 40px;
     margin-right: 50px;
 }
+
+.x-icon{
+    border: 1px solid white;
+    border-radius: 40px;
+}
+
 .list{
     width: 100%;
     display:flex;
@@ -51,7 +57,7 @@
     flex-direction: row;
     align-items: center;
     font-size: 0.9em;
-    background-color: rgba(252, 252, 252, 0.116);
+    background-color: rgba(128, 128, 128, 0.10);
     text-decoration: none;
     margin-bottom: 3px;
 }

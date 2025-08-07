@@ -4,7 +4,8 @@
   --main-family: 'Poppins', sans-serif;
   // --color-bg: linear-gradient(180deg, #FFFFFF 0%, #AEC6DC 100%);
 
-  --color-special: rgb(147 23 107 / 100%);
+  --color-special: rgb(148, 0, 0);
+  --color-special-dark: #03dac6;
 
   //   /* Controls the blob blur gradient colors within the main tag's svg */
   //   --top-right-blur-1: #20C6B7;
@@ -304,10 +305,12 @@ td {
 // }
 
 .light-mode a {
-  color: #0059ff;
-  color: #b10000;
+  // color: #0059ff;
+  // color: #b10000;
   // color: rgb(255, 68, 0);
+  color: var(--color-special);
   text-decoration: none;
+  font-weight: 500;
   // background-color: #ffffff;
 }
 
@@ -327,8 +330,10 @@ fa-icon {
 // }
 
 .dark-mode a {
-  color: #03dac6;
+  // color: #03dac6;
+  color: var(--color-special-dark);
   text-decoration: none;
+  font-weight: 500;
   // background-color: #121212;
 }
 

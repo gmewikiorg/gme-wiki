@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-social-media',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FooterComponent],
   templateUrl: './social-media.component.html',
   styleUrl: './social-media.component.scss'
 })

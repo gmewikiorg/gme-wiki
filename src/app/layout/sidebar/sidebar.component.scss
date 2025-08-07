@@ -33,7 +33,7 @@
 
 .sidebar-button-dark{
 
-    border: 1px solid rgb(249, 218, 255);
+    border: 1px solid var(--color-special-dark);
     border-left: none;
     background-color: rgb(34, 34, 34);
     color: white;
@@ -41,7 +41,7 @@
 
 .sidebar-button-dark:hover{
 
-    border: 1px solid rgb(221, 173, 221);
+    border: 1px solid var(--color-special-dark);
     border-left: none;
 }
 
@@ -82,7 +82,7 @@
     font-weight: normal;
 }
 .sidebar-item-dark:hover{
-    color: rgb(246, 216, 255);
+    color: var(--color-special-dark);
 }
 .active-link{
     // border: 1px solid var(--color-special);
@@ -90,7 +90,7 @@
     font-weight: bold;
 }
 .active-link.sidebar-item-dark{
-    color: white;
+    color: var(--color-special-dark);
 }
 
 
