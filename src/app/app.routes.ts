@@ -49,6 +49,7 @@ import { DirectoryComponent } from './info-pages/directory/directory.component';
 import { BbbyComponent } from './info-pages/bbby/bbby.component';
 import { TeddyComponent } from './info-pages/teddy/teddy.component';
 import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
+import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
 
 
 
@@ -121,6 +122,10 @@ export const routes: Routes = [
 
     { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
     { path: 'propaganda', component: MediaComponent },
+
+
+    { path: 'meme-stock', component: MemeStockComponent },
+    { path: 'meme-stocks', component: MemeStockComponent },
 
     { path: 'moass', component: MoassComponent },
 

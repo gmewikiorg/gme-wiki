@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { EarningsChartSelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-selection.enum';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-atms',
   standalone: true,
-  imports: [CommonModule, FooterComponent, EarningsChartComponent],
+  imports: [CommonModule, FooterComponent, EarningsChartComponent, RouterModule],
   templateUrl: './atms.component.html',
   styleUrl: './atms.component.scss'
 })
