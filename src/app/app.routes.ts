@@ -50,6 +50,7 @@ import { BbbyComponent } from './info-pages/bbby/bbby.component';
 import { TeddyComponent } from './info-pages/teddy/teddy.component';
 import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
 import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
+import { MarketTacticsComponent } from './info-pages/market-tactics/market-tactics.component';
 
 
 
@@ -116,6 +117,8 @@ export const routes: Routes = [
     { path: 'investors', component: InvestorsComponent },
     { path: 'investment-policy', component: InvestmentPolicyComponent },
     { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
+
+    { path: 'market-tactics', component: MarketTacticsComponent },
 
     { path: 'media', component: MediaComponent },
     { path: 'media-vs-gme', component: MediaVsGmeComponent },

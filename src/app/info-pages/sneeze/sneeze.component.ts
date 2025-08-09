@@ -38,7 +38,7 @@ export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy {
     this._controlsSubscription?.unsubscribe();
   }
   ngAfterViewInit(): void {
-
+    this._controlsService.setPeriod('SNEEZE');
   }
 
   private _chartIsLoaded: boolean = false;

@@ -8,23 +8,50 @@
         </h5>
 
 
-        <!-- Summary -->
         <div class="page-section">
             <div class="section-heading">
                 Summary
             </div>
             <ul>
-                <li>Following the <a [routerLink]="'/fy23'">strong earnings report that showed full-year
-                        profitability for the first time in 6 years</a>, the share price of GME suddenly soared in May
+                <li>Starting about 5 weeks after GameStop reported <a [routerLink]="'/fy23'">strong earnings results
+                        that showed full-year
+                        profitability for the first time in 6 years</a>, the share price of GME suddenly exploded in May
                     2024</li>
                 <li>This event coincided with the return of <a [routerLink]="'/keith-gill'">Roaring Kitty</a></li>
-                <!-- <li>Some may observe that The Burp occurred <a [routerLink]="'/t-plus-thirty-five'">approximately 35
-                        days</a> after GameStop released the FY23 earnings report</li> -->
+                <li>Mainstream financial media propagated a <a [routerLink]="'/media-vs-gme'">superficial and misleading
+                        narrative</a>
+                    that failed to include contextually relevant information</li>
                 <li>GameStop capitalized on this opportunity by raising billions of dollars through <a
-                        [routerLink]="'/atms'">at-the-market equity offerings</a></li>
+                        [routerLink]="'/atms'">at-the-market equity offerings</a>, raising the company's valuation to
+                    its highest in its history</li>
             </ul>
         </div>
 
+        <div class="page-section">
+            <div class="section-heading">Introduction</div>
+            <p>The stock market is a highly complex ecosystem with an enormous number of participants, ranging from
+                casual investors to highly sophisticated institutions. Market participants are constantly buying,
+                selling, and shifting positions
+                throughout every trading day. </p>
+            <p>
+                It’s an ever-changing, dynamic environment with countless moving parts,
+                from global economic forces to rapid <a href="https://en.wikipedia.org/wiki/Algorithmic_trading"
+                    target="_blank" class="external-link" rel="nofollow">algorithmic trades</a>, often operating in
+                areas where transparency is
+                limited. With so much activity happening simultaneously and behind the scenes, it’s practically
+                impossible for
+                anybody to fully grasp all the factors at play that determine the trading price of a stock.
+            </p>
+            <p>With respect to this reality, something puzzling happened with GME stock starting in May of 2024 and
+                lasting through June 2024. Starting at the beginning of May 2024, there was a sudden increase in GME
+                trading volume, and the share price of GME rose significantly. It is not clear exactly what caused this
+                to happen.</p>
+
+            <p>Mainstream financial media often provides simple, superficial, and misleading narratives to explain such
+                complexities, such as in this case of the GME Burp of May 2024. Looking beyond those commonly provided
+                narratives, it is evident that there are additional, contextually relevant factors at play than what was
+                reported on.</p>
+        </div>
 
         <div class="page-section">
             <div class="section-heading">
@@ -34,60 +61,208 @@
                 articles consist mainly of 2 points:</p>
             <ul>
                 <li><a [routerLink]="'/keith-gill'">Keith Gill</a> made some posts on social media</li>
-                <li>Subsequently, the share price of GME and other <a [routerLink]="'/meme-stock'">meme stocks</a>
-                    started spiking</li>
+                <li>The share price of GME and some other <a [routerLink]="'/meme-stock'">meme stocks</a>
+                    started rising rapidly</li>
             </ul>
-            <p>It is left to the reader to connect these points and arrive at the conclusion that this unusual price
-                spike was therefore <i>caused by</i> Keith Gill's social media posts with the implication that his mere
+            <p>It is left to the unquestioning reader to connect these points and arrive at the conclusion that these
+                unusual price
+                spikes were therefore <i>caused by</i> Keith Gill's social media posts with the implication that his
+                mere
                 presence suddenly encouraged some untold number of individuals to suddenly start buying enormous
-                quantities of GME shares.
+                quantities of GME shares to the tune of billions of dollars in just a few days, and that this is the
+                full explanation for what happened.
             </p>
 
-            <p>The commonly provided mainstream media narrative is somewhat absurd, and an explanation is never provided
+            <p>This commonly provided mainstream media narrative is superficial and somewhat absurd — an explanation is
+                never provided
                 that describes precisely <i>how</i> social media
                 posts from Keith Gill
-                suddenly caused the trading volume and the share price of GME and other stocks to suddenly spike
+                suddenly caused the trading volume and the share price of GME <i>and some other stocks</i> to suddenly
+                spike
                 so dramatically, beyond vague and unsubstantiated attribution to retail trading activity.</p>
-            <p>It also begs the question: How and why would Keith Gill's GME-focused posts cause the price of non-GME
+            <p>It also raises an unanswered question: How and why would Keith Gill's GME-focused posts cause the price
+                of non-GME
                 stocks to suddenly go up dramatically?</p>
-            <p>Some GME shareholders have <a
+            <p>Furthermore, Keith Gill did not post on social media until several days after the GME trading volume and
+                share price started going up. How could his post on May 12 cause the GME trading volume and share price
+                to start rising on May 3?</p>
+            <p>Some GME shareholders <a
                     href="https://www.reddit.com/r/Superstonk/comments/1crbfdd/keith_gill_aka_roaring_kitty_did_not_make_gme_go/"
-                    target="_blank" class="external-link" rel="nofollow">a counter-view</a> to the commonly provided
+                    target="_blank" class="external-link" rel="nofollow">expressed rational skepticism</a> about the
+                commonly provided
                 mainstream narrative: "Every
                 single person in [r/superstonk] knows this is complete nonsense. Nearly 70% of the shares outstanding
                 traded [on May 13, 2024]. On no news!"</p>
             <p>The articles published by the mainstream financial media consistently fail to include any mention of the
-                fact that all of this market activity was happening in the
-                not-too-distant aftermath of GameStop reporting full-year
+                fact that all of this market activity was happening just a few weeks after GameStop reported full-year
                 profitability for the first time in 6 years when it released <a [routerLink]="'/fy23'">fiscal year 2023
-                    results</a>. They don't report
-                positively at all about GameStop the company. Some of them even falsely state that GameStop "remains
+                    results</a>. They don't report positively at all about GameStop's outlook, despite demonstrable
+                improvements to the company's core financial metrics. They simply do not give any attention to that.
+                Some of them even falsely
+                stated that GameStop "remains
                 unprofitable."
             </p>
             <p></p>
             Articles in this time period:
             <ul>
                 <li *ngFor="let article of articles">
-                    <a [href]="article.url" class="external-link" rel="nofollow" target="_blank">{{article.title}}</a>
+                    <a [href]="article.url" class="external-link" rel="nofollow" target="_blank">{{ article.title }}</a>
                     - {{ article.date }}
                 </li>
             </ul>
+            <p>While it would be incorrect to say that Keith Gill's activity played no role whatsoever on the occurrence
+                of
+                The Burp, to imply that Keith Gill single-handedly caused all of this to happen is a false and
+                incomplete
+                conclusion.</p>
         </div>
 
 
-
-        <!-- 
         <div class="page-section">
-            <div class="section-heading">T+35 Settlement Cycle</div>
-        </div> -->
+            <div class="section-heading">The Untold Story: FY2023 Earnings Were Foundational to The Burp</div>
+            <p>The narrative provided by mainstream media is superficial and omits any substantive explanation for the
+                sudden explosion of GME share price and trading volume starting in May 2024.</p>
+            <p>In the years prior to The Burp, GameStop was a company that was losing hundreds of millions of
+                dollars every year, for five years in a row. The common mainstream narrative was dutifully critical of
+                GameStop during those years. Then, on March 26, 2024, GameStop reported <a [routerLink]="'/fy23'">fiscal
+                    year 2023 earnings results</a>, showing full-year profitability for the first time in 6 years.
+                Curiously, when mainstream financial media reported on these results, <b>in most cases they did not
+                    mention
+                    GameStop's income or profitability at all</b>, and instead focused almost entirely on GameStop's
+                declining revenue and the fact that the share price was down in the days following.
+            </p>
+            <p>The fiscal year 2023 earnings results marked a significant trend reversal. After 5 years of weak and
+                negative
+                financial metrics,
+                GameStop was suddenly
+                profitable.
+                Core stock metrics such as EPS and net margin flipped from negative values to positive values.
+            </p>
+            <p>Interested market participants, using quantitative analysis and trading algorithms, would have
+                immediately recalculated their model of GME using these updated metrics, automatically triggering
+                position changes.</p>
+            <p>
+                Generally, when metrics such as net income flip from
+                negative values to a positive value, this would normally be considered "good" for a stock. Usually, when
+                metrics improve on a stock, this entails market participants to buy the stock, and net buying
+                of the stock would cause the price to rise.
+            </p>
+            <p>Yet, when GameStop released the positive FY23 results, in the days and weeks immediately afterwards, the
+                stock price went down and stayed down for a period of time until about the beginning of May —
+                approximately 5 weeks later — at which time it exploded.
+            </p>
+            <p>While it might be unclear exactly how or why it played out this way, from a broad point of view, it is
+                hard to separate the cause and effect of GameStop's significant FY 2023 earnings results that were
+                followed by
+                sudden and significant GME turbulence only a few weeks later.</p>
+            <p>
+                This view raises the question: if fiscal year 2023 results were foundational to the occurrence of The
+                GME Burp that
+                followed about 5 weeks later, then <b>why was there a 5 week delay at all</b>?
+            </p>
+        </div>
 
+
+        <div class="page-section">
+            <div class="section-heading">Contextual Relevance of the GME Financial Conflict</div>
+            <p>Let us introduce to this topic the existence of the <a [routerLink]="'/conflict'">ongoing GME
+                    conflict</a>: there are factions that are still competing over the outcome of GME stock.</p>
+            <p>One faction (GME short sellers) has an ongoing financial interest in the fall of GME stock, and is
+                supported by bearish media narratives that are critical of GME and GameStop.</p>
+            <p>The other faction (GME shareholders) has an ongoing financial interest in the rise of GME stock, and
+                supports bullish discussion about GME and GameStop.</p>
+            <p>The commonly provided media narrative offers a surface-level explanation for what happened with GME in
+                May
+                of 2024.
+                This narrative doesn't mention GameStop's fiscal year 2023 results at all. Furthermore, when the media
+                reported
+                on GameStop's FY23 results a few weeks prior, most reporting did not even mention GameStop's positive
+                net income at all.
+                GME shareholders are typically skeptical of these narratives that are demonstrably cynical, misleading,
+                and
+                incomplete.</p>
+            <p>Upon GameStop showing positive income for the first time in 6 years, this was bad news for GME short
+                sellers and good news for GME shareholders. Some might expect the stock price to rise after positive
+                results.</p>
+
+
+
+        </div>
+        <div class="page-section">
+            <div class="section-heading">Reasoned Assessment</div>
+            <p>So what really happened? There are basically two main possibilities here:</p>
+            <ol>
+                <li>Following GameStop's positive FY23 results, market participants naturally decided to sell more
+                    shares of GME
+                    than were bought, only to later decide all at once to start buying enormous
+                    quantities of GME shares at the beginning of May because Keith
+                    Gill made some posts on social media.</li>
+                <li>Following GameStop's positive FY23 results, sophisticated market participants with an interest in
+                    lowering the price and perception of GME and preventing positive momentum, using a variety of
+                    <a [routerLink]="'/market-tactics'">tools
+                        and tactics</a> in conjunction with <a [routerLink]="'/media-vs-gme'">bearish and misleading
+                        media narratives</a>, deliberately caused the price of GME to
+                    go down on a temporary basis in order to create the impression that earnings were bad and the stock
+                    price was down <i>as a consequence of bad earnings</i>. Then, <a [routerLink]="'/t-plus-35'">about 5
+                        weeks later</a>, at the beginning of May, the
+                    consequences of those contrived efforts manifested in The Burp. Keith Gill saw this coming and
+                    jumped on the opportunity in his own way, further influencing the outcome.
+                </li>
+            </ol>
+            <p>Possibility one generally conforms to the dubious mainstream narrative and does not address any market
+                complexity
+                nor the existence of a conflict with participants that have an interest in influencing the trading price
+                of the stock, nor does it address GameStop's positive earnings at all, nor does it ever offer a positive
+                outlook on GameStop as a company.</p>
+            <p>Possibility two is predicated on the existence of the GME financial conflict, and attributes the curious
+                market behavior to participants that have an interest in influencing and lowering the price of the
+                stock.
+                As important as
+                it is to keep the stock as low as possible, it's also just as important to GME opponents to prevent
+                upward momentum.</p>
+            <p>GameStop reported positive income for the first time in 6 years, a major trend reversal. If the GME stock
+                price rose significantly <i>on that news</i>, the entire narrative and ability of GME opponents to
+                control the narrative
+                would have been different and against their interests.
+                The public view would be one of indisputable cause and effect: GME stock is
+                going up as a consequence of GameStop reporting positive income for the first time in years. This is a
+                narrative that opponents of GME did not want to see manifest. They arguably could not have risked that
+                happening. That narrative would have been positive for GME and it is imperative that they continue to
+                keep all GME narratives as negative and cynical and misleading as possible so as to deter any potential
+                investor away from
+                any possible consideration of investing in GME.</p>
+            <p>So they used their enormous array of market tactics and advantages to create a contrived false narrative:
+                GME earnings results were bad, revenue was down after all, and the stock price is down as a consequence
+                of those bad results, and
+                then in May some crazy frenzy happened completely unrelated to GameStop's FY23 results, and it was caused by Keith
+                Gill.
+            </p>
+            <p>While in the short term these tactics can be used to influence the price of the stock and obfuscate the
+                truth,
+                over a longer period of time the reality of supply and demand forces is realized. It was about 5 weeks
+                after FY2023 earnings results were posted when the GME volume and price started to rise.</p>
+            <p>In fact, formal research has been conducted which provides empirical evidence that ETF-related
+                <a [routerLink]="'/ftds'">fails-to-deliver</a> tied to GME formed consistent, non-random <a
+                    [routerLink]="'/t-plus-35'">T+35 settlement cycles</a>, suggesting
+                systematic exploitation of regulatory exemptions by market makers.  This very closely lines up with the period of time between the release of FY2023 earnings and the start of The Burp.</p>
+            <p>Keith Gill himself likely saw this formulating and took advantage of the situation for his own benefit.
+                In addition to his own strategically-timed call options position, he created and posted a series of meme
+                videos that tell a mysterious story with notions and symbols that are
+                recognizable to some GME investors, suggestive of what he was doing and what was happening, through a
+                veil of pop culture references. Keith
+                Gill's actions indisputably <i>did create</i> some newfound enthusiasm for GME, and it stands to reason
+                that
+                this would have caused <i>some</i> additional buying of GME by some investors. However, to attribute
+                everything that happened exclusively to Keith Gill is dubious, misleading and superficial.</p>
+        </div>
 
         <div class="page-section">
             <div class="section-heading">Opportunity for GameStop</div>
-            <p>Regardless of what specifically happened during this period of time, GameStop reacted quickly. The
+            <p>Regardless of what specifically happened to GME stock in the market during this period of time, GameStop
+                reacted purposefully. The
                 trading volume and share
-                price of GME had sudden upward pressure, and GameStop used this as an opportunity to put money into the
-                company.
+                price of GME had sudden dramatic upward pressure, and GameStop used this as an opportunity to put money
+                into the company.
                 GameStop raised about <b>$3.5 billion</b> by selling shares with <a [routerLink]="'/atms'">3
                     at-the-market equity
                     offering programs ("ATMs")</a>, raising the stockholders' equity of the company to its highest level
@@ -141,12 +316,105 @@
             </ul>
         </div>
 
+        <div class="page-section">
+            <div class="section-heading">GME Data Timeline - March 2024 to July 2024</div>
+            <p>The below table shows the sequence of relevant events next to the GME trading data for those days. April
+                is mostly excluded as nothing very eventful occurred.</p>
+            <table style="width: 100%;" class="table">
+                <thead>
+                    <tr style="font-weight: 500;">
+                        <td>Date</td>
+                        <td>GME High</td>
+                        <td>Trading Volume</td>
+                        <td>Event</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let row of burpPriceEntries">
+                    <tr>
+                        <td>{{formatDate(row.dateYYYYMMDD)}}</td>
+                        <td>{{formatPrice(row.high)}}</td>
+                        <td [ngClass]="volumeNgClass(row.volume)">{{formatVolume(row.volume)}}</td>
+                        <td>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-03-26'">GameStop released <a
+                                    [routerLink]="'/fy23'">fiscal year 2023
+                                    results</a>, showing
+                                full-year profitability for the first time in 6 years</div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-03'">GME share price and trading volume suddenly
+                                begin to rise</div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-12'"><a [routerLink]="'/roaring-kitty'">Roaring
+                                    Kitty</a> posts on X for the
+                                first time
+                                in 3 years: <a href="https://x.com/TheRoaringKitty/status/1789807772542067105"
+                                    target="_blank" rel="nofollow" class="external-link">a picture of a person leaning
+                                    forward</a> </div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-13'">Roaring Kitty began posting a series of video
+                                clips over several days
+                                through May 17.
+                                <a href="https://x.com/roaringpika/status/1792256415794425863" class="external-link"
+                                    target="_blank" rel="nofollow">Watch the entire compiliation here</a>.
+                            </div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-14'">GME share price peaks at over $60 per share
+                            </div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-17'">GameStop files to sell up to 45M shares
+                                through an at-the-market equity
+                                offering
+                                program ("ATM"), and also <a
+                                    href="https://investor.gamestop.com/news-releases/news-details/2024/GameStop-Announces-First-Quarter-Preliminary-Results-05-17-2024/default.aspx"
+                                    target="_blank" rel="nofollow" class="external-link">announced preliminary results
+                                    for the first
+                                    quarter of 2024</a> </div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-05-24'">GameStop <a [routerLink]="'/atms'">completed
+                                    the ATM</a>, raising $933M
+                            </div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-06-02'"><a
+                                    [routerLink]="'/keith-gill'">DeepFuckingValue</a> makes <a
+                                    href="https://www.reddit.com/r/Superstonk/comments/1d6r5vp/gme_yolo_update_june_2_2024/"
+                                    target="_blank" class="external-link" rel="nofollow">a post on Reddit</a> for the
+                                first time in
+                                3 years, showing
+                                a GME position valued at over $200M.</div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-06-06'">GME share price spikes a second time, closing
+                                at over $45. DFV makes <a
+                                    href="https://www.reddit.com/r/Superstonk/comments/1d9rq9t/gme_yolo_update_june_6_2024/"
+                                    class="external-link" rel="nofollow" target="_blank">a post on Reddit</a> showing a
+                                GME position
+                                valued at nearly $600M.</div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-06-07'">Roaring Kitty hosts <a
+                                    href="https://www.youtube.com/watch?v=U1prSyyIco0" target="_blank"
+                                    class="external-link" rel="nofollow">a live stream on YouTube</a>
+                                with over 500K
+                                live viewers, <a
+                                    href="https://www.reddit.com/r/Superstonk/comments/1dagsyu/cnbc_getting_owned_by_dfv/"
+                                    target="_blank" class="external-link" rel="nofollow">including
+                                    mainstream media outlets such as CNBC</a>.</div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-06-07'">GameStop files to sell up to 75M shares
+                                through a second ATM and also
+                                published <a
+                                    href="https://investor.gamestop.com/news-releases/news-details/2024/GameStop-Discloses-First-Quarter-2024-Results-06-07-2024/default.aspx"
+                                    target="_blank" class="external-link" rel="nofollow">the full results for quarter
+                                    one of
+                                    2024</a></div>
+                            <div *ngIf="row.dateYYYYMMDD === '2024-06-11'">GameStop <a [routerLink]="'/atms'">completes
+                                    the second ATM</a>, raising
+                                $2.1B
+                            </div>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="buttons-bar">
+                <button class="options-button" (click)="onClickShowMoreRows()">{{ showHideRows }}</button>
+            </div>
+        </div>
+
 
         <div class="page-section">
             <div class="section-heading">"The Burp" as a Label</div>
-            <p>This phenomenon, the curious GME market events that began in May of 2024, were recognized as a distinct
-                episode
-                in GME history and gained an informal label from some GME
+            <p>This phenomenon, the curious GME market events that began in May of 2024, gained an informal label from
+                some GME
                 shareholders as "The Burp." <a
                     href="https://www.reddit.com/r/GME/comments/1g6ggaw/gme_looks_like_a_3_stage_pokemon"
                     target="_blank" class="external-link" rel="nofollow">Here is one such example</a>.</p>

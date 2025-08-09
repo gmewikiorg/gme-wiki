@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
+import { ImportGmeDataService } from '../../shared/services/import-gme-data.service';
+import { GmePriceEntry } from '../../shared/services/gme-price-entry.interface';
+import { LoadingService } from '../../shared/services/loading.service';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-burp',
@@ -11,8 +15,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './burp.component.html',
   styleUrl: './burp.component.scss'
 })
-export class BurpComponent {
-  constructor(private _screenService: ScreenService) {
+export class BurpComponent implements OnInit {
+  constructor(private _screenService: ScreenService, private _gmeDataService: ImportGmeDataService, private _loadingService: LoadingService) {
     const title = 'GME Burp of 2024 | gmewiki.org';
     const description = 'In May and June of 2024, GME experienced some major turbulence.  Why?';
     const url = 'https://gmewiki.org/burp';
@@ -21,12 +25,62 @@ export class BurpComponent {
 
   }
 
-  public get articles(): {
+  private _burpPriceEntries: GmePriceEntry[] = [];
+  private _gmePriceEntries: GmePriceEntry[] = [];
+  public get burpPriceEntries(): GmePriceEntry[] { return this._burpPriceEntries; }
+  public get gmePriceEntries(): GmePriceEntry[] { return this._gmePriceEntries; }
+
+  async ngOnInit() {
+    await this._loadingService.loadData$();
+    this._gmePriceEntries = this._gmeDataService.allPriceEntries;
+    this._burpPriceEntries = this._gmePriceEntries
+      .filter(item => item.dateYYYYMMDD >= '2024-03-25' && item.dateYYYYMMDD <= '2024-06-19')
+      .filter(item => {
+        if(item.dateYYYYMMDD > '2024-04-01' && item.dateYYYYMMDD < '2024-04-30'){
+          return false;
+        }else{
+          return true;
+        }
+      });
+  }
+
+
+  
+
+
+  public formatDate(inputDateYYYYMMDD: string) {
+    return dayjs(inputDateYYYYMMDD).format('MMMM DD');
+  }
+  public formatPrice(gmePrice: number) {
+    return "$"+(gmePrice.toFixed(0));
+  }
+  public formatVolume(volume: number) {
+    return (volume/1000000).toFixed(0)+"M";
+    return volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  public volumeNgClass(volume:number){
+    return '';
+  }
+
+  private _showHideRows: string = 'Show More Rows';
+  public get showHideRows(): string { return this._showHideRows; }
+
+  public onClickShowMoreRows(){
+
+    if(this._showHideRows === 'Show More Rows'){
+      this._showHideRows = 'Hide Extra Rows';
+    }else{
+      this._showHideRows = 'Show More Rows';
+    }
+  }
+
+
+
+  private _articles: {
     title: string;
     url: string;
     date: string;
-  }[] {
-    return [
+  }[] = [
       {
         title: 'GameStop stock soars after ‘Roaring Kitty’ who drove meme frenzy resurfaces',
         url: 'https://globalnews.ca/news/10491975/gamestop-stock-roaring-kitty-keith-gill-return/',
@@ -113,10 +167,11 @@ export class BurpComponent {
         url: 'https://www.forbes.com/sites/gurufocus/2024/06/14/a-realistic-look-at-gamestops-value/',
         date: 'June 14, 2024',
       },
-
-
-
-
     ];
-  }
+
+  public get articles(): {
+    title: string;
+    url: string;
+    date: string;
+  }[] { return this._articles; }
 }

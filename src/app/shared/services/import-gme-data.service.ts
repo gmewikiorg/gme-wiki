@@ -27,11 +27,11 @@ export class ImportGmeDataService {
 
   public async loadGMEPriceEntries$() {
 
-    console.log("Fetch from netlify")
-    this._httpClient.get('/.netlify/functions/stock?symbol=GME')
-    .subscribe(data => {
-      console.log(data);
-    });
+    // console.log("Fetch from netlify")
+    // this._httpClient.get('/.netlify/functions/stock?symbol=GME')
+    // .subscribe(data => {
+    //   console.log(data);
+    // });
 
 
     const start = dayjs();
