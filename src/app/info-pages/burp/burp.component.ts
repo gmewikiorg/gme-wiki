@@ -7,11 +7,12 @@ import { ImportGmeDataService } from '../../shared/services/import-gme-data.serv
 import { GmePriceEntry } from '../../shared/services/gme-price-entry.interface';
 import { LoadingService } from '../../shared/services/loading.service';
 import dayjs from 'dayjs';
+import { BurpChartComponent } from './burp-chart/burp-chart.component';
 
 @Component({
   selector: 'app-burp',
   standalone: true,
-  imports: [RouterModule, FooterComponent, CommonModule],
+  imports: [RouterModule, FooterComponent, CommonModule, BurpChartComponent],
   templateUrl: './burp.component.html',
   styleUrl: './burp.component.scss'
 })
@@ -22,9 +23,13 @@ export class BurpComponent implements OnInit {
     const url = 'https://gmewiki.org/burp';
     const image = '';
     this._screenService.setPageInfo(title, description, url, image);
+    this._isBrowser = this._screenService.isBrowser;
+  } 
 
-  }
 
+  private _isBrowser: boolean;
+  private _chartIsLoaded: boolean = false;
+  public get chartIsLoaded(): boolean { return this._chartIsLoaded; }
   private _burpPriceEntries: GmePriceEntry[] = [];
   private _gmePriceEntries: GmePriceEntry[] = [];
   public get burpPriceEntries(): GmePriceEntry[] { return this._burpPriceEntries; }
@@ -32,44 +37,66 @@ export class BurpComponent implements OnInit {
 
   async ngOnInit() {
     await this._loadingService.loadData$();
-    this._gmePriceEntries = this._gmeDataService.allPriceEntries;
+    this._gmePriceEntries = this._gmeDataService.tradingDayPriceEntries;
     this._burpPriceEntries = this._gmePriceEntries
       .filter(item => item.dateYYYYMMDD >= '2024-03-25' && item.dateYYYYMMDD <= '2024-06-19')
       .filter(item => {
-        if(item.dateYYYYMMDD > '2024-04-01' && item.dateYYYYMMDD < '2024-04-30'){
+        if (item.dateYYYYMMDD >= '2024-03-28' && item.dateYYYYMMDD < '2024-04-30') {
           return false;
-        }else{
+        } else {
           return true;
         }
       });
+
+    this._loadingService.loadingMessage = "Building chart...";
+    if (this._isBrowser) {
+      await this._loadingService.loadData$();
+      this._chartIsLoaded = true;
+    } else {
+      // console.log("Not browser")
+    }
   }
 
 
-  
 
 
   public formatDate(inputDateYYYYMMDD: string) {
     return dayjs(inputDateYYYYMMDD).format('MMMM DD');
   }
   public formatPrice(gmePrice: number) {
-    return "$"+(gmePrice.toFixed(0));
+    return "$" + (gmePrice.toFixed(0));
   }
   public formatVolume(volume: number) {
-    return (volume/1000000).toFixed(0)+"M";
+    if (volume === 0) {
+      return '';
+    }
+    return (volume / 1000000).toFixed(0) + "M";
     return volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-  public volumeNgClass(volume:number){
+  public volumeNgClass(volume: number) {
+    const maxValue = Math.max(...(this.burpPriceEntries.map(e => e.volume)));
+
+
+    if (volume < 20000000) {
+      return 'blue-0';
+    } else if (volume >= 2000000 && volume < 100000000) {
+      return 'blue-1';
+    } else if (volume >= 100000000) {
+      return 'blue-2';
+    }
+
+
     return '';
   }
 
   private _showHideRows: string = 'Show More Rows';
   public get showHideRows(): string { return this._showHideRows; }
 
-  public onClickShowMoreRows(){
+  public onClickShowMoreRows() {
 
-    if(this._showHideRows === 'Show More Rows'){
+    if (this._showHideRows === 'Show More Rows') {
       this._showHideRows = 'Hide Extra Rows';
-    }else{
+    } else {
       this._showHideRows = 'Show More Rows';
     }
   }

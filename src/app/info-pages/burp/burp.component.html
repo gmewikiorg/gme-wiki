@@ -234,7 +234,8 @@
             <p>So they used their enormous array of market tactics and advantages to create a contrived false narrative:
                 GME earnings results were bad, revenue was down after all, and the stock price is down as a consequence
                 of those bad results, and
-                then in May some crazy frenzy happened completely unrelated to GameStop's FY23 results, and it was caused by Keith
+                then in May some crazy frenzy happened completely unrelated to GameStop's FY23 results, and it was
+                caused by Keith
                 Gill.
             </p>
             <p>While in the short term these tactics can be used to influence the price of the stock and obfuscate the
@@ -244,7 +245,9 @@
             <p>In fact, formal research has been conducted which provides empirical evidence that ETF-related
                 <a [routerLink]="'/ftds'">fails-to-deliver</a> tied to GME formed consistent, non-random <a
                     [routerLink]="'/t-plus-35'">T+35 settlement cycles</a>, suggesting
-                systematic exploitation of regulatory exemptions by market makers.  This very closely lines up with the period of time between the release of FY2023 earnings and the start of The Burp.</p>
+                systematic exploitation of regulatory exemptions by market makers. This very closely lines up with the
+                period of time between the release of FY2023 earnings and the start of The Burp.
+            </p>
             <p>Keith Gill himself likely saw this formulating and took advantage of the situation for his own benefit.
                 In addition to his own strategically-timed call options position, he created and posted a series of meme
                 videos that tell a mysterious story with notions and symbols that are
@@ -278,6 +281,11 @@
                 <li>March 26, 2024 - GameStop released <a [routerLink]="'/fy23'">fiscal year 2023 results</a>, showing
                     full-year profitability for the first time in 6 years</li>
                 <li>May 3, 2024 - GME share price and trading volume suddenly begin to rise</li>
+                <li>May 9, 2024 - Social media users (e.g. on <a
+                        href="https://www.reddit.com/r/Superstonk/comments/1co5e3p/hold_up_he_is_active_again/"
+                        class="external-link" target="_blank" rel="nofollow">r/superstonk</a> and <a
+                        href="https://www.reddit.com/r/Teddy/comments/1co5wcq/new_dfv_like_on_x/" target="_blank"
+                        class="external-link" rel="nofollow">r/teddy</a>) notice that Roaring Kitty is active again on X: Roaring Kitty liked a post </li>
                 <li>May 12, 2024 - <a [routerLink]="'/roaring-kitty'">Roaring Kitty</a> posts on X for the first time
                     in 3 years: <a href="https://x.com/TheRoaringKitty/status/1789807772542067105" target="_blank"
                         rel="nofollow" class="external-link">a picture of a person leaning forward</a> </li>
@@ -316,8 +324,13 @@
             </ul>
         </div>
 
-        <!-- Exclude for now
-        <div class="page-section">
+        <div class="page-section" *ngIf="chartIsLoaded">
+            <div class="section-heading">The Burp Chart</div>
+            <app-burp-chart></app-burp-chart>
+        </div>
+
+
+        <!-- <div class="page-section">
             <div class="section-heading">GME Data Timeline - March 2024 to July 2024</div>
             <p>The below table shows the sequence of relevant events next to the GME trading data for those days. April
                 is mostly excluded as nothing very eventful occurred.</p>
@@ -409,10 +422,7 @@
             <div class="buttons-bar">
                 <button class="options-button" (click)="onClickShowMoreRows()">{{ showHideRows }}</button>
             </div>
-        </div>
-
-    -->
-
+        </div> -->
 
         <div class="page-section">
             <div class="section-heading">"The Burp" as a Label</div>

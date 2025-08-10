@@ -10,8 +10,10 @@ import dayjs from 'dayjs';
 export class ImportGmeDataService {
 
   constructor(private _httpClient: HttpClient) { }
-  private _priceEntries: GmePriceEntry[] = [];
-  public get allPriceEntries(): GmePriceEntry[] { return this._priceEntries; }
+  private _priceEntriesFilled: GmePriceEntry[] = [];
+  private _tradingDayPriceEntries: GmePriceEntry[] = [];
+  public get allPriceEntries(): GmePriceEntry[] { return this._priceEntriesFilled; }
+  public get tradingDayPriceEntries(): GmePriceEntry[] { return this._tradingDayPriceEntries; }
 
   public get lastClosePrice(): number {
     if (this.allPriceEntries.length > 0) {
@@ -21,21 +23,13 @@ export class ImportGmeDataService {
     }
   }
 
-  public setGmePriceEntries(entries: GmePriceEntry[]) { this._priceEntries = entries; }
+  public setGmePriceEntries(entries: GmePriceEntry[]) { this._priceEntriesFilled = entries; }
 
 
 
   public async loadGMEPriceEntries$() {
 
-    // console.log("Fetch from netlify")
-    // this._httpClient.get('/.netlify/functions/stock?symbol=GME')
-    // .subscribe(data => {
-    //   console.log(data);
-    // });
-
-
     const start = dayjs();
-    
     const csvEntriesCurrent = await this._loadGMECSVdataCurrentEra$()
     // const csvEntriesHistoric = await this._loadGMECSVdataHistoricEra$()
     // const sheetEntries = await lastValueFrom(this._loadGoogleSheetData$());
@@ -48,7 +42,7 @@ export class ImportGmeDataService {
   }
 
 
-    //   /**
+  //   /**
   //    * Data source:  https://www.nasdaq.com/market-activity/stocks/gme/historical
   //    */
 
@@ -76,12 +70,6 @@ export class ImportGmeDataService {
     const headers = rows[0].split(';');
     const rowCount = rows.length - 1;
     const priceEntries: GmePriceEntry[] = [];
-    /**
-     * Since there are commas , in the title field of the .csv document,
-     * we cannot use commas , as a delimiter, so we must use some other character.
-     * 
-     * in this case we are using the following curly brace character:  }
-     */
     const delimiterChar: string = ',';
     for (let rowIndex = 1; rowIndex < rowCount; rowIndex++) {
 
@@ -118,46 +106,6 @@ export class ImportGmeDataService {
   }
 
 
-  // private _loadGoogleSheetData$() {
-  //   const gmeSubject$ = new Subject<GmePriceEntry[]>();
-  //   /**
-  //    *  Google Sheet needs to be publish as tsv (tab-separated values) and not csv.
-  //    *  TSV output is far more simple to parse. 
-  //    *  
-  //    */
-  //   /**
-  //    * Data source:  https://www.nasdaq.com/market-activity/stocks/gme/historical
-  //    */
-  //   const gmeDataOverviewTsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQixUOsD8VuEXI06nXbOqMGsDbQiofVAYlbL9_-fh6xo21SSt84x2e0iqDBqWmj_e--CXKpKtiPbjOq/pub?gid=1551713069&single=true&output=tsv';
-  //   const priceEntries: GmePriceEntry[] = [];
-  //   this._httpClient.get(gmeDataOverviewTsvUrl, { responseType: 'text' }).subscribe({
-  //     next: (response) => {
-  //       let lines = response.split('\n');
-  //       lines = lines.slice(1);
-  //       lines.forEach(line => {
-  //         let tabSplitLine = line.split('\t');
-  //         const priceEntry: GmePriceEntry = {
-  //           dateYYYYMMDD: this._convertToDate(tabSplitLine[0]),
-  //           close: this._convertToNumber(tabSplitLine[1]),
-  //           volume: this._convertToNumber(tabSplitLine[2]),
-  //           open: this._convertToNumber(tabSplitLine[3]),
-  //           high: this._convertToNumber(tabSplitLine[4]),
-  //           low: this._convertToNumber(tabSplitLine[5]),
-  //         }
-  //         priceEntries.push(priceEntry);
-  //       });
-  //       // this._priceEntries = priceEntries;
-  //       // this._sortData();
-  //       // this._fillGaps();
-  //       gmeSubject$.next(priceEntries);
-  //       gmeSubject$.complete();
-  //     },
-  //   })
-  //   return gmeSubject$.asObservable();
-  // }
-
-
-
   private _mergeEntries(csvEntries: GmePriceEntry[], sheetEntries: GmePriceEntry[]): GmePriceEntry[] {
     const allEntries: GmePriceEntry[] = Object.assign([], csvEntries);
     sheetEntries.forEach(sheetEntry => {
@@ -166,15 +114,17 @@ export class ImportGmeDataService {
         allEntries.push(sheetEntry);
       }
     });
-    this._priceEntries = allEntries;
-    this._sortData();
-    this._fillGaps();
-    return this._priceEntries;
+
+    const sortedEntries = this._sortData(allEntries);
+    this._priceEntriesFilled = this._fillGaps(sortedEntries, false);
+    this._tradingDayPriceEntries = this._fillGaps(sortedEntries, true);
+
+    return this._priceEntriesFilled;
   }
 
   /** The data comes in with date descending, needs to be reverse to ascending */
-  private _sortData() {
-    this._priceEntries = this._priceEntries.sort((item1, item2) => {
+  private _sortData(priceEntries: GmePriceEntry[]): GmePriceEntry[] {
+    priceEntries = priceEntries.sort((item1, item2) => {
       if (item1.dateYYYYMMDD > item2.dateYYYYMMDD) {
         return 1;
       } else if (item1.dateYYYYMMDD < item2.dateYYYYMMDD) {
@@ -183,41 +133,61 @@ export class ImportGmeDataService {
         return 0;
       }
     });
+    return priceEntries;
   }
 
   /** Not every day has a trading price (e.g. Saturdays, Sundays, holidays) 
    *  so an entry needs to be created for those dates in order to maintain 1 entry per date */
-  private _fillGaps() {
-    const startDate: dayjs.Dayjs = dayjs(this._priceEntries[0].dateYYYYMMDD);
-    const endDate: dayjs.Dayjs = dayjs(this._priceEntries[this._priceEntries.length - 1].dateYYYYMMDD);
+  /**
+   * 
+   * @param isForTradingDays 
+   */
+  private _fillGaps(priceEntries: GmePriceEntry[], isForTradingDays: boolean): GmePriceEntry[] {
+    const startDate: dayjs.Dayjs = dayjs(priceEntries[0].dateYYYYMMDD);
+    const endDate: dayjs.Dayjs = dayjs(priceEntries[priceEntries.length - 1].dateYYYYMMDD);
     const newEntries: GmePriceEntry[] = [];
     let currentDateYYYYMMDD: string = dayjs(startDate).format('YYYY-MM-DD');
     let currentIndex: number = 0;
     while (currentDateYYYYMMDD < endDate.format('YYYY-MM-DD')) {
-      const hasEntry = this._priceEntries[currentIndex].dateYYYYMMDD === currentDateYYYYMMDD;
+      const hasEntry = priceEntries[currentIndex].dateYYYYMMDD === currentDateYYYYMMDD;
       if (hasEntry) {
-        newEntries.push(this._priceEntries[currentIndex]);
+        newEntries.push(priceEntries[currentIndex]);
         currentIndex++;
       } else {
-        const prevEntry = this._priceEntries[currentIndex - 1]
+        const prevEntry = priceEntries[currentIndex - 1];
+        let volume = prevEntry.volume;
+        let prevClose = prevEntry.close;
+        let open = prevEntry.open;
+        let high = prevEntry.high;
+        let low = prevEntry.low;
+        let ftds = prevEntry.ftds;
+        if (isForTradingDays) {
+          // in this case, we are adding a new entry for a date where there is no entry, e.g. a weekend.
+          // in this case, there is no trading volume, no ftds, etc.
+          volume = 0;
+          ftds = 0;
+          open = prevClose;
+          high = prevClose;
+          low = prevClose;
+        }
         newEntries.push({
           dateYYYYMMDD: currentDateYYYYMMDD,
-          close: prevEntry.close,
-          volume: prevEntry.volume,
-          open: prevEntry.open,
-          high: prevEntry.high,
-          low: prevEntry.low,
+          close: prevClose,
+          volume: volume,
+          open: open,
+          high: high,
+          low: low,
           tso: prevEntry.tso,
           trailingSales: prevEntry.trailingSales,
           equity: prevEntry.equity,
           trailingEarnings: prevEntry.trailingEarnings,
-          ftds: prevEntry.ftds,
+          ftds: ftds,
         });
       }
       currentDateYYYYMMDD = dayjs(currentDateYYYYMMDD).add(1, 'days').format('YYYY-MM-DD');
     }
-    newEntries.push(this._priceEntries[this._priceEntries.length - 1]);
-    this._priceEntries = newEntries;
+    newEntries.push(priceEntries[priceEntries.length - 1]);
+    return Object.assign([], newEntries);
   }
 
   private _convertToNumber(value: string): number {
