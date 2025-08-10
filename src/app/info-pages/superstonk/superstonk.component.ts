@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-superstonk',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule, FooterComponent],
   templateUrl: './superstonk.component.html',
   styleUrl: './superstonk.component.scss'
 })

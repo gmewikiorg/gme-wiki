@@ -51,6 +51,7 @@ import { TeddyComponent } from './info-pages/teddy/teddy.component';
 import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
 import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
 import { MarketTacticsComponent } from './info-pages/market-tactics/market-tactics.component';
+import { SuperstonkComponent } from './info-pages/superstonk/superstonk.component';
 
 
 
@@ -159,6 +160,7 @@ export const routes: Routes = [
     { path: 'sneeze-vs-squeeze', component: SneezeVsSqueezeComponent },
 
     { path: 'stores', component: StoresComponent },
+    { path: 'superstonk', component: SuperstonkComponent },
 
     { path: 'teddy', component: TeddyComponent },
 

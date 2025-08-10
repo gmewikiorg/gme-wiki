@@ -15,7 +15,7 @@ import { ImportGmeDataService } from '../../../shared/services/import-gme-data.s
 export class BurpChartComponent {
 
   constructor(private _gmeDataService: ImportGmeDataService) {
-    // Chart.unregister(ChartDataLabels, annotationPlugin, Tooltip);
+    Chart.unregister(ChartDataLabels, annotationPlugin, Tooltip);
     // if we do not unregister the ChartDataLabels then every point on the chart will have a label which looks terrible
     Chart.register(annotationPlugin, PointElement, Title, Legend, Filler, Decimation, CategoryScale, LineElement, Tooltip, LineController, LinearScale, BarController, BarElement);
     const gmeData = this._gmeDataService.tradingDayPriceEntries.filter(item => item.dateYYYYMMDD >= '2024-01-01' && item.dateYYYYMMDD <= '2024-07-30')
