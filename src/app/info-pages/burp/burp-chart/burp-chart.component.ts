@@ -30,7 +30,7 @@ export class BurpChartComponent {
           label: 'GME trading volume ',
           borderColor: 'blue',
           backgroundColor: 'rgba(0, 89, 255, 1)',
-          borderWidth: 0.5,
+          borderWidth: 0.0,
           yAxisID: 'yVolume',
         },
         {
