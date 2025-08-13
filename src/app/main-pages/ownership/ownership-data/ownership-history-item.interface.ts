@@ -3,6 +3,7 @@ export interface OwnershipHistoryItem{
     registeredText: string;
     filingLink: string;
     filingType: '10Q' | '10K';
+    filingDateYYYYMMDD: string;
     tso: number;
     heldByCede: number;
     heldByRegistered: number;

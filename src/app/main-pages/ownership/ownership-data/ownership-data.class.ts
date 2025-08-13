@@ -14,7 +14,9 @@ export class OwnershipData {
     public get formType(): '10Q' | '10K' { return this._recentOwnershipData.filingType; }
     public get tso(): number { return  this._recentOwnershipData.tso; }
     public get lastUpdateYYYYMMDD(): string { return this._recentOwnershipData.dateYYYYMMDD; }
-    public get date(): string { return dayjs(this.lastUpdateYYYYMMDD).format('MMMM D, YYYY'); }
+    public get filingDateYYYYMMDD(): string { return this._recentOwnershipData.filingDateYYYYMMDD; }
+    public get dateFormatted(): string { return dayjs(this.lastUpdateYYYYMMDD).format('MMMM D, YYYY'); }
+    public get filingDateFormatted(): string { return dayjs(this.filingDateYYYYMMDD).format('MMMM D, YYYY'); }
     public get totalCede(): number { return this._recentOwnershipData.heldByCede; }
     public get totalRegistered(): number { return this._recentOwnershipData.heldByRegistered; }
     public get drsShares(): number { return this._recentOwnershipData.registeredDRS; }

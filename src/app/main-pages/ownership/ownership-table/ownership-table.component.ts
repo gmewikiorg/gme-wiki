@@ -54,7 +54,7 @@ export class OwnershipTableComponent {
 
 
   public get recent10Q10Kurl(): string { return this.data.filingLink; }
-  public get recent10Q10KDate(): string { return this.data.date; }
+  public get recent10Q10KDate(): string { return this.data.filingDateFormatted; }
   public get recentFormType(): string { return this.data.formType; }
 
 
