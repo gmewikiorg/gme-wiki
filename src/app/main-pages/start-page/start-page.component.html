@@ -1,14 +1,46 @@
-<div class="component-root">
-    <h1 class="page-title">
-        Welcome to gmewiki.org
-    </h1>
-    <h5 class="page-subtitle">
-        An information tool all about GME and GameStop
-    </h5>
+<div class="component-root gamestop-background" [ngStyle]="backgroundNgStyle">
+    <div class="page-top-bar" [ngClass]="isDarkMode? 'page-top-bar-dark': 'page-top-bar'" *ngIf="!isMobile">
+        <div class="top-bar-content">
+            <!-- <div class="top-bar-section" *ngIf="screenWidth >= 1200">
+                
+            </div> -->
+            <div class="title-container">
+                <div class="welcome-page-title">Welcome to gmewiki.org</div>
+                <div class="welcome-page-subtitle" [ngStyle]="subtitleNgStyle">An information website all about GME and
+                    GameStop</div>
+            </div>
+        </div>
 
+        <div class="directory-label">
+            <a [routerLink]="'/directory'" class="top-bar-section" *ngIf="screenWidth >= 650"><span
+                    *ngIf="screenWidth >= 1000">gmewiki.org</span> Directory</a>
+        </div>
+        <div class="main-menu-label-container" *ngIf="screenWidth >= 650" (mouseenter)="onMouseEnterMainMenu()">
+            <div class="main-menu-label" [ngClass]="isDarkMode? 'main-menu-label-dark': 'main-menu-label'"
+                [ngStyle]="mainMenuLabelNgStyle">
+                Main Menu
+            </div>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="isMobile" class="page-top-bar-mobile">
+        <div style="font-weight: bold;" style="color:white">Welcome to gmewiki.org
+        </div>
+        <div style="font-size: 0.8em;" style="color:white" >An information website
+            all about GME and GameStop</div>
+    </div>
+
+
+
+    <!-- <div class="page-content" *ngIf="!afterViewInit" style="height: 1000px;"></div> -->
+    <!-- full size screen -->
+    <div class="page-content" [ngStyle]="gapSectionNgStyle"></div>
 
     <div class="page-content">
-        <div class="page-section menu-item" [routerLink]="'/timeline'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/timeline'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GME Timeline</div>
             <div class="section-body">
 
@@ -23,7 +55,8 @@
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/earnings'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/earnings'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GME Earnings and Financial Information</div>
             <div class="section-body">
                 <img src="assets/main-pages/earnings.png" alt="gme earnings" class="page-image">
@@ -40,7 +73,8 @@
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/ownership'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/ownership'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GME Ownership</div>
             <div class="section-body">
                 <div style="max-width: 650px; margin-right: 10px;"> <img src="assets/main-pages/ownership.png"
@@ -67,7 +101,8 @@
             </div>
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/turnaround'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/turnaround'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Company Turnaround</div>
             <div class="section-body">
                 <div style="max-width: 650px;"> <img src="assets/info-pages/turnaround.png" alt="GameStop Turnaround"
@@ -84,7 +119,8 @@
 
         </div>
 
-        <div class="page-section menu-item" [routerLink]="'/stores'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/stores'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Store Count Information</div>
             <div class="section-body">
                 <div style="margin-right: 10px;"> <img src="assets/info-pages/stores-page.png" alt="Store counts"
@@ -105,22 +141,25 @@
 
 
         <div class="page-section menu-item" [routerLink]="'/investment-policy'"
-            [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Investment Policy</div>
 
-            <p class="section-p">As the legacy business contracts, GameStop is evolving into a capital allocator with a growing focus on
+            <p class="section-p">As the legacy business contracts, GameStop is evolving into a capital allocator with a
+                growing focus on
                 strategic investments. </p>
             <div class="section-p">
                 GameStop has made significant changes to its Investment Policy, giving Ryan Cohen discretion over
                 investments.
             </div>
-            <p class="section-p">GameStop has raised over <b>$4 billion</b> through private offerings of convertible senior notes, and has
+            <p class="section-p">GameStop has raised over <b>$4 billion</b> through private offerings of convertible
+                senior notes, and has
                 used some of that money to buy 4,710 bitcoin.</p>
 
         </div>
 
 
-        <div class="page-section menu-item" [routerLink]="'/drs'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/drs'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">DRS (Direct Registration System)</div>
             <p class="section-p">Unlike most publicly traded companies, a significant portion of all GME shares ({{
                 registeredPercent }}%)
@@ -128,17 +167,20 @@
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/social-media'"
-            [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GME Social Media</div>
             <p class="section-p">Connect with the GME shareholder community across numerous platforms</p>
         </div>
 
 
-        <div class="page-section menu-item" [routerLink]="'/about'" [ngClass]="isDarkMode ? 'menu-item-dark': '' ">
+        <div class="page-section menu-item" [routerLink]="'/about'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}"
+            style="margin-bottom: 20px;">
             <div class="section-heading">About</div>
             <p class="section-p">About gmewiki.org</p>
         </div>
     </div>
 
-    <app-footer class="app-footer"></app-footer>
+    <app-footer class="app-footer" [ngClass]="isDarkMode ? 'border-top-dark': 'border-top'"
+        style="margin-top: 10px;"></app-footer>
 </div>

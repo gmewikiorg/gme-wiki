@@ -12,6 +12,7 @@ import { TimelineIconComponent } from '../../shared/nav-icons/timeline-icon/time
 import { EarningsIconComponent } from '../../shared/nav-icons/earnings-icon/earnings-icon.component';
 import { StartIconComponent } from '../../shared/nav-icons/start-icon/start-icon.component';
 import { Subject } from 'rxjs';
+import { StartPageService } from '../../main-pages/start-page/start-page.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -52,7 +53,8 @@ export class SidebarComponent {
   constructor(
     private _settingsService: SettingsService,
     private _router: Router,
-    private _screenService: ScreenService
+    private _screenService: ScreenService,
+    private _startPageService: StartPageService
   ) { }
   public get faChartLine(): IconDefinition { return faChartLine; }
   public get faChartPie(): IconDefinition { return faChartPie; }
@@ -69,6 +71,9 @@ export class SidebarComponent {
     this.areaOutSideClicked.subscribe(() => {
       this._menuIsOpen = false;
       this._clicked = false;
+    });
+    this._startPageService.mouseEnter$.subscribe(()=>{
+      this.onMouseEnter();
     })
   }
 

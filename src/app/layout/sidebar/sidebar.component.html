@@ -1,9 +1,11 @@
 <div class="sidebar-column no-select">
 
-    <div class="sidebar-button shadow" [ngClass]="{ 'sidebar-button-dark': isDarkMode }" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="onClick()" #menu>
-        <div style="display:flex;flex-direction: row; width: 100%;" *ngIf="!menuIsOpen" >
+    <div class="sidebar-button shadow" [ngClass]="{ 'sidebar-button-dark': isDarkMode }" (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()" (click)="onClick()" #menu>
+        <div style="display:flex;flex-direction: row; width: 100%;" *ngIf="!menuIsOpen">
             <fa-icon [icon]="faBars" style="font-size: 1.9em;"></fa-icon>
         </div>
+
         <div class="sidebar-expanded" [ngClass]="{ 'sidebar-expanded-dark': isDarkMode }" *ngIf="menuIsOpen">
             <div style="display:flex;flex-direction: row;  align-items: center; width: 100%; margin-bottom: 15px;">
                 <fa-icon [icon]="faBars" style="font-size: 1.9em;"></fa-icon>
@@ -27,7 +29,8 @@
                         Research
                     </div>
                 </div> -->
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/start'" [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/start'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-start-icon style="width: 30px;height:30px;"></app-start-icon>
                     </div>
@@ -35,7 +38,8 @@
                         Start
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'" [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-timeline-icon style="width: 30px;height:30px;"></app-timeline-icon>
                     </div>
@@ -43,7 +47,8 @@
                         Timeline
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/earnings'" [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/earnings'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-earnings-icon style="width: 30px;height:30px;"></app-earnings-icon>
                     </div>
@@ -51,16 +56,18 @@
                         Earnings
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/ownership'"  [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/ownership'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-ownership-icon style="width: 30px;height:30px;"></app-ownership-icon>
-                            
+
                     </div>
                     <div class="sidebar-item-title">
                         Company Ownership
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/social-media'" [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/social-media'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-social-media-icon style="width: 30px;height:30px;"></app-social-media-icon>
                     </div>
@@ -68,7 +75,8 @@
                         Social Media
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/about'" [routerLinkActive]="'active-link'">
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/about'"
+                    [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <fa-icon [icon]="faCircleInfo"
                             style="width: 30px; height: 30px; font-size:1.7em; color:rgb(155, 155, 155);"></fa-icon>
@@ -79,6 +87,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-

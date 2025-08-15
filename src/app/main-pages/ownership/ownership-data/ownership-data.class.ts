@@ -42,14 +42,14 @@ export class OwnershipData {
             { label: 'Held by registered holders with Computershare', value: this.totalRegistered, layer: 0, color: '#8f1795', },
             { label: 'Held by Cede & Co on behalf of DTCC', value: this.totalCede, layer: 0, color: '#CCC', },
             { label: 'DRS', value: this.drsShares, layer: 1, color: '#8f1795', },
-            { label: 'DSPP', value: this.dsppShares, layer: 1, color: '#a91cb0', },
+            { label: 'DSPP', value: this.dsppShares, layer: 1, color: '#97519bff', },
             { label: 'Ryan Cohen', value: this.rcShares, layer: 1, color: '#0066ff', },
             { label: 'All other insiders', value: this.insidersOtherShares, layer: 1, color: '#0066ff', },
             { label: 'Keith Gill', value: this.keithGillShares, layer: 1, color: '#ff0000', },
             { label: 'Vanguard Group Inc', value: this.vanguardShares, layer: 1, color: '#ff9900', },
             { label: 'Blackrock Inc', value: this.blackrockShares, layer: 1, color: '#ff9900', },
             { label: 'State Street Corp', value: this.stateStreetShares, layer: 1, color: '#ff9900', },
-            { label: 'All other (>300 institutions) ', value: this.otherInstShares, layer: 1, color: 'rgb(255, 204, 129)', },
+            { label: 'All other institutions (> 300) ', value: this.otherInstShares, layer: 1, color: 'rgb(255, 204, 129)', },
             { label: 'Remainder', value: this.remainderTotal, layer: 1, color: '#EEE', },
         ];
     }
