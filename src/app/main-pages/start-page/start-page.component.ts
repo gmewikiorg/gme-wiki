@@ -18,7 +18,7 @@ export class StartPageComponent implements OnInit, AfterViewInit {
     const title = 'Welcome to gmewiki.org - an information tool all about GME and GameStop';
     const description = 'gmewiki.org - a community-driven information tool all about GME and GameStop';
     const url = 'https://gmewiki.org/start';
-    const image = 'https://gmewiki.org/assets/nav-icons/start.png';
+    const image = 'https://gmewiki.org/assets/main-pages/gamestop-background.png';
     this._screenService.setPageInfo(title, description, url, image);
   }
 
