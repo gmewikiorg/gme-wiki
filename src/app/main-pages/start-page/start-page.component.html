@@ -44,14 +44,17 @@
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Company Turnaround</div>
             <div class="section-body">
-                <div style="max-width: 650px;">
+                <!-- <div style="max-width: 650px;">
                     <img *ngIf="!isDarkMode" src="assets/main-pages/turnaround.png" alt="GameStop Turnaround"
                         class="page-image">
                     <img *ngIf="isDarkMode" src="assets/main-pages/turnaround-dark.png" alt="GameStop Turnaround"
                         class="page-image">
-                </div>
+                </div> -->
+                <app-turnaround-table [isTurnaroundPage]="true" style="width: 100%;"></app-turnaround-table>
+
                 <div>
-                    <p class="section-p">Since 2021, GameStop has been undergoing a transformation: new leadership, fewer stores, higher
+                    <p class="section-p">Since 2021, GameStop has been undergoing a transformation: new leadership,
+                        fewer stores, higher
                         value, renewed
                         profitability.</p>
                     <p class="section-p">Core financial metrics show significant improvements to the company since the
@@ -67,8 +70,9 @@
             <div class="section-heading">GME Timeline</div>
             <div class="section-body">
                 <div class="image-container">
-                    <img *ngIf="!isDarkMode"  src="assets/main-pages/timeline.png" alt="gme timeline" class="page-image">
-                    <img *ngIf="isDarkMode" src="assets/main-pages/timeline-dark.png" alt="gme timeline" class="page-image">
+                    <img *ngIf="!isDarkMode" src="assets/main-pages/timeline.png" alt="gme timeline" class="page-image">
+                    <img *ngIf="isDarkMode" src="assets/main-pages/timeline-dark.png" alt="gme timeline"
+                        class="page-image">
                 </div>
 
                 <p class="section-p">Explore the history of GameStop and see noteworthy
@@ -172,7 +176,8 @@
             <p class="section-p">Unlike most publicly traded companies, a significant portion of all GME shares ({{
                 registeredPercent }}%)
                 are held by registered shareholders.</p>
-            <p class="section-p">Read about DRS and why so many individual shareholders have decided to hold their shares in DRS form.</p>
+            <p class="section-p">Read about DRS and why so many individual shareholders have decided to hold their
+                shares in DRS form.</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/social-media'"

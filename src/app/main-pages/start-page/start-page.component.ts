@@ -5,11 +5,12 @@ import { OwnershipData } from '../ownership/ownership-data/ownership-data.class'
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { StartPageService } from './start-page.service';
+import { TurnaroundTableComponent } from '../../info-pages/turnaround/turnaround-table/turnaround-table.component';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [RouterModule, FooterComponent, CommonModule],
+  imports: [RouterModule, FooterComponent, CommonModule, TurnaroundTableComponent],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })
