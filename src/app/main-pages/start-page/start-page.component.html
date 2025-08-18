@@ -105,7 +105,8 @@
             <div class="section-heading">GME Ownership</div>
             <div class="section-body">
                 <div style="max-width: 650px; margin-right: 10px;">
-                    <img src="assets/main-pages/ownership.png" alt="gme ownership" class="page-image">
+                    <img *ngIf="!isDarkMode" src="assets/main-pages/ownership.png" alt="gme ownership" class="page-image">
+                    <img *ngIf="isDarkMode" src="assets/main-pages/ownership-dark.png" alt="gme ownership" class="page-image">
                 </div>
 
                 <div>
@@ -170,7 +171,7 @@
         </div>
 
 
-        <div class="page-section menu-item" [routerLink]="'/drs'"
+        <!-- <div class="page-section menu-item" [routerLink]="'/drs'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">DRS (Direct Registration System)</div>
             <p class="section-p">Unlike most publicly traded companies, a significant portion of all GME shares ({{
@@ -178,7 +179,7 @@
                 are held by registered shareholders.</p>
             <p class="section-p">Read about DRS and why so many individual shareholders have decided to hold their
                 shares in DRS form.</p>
-        </div>
+        </div> -->
 
         <div class="page-section menu-item" [routerLink]="'/social-media'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
