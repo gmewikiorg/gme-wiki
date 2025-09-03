@@ -45,7 +45,7 @@ export class OwnershipData {
             { label: 'DSPP', value: this.dsppShares, layer: 1, color: '#97519bff', },
             { label: 'Ryan Cohen', value: this.rcShares, layer: 1, color: '#0066ff', },
             { label: 'All other insiders', value: this.insidersOtherShares, layer: 1, color: '#0066ff', },
-            { label: 'Keith Gill', value: this.keithGillShares, layer: 1, color: '#ff0000', },
+            { label: 'Keith Gill *', value: this.keithGillShares, layer: 1, color: '#ff0000', },
             { label: 'Vanguard Group Inc', value: this.vanguardShares, layer: 1, color: '#ff9900', },
             { label: 'Blackrock Inc', value: this.blackrockShares, layer: 1, color: '#ff9900', },
             { label: 'State Street Corp', value: this.stateStreetShares, layer: 1, color: '#ff9900', },

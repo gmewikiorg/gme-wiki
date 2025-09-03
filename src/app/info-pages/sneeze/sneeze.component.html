@@ -30,7 +30,7 @@
 
         <div class="page-section" *ngIf="isBrowser">
             <div class="section-heading">Sneeze Timeline</div>
-            <div><button (click)="onClick()" [disabled]="animateButtonDisabled">Animate Timeline</button></div>
+            <div *ngIf="!isMobile"><button (click)="onClick()" [disabled]="animateButtonDisabled">Animate Timeline</button></div>
             <!-- <div *ngIf="chartIsLoaded">
                 <app-timeline-chart class="app-chart" [isSneezeComponent]="true"></app-timeline-chart>
             </div> -->
@@ -59,20 +59,22 @@
                         href="https://www.fool.com/investing/2020/02/22/is-gamestop-headed-for-bankruptcy.aspx"
                         target="_blank" class="external-link" rel="nofollow">likely heading towards bankruptcy</a></li>
                 <!-- <li>In the second half of 2020, the share price of GME began trending upward after years of decline</li> -->
-                <li><a href="https://en.wikipedia.org/wiki/Keith_Gill" target="_blank" class="external-link" rel="nofollow">Keith Gill,</a> known on YouTube
+                <li><a [routerLink]="'/keith-gill'">Keith Gill,</a> known on YouTube
                     as <a href="https://www.youtube.com/c/roaringkitty" target="_blank" class="external-link" rel="nofollow">RoaringKitty</a>, and on Reddit
                     as <a href="https://www.reddit.com/user/DeepFuckingValue/" target="_blank" class="external-link" rel="nofollow">DeepFuckingValue</a>,
                     began investing in GME in 2019, and shared his investing thesis and position on these social media
                     platforms
                 </li>
-                <li>In the second half of 2020, <a href="https://en.wikipedia.org/wiki/Ryan_Cohen" target="_blank" class="external-link" rel="nofollow">Ryan
+                <li>In the second half of 2020, <a [routerLink]="'/ryan-cohen'">Ryan
                         Cohen</a> began purchasing shares of GME, becoming the largest owner of GME with approximately
                     13% ownership of the company at the time</li>
                 <li>As the share price of GME began rising in the second half of 2020, GME started to gain attention on
                     social media platforms, causing more investors to purchase shares of GME, causing the price to
                     continue to go up, in a continuous feedback loop</li>
                 <li>In January 2021, the share price of GME was rising exponentially</li>
-                <li>On January 28, 2021, in an unprecedented maneuver, most stock brokers, in unison, disabled the
+                <li>On January 28, 2021, in an unprecedented maneuver, many stock brokers 
+                    (<a href="https://www.reddit.com/r/GME/comments/1ivm2ei/proof_apex_clearing_demanded_gme_stock_buying_be/" class="external-link" rel="nofollow" target="_blank">approximately 178</a>),
+                     in unison, disabled the
                     ability for investors to purchase shares of GME</li>
                 <li>Information from the <a
                         href="https://www.sec.gov/files/staff-report-equity-options-market-struction-conditions-early-2021.pdf"
