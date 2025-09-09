@@ -26,8 +26,8 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalLiabilities: 5164700000,
     stockholdersEquity: 5176400000,
     storeCount: 3203,
-    drs: 68100000,
-    url: ""
+    drs: 66700000,
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638025000075/gme-20250802.htm"
   },
   {
     fiscalYear: 2025,

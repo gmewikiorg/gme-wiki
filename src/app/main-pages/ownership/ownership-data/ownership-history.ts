@@ -28,6 +28,28 @@ CHENG LAWRENCE - 83,000
  */
 export const ownershipHistory: OwnershipHistoryItem[] = [
     {
+        dateYYYYMMDD: '2025-09-09',
+        registeredText: "... approximately 66.7 million shares (or approximately 15% of our outstanding shares) were held by registered holders with our transfer agent, Computershare Limited ",
+        filingLink: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638025000075/gme-20250802.htm",
+        filingType: '10Q',
+        filingDateYYYYMMDD: '2025-09-05',
+        tso: 447700000,
+        heldByCede: 381000000,
+        heldByRegistered: 66700000,
+        registeredDRS: drsVsDsppRatio2025 * 66700000,
+        registeredDSPP: (1 - drsVsDsppRatio2025) * 66700000,
+        totalInsiders: 850553 + 37347842,
+        insidersRyanCohen: 37347842,
+        insidersRemainder: 850553,
+        keithGill: 9001000,
+        instVanguard: 38920865,
+        instBlackrock: 35297475,
+        instStateStreet: 12475894,
+        instAllOther: 90862536,
+        instTotal: 177556770,
+        remainder: 156243835,
+    },
+    {
         dateYYYYMMDD: '2025-08-14',
         registeredText: "... approximately 68.1 million shares of our Class A common stock were held by registered holders with our transfer agent (or approximately 15% of our outstanding shares)",
         filingLink: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638025000035/gme-20250503.htm",
