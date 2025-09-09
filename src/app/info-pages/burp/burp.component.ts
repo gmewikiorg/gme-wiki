@@ -21,7 +21,7 @@ export class BurpComponent implements OnInit {
     const title = 'GME Burp of 2024 | gmewiki.org';
     const description = 'In May and June of 2024, GME experienced some major turbulence.  Why?';
     const url = 'https://gmewiki.org/burp';
-    const image = '';
+    const image = 'https://gmewiki.org/assets/info-pages/burp.png';
     this._screenService.setPageInfo(title, description, url, image);
     this._isBrowser = this._screenService.isBrowser;
   } 

@@ -3,10 +3,6 @@
         <div class="section-heading">
             GME Ownership Table (as of {{lastUpdated}})
         </div>
-        <div>
-            <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
-        </div>
-
     </div>
     <table class="data-table">
         <thead>
@@ -200,6 +196,9 @@
             </tr>
         </tbody>
     </table>
+    <div style="display: flex;flex-direction: row-reverse;">
+        <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
+    </div>
 </div>
 
 
@@ -212,10 +211,6 @@
         <div class="section-heading">
             GME ownership table (as of {{lastUpdated}})
         </div>
-        <div style="display:flex;flex-direction: row-reverse; padding: 5px;">
-            <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
-        </div>
-
     </div>
     <table class="data-table">
 
@@ -398,4 +393,8 @@
             </tr>
         </tbody>
     </table>
+
+    <div style="display:flex;flex-direction: row-reverse; padding: 5px;">
+        <button class="show-data-button" (click)="onClickShowDataSource()">{{buttonLabel}}</button>
+    </div>
 </div>
