@@ -10,7 +10,7 @@ export class FinancialChartService {
   constructor() { }
 
 
-  private _chartPeriod$: BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'> = new BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'>('ANNUAL');
+  private _chartPeriod$: BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'> = new BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'>('QUARTER');
   private _chartOption$: BehaviorSubject<EarningsChartSelection> = new BehaviorSubject<EarningsChartSelection>(EarningsChartSelection.REVENUE_VS_NET_INCOME);
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartPeriod$.getValue(); }

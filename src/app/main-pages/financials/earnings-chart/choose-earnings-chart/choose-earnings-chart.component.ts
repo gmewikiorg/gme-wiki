@@ -32,6 +32,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
 
   private _chartMenu: CustomDropdownMenu = new CustomDropdownMenu([
     'Revenue and Net Income',
+    'Net Income',
     'Net Profit Margin',
     'Revenue vs Cost of Sales',
     'Revenue vs Store Count',
@@ -45,7 +46,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Interest Income',
     "Stockholders' Equity"
   ]);
-  private _periodMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Year', 'Fiscal Quarter']);
+  private _periodMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Quarter', 'Fiscal Year']);
 
   public get chartMenu(): CustomDropdownMenu { return this._chartMenu; }
   public get periodMenu(): CustomDropdownMenu { return this._periodMenu; }
@@ -100,6 +101,8 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   public onSelectChartMenuItem(item: string){
     if(item === 'Revenue and Net Income'){
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_NET_INCOME);
+    }else if(item === 'Net Income'){
+      this._financialsService.setChartOption(EarningsChartSelection.NET_INCOME);
     }else if(item === 'Net Profit Margin'){
       this._financialsService.setChartOption(EarningsChartSelection.NET_PROFIT_MARGIN);
     }else if(item === 'Revenue vs Cost of Sales'){

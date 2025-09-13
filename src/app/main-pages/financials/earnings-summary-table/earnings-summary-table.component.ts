@@ -34,7 +34,7 @@ export class EarningsTableComponent {
 
   public get isMobile(): boolean { return this._screenService.isMobile; }
 
-  private _displayMode: 'QUARTER' | 'ANNUAL' = 'ANNUAL';
+  private _displayMode: 'QUARTER' | 'ANNUAL' = 'QUARTER';
   private _timePeriod: string = "Fiscal Year";
   private _tableRows: EarningsTableRow[] = [];
   private _quarterlyResults: EarningsResult[] = []
@@ -43,7 +43,7 @@ export class EarningsTableComponent {
   private _pageWidth: number = 0;
   private _fontSize: string = "0.9em";
 
-  private _dropdownMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Year', 'Fiscal Quarter'])
+  private _dropdownMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Quarter', 'Fiscal Year'])
   public get dropdownMenu(): CustomDropdownMenu { return this._dropdownMenu; }
 
   public get displayMode(): 'QUARTER' | 'ANNUAL' { return this._displayMode; }

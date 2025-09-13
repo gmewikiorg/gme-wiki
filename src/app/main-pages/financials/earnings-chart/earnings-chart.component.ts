@@ -50,7 +50,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   private _isLoaded: boolean = false;
   public get isLoaded(): boolean { return this._isLoaded; }
 
-  private _chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ' = 'ANNUAL';
+  private _chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ' = 'QUARTER';
   private _chartSelection: EarningsChartSelection = EarningsChartSelection.REVENUE_VS_NET_INCOME;
 
   public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartPeriod; }
@@ -64,6 +64,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   }
 
   private _setComponentConfig() {
+    this._chartPeriod = 'QUARTER';
     if (this.isFY23Earnings) {
       this._chartService.setChartPeriod('ANNUAL');
       this._chartService.setChartOption(EarningsChartSelection.REVENUE_VS_NET_INCOME);
