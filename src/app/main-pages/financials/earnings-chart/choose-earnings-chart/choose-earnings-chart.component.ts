@@ -44,7 +44,9 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Operating Income vs SG&A Expense',
     'Gross Profit vs SG&A Expense',
     'Interest Income',
-    "Stockholders' Equity"
+    "Stockholders' Equity",
+    'Earnings per Share',
+    'Book Value per Share',
   ]);
   private _periodMenu: CustomDropdownMenu = new CustomDropdownMenu(['Fiscal Quarter', 'Fiscal Year']);
 
@@ -127,6 +129,11 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
       this._financialsService.setChartOption(EarningsChartSelection.INTEREST_INCOME);
     }else if(item === "Stockholders' Equity"){
       this._financialsService.setChartOption(EarningsChartSelection.STOCKHOLDERS_EQUITY);
+    }    else if(item === "Earnings per Share"){
+      this._financialsService.setChartOption(EarningsChartSelection.EPS);
+    }
+    else if(item === "Book Value per Share"){
+      this._financialsService.setChartOption(EarningsChartSelection.BOOK_VALUE_PER_SHARE);
     }
   }
 

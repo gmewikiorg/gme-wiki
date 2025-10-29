@@ -1,8 +1,8 @@
 import { Subscription, timer } from "rxjs";
-import { TimelineChartDataManagerService } from "../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service";
+import { TimelineChartDataManagerService } from "../../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service";
 import dayjs from "dayjs";
-import { TimelineControlsService } from "../../main-pages/timeline/timeline-controls/timeline-controls.service";
-import { TimelineEvent } from "../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class";
+import { TimelineControlsService } from "../../../main-pages/timeline/timeline-controls/timeline-controls.service";
+import { TimelineEvent } from "../../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class";
 
 
 

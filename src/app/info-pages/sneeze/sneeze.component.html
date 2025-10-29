@@ -29,24 +29,9 @@
         </div>
 
         <div class="page-section" *ngIf="isBrowser">
-            <div class="section-heading">Sneeze Timeline</div>
-            <div *ngIf="!isMobile"><button (click)="onClick()" [disabled]="animateButtonDisabled">Animate Timeline</button></div>
-            <!-- <div *ngIf="chartIsLoaded">
-                <app-timeline-chart class="app-chart" [isSneezeComponent]="true"></app-timeline-chart>
-            </div> -->
-            <!-- <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
-                <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
-            </div> -->
-
-            <div class="timeline-chart-grid" *ngIf="chartIsLoaded">
-                <!-- <app-loading class="app-chart" *ngIf="!chartIsLoaded"></app-loading> -->
-                <app-timeline-chart class="app-chart" [isSneezeComponent]="true"></app-timeline-chart>
-                <div class="annotation-box-container" *ngIf="showAnnotationBox && !isMobile">
-                    <app-timeline-annotation-box class="annotation-box"></app-timeline-annotation-box>
-                </div>
-            </div>
-
-            <app-loading class="app-chart" *ngIf="!chartIsLoaded"></app-loading>
+            <div class="section-heading">Sneeze Chart</div>
+            <div class="section-subheading">(Pre-split values)</div>
+            <app-sneeze-chart *ngIf="chartIsLoaded"></app-sneeze-chart>
         </div>
 
         <!-- Summary -->

@@ -11,9 +11,9 @@ export function earningsChartLabelContext(context: TooltipItem<"bar">, chartOpti
     } else if (context.datasetIndex === 1) {
       label = "Net Income:  $" + numberWithCommas(numValue);
     }
-  } else if (chartOption === EarningsChartSelection.NET_PROFIT_MARGIN){
+  } else if (chartOption === EarningsChartSelection.NET_PROFIT_MARGIN) {
     label = "Net Profit Margin: " + (numValue).toFixed(1) + " %";
-    if(numValue < 0){
+    if (numValue < 0) {
       label = "Net Loss Margin: " + (numValue).toFixed(1) + " %";
     }
   } else if (chartOption === EarningsChartSelection.REVENUE_VS_COST) {
@@ -73,6 +73,12 @@ export function earningsChartLabelContext(context: TooltipItem<"bar">, chartOpti
 
     label = "Revenue per store: $" + (numberWithCommas(Number(numValue.toFixed(0))));
 
+  } else if (chartOption === EarningsChartSelection.NET_INCOME) {
+    label = 'Net income: $' + (numberWithCommas(Number(numValue.toFixed(0))));
+  } else if (chartOption === EarningsChartSelection.EPS) {
+    label = 'Earnings per Share: $' + (numberWithCommas(Number((numValue/100).toFixed(2))));
+  } else if (chartOption === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+    label = 'Book value per Share: $' + (numberWithCommas(Number((numValue/100).toFixed(2))));
   }
   return label;
 }

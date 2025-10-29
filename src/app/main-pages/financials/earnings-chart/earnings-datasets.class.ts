@@ -28,6 +28,8 @@ export class EarningsDatasetBuilder {
         const hardwareRevPercentDataItems: number[] = results.map(r => ((r.hardwareRevenue / r.revenue) * 100)).reverse();
         const softwareRevPercentDataItems: number[] = results.map(r => ((r.softwareRevenue / r.revenue) * 100)).reverse();
         const collectiblesRevPercentDataItems: number[] = results.map(r => ((r.collectiblesRevenue / r.revenue) * 100)).reverse();
+        const epsDataItems: number[] = results.map(r => ((r.netEPS) * 100)).reverse();
+        const bvpsDataItems: number[] = results.map(r => ((r.stockholdersEquity / r.weightedAverageSharesOutstanding) * 100)).reverse();
 
         const revenueDataSet = this._buildDataset(EarningsMetric.REVENUE, chartPeriod, dataEntryCount, revenueDataItems, chartSelection);
         const netIncomeDataset = this._buildDataset(EarningsMetric.NET_INCOME, chartPeriod, dataEntryCount, netIncomeDataItems, chartSelection);
@@ -46,7 +48,8 @@ export class EarningsDatasetBuilder {
         const softwareRevPercentDataset = this._buildDataset(EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE, chartPeriod, dataEntryCount, softwareRevPercentDataItems, chartSelection);
         const collectiblesRevPercentDataset = this._buildDataset(EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE, chartPeriod, dataEntryCount, collectiblesRevPercentDataItems, chartSelection);
         const revenuePerStoreDataset = this._buildDataset(EarningsMetric.REVENUE_PER_STORE, chartPeriod, dataEntryCount, revenuePerStoreDataItems, chartSelection);
-
+        const epsDataset = this._buildDataset(EarningsMetric.EPS, chartPeriod, dataEntryCount, epsDataItems, chartSelection);
+        const bvpsDataset = this._buildDataset(EarningsMetric.BOOK_VALUE_PER_SHARE, chartPeriod, dataEntryCount, bvpsDataItems, chartSelection);
 
         let datasets: ChartDataset<"bar", any[]>[] = [];
         if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
@@ -77,6 +80,10 @@ export class EarningsDatasetBuilder {
             datasets = [hardwareRevPercentDataset, softwareRevPercentDataset, collectiblesRevPercentDataset];
         } else if (chartSelection === EarningsChartSelection.REVENUE_PER_STORES) {
             datasets = [revenuePerStoreDataset];
+        } else if (chartSelection === EarningsChartSelection.EPS) {
+            datasets = [epsDataset];
+        } else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+            datasets = [bvpsDataset];
         }
 
         return datasets;
@@ -116,11 +123,15 @@ export class EarningsDatasetBuilder {
             title = 'Revenue by Type as Percent of Total ' + periodLabel;
         } else if (chartOption === EarningsChartSelection.REVENUE_PER_STORES) {
             title = 'Revenue per Store ' + periodLabel;
+        } else if (chartOption === EarningsChartSelection.EPS) {
+            title = 'Earnings per Share ' + periodLabel;
+        } else if (chartOption === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+            title = 'Book Value per Share ' + periodLabel;
         }
         return title;
     }
 
-    public getTickScale(chartOption: EarningsChartSelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): 100 | 1000 | 1000000 | 1000000000 {
+    public getTickScale(chartOption: EarningsChartSelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): 100 | 1000 | 1000000 | 1000000000 | 1 {
         let tickScale: number = 1000000000;
         const revenueConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE];
         const netIncomeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_INCOME];
@@ -135,6 +146,8 @@ export class EarningsDatasetBuilder {
         const revenueTypeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.HARDWARE_REVENUE];
         const revenueTypePercentConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.HARDWARE_REVENUE_PERCENTAGE];
         const revenuePerStoreConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE_PER_STORE];
+        const epsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.EPS];
+        const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
 
         if (chartPeriod === 'ANNUAL') {
             if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
@@ -165,6 +178,10 @@ export class EarningsDatasetBuilder {
                 tickScale = Math.max(revenueTypePercentConfig.tickScaleAnnually);
             } else if (chartOption === EarningsChartSelection.REVENUE_PER_STORES) {
                 tickScale = Math.max(revenuePerStoreConfig.tickScaleAnnually);
+            } else if (chartOption === EarningsChartSelection.EPS) {
+                tickScale = 1;
+            } else if (chartOption === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+                tickScale = 1;
             }
         } else {
             if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
@@ -195,6 +212,10 @@ export class EarningsDatasetBuilder {
                 tickScale = Math.max(revenueTypePercentConfig.tickScaleQuarterly);
             } else if (chartOption === EarningsChartSelection.REVENUE_PER_STORES) {
                 tickScale = Math.max(revenuePerStoreConfig.tickScaleQuarterly);
+            } else if (chartOption === EarningsChartSelection.EPS) {
+                tickScale = 1;
+            } else if (chartOption === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+                tickScale = 1;
             }
         }
         if (tickScale === 1000000000) {
@@ -205,6 +226,8 @@ export class EarningsDatasetBuilder {
             return 1000;
         } else if (tickScale === 100) {
             return 100;
+        }else if(tickScale === 1){
+            return 1;
         }
         return 1000000000;
     }
@@ -219,7 +242,9 @@ export class EarningsDatasetBuilder {
         const interestConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.INTEREST_INCOME];
         const equityConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STOCKHOLDERS_EQUITY];
         const operatingConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.OPERATING_INCOME];
-        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA]
+        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA];
+        const epsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.EPS];
+        const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
         if (chartPeriod === 'ANNUAL') {
             if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
                 minY = Math.min(revenueConfig.minYAnnual, netIncomeConfig.minYAnnual);
@@ -241,6 +266,10 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(operatingConfig.minYAnnual, sgaConfig.minYAnnual);
             } else if (chartSelection === EarningsChartSelection.NET_INCOME) {
                 minY = Math.min(-800000000);
+            }else if (chartSelection === EarningsChartSelection.EPS) {
+                minY = epsConfig.minYAnnual;
+            }else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+                minY = bvpsConfig.minYAnnual;
             }
         } else {
             if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
@@ -263,6 +292,10 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(operatingConfig.minYQuarter, sgaConfig.minYQuarter);
             } else if (chartSelection === EarningsChartSelection.NET_INCOME) {
                 minY = Math.min(netIncomeConfig.minYQuarter)
+            }else if (chartSelection === EarningsChartSelection.EPS) {
+                minY = epsConfig.minYQuarter;
+            }else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+                minY = bvpsConfig.minYQuarter;
             }
         }
         return minY;
@@ -350,6 +383,8 @@ export class EarningsDatasetBuilder {
                         return '$' + (value / tickScale).toFixed(0) + " K";
                     } else if (tickScale === 100) {
                         return (value).toFixed(1) + " %";
+                    } else if(tickScale === 1){
+                        return '$' + (value/100).toFixed(2);
                     }
                 } else {
                     return '' + (value / tickScale).toFixed(0) + " K";

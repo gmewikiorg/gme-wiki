@@ -12,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
 import { TimelineControlsService } from '../timeline-controls/timeline-controls.service';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { getAnnotationConfig } from '../timeline-controls/chart-options/annotations-historic';
-import { SneezeChartAnimation } from '../../../info-pages/sneeze/sneeze-chart-animation.class';
+import { SneezeChartAnimation } from '../../../info-pages/sneeze/sneeze-chart/sneeze-chart-animation.class';
 import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 
 

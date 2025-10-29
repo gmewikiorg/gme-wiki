@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent } from '../../../layout/footer/footer.component';
-import { ScreenService } from '../../../shared/services/screen-size.service';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { ScreenService } from '../../shared/services/screen-size.service';
 
 @Component({
   selector: 'app-sneeze-vs-squeeze',

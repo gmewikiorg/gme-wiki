@@ -29,11 +29,11 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
   public onMouseLeave() { this._mouseIsIn = false; }
 
   private _quarterlyResults: EarningsResult[] = []
-  private _annualResults: EarningsResult[] = [];
+  // private _annualResults: EarningsResult[] = [];
   private _tableRows: EarningsResult[][] = [];
 
   public get tableRows(): EarningsResult[][] { return this._tableRows; }
-  private get startYear(): number { return 2020; }
+  private get startYear(): number { return 2018; }
   public get isMobile(): boolean { return this._screenService.isMobile; }
 
   public onMenuItemSelected(menuItem: string) {
@@ -56,7 +56,8 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     'SG&A Expense',
     'Interest Income',
     "Stockholders' Equity",
-    'Earnings per Share'
+    'Earnings per Share',
+    'Book Value per Share'
   ];
 
   private _dropdownMenu: CustomDropdownMenu = new CustomDropdownMenu(this._dropdownMenuItems);
@@ -64,9 +65,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this._loadingService.loadEarnings();
-    this._quarterlyResults = this._importFinancialsService.quarterlyResults.filter(item => item.fiscalYear >= 2020);
-    // this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
-    this._annualResults = this._importFinancialsService.annualResults.filter(item => item.fiscalYear >= 2005);
+    this._quarterlyResults = this._importFinancialsService.quarterlyResults.filter(item => item.fiscalYear >= this.startYear);
     this._buildTableRows();
   }
 
@@ -129,7 +128,7 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
     } else if (currentProperty === 'Gross Profit') {
       return '$' + (earningsResult.grossProfit / 1000000).toFixed(0) + 'M';
     } else if (currentProperty === 'Gross Margin') {
-      return ((earningsResult.grossProfit / earningsResult.revenue)*100).toFixed(1) + '%';
+      return ((earningsResult.grossProfit / earningsResult.revenue) * 100).toFixed(1) + '%';
     } else if (currentProperty === 'Operating Income') {
       const value = earningsResult.operatingIncome;
       if (value > 0) {
@@ -150,7 +149,15 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
       } else {
         return '-$' + Math.abs(earningsResult.netEPS).toFixed(2);
       }
+    } else if (currentProperty === 'Book Value per Share') {
+      const value = earningsResult.stockholdersEquity / earningsResult.weightedAverageSharesOutstanding;
+      if (value > 0) {
+        return '$' + (value).toFixed(2);
+      } else {
+        return '-$' + Math.abs(value).toFixed(2);
+      }
     }
+
 
 
 
@@ -265,13 +272,13 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
         return {
           'backgroundColor': color,
         };
-      }else if (currentProperty === 'Gross Margin') {
+      } else if (currentProperty === 'Gross Margin') {
         const grossMarginValues = this._quarterlyResults
           .filter(result => result.fiscalYear >= this.startYear)
           .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
-          .map(r => ((r.grossProfit/r.revenue)*100))
+          .map(r => ((r.grossProfit / r.revenue) * 100))
         const minMax = ColorPicker.getMinMax(grossMarginValues);
-        const grossMarginValue = (earningsResult.grossProfit/earningsResult.revenue)*100;
+        const grossMarginValue = (earningsResult.grossProfit / earningsResult.revenue) * 100;
         const color = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, grossMarginValue);
         return {
           'backgroundColor': color,
@@ -329,6 +336,28 @@ export class QuarterlyEarningsDataTableComponent implements OnInit {
             'backgroundColor': 'rgba(255, 0, 0, 0.1)',
           };
         }
+      } else if (currentProperty === 'Book Value per Share') {
+        // const value = earningsResult.stockholdersEquity / earningsResult.weightedAverageSharesOutstanding;
+        // if (value > 0) {
+        //   return {
+        //     'backgroundColor': 'rgba(0, 255, 0, 0.05)',
+        //   };
+        // } else {
+        //   return {
+        //     'backgroundColor': 'rgba(255, 0, 0, 0.1)',
+        //   };
+        // }
+
+        const bvpsValues = this._quarterlyResults
+          .filter(result => result.fiscalYear >= this.startYear)
+          .filter(result => result.reportingPeriod === earningsResult.reportingPeriod)
+          .map(r => r.stockholdersEquity / r.weightedAverageSharesOutstanding)
+        const minMax = ColorPicker.getMinMax(bvpsValues);
+        const seValue = earningsResult.stockholdersEquity / earningsResult.weightedAverageSharesOutstanding;
+        const color = ColorPicker.getNonRedBGColor(minMax.min, minMax.max, seValue);
+        return {
+          'backgroundColor': color,
+        };
       }
 
 

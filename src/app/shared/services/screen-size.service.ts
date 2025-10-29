@@ -113,11 +113,13 @@ export class ScreenService {
       this._pageContentNgClass = ['dark-mode'];
       this._pageSectionNgClass = ['dark-mode'];
       this._pageSectionHeadingNgClass = ['dark-mode'];
+      this.meta.updateTag({ name: 'theme-color', content: '#121212' });
     }else{
       this._pageTitleNgClass = ['light-mode'];
       this._pageContentNgClass = ['light-mode'];
       this._pageSectionNgClass = ['light-mode'];
       this._pageSectionHeadingNgClass = ['light-mode'];
+      this.meta.updateTag({ name: 'theme-color', content: '#ffffff' });
     }
     this._settingsService.setDarkMode(isDarkMode);
     this._isDarkMode$.next(isDarkMode);
@@ -131,6 +133,9 @@ export class ScreenService {
   }
   public onClickLightMode(){
     this._setDarkMode(false);
+  }
+  public refreshDarkMode(){
+    this._setDarkMode(this.isDarkMode)
   }
 
   

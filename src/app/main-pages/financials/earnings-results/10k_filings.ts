@@ -159,7 +159,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
     ebit: -426800000,
     incomeTaxExpense: 37600000,
     netEarnings: -470900000,
-    netEPS: -5.38,
+    netEPS: -0.29,
     weightedAverageSharesOutstanding: 87500000,
     totalAssets: 2819700000,
     totalDebt: 419800000,
@@ -172,7 +172,7 @@ export const filings_10k_raw: EarningsResultInterface[] = [
   {
     fiscalYear: 2018,
     reportingPeriod: "FY",
-    filingDateYYYYMMDD: '',
+    filingDateYYYYMMDD: '2019-04-02',
     reportDateYYYYMMDD: "2019-02-02",
     revenue: 8285300000,
     revenueHardware: 3717800000,

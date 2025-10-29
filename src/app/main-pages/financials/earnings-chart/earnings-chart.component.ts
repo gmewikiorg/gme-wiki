@@ -79,7 +79,7 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
         this._chartPeriod = 'QUARTER';
         this._chartSelection = this.componentConfig.chart;
       }
-      if(this.componentConfig.article === 'collectibles'){
+      if (this.componentConfig.article === 'collectibles') {
         this._chartPeriod = 'QUARTER';
         this._chartSelection = this.componentConfig.chart;
       }
@@ -195,12 +195,15 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
 
   private _setChartOptions(): ChartOptions<'bar'> {
 
-    const tickScale: 100 | 1000 | 1000000 | 1000000000 = this._datasetBuilder.getTickScale(this.chartSelection, this.chartPeriod);
-    const tickLabel = tickScale === 1000000 ? 'million' : 'billion';
+    const tickScale: 1 | 100 | 1000 | 1000000 | 1000000000 = this._datasetBuilder.getTickScale(this.chartSelection, this.chartPeriod);
+    let tickLabel = tickScale === 1000000 ? 'million' : 'billion';
+    if (tickScale === 1) {
+      tickLabel = '';
+    }
     const minY = this._datasetBuilder.getMinY(this.chartSelection, this.chartPeriod);
     let maxY = undefined;
-  
-    if(this.chartSelection === EarningsChartSelection.STOCKHOLDERS_EQUITY){
+
+    if (this.chartSelection === EarningsChartSelection.STOCKHOLDERS_EQUITY) {
       maxY = 6000000000
     }
     const isRevenueTypePercent = this.chartSelection === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE;
@@ -246,15 +249,29 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
                 return Number(value) + "%";
               } else {
                 const numVal = Number(value);
-                if (numVal >= 0) {
-                  if (numVal === 0) {
-                    return '$0'
+                if (tickScale === 1) {
+                  // e.g. in case of EPS, BVPS
+                  if (numVal >= 0) {
+                    if (numVal === 0) {
+                      return '$0'
+                    } else {
+                      return '$' + (numVal / 100) + '.00 ';
+                    }
+                  } else {
+                    return '$' + (numVal / 100) + '.00 ';
+                  }
+                } else {
+                  if (numVal >= 0) {
+                    if (numVal === 0) {
+                      return '$0'
+                    } else {
+                      return '$' + (numVal / tickScale) + ' ' + tickLabel;
+                    }
                   } else {
                     return '$' + (numVal / tickScale) + ' ' + tickLabel;
                   }
-                } else {
-                  return '$' + (numVal / tickScale) + ' ' + tickLabel;
                 }
+
               }
 
             }

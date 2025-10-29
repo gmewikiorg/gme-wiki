@@ -2,20 +2,18 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { LoadingService } from '../../shared/services/loading.service';
-import { TimelineChartComponent } from '../../main-pages/timeline/timeline-chart/timeline-chart.component';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
-import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { Subscription } from 'rxjs';
 import { TimelineChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
-import { TimelineAnnotationBoxComponent } from '../../main-pages/timeline/timeline-annotation-box/timeline-annotation-box.component';
 import { TimelineControlsService } from '../../main-pages/timeline/timeline-controls/timeline-controls.service';
 import { TimelineEvent } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
+import { SneezeChartComponent } from './sneeze-chart/sneeze-chart.component';
 
 @Component({
   selector: 'app-sneeze',
   standalone: true,
-  imports: [FooterComponent, RouterModule, TimelineChartComponent, CommonModule, LoadingComponent, TimelineAnnotationBoxComponent],
+  imports: [FooterComponent, RouterModule, CommonModule, SneezeChartComponent],
   templateUrl: './sneeze.component.html',
   styleUrl: './sneeze.component.scss'
 })
@@ -65,7 +63,7 @@ export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  
+
   private _controlsSubscription: Subscription | null = null;
   private _animateSubscription: Subscription | null = null;
   public onClick() {

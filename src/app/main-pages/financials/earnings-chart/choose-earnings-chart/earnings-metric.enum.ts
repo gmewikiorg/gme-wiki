@@ -24,6 +24,9 @@ export enum EarningsMetric {
     HARDWARE_REVENUE_PERCENTAGE = 'HARDWARE_REVENUE_PERCENTAGE',
     SOFTWARE_REVENUE_PERCENTAGE = 'SOFTWARE_REVENUE_PERCENTAGE',
     COLLECTIBLES_REVENUE_PERCENTAGE = 'COLLECTIBLES_REVENUE_PERCENTAGE',
+
+    EPS = 'EPS',
+    BOOK_VALUE_PER_SHARE = 'BOOK_VALUE_PER_SHARE',
 }
 
 
@@ -31,8 +34,8 @@ export interface EarningsMetricConfig {
     colorScheme: 'BLUE' | 'RED_GREEN' | 'ORANGE' | 'GREEN';
     label: string;
     labelNegative: string;
-    tickScaleAnnually: 1000000000 | 1000000 | 1000 | 100;
-    tickScaleQuarterly: 1000000000 | 1000000 | 1000 | 100;
+    tickScaleAnnually: 1000000000 | 1000000 | 1000 | 100 | 1;
+    tickScaleQuarterly: 1000000000 | 1000000 | 1000 | 100 | 1;
     minYAnnual: number;
     minYQuarter: number;
 
@@ -57,7 +60,7 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleAnnually: 1000000,
         tickScaleQuarterly: 1000000,
         minYAnnual: -1000000000,
-        minYQuarter: -175000000,
+        minYQuarter: -500000000,
     },
     [EarningsMetric.NET_PROFIT_MARGIN]: {
         colorScheme: 'RED_GREEN',
@@ -66,7 +69,7 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleAnnually: 100,
         tickScaleQuarterly: 100,
         minYAnnual: -10,
-        minYQuarter: -20,
+        minYQuarter: -35,
 
     },
     [EarningsMetric.COST_OF_SALES]: {
@@ -94,7 +97,7 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleAnnually: 1000000,
         tickScaleQuarterly: 1000000,
         minYAnnual: -800000000,
-        minYQuarter: -200000000,
+        minYQuarter: -500000000,
     },
     [EarningsMetric.SGA]: {
         colorScheme: 'ORANGE',
@@ -198,5 +201,25 @@ export const EARNINGS_METRIC_CONFIG: Record<EarningsMetric, EarningsMetricConfig
         tickScaleQuarterly: 100,
         minYAnnual: 0,
         minYQuarter: 0,
+    },
+        [EarningsMetric.EPS]: {
+        colorScheme: 'RED_GREEN',
+        label: 'Earnings per Share',
+        labelNegative: 'Loss per Share',
+        tickScaleAnnually: 1,
+        tickScaleQuarterly: 1,
+        minYAnnual: -700,
+        minYQuarter: -500,
+
+    },
+        [EarningsMetric.BOOK_VALUE_PER_SHARE]: {
+        colorScheme: 'BLUE',
+        label: 'Book Value per Share',
+        labelNegative: 'Book Value per Share',
+        tickScaleAnnually: 1,
+        tickScaleQuarterly: 1,
+        minYAnnual: 0,
+        minYQuarter: 0,
+
     },
 };
