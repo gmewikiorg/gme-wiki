@@ -52,6 +52,7 @@ import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/sho
 import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
 import { MarketTacticsComponent } from './info-pages/market-tactics/market-tactics.component';
 import { SuperstonkComponent } from './info-pages/superstonk/superstonk.component';
+import { MichaelBurryComponent } from './info-pages/michael-burry/michael-burry.component';
 
 
 
@@ -132,6 +133,8 @@ export const routes: Routes = [
     { path: 'meme-stocks', component: MemeStockComponent },
 
     { path: 'moass', component: MoassComponent },
+
+    { path: 'michael-burry', component: MichaelBurryComponent },
 
     { path: 'naked-short-selling', component: NakedShortSellingComponent },
     { path: 'naked-shorts-cnbc', component: CNBCVsNakedShortsComponent },
