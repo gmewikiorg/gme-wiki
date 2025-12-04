@@ -47,16 +47,20 @@
                     target="_blank" class="external-link" rel="nofollow">ran ads</a> promoting this claim that Melvin
                 closed its short position.</p>
             <p>This claim is logically dubious. No real evidence was ever produced to substantiate the claim. The claim
-                apparently originated from Melvin Capital, so this was a narrative provided by them back by no evidence.
+                apparently originated from Melvin Capital, so this was a narrative provided by them without evidence.
                 It is logical to assess that this is the version of events that Melvin Capital wanted people to believe
-                based on their position, a narrative that would benefit them if people were to believe that it was true.
+                based on their position, a narrative that would benefit them if people were to believe that it was true
+                while it was actually secretly not true.
             </p>
             <p>After all, if it was the truth, then for what purpose would they publicly announce it? It would
-                be of no benefit to announce it, and for somebody to have paid to promote that story. It would sort
-                of be like a poker player announcing their supposed position to the other players at the table.</p>
+                be of no benefit to announce it, and for somebody to have paid to promote that story.
+                <!-- It would sort
+                of be like a poker player announcing their supposed position to the other players at the table. -->
+            </p>
             <p>
-                Even if it was true that Melvin Capital closed their GME short position, this would not account for any
-                of the other market participants that continued to have an open GME short position.
+                In any case, even if it was true that Melvin Capital closed their GME short position, this would not
+                account for any
+                of the other market participants that continued to have an existing GME short position or net short exposure.
             </p>
         </div>
 
@@ -66,7 +70,7 @@
                 2021, Mark Cuban did <a
                     href="https://www.reddit.com/r/wallstreetbets/comments/lawubt/hey_everyone_its_mark_cuban_jumping_on_to_do_an/"
                     target="_blank" class="external-link" rel="nofollow">
-                    an AMA discussion on r/wallstreetbets
+                    an AMA discussion on <a [routerLink]="'/reddit'">r/wallstreetbets</a>
                 </a>. Mark was asked if it was possible that the hedge funds would just not cover their shorts at all,
                 and just act like it never happened. To this, <a
                     href="https://www.reddit.com/r/wallstreetbets/comments/lawubt/comment/glqndlx/" target="_blank"
@@ -107,60 +111,7 @@
                 position.</p>
         </div>
 
-        <div class="page-section">
-            <div class="section-heading">Reported Short Interest Versus Concealment Methods</div>
-            <p>In the weeks following the peak of the <a [routerLink]="'/sneeze'">sneeze</a>, the reported GME <a
-                    [routerLink]="'/short-interest'">short interest</a> went from over 100% in January 2021 down to
-                below 20% in February 2021. This reported value would indicate that a significant amount of the existing
-                short positions were closed out and no longer existed, thus contradicting the notion that "shorts never
-                closed."</p>
-            <p>In the face of this reported value dropping significantly, why would GME shareholders therefore continue
-                to believe that significant obligations continued to exist?</p>
-            <p>There are numerous methods that market participants can utilize to be functionally short on a stock
-                without that position showing up in the reported short interest.</p>
-            <ul>
-                <li><a href="https://www.investopedia.com/terms/t/totalreturnswap.asp" target="_blank"
-                        class="external-link" rel="nofollow">Total Return Swaps</a> / <a
-                        href="https://www.investopedia.com/articles/stocks/09/trade-a-cfd.asp" target="_blank"
-                        class="external-link" rel="nofollow">Contracts for Difference</a>: A market
-                    participant enters into <a href="https://www.investopedia.com/articles/optioninvestor/07/swaps.asp"
-                        target="_blank" class="external-link" rel="nofollow">a swap agreement</a>
-                    that mirrors the economic exposure of shorting a stock without reporting a short position</li>
-                <li>Synthetic short position via options: A market participant can buy a <a
-                        href="https://www.investopedia.com/terms/p/putoption.asp" target="_blank" class="external-link"
-                        rel="nofollow">put option</a> and sell a <a
-                        href="https://www.investopedia.com/terms/c/calloption.asp" target="_blank" class="external-link"
-                        rel="nofollow">call option</a> with the same strike price, creating similar exposure as selling
-                    shares short, but by using options this method does not involve short sales and thus does not appear
-                    as short interest.</li>
-                <li><a [routerLink]="'/naked-short-selling'">Naked short selling</a>: A market participant can illegally
-                    naked short sell stocks and not report this
-                    information.</li>
-                <li>Short selling an <a href="https://en.wikipedia.org/wiki/Exchange-traded_fund" target="_blank"
-                        class="external-link" rel="nofollow">ETF</a> that contains GME: An ETF, for example <a
-                        href="https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-retail-etf-xrt" target="_blank"
-                        class="external-link" rel="nofollow">XRT</a>, might contain within it a variety of stocks
-                    including GME. A market participant interested in betting against GME could short sell shares of
-                    such an ETF, positioning themselves against all of the stocks in that ETF, without impacting the
-                    reported short interest of GME itself. If the participant wanted to use this strategy while
-                    intending on specifically targeting GME, they could buy shares of the other non-GME stocks that the
-                    ETF
-                    contains, while shorting the ETF, thus creating a position that is functionally short GME.
-                </li>
-                <li>
-                    Use of offshore entities: A market participant could route trades through offshore entities that are
-                    not subject to U.S. reporting requirements. Doing this is potentially illegal and risky.
-                </li>
-                <li>Fail to report real short positions: Reporting rules require broker-dealers to report the number of
-                    shares they have sold short across all customer and proprietary accounts. It is entirely possible
-                    that a broker-dealer could simply fail to report short sales, in contravention to the reporting
-                    requirements. While this could be risky and illegal, it does not preclude it from being a
-                    possibility.</li>
-            </ul>
-            <p>Using a combination of methods such as these, sophisticated market participants with an interest in doing
-                so could theoretically reduce the reported
-                short interest of GME even while the true effective GME short exposure remained very high.</p>
-        </div>
+
 
         <div class="page-section">
             <div class="section-heading">"Shorts Never Closed, Boom!"
@@ -188,5 +139,5 @@
     </div>
 
     <div style="margin-top:50px;"></div>
-    <app-footer class="app-footer-short-pages"></app-footer>
+    <app-footer class="app-footer"></app-footer>
 </div>

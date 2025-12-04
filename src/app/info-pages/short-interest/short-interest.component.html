@@ -10,27 +10,144 @@
         <div class="page-section">
             <div class="section-heading">Summary</div>
             <ul>
-                <li>An indicator of bearish sentiment: A high short interest suggests that many investors believe the
+                <li>An indicator of bearish sentiment: A high short interest suggests that many investors in the market
+                    believe that the
                     stock's price will decline.</li>
                 <li>In general, short interest above 20% is considered high</li>
+                <li>For a period of time leading up to <a [routerLink]="'/sneeze'">the sneeze</a>, GME short interest
+                    was notably in excess of 100%</li>
             </ul>
         </div>
 
         <div class="page-section">
-            <div class="section-heading">Short Interest Exceeded 140% of the GME Float</div>
-            <p>Prior to and during the <a [routerLink]="'/sneeze'">sneeze</a>, the short interest exceeded the float,
-                something that sounds mathematically impossible. How did this happen?
-
+            <div class="section-heading">GME Short Interest Exceeded 100%</div>
+            <p>In 2019 the short interest of GME started to climb significantly. Through 2020 the GME short interest was
+                extraordinarily high, <b>in excess of 100%</b>.
+                This means that there were more shares sold <a href="https://en.wikipedia.org/wiki/Short_(finance)"
+                    target="_blank" class="external-link" rel="nofollow">short</a> than the number of shares that were
+                actually issued by
+                the company.
             </p>
-            <p>The short answer is that shares of a stock in the stock market are <a
-                    href="https://en.wikipedia.org/wiki/Fungibility" target="_blank" class="external-link"
-                    rel="nofollow">fungible</a> and can be lent to / borrowed by other market participants, and <a
+            <p>How is such a situation even possible?</p>
+            <p>Shares of a stock in the stock market are <a href="https://en.wikipedia.org/wiki/Fungibility"
+                    target="_blank" class="external-link" rel="nofollow">fungible</a> and can be lent to / borrowed by
+                other market participants, and <a
                     href="https://www.interactivebrokers.com/campus/traders-insight/securities/stocks/gamestop-showed-short-interest-float-how-could-that-be/"
                     target="_blank" class="external-link" rel="nofollow">
-                    the same shares can be lent and re-lent multiple times</a>.</p>
+                    the same shares can be lent and re-lent multiple times</a>. </p>
+            <p>For example, an investor could own 100
+                shares of a stock, then earn a fee by lending those shares out to some other market participant that
+                wants to borrow them. The borrower then puts those borrowed shares up for sale (i.e. shorting the
+                stock), where they are bought by
+                some other buyer. Repeating this cycle creates multiple long and short positions tied to the same
+                original shares. In this way, the supply of shares in the
+                market has been synthetically increased beyond the actual number of shares that were issued by the
+                company.</p>
+            <p>Due to inconsistencies across data providers, it is unclear exactly how high the GME short interest ever
+                reached. According to various sources, the GME short interest was reported to be as high as <a
+                    href="https://www.reuters.com/article/business/how-were-more-than-100-of-gamestops-shares-shorted-idUSKBN2AI2DC/"
+                    target="_blank" class="external-link" rel="nofollow">141% </a>, <a
+                    href="https://www.reddit.com/r/GME/comments/lg5o47/226_short_interest_in_gme/" target="_blank"
+                    class="external-link" rel="nofollow">226% </a>, and even <a
+                    href="https://www.reddit.com/r/Superstonk/comments/1nacydd/think_the_highest_ever_reported_si_on_gme_was_226/"
+                    target="_blank" class="external-link" rel="nofollow">319% </a>.
+            </p>
         </div>
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Reported Short Interest Versus Concealment Methods</div>
+            <p>Following the peak of <a [routerLink]="'/sneeze'">the sneeze</a>, the reported GME <a
+                    [routerLink]="'/short-interest'">short interest</a> went from over 100% in January 2021 down to
+                below 20% in February 2021. This reported value would indicate that a significant amount of the existing
+                short positions were closed out and no longer existed, thus contradicting a commonly belief held by some
+                GME shareholders that "<a [routerLink]="'/shorts-never-closed'">shorts never
+                    closed</a>."</p>
+            <p>In the face of this reported value dropping significantly, why would GME shareholders therefore continue
+                to believe that significant obligations continued to exist?</p>
+            <p>Generally, it is based on the idea that the drop in GME short interest is <a
+                    href="https://tradesmith.com/the-drop-in-gamestop-short-interest-could-be-real-or-deceptive-market-manipulation/"
+                    target="_blank" class="external-link" rel="nofollow">deceptive
+                    market manipulation</a>, and not reflective of the true reality.</p>
+            <p>There are numerous methods that market participants can utilize to be functionally short on a stock
+                without that position showing up in the reported short interest.</p>
+            <ul>
+                <li><a href="https://www.investopedia.com/terms/t/totalreturnswap.asp" target="_blank"
+                        class="external-link" rel="nofollow">Total Return Swaps</a> / <a
+                        href="https://www.investopedia.com/articles/stocks/09/trade-a-cfd.asp" target="_blank"
+                        class="external-link" rel="nofollow">Contracts for Difference</a>: A market
+                    participant enters into <a href="https://www.investopedia.com/articles/optioninvestor/07/swaps.asp"
+                        target="_blank" class="external-link" rel="nofollow">a swap agreement</a>
+                    that mirrors the economic exposure of shorting a stock without reporting a short position</li>
+                <li>Synthetic short position via options: A market participant can buy a <a
+                        href="https://www.investopedia.com/terms/p/putoption.asp" target="_blank" class="external-link"
+                        rel="nofollow">put option</a> and sell a <a
+                        href="https://www.investopedia.com/terms/c/calloption.asp" target="_blank" class="external-link"
+                        rel="nofollow">call option</a> with the same strike price, creating similar exposure as selling
+                    shares short, but by using options this method does not involve short sales and thus does not appear
+                    as short interest.</li>
+                <li><a [routerLink]="'/naked-short-selling'">Naked short selling</a>: A market participant can illegally
+                    naked short sell stocks and not report this
+                    information.</li>
+                <li>Short selling an <a href="https://en.wikipedia.org/wiki/Exchange-traded_fund" target="_blank"
+                        class="external-link" rel="nofollow">ETF</a> that contains GME: An ETF (for example <a
+                        href="https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-retail-etf-xrt" target="_blank"
+                        class="external-link" rel="nofollow">XRT</a>, <a href="https://www.rexshares.com/gmeu/"
+                        target="_blank" class="external-link" rel="nofollow">GMEU</a>, <a
+                        href="https://yieldmaxetfs.com/our-etfs/gmey/" target="_blank" class="external-link"
+                        rel="nofollow">GMEY</a>, <a href="https://igmeetf.com/" target="_blank" class="external-link"
+                        rel="nofollow">IGME</a>
+                    ) might contain within it a variety of stocks
+                    including GME. A market participant interested in betting against GME could short sell shares of
+                    such an ETF, positioning themselves against all of the stocks in that ETF, without impacting the
+                    reported short interest of GME itself. If the participant wanted to use this strategy while
+                    intending on specifically targeting GME, they could buy shares of the other non-GME stocks that the
+                    ETF
+                    contains, while shorting the ETF, thus creating a position that is functionally short GME.
+                </li>
+                <li>
+                    Use of offshore entities: A market participant could route trades through offshore entities that are
+                    not subject to U.S. reporting requirements. Doing this is potentially illegal and risky but this
+                    does not preclude it from happening.
+                </li>
+                <li>Fail to report real short positions: Reporting rules require broker-dealers to report the number of
+                    shares they have sold short across all customer and proprietary accounts. It is entirely possible
+                    that a broker-dealer could simply deliberately fail to properly report short sales, in contravention
+                    to the reporting
+                    requirements. While this could be risky and illegal, it does not preclude it from being a
+                    possibility.
+                    <br>For example:
+                    <ul>
+                        <li>In 2020, <a href="https://www.sec.gov/newsroom/press-releases/2020-238" target="_blank"
+                                class="external-link" rel="nofollow">Morgan Stanley was
+                                censured and fined</a> for improperly marking certain sell orders in violation of Reg
+                            SHO.</li>
+                        <li>In 2021, Canadian investment firm <a
+                                href="https://www.securitiesfinancetimes.com/securitieslendingnews/regulationarticle.php?article_id=224946"
+                                target="_blank" class="external-link" rel="nofollow">Murchinson Ltd was charged</a> for
+                            marking trades as long that should have been marked as short sales, in violation of Reg SHO.
+                        </li>
+                        <li>In 2023, <a
+                                href="https://www.bloomberg.com/news/articles/2023-04-05/goldman-sachs-fined-for-marking-60-million-short-sales-as-long"
+                                target="_blank" class="external-link" rel="nofollow">Goldman Sachs was fined</a> by
+                            FINRA
+                            for "mistakenly" marking 60 million short sales as long.</li>
+                        <li>In 2023, <a href="https://www.sec.gov/newsroom/press-releases/2023-192" target="_blank"
+                                class="external-link" rel="nofollow">Citadel Securies was charged</a> for inaccurately
+                            denoting that certain short sales were long sales and vice versa, across millions of orders over
+                            a five year period.</li>
+                    </ul>
+
+                </li>
+            </ul>
+            <p>Using a combination of methods such as these, sophisticated market participants with an interest in doing
+                so could theoretically reduce the reported
+                short interest of GME even while the true effective GME short exposure remained very high.</p>
+        </div>
+
     </div>
 
     <div style="margin-top:50px;"></div>
-    <app-footer class="app-footer-short-pages"></app-footer>
+    <app-footer class="app-footer"></app-footer>
 </div>
