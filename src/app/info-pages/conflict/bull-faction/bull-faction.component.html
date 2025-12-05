@@ -13,34 +13,60 @@
                 Summary
             </div>
             <ul>
-                <li> The faction of market participants that are bullish on GME and have a financial interest in the
-                    price of the
-                    stock going up</li>
-
+                <li>There exists an ongoing <a [routerLink]="'/conflict'">conflict</a> surrounding GME where opposing
+                    factions compete over the outcome of the GME market price</li>
+                <li>In very loose terms, these opposing factions can be defined as "Bears" and "Bulls"</li>
+                <li>GME Bulls are market participants that have a position that gains when the share price of GME
+                    goes up, for example by owning shares or call options
+                </li>
+                <li>Opposed to GME Bulls are <a [routerLink]="'/bear-faction'">GME Bears</a>, who are market
+                    participants that have a position that gains when the share price of GME goes down</li>
+                <li>GME Bulls in general are proponents of a <a [routerLink]="'/bull-case'">bull thesis</a></li>
             </ul>
         </div>
 
 
 
+        <div class="page-section">
+            <div class="section-heading">Members of the Bull Faction</div>
+            <p>The faction of GME bulls includes all market participants that have an investment that gains when the
+                market price of GME goes up.</p>
+            <p>This therefore includes company insiders, such as <a [routerLink]="'/ryan-cohen'">Ryan Cohen</a>, retail
+                GME shareholders, especially those that hold shares in <a [routerLink]="'/drs'">DRS</a>, institutions
+                that are net-long on GME, and (disputably) <a [routerLink]="'/keith-gill'">Keith Gill</a>.</p>
+            <p>Keith Gill is disputable because GME cynics will claim that there is no evidence of his continued
+                interest in GME and may also claim that he probably sold.</p>
+            <p>Some institutions may have both long and short GME positions and therefore their alignment is less clear.
+            </p>
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading">Investment Cult</div>
+            <p>Some that are cynical of GME investors sometimes refer to determined long-term GME shareholders as <a
+                    [routerLink]="'/meme-stock'">"cultists", or investors in a "cult stock."</a> </p>
+            <p>This rhetoric is used to disparage and discredit those investors by insinuating that they are not
+                operating with a valid <a [routerLink]="'/bull-case'">investment thesis</a>, but rather are driven by
+                delusional, conspiratorial beliefs.</p>
+        </div>
 
 
-        <!-- <div class="page-section">
+
+        <div class="page-section">
             <div class="section-heading">More links</div>
             <div>
-                <a href="https://en.wikipedia.org/wiki/Fear,_uncertainty,_and_doubt" target="_blank"
-                    class="external-link" rel="nofollow">
+                <a href="https://en.wikipedia.org/wiki/Market_sentiment" target="_blank" class="external-link"
+                    rel="nofollow">
                     <img src="assets/icons/wikipedia-logo.png" alt=""
-                        style="height: 20px;width: 20px;margin-right: 10px;"> Fear, uncertainty, and doubt - Wikipedia
+                        style="height: 20px;width: 20px;margin-right: 10px;"> Market sentiment - Wikipedia
                 </a>
 
             </div>
-        </div> -->
+        </div>
 
 
-
-        <div style="margin-top:50px;"></div>
-        <app-footer class="app-footer-short-pages"></app-footer>
 
     </div>
 
+    <div style="margin-top:50px;"></div>
+    <app-footer class="app-footer"></app-footer>
 </div>

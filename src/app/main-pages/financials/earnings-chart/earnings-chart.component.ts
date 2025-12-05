@@ -145,6 +145,9 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
           dataEntryCount = 10;
         }
       }
+      if(this.componentConfig.article === 'collectibles'){
+        dataEntryCount = 22;
+      }
     }
     const isRevenueType = this.chartSelection === EarningsChartSelection.REVENUE_TYPE || this.chartSelection === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE
     if (isRevenueType && this.chartPeriod === 'ANNUAL') {

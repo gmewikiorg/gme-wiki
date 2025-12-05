@@ -19,19 +19,21 @@
                 </li>
                 <li>There apparently exists an ongoing financial conflict over the share price of GME
                     <ul>
-                        <li>One side, <b>GME short sellers</b>,
-                            also known as "shorts" or "bears", benefits financially <span>when the
+                        <li>One side, <a [routerLink]="'/bear-faction'"><b>GME short sellers</b>,
+                                also known as "shorts" or "bears"</a>, gains financially <span>when the
                                 price of GME goes down</span></li>
-                        <li>The other side, <b>GME shareholders</b>, also known as "bulls", benefits financially
+                        <li>The other side, <a [routerLink]="'/bull-faction'"><b>GME shareholders</b>, also known as
+                                "bulls"</a>, gains financially
                             <span>when the price of GME goes up</span>
                         </li>
                     </ul>
                 </li>
                 <li>As the conflict has evolved, so too have the competing narratives put forth by both sides</li>
-                <li>The conflict ends when one side capitulates, willingly, or because they can no longer afford to
-                    maintain their
+                <li>The conflict ends when one side capitulates, willingly, or because they can no longer sustain their
                     position, e.g.:
                     <ul>
+                        <li>If GameStop were to declare bankruptcy and go out of business, this would be a total loss
+                            for shareholders and a total victory for short sellers</li>
                         <li>
                             GME shareholders could lose faith in their investment and sell their shares, which would
                             contribute to downward GME price movement in sufficient quantities
@@ -45,8 +47,10 @@
                 </li>
                 <li>It remains unclear what specific outcome can be expected in either direction, and in what kind of
                     time frame.
-                    However, something that is clear is that GameStop is at no risk of bankruptcy for the foreseeable
-                    future</li>
+                </li>
+                <li>Amidst an <a [routerLink]="'/turnaround'">ongoing turnaround</a>, GameStop has significantly
+                    improved its financial standing and is at no risk of bankruptcy for the foreseeable
+                    future — GameStop is operationally profitable and has significant positive equity</li>
             </ul>
         </div>
 
@@ -116,25 +120,29 @@
                         Even from when I made my original investment, I was fascinated at how much <b>hatred</b>
                         there was towards an investment in GameStop. It was one of those things where, you know, you
                         would
-                        tell someone you invested in GameStop and they'd be like, "What? What are you invested in GameStop
+                        tell someone you invested in GameStop and they'd be like, "What? What are you invested in
+                        GameStop
                         for?"
                     </p>
                     <p>
-                        And so, there have always been a lot of people on the other side of the trade. And, I have my own
+                        And so, there have always been a lot of people on the other side of the trade. And, I have my
+                        own
                         personal views on it.
-                        I think that it’s un-American to bet against business, but it’s a free market. If you want to be on the other side, no problem. 
+                        I think that it’s un-American to bet against business, but it’s a free market. If you want to be
+                        on the other side, no problem.
                         If things work out, those shorts ultimately need to cover, and that could ultimately be a
-                        good thing.  I don't think it's all bad.
+                        good thing. I don't think it's all bad.
                     </p>
                     <p>
-                        I don’t really have much respect for short sellers, and someone who's ultimately not smart enough
+                        I don’t really have much respect for short sellers, and someone who's ultimately not smart
+                        enough
                         to find someone successful, they have to bet on someone’s failure. But if things work out, then
                         they gotta cover. So, <b>let them short</b>.
                     </p>
                     <div class="quote-attribution">GameStop CEO Ryan Cohen
                         <div style="margin-left: 10px;"><a
                                 href="https://www.reddit.com/r/Superstonk/comments/1m0pqqq/ryan_cohen_fox_business_interview_with_charles/"
-                                target="_blank"  class="external-link" rel="nofollow">July 15, 2025</a></div>
+                                target="_blank" class="external-link" rel="nofollow">July 15, 2025</a></div>
                     </div>
                 </div>
             </div>
@@ -145,13 +153,15 @@
             <p>As a consequence of competing financial interests, there are competing narratives around GME.
 
             </p>
-            <p>A general narrative put forth by bearish GME short sellers with a financial interest in the share price
+            <p>A general narrative based on a <a [routerLink]="'/bear-case'">bear thesis</a> put forth by bearish GME
+                short sellers with a financial interest in the share price
                 of
                 GME going down
                 is that GameStop is a dying brick-and-mortar retailer with an outdated business model, and is ultimately
                 destined for bankruptcy.
             </p>
-            <p>A general narrative put forth by bullish GME investors with a financial interest in the share price of
+            <p>A general narrative based on a <a [routerLink]="'/bull-case'">bull thesis</a> put forth by bullish GME
+                investors with a financial interest in the share price of
                 GME
                 going up is that while GameStop <i>was</i> a dying brick-and-mortar
                 retailer with an outdated business model, it is a company that is undergoing a <a
@@ -165,7 +175,8 @@
             </p>
             <p>Aside from these basic forms of those narratives, to some degree the story of GME has become about <i>the
                     conflict
-                    itself</i>, evolving beyond just the fundamental financial metrics of the company.
+                    itself</i>, evolving far beyond neutral commentary about the fundamental financial metrics of the
+                company.
             </p>
 
         </div>
@@ -188,7 +199,8 @@
         <div class="page-section">
             <div class="section-heading">GameStop is at No Risk of Bankruptcy</div>
             <p>Using a variety of different measurements or calculations, for example the <a
-                    href="https://www.investopedia.com/terms/a/altman.asp" target="_blank"  class="external-link" rel="nofollow">Altman-Z score</a>, something
+                    href="https://www.investopedia.com/terms/a/altman.asp" target="_blank" class="external-link"
+                    rel="nofollow">Altman-Z score</a>, something
                 that is clear is that GameStop is at no risk of
                 bankruptcy for the foreseeable future, ruling this out as a plausible outcome of this conflict.</p>
             <p>Furthermore, <b>the book value of GME is currently about <span style="color: green;">$11</span> per
@@ -210,13 +222,16 @@
                 squeeze ended naturally, and then it was over. Implicit in this narrative, is the notion that shorts
                 closed, that shorts moved on, that there no longer exists high short interest in GME and that therefore
                 any GME investor hoping for a future short squeeze is wasting their time; forget GameStop.</p>
-            <p>Many GME shareholders do not believe in that narrative, and offer a counter-narrative:  <a [routerLink]="'/shorts-never-closed'"><b>shorts never
-                    closed</b></a>, and that in general the mainstream financial media and financial institutions are lying
+            <p>Many GME shareholders do not believe in that narrative, and offer a counter-narrative: <a
+                    [routerLink]="'/shorts-never-closed'"><b>shorts never
+                        closed</b></a>, and that in general the mainstream financial media and financial institutions
+                are lying
                 about it.</p>
             <p>The implication of this belief that is commonly assumed to be true by many GME shareholders is that there
                 are some market participants, hedge funds or otherwise, that
                 remain on the hook with an underwater GME short position or swap equivalent that must eventually be
-                closed, and when this happens, the outcome will be a real, unstoppable short squeeze, an event commonly referred to
+                closed, and when this happens, the outcome will be a real, unstoppable short squeeze, an event commonly
+                referred to
                 by
                 some GME shareholders as <a [routerLink]="'/moass'">MOASS (the mother of all short squeezes)</a>.</p>
             <p>This belief is an assumption that remains speculative and not proven by hard evidence. Rather, it is
@@ -235,11 +250,13 @@
             <ul>
                 <li>"When asked about Gamestop i just say it is a controlled stock and not more than that. The haters
                     know exactly what i mean"<br>
-                    - Jim Cramer, <a href="https://x.com/jimcramer/status/1544796911785361408" target="_blank"  class="external-link" rel="nofollow">July 6,
+                    - Jim Cramer, <a href="https://x.com/jimcramer/status/1544796911785361408" target="_blank"
+                        class="external-link" rel="nofollow">July 6,
                         2022</a></li>
                 <li>April 6, 2024: Reporting on GameStop's FY 2023 earnings, Reuters.com published <a
                         href="https://www.reuters.com/breakingviews/gamestop-saga-ends-winner-capital-markets-2024-04-03/"
-                        target="_blank" class="external-link" rel="nofollow">an article</a> titled: "GameStop saga ends. Winner: capital markets"<br>
+                        target="_blank" class="external-link" rel="nofollow">an article</a> titled: "GameStop saga ends.
+                    Winner: capital markets"<br>
                     In this article, the authors stated: "the beauty of a good trade is that there exists a winner and a
                     loser; A thesis is tested, and one view will prevail. In this case, “shorts” were right. That leaves
                     a lesson for those nursing dwindled bank accounts. The meme army may have lost, but perhaps next
