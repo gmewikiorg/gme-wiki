@@ -9,7 +9,7 @@ import { AboutComponent } from './main-pages/about/about.component';
 
 import { ATMsComponent } from './info-pages/atms/atms.component';
 import { BurpComponent } from './info-pages/burp/burp.component';
-import { CNBCVsNakedShortsComponent } from './info-pages/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
+import { CNBCVsNakedShortsComponent } from './info-pages/media/cnbc-on-naked-shorts/cnbc-on-naked-shorts.component';
 import { ConflictComponent } from './info-pages/conflict/conflict.component';
 import { CompetitionComponent } from './info-pages/competition/competition.component';
 
@@ -17,42 +17,42 @@ import { DownfallEraComponent } from './info-pages/downfall-era/downfall-era.com
 import { DrsComponent } from './info-pages/drs/drs.component';
 import { DrsFullTimelineComponent } from './info-pages/drs/drs-full-timeline/drs-full-timeline.component';
 import { DrsVsDsppComponent } from './info-pages/drs/drs-vs-dspp/drs-vs-dspp.component';
-import { FaqOldComponent } from './info-pages/faq-old/faq-old.component';
-import { FtdComponent } from './info-pages/ftd/ftd.component';
+import { FtdComponent } from './info-pages/market-concepts/ftd/ftd.component';
 import { FudComponent } from './info-pages/fud/fud.component';
 import { Fy23EarningsComponent } from './info-pages/fy23-earnings/fy23-earnings.component';
 import { Fy24EarningsComponent } from './info-pages/fy24-earnings/fy24-earnings.component';
-import { InvestorsComponent } from './info-pages/investors/investors.component';
-import { KeithGillComponent } from './info-pages/keith-gill/keith-gill.component';
+import { KeithGillComponent } from './info-pages/people/keith-gill/keith-gill.component';
 import { MediaComponent } from './info-pages/media/media.component';
 import { MediaOmitsDrsComponent } from './info-pages/drs/media-omits-drs/media-omits-drs.component';
 
 import { MoassComponent } from './info-pages/moass/moass.component';
-import { NakedShortSellingComponent } from './info-pages/naked-short-selling/naked-short-selling.component';
+import { NakedShortSellingComponent } from './info-pages/market-concepts/naked-short-selling/naked-short-selling.component';
 import { RedditComponent } from './info-pages/reddit/reddit.component';
-import { RyanCohenComponent } from './info-pages/ryan-cohen/ryan-cohen.component';
-import { RcInterview2022Component } from './info-pages/rc-interview-2022/rc-interview-2022.component';
+import { RyanCohenComponent } from './info-pages/people/ryan-cohen/ryan-cohen.component';
+import { RcInterview2022Component } from './info-pages/people/ryan-cohen/rc-interview-2022/rc-interview-2022.component';
 import { SneezeComponent } from './info-pages/sneeze/sneeze.component';
-import { SneezeVsSqueezeComponent } from './info-pages/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
+import { SneezeVsSqueezeComponent } from './info-pages/sneeze/sneeze-vs-squeeze/sneeze-vs-squeeze.component';
 import { StoresComponent } from './info-pages/stores/stores.component';
-import { TPlusThirtyFiveComponent } from './info-pages/t-plus-thirty-five/t-plus-thirty-five.component';
+import { TPlusThirtyFiveComponent } from './info-pages/market-concepts/t-plus-thirty-five/t-plus-thirty-five.component';
 import { TradingCardsComponent } from './info-pages/trading-cards/trading-cards.component';
 import { TurnaroundComponent } from './info-pages/turnaround/turnaround.component';
-import { ShortInterestComponent } from './info-pages/short-interest/short-interest.component';
-import { BearCaseComponent } from './info-pages/bear-case/bear-case.component';
-import { BullCaseComponent } from './info-pages/bull-case/bull-case.component';
+import { ShortInterestComponent } from './info-pages/market-concepts/short-interest/short-interest.component';
+import { BearCaseComponent } from './info-pages/conflict/bear-case/bear-case.component';
+import { BullCaseComponent } from './info-pages/conflict/bull-case/bull-case.component';
 import { InvestmentPolicyComponent } from './info-pages/investment-policy/investment-policy.component';
-import { CnbcVsGmeComponent } from './info-pages/cnbc-vs-gme/cnbc-vs-gme.component';
+import { CnbcVsGmeComponent } from './info-pages/media/cnbc-vs-gme/cnbc-vs-gme.component';
 import { EquityComponent } from './info-pages/equity/equity.component';
-import { MediaVsGmeComponent } from './info-pages/media-vs-gme/media-vs-gme.component';
+import { MediaVsGmeComponent } from './info-pages/media/media-vs-gme/media-vs-gme.component';
 import { DirectoryComponent } from './info-pages/directory/directory.component';
 import { BbbyComponent } from './info-pages/bbby/bbby.component';
 import { TeddyComponent } from './info-pages/teddy/teddy.component';
 import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
 import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
-import { MarketTacticsComponent } from './info-pages/market-tactics/market-tactics.component';
-import { SuperstonkComponent } from './info-pages/superstonk/superstonk.component';
-import { MichaelBurryComponent } from './info-pages/michael-burry/michael-burry.component';
+import { MarketTacticsComponent } from './info-pages/market-concepts/market-tactics/market-tactics.component';
+import { SuperstonkComponent } from './info-pages/reddit/superstonk/superstonk.component';
+import { MichaelBurryComponent } from './info-pages/people/michael-burry/michael-burry.component';
+import { BearFactionComponent } from './info-pages/conflict/bear-faction/bear-faction.component';
+import { BullFactionComponent } from './info-pages/conflict/bull-faction/bull-faction.component';
 
 
 
@@ -77,7 +77,9 @@ export const routes: Routes = [
 
 
     { path: 'bear-case', component: BearCaseComponent },
+    { path: 'bear-faction', component: BearFactionComponent },
     { path: 'bull-case', component: BullCaseComponent },
+    { path: 'bull-faction', component: BullFactionComponent },
 
     { path: 'burp', component: BurpComponent },
     { path: 'burp-may-2024', component: BurpComponent },
@@ -99,8 +101,6 @@ export const routes: Routes = [
 
     { path: 'equity', component: EquityComponent },
 
-    { path: 'faq-old', component: FaqOldComponent },
-
     { path: 'fy23', component: Fy23EarningsComponent },
     { path: 'FY23', component: Fy23EarningsComponent },
     { path: 'fy23-earnings', component: Fy23EarningsComponent },
@@ -116,7 +116,6 @@ export const routes: Routes = [
     { path: 'failure-to-deliver', component: FtdComponent },
     { path: 'fud', component: FudComponent },
 
-    { path: 'investors', component: InvestorsComponent },
     { path: 'investment-policy', component: InvestmentPolicyComponent },
     { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
 
