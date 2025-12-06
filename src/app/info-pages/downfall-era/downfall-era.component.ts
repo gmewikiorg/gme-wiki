@@ -12,7 +12,7 @@ import { ScreenService } from '../../shared/services/screen-size.service';
 })
 export class DownfallEraComponent {
   constructor(private _screenService: ScreenService) {
-    const title = 'The Downfall Era of GameStop - Approximately 2016 through 2020 | gmewiki.org';
+    const title = 'The Downfall Era of GameStop | gmewiki.org';
     const description = 'From approximately 2018 through 2020, GameStop was heading downwards ';
     const url = 'https://gmewiki.org/downfall-era';
     const image = '';
