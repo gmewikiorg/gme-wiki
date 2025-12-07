@@ -12,10 +12,10 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
 export class BearCaseComponent {
   constructor(private _screenService: ScreenService) {
     const title = 'GME Bear Case | gmewiki.org';
-    const description = 'GME Bear Case';
+    const description = 'GME Bear Case - Information and arguments for why GME might be seen as an unfavorable investment';
     const url = 'https://gmewiki.org/bear-case';
     const image = '';
     this._screenService.setPageInfo(title, description, url, image);
-  
+
   }
 }

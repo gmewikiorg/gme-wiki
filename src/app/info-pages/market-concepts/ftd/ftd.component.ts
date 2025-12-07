@@ -7,7 +7,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 @Component({
   selector: 'app-ftd',
   standalone: true,
-  imports: [RouterModule,FooterComponent],
+  imports: [RouterModule, FooterComponent],
   templateUrl: './ftd.component.html',
   styleUrl: './ftd.component.scss'
 })

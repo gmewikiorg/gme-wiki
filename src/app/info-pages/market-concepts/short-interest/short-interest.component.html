@@ -1,7 +1,7 @@
 <div class="component-root">
     <div class="page-content">
         <h1 class="page-title">
-            Short Interest (SI)
+            Short Interest
         </h1>
         <h5 class="page-subtitle">
             A metric that measures the (reported) number of shares sold short
@@ -13,6 +13,10 @@
                 <li>An indicator of bearish sentiment: A high short interest suggests that many investors in the market
                     believe that the
                     stock's price will decline.</li>
+                <li>Short interest is calculated by dividing the reported number of shares sold <a
+                        href="https://en.wikipedia.org/wiki/Short_(finance)" target="_blank" class="external-link"
+                        rel="nofollow">short</a> by the total
+                    number of shares issued by the company</li>
                 <li>In general, short interest above 20% is considered high</li>
                 <li>For a period of time leading up to <a [routerLink]="'/sneeze'">the sneeze</a>, GME short interest
                     was notably in excess of 100%</li>
@@ -23,8 +27,7 @@
             <div class="section-heading">GME Short Interest Exceeded 100%</div>
             <p>In 2019 the short interest of GME started to climb significantly. Through 2020 the GME short interest was
                 extraordinarily high, <b>in excess of 100%</b>.
-                This means that there were more shares sold <a href="https://en.wikipedia.org/wiki/Short_(finance)"
-                    target="_blank" class="external-link" rel="nofollow">short</a> than the number of shares that were
+                This means that there were more shares sold short than the number of shares that were
                 actually issued by
                 the company.
             </p>
@@ -40,8 +43,8 @@
                 wants to borrow them. The borrower then puts those borrowed shares up for sale (i.e. shorting the
                 stock), where they are bought by
                 some other buyer. Repeating this cycle creates multiple long and short positions tied to the same
-                original shares. In this way, the supply of shares in the
-                market has been synthetically increased beyond the actual number of shares that were issued by the
+                original shares. In this way, the supply of shares being traded in the market has been synthetically
+                increased beyond the actual number of shares that were issued by the
                 company.</p>
             <p>Due to inconsistencies across data providers, it is unclear exactly how high the GME short interest ever
                 reached. According to various sources, the GME short interest was reported to be as high as <a
@@ -142,8 +145,9 @@
 
                 </li>
             </ul>
-            <p>Using a combination of methods such as these, sophisticated market participants with an interest in doing
-                so could theoretically reduce the reported
+            <p>Using a combination of methods such as these, <a [routerLink]="'/bear-faction'">sophisticated market
+                    participants with an interest in doing
+                    so</a> could theoretically reduce the reported
                 short interest of GME even while the true effective GME short exposure remained very high.</p>
         </div>
 

@@ -12,7 +12,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 })
 export class ShortInterestComponent {
   constructor(private _screenService: ScreenService){
-    const title = 'Short Interest (SI) | gmewiki.org';
+    const title = 'Short Interest | gmewiki.org';
     const description = 'An indicator of bearish sentiment: a metric that measures the (reported) number of shares sold short'
     const url = 'https://gmewiki.org/short-interest';
     const image = '';
