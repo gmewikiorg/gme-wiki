@@ -12,11 +12,11 @@ const drsVsDsppRatio2025: number = 0.813;
  * 
 
 Insiders:
-Total non-RC:  850,553
+Total non-RC:  909,825
 Total:  38,198,395
 
-ROBINSON MARK HAYMOND  -  116,751
-MOORE DANIEL WILLIAM - 48,899  
+ROBINSON MARK HAYMOND  -  112,302
+MOORE DANIEL WILLIAM - 112,620 
 GRUBE JAMES - 29,439 
 ATTAL ALAIN - 572,464
 COHEN RYAN - 37,347,842 
@@ -27,6 +27,28 @@ CHENG LAWRENCE - 83,000
  *  To do an update on the data, copy the most recent data object and add it to the top and make changes
  */
 export const ownershipHistory: OwnershipHistoryItem[] = [
+    {
+        dateYYYYMMDD: '2025-12-05',
+        registeredText: "... approximately 67.0 million shares (or approximately 15% of our outstanding shares) were held by registered holders with our transfer agent, Computershare Limited (“Computershare”) ",
+        filingLink: "https://www.sec.gov/ix?doc=/Archives/edgar/data/1326380/000132638025000098/gme-20251101.htm",
+        filingType: '10Q',
+        filingDateYYYYMMDD: '2025-12-09',
+        tso: 448000000,
+        heldByCede: 381000000,
+        heldByRegistered: 67000000,
+        registeredDRS: drsVsDsppRatio2025 * 67000000,
+        registeredDSPP: (1 - drsVsDsppRatio2025) * 67000000,
+        totalInsiders: 909825 + 37347842,
+        insidersRyanCohen: 37347842,
+        insidersRemainder: 909825,
+        keithGill: 9001000,
+        instVanguard: 38504483,
+        instBlackrock: 35373798,
+        instStateStreet: 12372829,
+        instAllOther: 87917178,
+        instTotal: 174168288,
+        remainder: 159573045,
+    },
     {
         dateYYYYMMDD: '2025-09-09',
         registeredText: "... approximately 66.7 million shares (or approximately 15% of our outstanding shares) were held by registered holders with our transfer agent, Computershare Limited ",
