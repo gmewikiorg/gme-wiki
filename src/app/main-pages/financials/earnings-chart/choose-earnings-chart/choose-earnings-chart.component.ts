@@ -20,7 +20,7 @@ import { ScreenService } from '../../../../shared/services/screen-size.service';
 })
 export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   public earningsChartSelection = EarningsChartSelection;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private _financialsService: FinancialChartService,
     private _screenService: ScreenService) {
     this._isBrowser = isPlatformBrowser(this.platformId);
@@ -32,6 +32,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
 
   private _chartMenu: CustomDropdownMenu = new CustomDropdownMenu([
     'Revenue and Net Income',
+    'Revenue',
     'Net Income',
     'Net Profit Margin',
     'Revenue vs Cost of Sales',
@@ -83,56 +84,58 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     this._showMoreChartOptions = !this._showMoreChartOptions;
   }
 
-  public get menuIsHidden(): boolean { return this.hideShowMenus === 'Show';}
+  public get menuIsHidden(): boolean { return this.hideShowMenus === 'Show'; }
 
-  public onClickHideChartMenus(){
-    if(this.hideShowMenus === 'Hide'){
+  public onClickHideChartMenus() {
+    if (this.hideShowMenus === 'Hide') {
       this.hideShowMenus = 'Show';
-    }else if(this.hideShowMenus === 'Show'){
+    } else if (this.hideShowMenus === 'Show') {
       this.hideShowMenus = 'Hide';
     }
   }
   public hideShowMenus: 'Hide' | 'Show' = 'Show';
-  public onSelectPeriod(period: string){
-    if(period === 'Fiscal Year'){
+  public onSelectPeriod(period: string) {
+    if (period === 'Fiscal Year') {
       this._financialsService.setChartPeriod('ANNUAL');
-    }else if(period === 'Fiscal Quarter'){
+    } else if (period === 'Fiscal Quarter') {
       this._financialsService.setChartPeriod('QUARTER');
     }
   }
-  public onSelectChartMenuItem(item: string){
-    if(item === 'Revenue and Net Income'){
+  public onSelectChartMenuItem(item: string) {
+    if (item === 'Revenue') {
+      this._financialsService.setChartOption(EarningsChartSelection.REVENUE);
+    } else if (item === 'Revenue and Net Income') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_NET_INCOME);
-    }else if(item === 'Net Income'){
+    } else if (item === 'Net Income') {
       this._financialsService.setChartOption(EarningsChartSelection.NET_INCOME);
-    }else if(item === 'Net Profit Margin'){
+    } else if (item === 'Net Profit Margin') {
       this._financialsService.setChartOption(EarningsChartSelection.NET_PROFIT_MARGIN);
-    }else if(item === 'Revenue vs Cost of Sales'){
+    } else if (item === 'Revenue vs Cost of Sales') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_COST);
-    }else if(item === 'Revenue vs Store Count'){
+    } else if (item === 'Revenue vs Store Count') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_STORES);
-    }else if(item === 'Revenue per Store'){
+    } else if (item === 'Revenue per Store') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_PER_STORES);
-    }else if(item === 'Revenue by Category'){
+    } else if (item === 'Revenue by Category') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_TYPE);
-    }else if(item === 'Revenue by Category as Percent of Total'){
+    } else if (item === 'Revenue by Category as Percent of Total') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_TYPE_PERCENTAGE);
-    }else if(item === 'Revenue vs Gross Profit'){
+    } else if (item === 'Revenue vs Gross Profit') {
       this._financialsService.setChartOption(EarningsChartSelection.REVENUE_VS_GROSS_PROFIT);
-    }else if(item === 'Operating Income'){
+    } else if (item === 'Operating Income') {
       this._financialsService.setChartOption(EarningsChartSelection.OPERATING_INCOME);
-    }else if(item === 'Operating Income vs SG&A Expense'){
+    } else if (item === 'Operating Income vs SG&A Expense') {
       this._financialsService.setChartOption(EarningsChartSelection.OPERATIONS_VS_SGA);
-    }else if(item === 'Gross Profit vs SG&A Expense'){
+    } else if (item === 'Gross Profit vs SG&A Expense') {
       this._financialsService.setChartOption(EarningsChartSelection.GROSS_PROFIT_VS_SGA);
-    }else if(item === 'Interest Income'){
+    } else if (item === 'Interest Income') {
       this._financialsService.setChartOption(EarningsChartSelection.INTEREST_INCOME);
-    }else if(item === "Stockholders' Equity"){
+    } else if (item === "Stockholders' Equity") {
       this._financialsService.setChartOption(EarningsChartSelection.STOCKHOLDERS_EQUITY);
-    }    else if(item === "Earnings per Share"){
+    } else if (item === "Earnings per Share") {
       this._financialsService.setChartOption(EarningsChartSelection.EPS);
     }
-    else if(item === "Book Value per Share"){
+    else if (item === "Book Value per Share") {
       this._financialsService.setChartOption(EarningsChartSelection.BOOK_VALUE_PER_SHARE);
     }
   }

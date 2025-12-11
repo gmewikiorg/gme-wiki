@@ -158,6 +158,9 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
        * this value can be updated to 8 when FY 2025 results come out, etc.
        */
     }
+    if(this.chartSelection === EarningsChartSelection.REVENUE_TYPE_PERCENTAGE || this.chartSelection === EarningsChartSelection.REVENUE_TYPE){
+      dataEntryCount = 22;
+    }
 
     if (this.chartPeriod === 'ANNUAL') {
       results = this._financeService.annualResults;

@@ -1,6 +1,7 @@
 
 /** A chart option can consist of one or more metrics */
 export enum EarningsChartSelection {
+    REVENUE = 'REVENUE',
     REVENUE_VS_NET_INCOME = 'REVENUE_VS_NET_INCOME',
 
     NET_PROFIT_MARGIN = 'NET_PROFIT_MARGIN',

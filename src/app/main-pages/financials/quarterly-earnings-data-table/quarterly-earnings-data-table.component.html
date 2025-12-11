@@ -2,15 +2,15 @@
 
     <div class="title" *ngIf="showMenus && !isMobile">
         <span>GameStop</span> <app-custom-dropdown-menu [menu]="dropdownMenu"
-            (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu> per Fiscal Quarter
+            (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu> per Fiscal
+        Quarter
     </div>
     <div class="title-mobile" *ngIf="showMenus && isMobile">
         <div class="title-row">
             GameStop
         </div>
         <div class="title-row">
-            <app-custom-dropdown-menu [menu]="dropdownMenu"
-                (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu>
+            <app-custom-dropdown-menu [menu]="dropdownMenu" (menuItemSelected)="onMenuItemSelected($event)"></app-custom-dropdown-menu>
         </div>
         <div class="title-row">
             per Fiscal Quarter
@@ -24,37 +24,39 @@
     <table class="table">
         <thead>
             <tr>
-                <td *ngIf="!isMobile">Fiscal Year</td>
-                <td *ngIf="isMobile">FY</td>
-                <td>Q1</td>
-                <td>Q2</td>
-                <td>Q3</td>
-                <td>Q4</td>
+                <td *ngIf="!isMobile" style="width:16.6%">Fiscal Year</td>
+                <td *ngIf="isMobile" style="width:16.6%">FY</td>
+                <td style="width:16.6%">Q1</td>
+                <td style="width:16.6%">Q2</td>
+                <td style="width:16.6%">Q3</td>
+                <td style="width:16.6%">Q4</td>
+                <td *ngIf="!isMobile" style="width:16.6%">Fiscal Year Results</td>
+                <td *ngIf="isMobile" style="width:16.6%">FY</td>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of tableRows">
-                <td> {{row[0].fiscalYear}}</td>
-                <td *ngFor="let i of counter(4)" class="td-container" [ngStyle]="styler(row, i)">
-
-                    <div *ngIf="row.length >= i+1" [ngClass]="isMobile? 'td-value-mobile' : 'td-value'">
-                        <a [href]="row[i].url" target="_blank"
+                <td>{{row.year}}</td>
+                <td class="td-container" *ngFor="let cell of row.allCells"
+                    [style.backgroundColor]="cell.backgroundColor">
+                    <div [ngClass]="isMobile ? 'td-value-mobile' : 'td-value'" *ngIf="cell.earningsResult">
+                        <a [href]="cell.url" target="_blank"
                             style="text-decoration: none; color: inherit; width:100%; height:100%;">
-                            <span *ngIf="valueIsPositive(row[i])">&nbsp;</span>
-                            <span>{{ formatter(row[i])}}</span>
-                            <!-- <span>M</span> -->
+                            <span *ngIf="getCurrentMetricResults(cell)['isPositive']">&nbsp;</span>
+                            <span>{{ getCurrentMetricResults(cell)['formatted'] }}</span>
                         </a>
                     </div>
-                    <div *ngIf="row.length < i+1" [ngClass]="isMobile? 'td-value-mobile' : 'td-value'">
-                        <!-- Blank cell for quarters that have not happened yet -->
-                    </div>
-
                 </td>
             </tr>
         </tbody>
     </table>
     <div style="display:flex;flex-direction: column;width: 100%;align-items: center;font-size: 0.9em;color:gray;">
         Click on the value in the table cells for a link to the financial statements for that fiscal quarter
+    </div>
+    <div style="display:flex;flex-direction: column;width: 100%;align-items: center;font-size: 0.9em;color:gray;"
+        *ngIf="showAggregateMessage">
+        Fiscal Year Results for the current year with unreported quarters represents the aggregate value of the reported
+        quarters thus far
     </div>
     <div class="buttons-bar">
         <button class="options-button" (click)="onClickShowHideMenus()">{{ showHideMenus }}</button>

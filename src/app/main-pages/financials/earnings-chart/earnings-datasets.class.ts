@@ -52,7 +52,9 @@ export class EarningsDatasetBuilder {
         const bvpsDataset = this._buildDataset(EarningsMetric.BOOK_VALUE_PER_SHARE, chartPeriod, dataEntryCount, bvpsDataItems, chartSelection);
 
         let datasets: ChartDataset<"bar", any[]>[] = [];
-        if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+        if (chartSelection === EarningsChartSelection.REVENUE) {
+            datasets = [revenueDataSet];
+        } else if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
             datasets = [revenueDataSet, netIncomeDataset];
         } else if (chartSelection === EarningsChartSelection.REVENUE_VS_COST) {
             datasets = [revenueDataSet, costOfSalesProfitDataset];
@@ -95,7 +97,9 @@ export class EarningsDatasetBuilder {
             periodLabel = 'by fiscal quarter';
         }
         let title = '';
-        if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+        if (chartOption === EarningsChartSelection.REVENUE) {
+            title = 'Revenue ' + periodLabel;
+        } else if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
             title = 'Revenue and Net Income ' + periodLabel;
         } else if (chartOption === EarningsChartSelection.REVENUE_VS_COST) {
             title = 'Revenue vs Cost of Sales ' + periodLabel;
@@ -150,7 +154,9 @@ export class EarningsDatasetBuilder {
         const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
 
         if (chartPeriod === 'ANNUAL') {
-            if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+            if (chartOption === EarningsChartSelection.REVENUE) {
+                tickScale = revenueConfig.tickScaleAnnually;
+            } else if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
                 tickScale = Math.max(revenueConfig.tickScaleAnnually, netIncomeConfig.tickScaleAnnually);
             } else if (chartOption === EarningsChartSelection.REVENUE_VS_COST) {
                 tickScale = Math.max(revenueConfig.tickScaleAnnually, costOfSalesConfig.tickScaleAnnually);
@@ -184,7 +190,9 @@ export class EarningsDatasetBuilder {
                 tickScale = 1;
             }
         } else {
-            if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+            if (chartOption === EarningsChartSelection.REVENUE) {
+                tickScale = revenueConfig.tickScaleQuarterly;
+            } else if (chartOption === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
                 tickScale = Math.max(revenueConfig.tickScaleQuarterly, netIncomeConfig.tickScaleQuarterly);
             } else if (chartOption === EarningsChartSelection.REVENUE_VS_COST) {
                 tickScale = Math.max(revenueConfig.tickScaleQuarterly, costOfSalesConfig.tickScaleQuarterly);
@@ -226,7 +234,7 @@ export class EarningsDatasetBuilder {
             return 1000;
         } else if (tickScale === 100) {
             return 100;
-        }else if(tickScale === 1){
+        } else if (tickScale === 1) {
             return 1;
         }
         return 1000000000;
@@ -246,7 +254,9 @@ export class EarningsDatasetBuilder {
         const epsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.EPS];
         const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
         if (chartPeriod === 'ANNUAL') {
-            if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+            if (chartSelection === EarningsChartSelection.REVENUE) {
+                minY = revenueConfig.minYAnnual;
+            } else if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
                 minY = Math.min(revenueConfig.minYAnnual, netIncomeConfig.minYAnnual);
             } else if (chartSelection === EarningsChartSelection.REVENUE_VS_COST) {
                 minY = Math.min(revenueConfig.minYAnnual, costOfSalesConfig.minYAnnual);
@@ -266,13 +276,15 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(operatingConfig.minYAnnual, sgaConfig.minYAnnual);
             } else if (chartSelection === EarningsChartSelection.NET_INCOME) {
                 minY = Math.min(-800000000);
-            }else if (chartSelection === EarningsChartSelection.EPS) {
+            } else if (chartSelection === EarningsChartSelection.EPS) {
                 minY = epsConfig.minYAnnual;
-            }else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+            } else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
                 minY = bvpsConfig.minYAnnual;
             }
         } else {
-            if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
+            if (chartSelection === EarningsChartSelection.REVENUE) {
+                minY = revenueConfig.minYAnnual;
+            } else if (chartSelection === EarningsChartSelection.REVENUE_VS_NET_INCOME) {
                 minY = Math.min(revenueConfig.minYQuarter, netIncomeConfig.minYQuarter);
             } else if (chartSelection === EarningsChartSelection.NET_PROFIT_MARGIN) {
                 minY = netProfitMarginConfig.minYQuarter;
@@ -292,9 +304,9 @@ export class EarningsDatasetBuilder {
                 minY = Math.min(operatingConfig.minYQuarter, sgaConfig.minYQuarter);
             } else if (chartSelection === EarningsChartSelection.NET_INCOME) {
                 minY = Math.min(netIncomeConfig.minYQuarter)
-            }else if (chartSelection === EarningsChartSelection.EPS) {
+            } else if (chartSelection === EarningsChartSelection.EPS) {
                 minY = epsConfig.minYQuarter;
-            }else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
+            } else if (chartSelection === EarningsChartSelection.BOOK_VALUE_PER_SHARE) {
                 minY = bvpsConfig.minYQuarter;
             }
         }
@@ -383,8 +395,8 @@ export class EarningsDatasetBuilder {
                         return '$' + (value / tickScale).toFixed(0) + " K";
                     } else if (tickScale === 100) {
                         return (value).toFixed(1) + " %";
-                    } else if(tickScale === 1){
-                        return '$' + (value/100).toFixed(2);
+                    } else if (tickScale === 1) {
+                        return '$' + (value / 100).toFixed(2);
                     }
                 } else {
                     return '' + (value / tickScale).toFixed(0) + " K";
