@@ -50,7 +50,7 @@
 
             <div *ngIf="isBrowser"
                 style="display:flex;flex-direction: column;align-items: center;margin-top:20px;margin-bottom: 40px;max-width: 100%;">
-                <app-earnings-chart [isFY23Earnings]="true" style="max-width: 100%"></app-earnings-chart>
+                <app-earnings-chart [componentConfig]="fy23EarningsChartConfig" style="max-width: 100%"></app-earnings-chart>
             </div>
 
             <div *ngIf="!isBrowser" style="height: 600px; width: 100%;"></div>

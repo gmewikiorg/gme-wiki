@@ -31,9 +31,9 @@ export class CustomDropdownMenuComponent {
   public onClickMenu() {
     if (this.dropdownMenu.menuItems.length === 2) {
       if (this.dropdownMenu.currentSelectionIndex === 0) {
-        this.dropdownMenu.setMenuItem(1);
+        this.dropdownMenu.setMenuIndex(1);
       } else {
-        this.dropdownMenu.setMenuItem(0);
+        this.dropdownMenu.setMenuIndex(0);
       }
       this.menuItemSelected.emit(this.dropdownMenu.currentMenuItem);
     } else {

@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { FooterComponent } from '../../layout/footer/footer.component';
-import { EarningsChartSelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-selection.enum';
+import { EarningsChartPropertySelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
+import { EarningsChartConfig } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
 
 @Component({
   selector: 'app-fy24-earnings',
@@ -26,12 +27,61 @@ export class Fy24EarningsComponent {
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
 
-  public get equityChartConfig(): { article: 'FY24', chart: EarningsChartSelection, } { return { article: 'FY24', chart: EarningsChartSelection.STOCKHOLDERS_EQUITY } }
-  public get storesChartConfig(): { article: 'FY24', chart: EarningsChartSelection, } { return { article: 'FY24', chart: EarningsChartSelection.REVENUE_VS_STORES } }
-  public get interestIncomeChartConfig(): { article: 'FY24', chart: EarningsChartSelection, } { return { article: 'FY24', chart: EarningsChartSelection.INTEREST_INCOME } }
-  public get operatingIncomeConfig(): { article: 'FY24', chart: EarningsChartSelection, } { return { article: 'FY24', chart: EarningsChartSelection.OPERATING_INCOME } }
-  public get netIncomeChartConfig(): { article: 'FY24', chart: EarningsChartSelection, } { return { article: 'FY24', chart: EarningsChartSelection.NET_INCOME } }
-
+  public get equityChartConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2010,
+        endYear: 2024,
+        selectedProperty: EarningsChartPropertySelection.STOCKHOLDERS_EQUITY,
+        title: "GameStop Stockholders' Equity by Fiscal Year",
+      }
+    }
+  }
+  public get storesChartConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2015,
+        endYear: 2024,
+        selectedProperty: EarningsChartPropertySelection.REVENUE_VS_STORES,
+        title: 'GameStop Revenue versus Store Count by Fiscal Year',
+      }
+    }
+  }
+  public get interestIncomeChartConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2010,
+        endYear: 2024,
+        selectedProperty: EarningsChartPropertySelection.INTEREST_INCOME,
+        title: 'GameStop Interest Income per Fiscal Year',
+      }
+    }
+  }
+  public get operatingIncomeConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2010,
+        endYear: 2024,
+        selectedProperty: EarningsChartPropertySelection.OPERATING_INCOME,
+        title: 'GameStop Operating Income per Fiscal Year',
+      }
+    }
+  }
+  public get netIncomeChartConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2010,
+        endYear: 2024,
+        selectedProperty: EarningsChartPropertySelection.NET_INCOME,
+        title: 'GameStop Net Income per Fiscal Year',
+      }
+    }
+  }
 
 }
 

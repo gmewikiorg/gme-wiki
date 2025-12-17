@@ -7,6 +7,8 @@ import { fy23NewsArticles } from './news-article/fy23-news-articles';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { Fy23MediaSentimentTableComponent } from './fy23-media-sentiment-table/fy23-media-sentiment-table.component';
+import { EarningsChartConfig } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartPropertySelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 
 @Component({
   selector: 'app-fy23-earnings',
@@ -37,4 +39,15 @@ export class Fy23EarningsComponent {
   public get screenWidth(): number { return this._screenSizeService.screenWidth; }
   public get isMobile(): boolean { return this._screenSizeService.isMobile; }
 
+  public get fy23EarningsChartConfig(): EarningsChartConfig {
+    {
+      return {
+        period: 'ANNUAL',
+        startYear: 2016,
+        endYear: 2023,
+        selectedProperty: EarningsChartPropertySelection.REVENUE_VS_NET_INCOME,
+        title: "GameStop Revenue versus Net Income by Fiscal Year",
+      }
+    }
+  }
 }

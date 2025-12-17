@@ -8,35 +8,38 @@
         <span>by</span>
         <app-custom-dropdown-menu [menu]="periodMenu"
             (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
-        <span></span>
+        <!-- <span>from</span>
+        <app-custom-dropdown-menu [menu]="timeframeStartMenu"
+            (menuItemSelected)="onSelectTimeperiodStart($event)"></app-custom-dropdown-menu>
+        <span>to</span>
+        <app-custom-dropdown-menu [menu]="timeframeEndMenu"
+            (menuItemSelected)="onSelectTimeperiodEnd($event)"></app-custom-dropdown-menu> -->
     </div>
     <div class="section-heading-mobile" *ngIf="isMobile && !menuIsHidden">
-        <!-- <div class="heading-row">
-            GameStop
-        </div>
-        <div class="heading-row">
-
-            <app-custom-dropdown-menu [menu]="chartMenu"
-                (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
-        </div> -->
-
         <span>
             GameStop
-
-
             <app-custom-dropdown-menu [menu]="chartMenu"
                 (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
         </span>
-
-
         <div class="heading-row">
             by
             <app-custom-dropdown-menu [menu]="periodMenu"
                 (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
         </div>
+        <!-- <div class="heading-row">
+            from
+            <app-custom-dropdown-menu [menu]="timeframeStartMenu"
+                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
+        </div>
+        <div class="heading-row">
+            to
+            <app-custom-dropdown-menu [menu]="timeframeEndMenu"
+                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
+        </div> -->
     </div>
     <div class="section-heading" *ngIf="menuIsHidden">
-        GameStop {{ chartMenu.currentMenuItem }} by {{ periodMenu.currentMenuItem }}
+        GameStop {{ chartMenu.currentMenuItem }} by {{ periodMenu.currentMenuItem }} 
+        <!-- from {{ timeframeStartMenu.currentMenuItem }} to {{ timeframeEndMenu.currentMenuItem}} -->
     </div>
 
     <!-- <div *ngIf="isLoading && isBrowser" style="height: 650px; background-color: rgba(255, 255, 255, 0); width: 100%;" ></div> -->

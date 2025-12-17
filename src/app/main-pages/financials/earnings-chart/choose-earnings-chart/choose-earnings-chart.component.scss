@@ -11,6 +11,7 @@
 .section-heading {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 10px;
     margin-top: 5px;
@@ -18,7 +19,8 @@
 
 .section-heading-mobile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom: 10px;
     margin-top: 5px;
 }
@@ -27,6 +29,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    max-width: 100%;
 }
 
 .options-button-container {

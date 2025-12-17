@@ -3,8 +3,9 @@ import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { EarningsChartSelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-selection.enum';
+import { EarningsChartPropertySelection } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
+import { EarningsChartConfig } from '../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
 
 @Component({
   selector: 'app-trading-cards',
@@ -23,5 +24,14 @@ export class TradingCardsComponent {
   }
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
-  public get collectiblesConfig():  { article: 'FY24' | 'ATMs' | 'collectibles', chart: EarningsChartSelection, } { return { article: 'collectibles', chart: EarningsChartSelection.REVENUE_TYPE_PERCENTAGE } }
+  // public get collectiblesConfig():  { article: 'FY24' | 'ATMs' | 'collectibles', chart: EarningsChartPropertySelection, } { return { article: 'collectibles', chart: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE } }
+  public get collectiblesConfig(): EarningsChartConfig {
+    return {
+      period: 'QUARTER',
+      startYear: 2020,
+      endYear: 2025,
+      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE,
+      title: 'Colletibles Revenue: Increasing',
+    }
+  }
 }

@@ -24,9 +24,15 @@ export class CustomDropdownMenu {
     public selectMenuItem(menuItem: string) {
         this._currentSelectionIndex = this._menuItems.indexOf(menuItem);
     }
-    public setMenuItem(index: number){
+    public setMenuIndex(index: number){
         if(index < this.menuItems.length){
             this._currentSelectionIndex = index;
+        }
+    }
+    public setMenuItem(value: string){
+        const index = this.menuItems.indexOf(value);
+        if(index > -1){
+            this.setMenuIndex(index);
         }
     }
 }

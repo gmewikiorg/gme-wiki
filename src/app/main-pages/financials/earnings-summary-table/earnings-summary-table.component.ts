@@ -87,7 +87,7 @@ export class EarningsTableComponent {
   }
 
 
-  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Show Table Menus';
+  public showHideMenus: 'Show Table Menus' | 'Hide Table Menus' = 'Hide Table Menus';
   public onClickShowHideMenus(){
     if(this.showHideMenus === 'Show Table Menus'){
       this.showHideMenus = 'Hide Table Menus';
@@ -136,18 +136,6 @@ export class EarningsTableComponent {
     }
     this._tableRows = this._buildTableRows();
   }
-
-  // public onClickQuartersYears(value: 'QUARTERS' | 'YEARS') {
-  //   if (value === 'QUARTERS') {
-  //     this._displayMode = 'QUARTER';
-  //     this._timePeriod = 'Fiscal Quarter';
-  //     // this._importFinancialsService.load10QData();
-  //   } else {
-  //     this._displayMode = 'ANNUAL';
-  //     this._timePeriod = 'Fiscal Year';
-  //   }
-  //   this._tableRows = this._buildTableRows();
-  // }
 
   public date(dateYYYYMMDD: string): string {
     return dayjs(dateYYYYMMDD).format('MMM D, YYYY');

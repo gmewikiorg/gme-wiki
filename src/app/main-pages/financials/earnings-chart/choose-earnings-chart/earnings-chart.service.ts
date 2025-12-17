@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { EarningsChartSelection } from './earnings-chart-selection.enum';
+import { EarningsChartPropertySelection } from './earnings-chart-property-selection.enum';
+import { EarningsChartConfig } from './earnings-chart-config.interface';
+import { defaultEarningsChartConfig } from './default-earnings-chart-config';
 
 @Injectable({
   providedIn: 'root'
@@ -9,30 +11,32 @@ export class FinancialChartService {
 
   constructor() { }
 
+  private _earningsChartConfig: EarningsChartConfig = defaultEarningsChartConfig;
 
-  private _chartPeriod$: BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'> = new BehaviorSubject<'ANNUAL' | 'QUARTER' | 'QOVERQ'>('QUARTER');
-  private _chartOption$: BehaviorSubject<EarningsChartSelection> = new BehaviorSubject<EarningsChartSelection>(EarningsChartSelection.REVENUE_VS_NET_INCOME);
+  private _chartConfig$: BehaviorSubject<EarningsChartConfig> = new BehaviorSubject<EarningsChartConfig>(this._earningsChartConfig);
+  public get chartConfig$(): Observable<EarningsChartConfig> { return this._chartConfig$.asObservable(); }
+  public get chartConfig(): EarningsChartConfig { return this._chartConfig$.getValue(); }
 
-  public get chartPeriod(): 'ANNUAL' | 'QUARTER' | 'QOVERQ' { return this._chartPeriod$.getValue(); }
-  public get chartOption(): EarningsChartSelection { return this._chartOption$.getValue(); }
-
-  public get chartPeriod$(): Observable<'ANNUAL' | 'QUARTER' | 'QOVERQ'> { return this._chartPeriod$.asObservable(); }
-  public get chartOption$(): Observable<EarningsChartSelection> { return this._chartOption$.asObservable(); }
-
-  private _chartTitle$: BehaviorSubject<string> = new BehaviorSubject<string>('Revenue and Net Income by fiscal year');
-  public get chartTitle(): string { return this._chartTitle$.getValue(); }
-  public get chartTitle$(): Observable<string> { return this._chartTitle$.asObservable(); }
-
-  public setChartTitle(title: string){
-    this._chartTitle$.next(title);
+  public setChartTitle(title: string) {
+    this._earningsChartConfig.title = title;
+    this._chartConfig$.next(this._earningsChartConfig);
   }
 
-  public setChartOption(option: EarningsChartSelection) {
-    this._chartOption$.next(option);
+  /** startFy, endFy, both strings must be in the format of 'FY 2025' */
+  public setChartTimeFrame(startFy: string, endFy: string) {
+    this._earningsChartConfig.startYear = Number(startFy.slice(3));
+    this._earningsChartConfig.endYear = Number(endFy.slice(3));
+    this._chartConfig$.next(this._earningsChartConfig);
   }
 
-  public setChartPeriod(option: 'ANNUAL' | 'QUARTER' | 'QOVERQ') {
-    this._chartPeriod$.next(option);
+  public setChartPeriod(period: 'ANNUAL' | 'QUARTER') {
+    this._earningsChartConfig.period = period;
+    this._chartConfig$.next(this._earningsChartConfig);
+  }
+
+  public setChartPropertySelection(selection: EarningsChartPropertySelection) {
+    this._earningsChartConfig.selectedProperty = selection;
+    this._chartConfig$.next(this._earningsChartConfig);
   }
 
 }

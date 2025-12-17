@@ -1,6 +1,6 @@
 
 /** A chart option can consist of one or more metrics */
-export enum EarningsChartSelection {
+export enum EarningsChartPropertySelection {
     REVENUE = 'REVENUE',
     REVENUE_VS_NET_INCOME = 'REVENUE_VS_NET_INCOME',
 
