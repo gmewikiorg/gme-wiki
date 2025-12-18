@@ -5,5 +5,5 @@ export interface EarningsChartConfig{
     startYear: number;
     endYear: number;
     selectedProperty: EarningsChartPropertySelection;
-    title: string;
+    menuLabel: string;
 }

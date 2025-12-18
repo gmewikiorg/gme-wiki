@@ -39,17 +39,17 @@
 }
 
 .image-container{
-    width: 100%;
+    max-width: 100%;
     display:flex;
     flex-direction: column;
     align-items: center;
 }
 .image{
-    max-width: 98%; 
+    width: 100%; 
+    max-width: 450px; 
+    border-radius:10px;
     align-self: center;
-    border-radius: 5px;
-    border: 1px solid rgb(230, 230, 230);
-
+    // border: 1px solid rgb(230, 230, 230);
 }
 
 @media (min-width:800px){

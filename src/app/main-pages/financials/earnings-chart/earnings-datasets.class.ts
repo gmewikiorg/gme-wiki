@@ -4,324 +4,65 @@ import { EarningsResult } from "../earnings-results/earnings-result.class";
 import { ChartDataset } from "chart.js";
 import { Options } from "chartjs-plugin-datalabels/types/options";
 import { EarningsChartPropertySelection } from "./choose-earnings-chart/earnings-chart-property-selection.enum";
-import { EARNINGS_METRIC_CONFIG, EarningsMetric, EarningsMetricConfig } from "./choose-earnings-chart/earnings-metric.enum";
+import { EARNINGS_METRIC_CONFIGS, EarningsMetric, EarningsMetricConfig, SELECTION_TO_METRICS } from "./choose-earnings-chart/earnings-metric-configs";
+
+
 
 export class EarningsDatasetBuilder {
-
     constructor(private _sizeService: ScreenService) { }
 
-    public updateDatasets(results: EarningsResult[], chartSelection: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ', dataEntryCount: number): ChartDataset<"bar", any[]>[] {
-        const revenueDataItems: number[] = results.map(r => r.revenue).reverse();
-        const netIncomeDataItems: number[] = results.map(r => r.netEarnings).reverse();
-        const netProfitMarginDataItems: number[] = results.map(r => ((r.netEarnings / r.revenue) * 100)).reverse();
-        const costOfSalesDataItems: number[] = results.map(r => r.costOfSales).reverse();
-        const grossProfitDataItems: number[] = results.map(r => r.grossProfit).reverse();
-        const operatingIncomeDataItems: number[] = results.map(r => r.operatingIncome).reverse();
-        const sgaDataItems: number[] = results.map(r => r.sga).reverse();
-        const interestIncomeDataItems: number[] = results.map(r => r.interestIncome).reverse();
-        const equityDataItems: number[] = results.map(r => r.stockholdersEquity).reverse();
-        const storeCountDataItems: number[] = results.map(r => r.storeCount).reverse();
-        const revenuePerStoreDataItems: number[] = results.map(r => r.revenue / r.storeCount).reverse();
-        const hardwareRevDataItems: number[] = results.map(r => r.hardwareRevenue).reverse();
-        const softwareRevDataItems: number[] = results.map(r => r.softwareRevenue).reverse();
-        const collectiblesRevDataItems: number[] = results.map(r => r.collectiblesRevenue).reverse();
-        const hardwareRevPercentDataItems: number[] = results.map(r => ((r.hardwareRevenue / r.revenue) * 100)).reverse();
-        const softwareRevPercentDataItems: number[] = results.map(r => ((r.softwareRevenue / r.revenue) * 100)).reverse();
-        const collectiblesRevPercentDataItems: number[] = results.map(r => ((r.collectiblesRevenue / r.revenue) * 100)).reverse();
-        const epsDataItems: number[] = results.map(r => ((r.netEPS) * 100)).reverse();
-        const bvpsDataItems: number[] = results.map(r => ((r.stockholdersEquity / r.weightedAverageSharesOutstanding) * 100)).reverse();
-
-        const revenueDataSet = this._buildDataset(EarningsMetric.REVENUE, chartPeriod, dataEntryCount, revenueDataItems, chartSelection);
-        const netIncomeDataset = this._buildDataset(EarningsMetric.NET_INCOME, chartPeriod, dataEntryCount, netIncomeDataItems, chartSelection);
-        const netProfitMarginDataset = this._buildDataset(EarningsMetric.NET_PROFIT_MARGIN, chartPeriod, dataEntryCount, netProfitMarginDataItems, chartSelection);
-        const costOfSalesProfitDataset = this._buildDataset(EarningsMetric.COST_OF_SALES, chartPeriod, dataEntryCount, costOfSalesDataItems, chartSelection);
-        const grossProfitDataset = this._buildDataset(EarningsMetric.GROSS_PROFIT, chartPeriod, dataEntryCount, grossProfitDataItems, chartSelection);
-        const operatingIncomeDataset = this._buildDataset(EarningsMetric.OPERATING_INCOME, chartPeriod, dataEntryCount, operatingIncomeDataItems, chartSelection);
-        const sgaDataset = this._buildDataset(EarningsMetric.SGA, chartPeriod, dataEntryCount, sgaDataItems, chartSelection);
-        const interestIncomeDataset = this._buildDataset(EarningsMetric.INTEREST_INCOME, chartPeriod, dataEntryCount, interestIncomeDataItems, chartSelection);
-        const equityDataset = this._buildDataset(EarningsMetric.STOCKHOLDERS_EQUITY, chartPeriod, dataEntryCount, equityDataItems, chartSelection);
-        const storeCountDataset = this._buildDataset(EarningsMetric.STORE_COUNT, chartPeriod, dataEntryCount, storeCountDataItems, chartSelection);
-        const hardwareRevenueDataset = this._buildDataset(EarningsMetric.HARDWARE_REVENUE, chartPeriod, dataEntryCount, hardwareRevDataItems, chartSelection);
-        const softwareRevenueDataset = this._buildDataset(EarningsMetric.SOFTWARE_REVENUE, chartPeriod, dataEntryCount, softwareRevDataItems, chartSelection);
-        const collectiblesRevenueDataset = this._buildDataset(EarningsMetric.COLLECTIBLES_REVENUE, chartPeriod, dataEntryCount, collectiblesRevDataItems, chartSelection);
-        const hardwareRevPercentDataset = this._buildDataset(EarningsMetric.HARDWARE_REVENUE_PERCENTAGE, chartPeriod, dataEntryCount, hardwareRevPercentDataItems, chartSelection);
-        const softwareRevPercentDataset = this._buildDataset(EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE, chartPeriod, dataEntryCount, softwareRevPercentDataItems, chartSelection);
-        const collectiblesRevPercentDataset = this._buildDataset(EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE, chartPeriod, dataEntryCount, collectiblesRevPercentDataItems, chartSelection);
-        const revenuePerStoreDataset = this._buildDataset(EarningsMetric.REVENUE_PER_STORE, chartPeriod, dataEntryCount, revenuePerStoreDataItems, chartSelection);
-        const epsDataset = this._buildDataset(EarningsMetric.EPS, chartPeriod, dataEntryCount, epsDataItems, chartSelection);
-        const bvpsDataset = this._buildDataset(EarningsMetric.BOOK_VALUE_PER_SHARE, chartPeriod, dataEntryCount, bvpsDataItems, chartSelection);
-
-        let datasets: ChartDataset<"bar", any[]>[] = [];
-        if (chartSelection === EarningsChartPropertySelection.REVENUE) {
-            datasets = [revenueDataSet];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-            datasets = [revenueDataSet, netIncomeDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_COST) {
-            datasets = [revenueDataSet, costOfSalesProfitDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-            datasets = [netProfitMarginDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-            datasets = [revenueDataSet, grossProfitDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.INTEREST_INCOME) {
-            datasets = [interestIncomeDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-            datasets = [equityDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.OPERATING_INCOME) {
-            datasets = [operatingIncomeDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-            datasets = [grossProfitDataset, sgaDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-            datasets = [operatingIncomeDataset, sgaDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_STORES) {
-            datasets = [revenueDataSet, storeCountDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.NET_INCOME) {
-            datasets = [netIncomeDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_TYPE) {
-            datasets = [hardwareRevenueDataset, softwareRevenueDataset, collectiblesRevenueDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE) {
-            datasets = [hardwareRevPercentDataset, softwareRevPercentDataset, collectiblesRevPercentDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.REVENUE_PER_STORES) {
-            datasets = [revenuePerStoreDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.EPS) {
-            datasets = [epsDataset];
-        } else if (chartSelection === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-            datasets = [bvpsDataset];
-        }
-
-        return datasets;
+    public updateDatasets(results: EarningsResult[], chartSelection: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER', dataEntryCount: number): ChartDataset<"bar", any[]>[] {
+        const metrics = SELECTION_TO_METRICS[chartSelection] ?? [];
+        return metrics.map(metric => {
+            const config = EARNINGS_METRIC_CONFIGS[metric];
+            const dataItems = results.map(config.value).reverse();
+            return this._buildDataset(
+                config.metric,
+                chartPeriod,
+                dataEntryCount,
+                dataItems,
+                chartSelection
+            );
+        });
     }
 
-    // public chartTitle(chartOption: EarningsChartPropertySelection, period: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): string {
-    //     let periodLabel = 'by fiscal year';
-    //     if (period !== 'ANNUAL') {
-    //         periodLabel = 'by fiscal quarter';
-    //     }
-    //     let title = '';
-    //     if (chartOption === EarningsChartPropertySelection.REVENUE) {
-    //         title = 'Revenue ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-    //         title = 'Revenue and Net Income ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_COST) {
-    //         title = 'Revenue vs Cost of Sales ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-    //         title = 'Net Profit Margin ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-    //         title = 'Revenue vs Gross Profit ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.INTEREST_INCOME) {
-    //         title = 'Interest Income ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-    //         title = "Stockholders' Equity " + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.OPERATING_INCOME) {
-    //         title = 'Operating Income ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-    //         title = 'Gross Profit vs SG&A ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-    //         title = 'Operating Income vs SG&A ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_STORES) {
-    //         title = 'Revenue vs stores ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.NET_INCOME) {
-    //         title = 'Net Income ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE) {
-    //         title = 'Revenue by Type ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE) {
-    //         title = 'Revenue by Type as Percent of Total ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.REVENUE_PER_STORES) {
-    //         title = 'Revenue per Store ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.EPS) {
-    //         title = 'Earnings per Share ' + periodLabel;
-    //     } else if (chartOption === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-    //         title = 'Book Value per Share ' + periodLabel;
-    //     }
-    //     return title;
-    // }
-
-    public getTickScale(chartOption: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): 100 | 1000 | 1000000 | 1000000000 | 1 {
-        let tickScale: number = 1000000000;
-        const revenueConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE];
-        const netIncomeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_INCOME];
-        const netProfitMarginConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_PROFIT_MARGIN];
-        const costOfSalesConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.COST_OF_SALES];
-        const grossProfitConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.GROSS_PROFIT];
-        const interestConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.INTEREST_INCOME];
-        const equityConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STOCKHOLDERS_EQUITY];
-        const operatingConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.OPERATING_INCOME];
-        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA];
-        const storesConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STORE_COUNT];
-        const revenueTypeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.HARDWARE_REVENUE];
-        const revenueTypePercentConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.HARDWARE_REVENUE_PERCENTAGE];
-        const revenuePerStoreConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE_PER_STORE];
-        const epsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.EPS];
-        const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
-
-        if (chartPeriod === 'ANNUAL') {
-            if (chartOption === EarningsChartPropertySelection.REVENUE) {
-                tickScale = revenueConfig.tickScaleAnnually;
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-                tickScale = Math.max(revenueConfig.tickScaleAnnually, netIncomeConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_COST) {
-                tickScale = Math.max(revenueConfig.tickScaleAnnually, costOfSalesConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-                tickScale = netProfitMarginConfig.tickScaleAnnually;
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-                tickScale = Math.max(revenueConfig.tickScaleAnnually, grossProfitConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.INTEREST_INCOME) {
-                tickScale = interestConfig.tickScaleAnnually;
-            } else if (chartOption === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-                tickScale = equityConfig.tickScaleAnnually;
-            } else if (chartOption === EarningsChartPropertySelection.OPERATING_INCOME) {
-                tickScale = operatingConfig.tickScaleAnnually;
-            } else if (chartOption === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-                tickScale = Math.max(grossProfitConfig.tickScaleAnnually, sgaConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-                tickScale = Math.max(operatingConfig.tickScaleAnnually, sgaConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_STORES) {
-                tickScale = Math.max(revenueConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.NET_INCOME) {
-                tickScale = Math.max(netIncomeConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE) {
-                tickScale = Math.max(revenueTypeConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE) {
-                tickScale = Math.max(revenueTypePercentConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_PER_STORES) {
-                tickScale = Math.max(revenuePerStoreConfig.tickScaleAnnually);
-            } else if (chartOption === EarningsChartPropertySelection.EPS) {
-                tickScale = 1;
-            } else if (chartOption === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-                tickScale = 1;
-            }
-        } else {
-            if (chartOption === EarningsChartPropertySelection.REVENUE) {
-                tickScale = revenueConfig.tickScaleQuarterly;
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-                tickScale = Math.max(revenueConfig.tickScaleQuarterly, netIncomeConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_COST) {
-                tickScale = Math.max(revenueConfig.tickScaleQuarterly, costOfSalesConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-                tickScale = netProfitMarginConfig.tickScaleQuarterly;
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-                tickScale = Math.max(revenueConfig.tickScaleQuarterly, grossProfitConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.INTEREST_INCOME) {
-                tickScale = interestConfig.tickScaleQuarterly;
-            } else if (chartOption === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-                tickScale = equityConfig.tickScaleQuarterly;
-            } else if (chartOption === EarningsChartPropertySelection.OPERATING_INCOME) {
-                tickScale = operatingConfig.tickScaleQuarterly;
-            } else if (chartOption === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-                tickScale = Math.max(grossProfitConfig.tickScaleQuarterly, sgaConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-                tickScale = Math.max(operatingConfig.tickScaleQuarterly, sgaConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_STORES) {
-                tickScale = Math.max(revenueConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.NET_INCOME) {
-                tickScale = Math.max(netIncomeConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE) {
-                tickScale = Math.max(revenueTypeConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE) {
-                tickScale = Math.max(revenueTypePercentConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.REVENUE_PER_STORES) {
-                tickScale = Math.max(revenuePerStoreConfig.tickScaleQuarterly);
-            } else if (chartOption === EarningsChartPropertySelection.EPS) {
-                tickScale = 1;
-            } else if (chartOption === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-                tickScale = 1;
-            }
-        }
-        if (tickScale === 1000000000) {
-            return 1000000000;
-        } else if (tickScale === 1000000) {
-            return 1000000;
-        } else if (tickScale === 1000) {
-            return 1000;
-        } else if (tickScale === 100) {
-            return 100;
-        } else if (tickScale === 1) {
-            return 1;
-        }
-        return 1000000000;
+    public getTickScale(chartOption: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER'): 100 | 1000 | 1000000 | 1000000000 | 1 {
+        const metrics = SELECTION_TO_METRICS[chartOption] ?? [];
+        const scales = metrics.map(metric => {
+            const config = EARNINGS_METRIC_CONFIGS[metric];
+            return chartPeriod === 'ANNUAL'
+                ? config.tickScaleAnnually
+                : config.tickScaleQuarterly;
+        });
+        return Math.max(...scales) as | 100 | 1000 | 1000000 | 1000000000 | 1;
     }
 
-    public getMinY(chartSelection: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER' | 'QOVERQ'): number {
-        let minY = 0;
-        const revenueConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.REVENUE];
-        const netIncomeConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_INCOME];
-        const netProfitMarginConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.NET_PROFIT_MARGIN];
-        const costOfSalesConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.COST_OF_SALES];
-        const grossProfitConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.GROSS_PROFIT];
-        const interestConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.INTEREST_INCOME];
-        const equityConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.STOCKHOLDERS_EQUITY];
-        const operatingConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.OPERATING_INCOME];
-        const sgaConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.SGA];
-        const epsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.EPS];
-        const bvpsConfig = EARNINGS_METRIC_CONFIG[EarningsMetric.BOOK_VALUE_PER_SHARE];
-        if (chartPeriod === 'ANNUAL') {
-            if (chartSelection === EarningsChartPropertySelection.REVENUE) {
-                minY = revenueConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-                minY = Math.min(revenueConfig.minYAnnual, netIncomeConfig.minYAnnual);
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_COST) {
-                minY = Math.min(revenueConfig.minYAnnual, costOfSalesConfig.minYAnnual);
-            } else if (chartSelection === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-                minY = netProfitMarginConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-                minY = Math.min(revenueConfig.minYAnnual, grossProfitConfig.minYAnnual);
-            } else if (chartSelection === EarningsChartPropertySelection.INTEREST_INCOME) {
-                minY = interestConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-                minY = equityConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.OPERATING_INCOME) {
-                minY = operatingConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-                minY = Math.min(grossProfitConfig.minYAnnual, sgaConfig.minYAnnual);
-            } else if (chartSelection === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-                minY = Math.min(operatingConfig.minYAnnual, sgaConfig.minYAnnual);
-            } else if (chartSelection === EarningsChartPropertySelection.NET_INCOME) {
-                minY = Math.min(-800000000);
-            } else if (chartSelection === EarningsChartPropertySelection.EPS) {
-                minY = epsConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-                minY = bvpsConfig.minYAnnual;
-            }
-        } else {
-            if (chartSelection === EarningsChartPropertySelection.REVENUE) {
-                minY = revenueConfig.minYAnnual;
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_NET_INCOME) {
-                minY = Math.min(revenueConfig.minYQuarter, netIncomeConfig.minYQuarter);
-            } else if (chartSelection === EarningsChartPropertySelection.NET_PROFIT_MARGIN) {
-                minY = netProfitMarginConfig.minYQuarter;
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_COST) {
-                minY = Math.min(revenueConfig.minYQuarter, costOfSalesConfig.minYQuarter);
-            } else if (chartSelection === EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT) {
-                minY = Math.min(revenueConfig.minYQuarter, grossProfitConfig.minYQuarter);
-            } else if (chartSelection === EarningsChartPropertySelection.INTEREST_INCOME) {
-                minY = interestConfig.minYQuarter;
-            } else if (chartSelection === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-                minY = equityConfig.minYQuarter;
-            } else if (chartSelection === EarningsChartPropertySelection.OPERATING_INCOME) {
-                minY = operatingConfig.minYQuarter;
-            } else if (chartSelection === EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA) {
-                minY = Math.min(grossProfitConfig.minYQuarter, sgaConfig.minYQuarter);
-            } else if (chartSelection === EarningsChartPropertySelection.OPERATIONS_VS_SGA) {
-                minY = Math.min(operatingConfig.minYQuarter, sgaConfig.minYQuarter);
-            } else if (chartSelection === EarningsChartPropertySelection.NET_INCOME) {
-                minY = Math.min(netIncomeConfig.minYQuarter)
-            } else if (chartSelection === EarningsChartPropertySelection.EPS) {
-                minY = epsConfig.minYQuarter;
-            } else if (chartSelection === EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE) {
-                minY = bvpsConfig.minYQuarter;
-            }
-        }
-        return minY;
+    public getMinY(chartOption: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER'): number {
+        const metrics = SELECTION_TO_METRICS[chartOption] ?? [];
+        const scales = metrics.map(metric => {
+            const config = EARNINGS_METRIC_CONFIGS[metric];
+            return chartPeriod === 'ANNUAL'
+                ? config.minYAnnual
+                : config.minYQuarter;
+        });
+        return Math.min(...scales);
     }
 
 
     /** Builds a single dataset.  e.g. all Revenue numbers, or all Interest income numbers, etc. */
-    private _buildDataset(metric: EarningsMetric, period: 'ANNUAL' | 'QUARTER' | 'QOVERQ', dataEntryCount: number, dataItems: number[], chartSelection: EarningsChartPropertySelection): ChartDataset<"bar", (any)[]> {
+    private _buildDataset(
+        metric: EarningsMetric,
+        period: 'ANNUAL' | 'QUARTER',
+        dataEntryCount: number,
+        dataItems: number[],
+        chartSelection: EarningsChartPropertySelection
+    ): ChartDataset<"bar", (any)[]> {
 
-
-        const config: EarningsMetricConfig = EARNINGS_METRIC_CONFIG[metric];
+        const config: EarningsMetricConfig = EARNINGS_METRIC_CONFIGS[metric];
         const datasetColorsFull = this._getDatasetColors(dataEntryCount, dataItems, config);
         // const datasetColors = this.getSubsetArray(datasetColorsFull.length, datasetColorsFull);
         const dataLabelColors = datasetColorsFull.map(color => this._setNewAlpha(color, 0.9));
+
 
         let tickScale = config.tickScaleAnnually;
         if (period !== 'ANNUAL') {
@@ -332,74 +73,50 @@ export class EarningsDatasetBuilder {
         if (metric === EarningsMetric.STORE_COUNT) {
             yAxisId = "y2";
         }
-
-
         const isDarkMode = this._sizeService.isDarkMode;
-
         let backgroundColor = 'white';
         if (isDarkMode) {
             backgroundColor = 'black';
         }
-
         let dataLabels: Options | undefined = {
             color: function (context: Context) {
                 return dataLabelColors[context.dataIndex]
             },
             listeners: {
-                enter() {
-
-                }
+                enter() {}
             },
             display(context: Context) {
-                if (context.dataIndex >= context.dataset.data.length - 1) {
-                    return true;
-                }
-                return false;
+                return (context.dataIndex >= context.dataset.data.length - 1) ? true : false;
             },
             align: function (context: Context) {
                 let value = Number(context.dataset.data[context.dataIndex]);
-                if (value > 0) {
-                    return 'top';
-                } else {
-                    return 'bottom';
-                }
-                return 'bottom';
+                return ((value > 0) ? 'top' : 'bottom');
             },
             anchor: function (context: Context) {
                 let value = Number(context.dataset.data[context.dataIndex]);
-                if (value > 0) {
-                    return 'end';
-                } else {
-                    return 'start';
-                }
-                return 'start';
+                return ((value > 0) ? 'end' : 'start');
             },
             backgroundColor: backgroundColor,
             borderRadius: 5,
             borderColor: function (context: Context) {
-                if (isDarkMode) {
-                    return 'rgba(255,255,255,0.1)';
-                } else {
-                    return 'rgba(0,0,0,0.1)';
-                }
-
+                return (isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)')
             },
             borderWidth: 1,
             formatter: function (value: number, context: Context) {
                 if (metric !== EarningsMetric.STORE_COUNT) {
                     if (tickScale === 1000000000) {
-                        return '$' + (value / tickScale).toFixed(1) + " B";
+                        return '$' + (value / tickScale).toFixed(1) + "B";
                     } else if (tickScale === 1000000) {
-                        return '$' + (value / tickScale).toFixed(0) + " M";
+                        return '$' + (value / tickScale).toFixed(0) + "M";
                     } else if (tickScale === 1000) {
-                        return '$' + (value / tickScale).toFixed(0) + " K";
+                        return '$' + (value / tickScale).toFixed(0) + "K";
                     } else if (tickScale === 100) {
-                        return (value).toFixed(1) + " %";
+                        return (value).toFixed(1) + "%";
                     } else if (tickScale === 1) {
                         return '$' + (value / 100).toFixed(2);
                     }
                 } else {
-                    return '' + (value / tickScale).toFixed(0) + " K";
+                    return '' + (value / tickScale).toFixed(0) + "K";
                 }
                 return '';
             },
@@ -456,7 +173,6 @@ export class EarningsDatasetBuilder {
         return sliced;
     }
 
-
     /** 
         * Gets an alpha value for rgba based on items position in array
         *  older items are more transparent (lower alpha), e.g. 2005.
@@ -469,16 +185,15 @@ export class EarningsDatasetBuilder {
         if (this._sizeService.isDarkMode) {
             minAlpha = 0.65;
         }
-
         if (totalCount <= 1) {
             return 1.0;
         }
-
         return minAlpha + (maxAlpha - minAlpha) * t;
     }
 
     public static get mobileItemCount(): number { return 8; }
     public getSubsetArray(dataEntryCount: number, sourceArray: any[]): any[] {
+        return sourceArray;
         const screenWidth = this._sizeService.screenWidth;
         if (dataEntryCount <= sourceArray.length) {
             let itemCount = dataEntryCount;

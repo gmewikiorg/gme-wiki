@@ -9,12 +9,12 @@ import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
 import { Subscription } from 'rxjs';
-import { earningsChartLabelContext } from './earnings-chart-label-context';
 import { setEarningsChartLegend } from './earnings-chart-set-legend';
 import { FinancialChartService } from './choose-earnings-chart/earnings-chart.service';
 import { EarningsChartPropertySelection } from './choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartConfig } from './choose-earnings-chart/earnings-chart-config.interface';
 import { defaultEarningsChartConfig } from './choose-earnings-chart/default-earnings-chart-config';
+import { setChartOptions } from './earnings-chart-options';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -72,7 +72,6 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
       this._screenService.isDarkMode$.subscribe((change) => { this._updateChartDataAndOptions(); })
     ];
     this._isLoaded = true;
-
   }
 
   private _subscriptions: Subscription[] = [];
@@ -88,7 +87,6 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   public get xAxisLabels(): string[] { return this._xAxisLabels; }
 
   private _updateDatasets(dataEntryCount = 99): ChartConfiguration<'bar'>['data'] {
-
     this.showCustomLegend = false;
     let results: EarningsResult[] = [];
 
@@ -117,224 +115,8 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     };
   }
 
-
   private _setChartOptions(): ChartOptions<'bar'> {
-
-    const tickScale: 1 | 100 | 1000 | 1000000 | 1000000000 = this._datasetBuilder.getTickScale(this.chartSelectedProperty, this.chartPeriod);
-    let tickLabel = tickScale === 1000000 ? 'million' : 'billion';
-    if (tickScale === 1) {
-      tickLabel = '';
-    }
-    const minY = this._datasetBuilder.getMinY(this.chartSelectedProperty, this.chartPeriod);
-    let maxY = undefined;
-
-    if (this.chartSelectedProperty === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
-      maxY = 6000000000
-    }
-    const isRevenueTypePercent = this.chartSelectedProperty === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE;
-    const isNetProfitMarginPercent = this.chartSelectedProperty === EarningsChartPropertySelection.NET_PROFIT_MARGIN;
-
-    const tooltipCallbacks = {
-      label: (context: TooltipItem<"bar">) => { return this._labelContext(context) },
-      footer: (context: TooltipItem<"bar">[]) => { return this._footerContext(context) },
-      title: (context: TooltipItem<"bar">[]) => { return this._titleContext(context) }
-    };
-
-    let color = 'rgba(0,0,0,0.1)';
-    const darkMode = this.isDarkMode;
-    if (darkMode) {
-      color = 'rgba(255,255,255,0.15)';
-    }
-
-    let chartOptions: ChartOptions<'bar'> = {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: false,
-      scales: {
-        y: {
-          min: minY,
-          max: maxY,
-          grid: {
-            color: function (context) {
-              // if (context.tick.value === 0) {
-              //   if(darkMode){
-              //     return 'rgba(255,255,255,0.2)';
-              //   }else{
-              //     return 'rgba(0,0,0,0.2)';
-              //   }
-              // }
-              return color;
-            },
-          },
-          ticks: {
-            backdropColor: 'black',
-            // Include a dollar sign in the ticks
-            callback: function (value, index, ticks) {
-              if (isRevenueTypePercent || isNetProfitMarginPercent) {
-                return Number(value) + "%";
-              } else {
-                const numVal = Number(value);
-                if (tickScale === 1) {
-                  // e.g. in case of EPS, BVPS
-                  if (numVal >= 0) {
-                    if (numVal === 0) {
-                      return '$0'
-                    } else {
-                      return '$' + (numVal / 100) + '.00 ';
-                    }
-                  } else {
-                    return '$' + (numVal / 100) + '.00 ';
-                  }
-                } else {
-                  if (numVal >= 0) {
-                    if (numVal === 0) {
-                      return '$0'
-                    } else {
-                      return '$' + (numVal / tickScale) + ' ' + tickLabel;
-                    }
-                  } else {
-                    return '$' + (numVal / tickScale) + ' ' + tickLabel;
-                  }
-                }
-
-              }
-
-            }
-          }
-        },
-        x: {
-          grid: {
-            color: function (context) {
-              return color;
-            },
-          }
-        }
-      },
-      layout: {
-        padding: {
-          right: 10
-        }
-      },
-      plugins: {
-        datalabels: {
-        },
-        legend: {
-          onClick: (event, array) => {
-          },
-          position: 'top',
-          labels: {
-            padding: 20,
-            boxWidth: 12,
-            boxHeight: 12,
-          },
-          display: false,
-        },
-        tooltip: {
-          callbacks: tooltipCallbacks
-        },
-      },
-    }
-    if (this.chartSelectedProperty === EarningsChartPropertySelection.REVENUE_VS_STORES) {
-      chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
-        scales: {
-          x: {
-            grid: {
-              color: function (context) {
-                return color;
-              },
-            }
-          },
-          y: {
-            min: minY,
-            title: {
-              display: true,
-              text: "Revenue",
-            },
-            grid: {
-              color: function (context) {
-                // if (context.tick.value === 0) {
-                //   if(darkMode){
-                //     return 'rgba(255,255,255,0.2)';
-                //   }else{
-                //     return 'rgba(0,0,0,0.2)';
-                //   }
-                // }
-                return color;
-              },
-            },
-            ticks: {
-              backdropColor: 'black',
-              // Include a dollar sign in the ticks
-              callback: function (value, index, ticks) {
-                const numVal = Number(value);
-                if (numVal >= 0) {
-                  if (numVal === 0) {
-                    return '$0'
-                  } else {
-                    return '$' + (numVal / tickScale) + ' ' + tickLabel;
-                  }
-                } else {
-                  return '$' + (numVal / tickScale) + ' ' + tickLabel;
-                }
-              }
-            }
-          },
-          y2: {
-            min: minY,
-            type: "linear",
-            position: "right",
-            beginAtZero: true,
-            grid: {
-              drawOnChartArea: false, // Prevents overlapping grid lines
-            },
-            title: {
-              display: true,
-              text: "Store count",
-            },
-          }
-        },
-        layout: {
-          padding: {
-            right: 10
-          }
-        },
-        plugins: {
-          datalabels: {
-          },
-          legend: {
-            onClick: (event, array) => {
-            },
-            position: 'top',
-            labels: {
-              padding: 20,
-              boxWidth: 12,
-              boxHeight: 12,
-            },
-            display: false,
-          },
-          tooltip: {
-            callbacks: tooltipCallbacks
-          },
-        },
-
-      }
-    }
-    return chartOptions;
+    return setChartOptions(this._datasetBuilder, this.chartSelectedProperty, this.chartPeriod, this.xAxisLabels, this.isDarkMode);
   }
-
-  private _labelContext(context: TooltipItem<"bar">): string {
-    return earningsChartLabelContext(context, this.chartSelectedProperty);
-  }
-  private _footerContext(context: TooltipItem<"bar">[]): string {
-    const item = context[0];
-    return '';
-  }
-  private _titleContext(context: TooltipItem<"bar">[]): string {
-    return this._xAxisLabels[context[0].dataIndex];
-  }
-
 
 }

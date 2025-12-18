@@ -31,7 +31,7 @@ export class TradingCardsComponent {
       startYear: 2020,
       endYear: 2025,
       selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE,
-      title: 'Colletibles Revenue: Increasing',
+      menuLabel: 'Colletibles Revenue: Increasing',
     }
   }
 }

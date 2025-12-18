@@ -35,7 +35,7 @@ export class ATMsComponent {
         startYear: 2018,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.INTEREST_INCOME,
-        title: "GameStop Interest Income",
+        menuLabel: "GameStop Interest Income",
       }
     }
   }
@@ -46,7 +46,7 @@ export class ATMsComponent {
         startYear: 2018,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.STOCKHOLDERS_EQUITY,
-        title: "GameStop Stockholders' Equity",
+        menuLabel: "GameStop Stockholders' Equity",
       }
     }
   }

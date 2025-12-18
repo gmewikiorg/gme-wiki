@@ -34,7 +34,7 @@ export class Fy24EarningsComponent {
         startYear: 2010,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.STOCKHOLDERS_EQUITY,
-        title: "GameStop Stockholders' Equity by Fiscal Year",
+        menuLabel: "GameStop Stockholders' Equity by Fiscal Year",
       }
     }
   }
@@ -45,7 +45,7 @@ export class Fy24EarningsComponent {
         startYear: 2015,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.REVENUE_VS_STORES,
-        title: 'GameStop Revenue versus Store Count by Fiscal Year',
+        menuLabel: 'GameStop Revenue versus Store Count by Fiscal Year',
       }
     }
   }
@@ -56,7 +56,7 @@ export class Fy24EarningsComponent {
         startYear: 2010,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.INTEREST_INCOME,
-        title: 'GameStop Interest Income per Fiscal Year',
+        menuLabel: 'GameStop Interest Income per Fiscal Year',
       }
     }
   }
@@ -67,7 +67,7 @@ export class Fy24EarningsComponent {
         startYear: 2010,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.OPERATING_INCOME,
-        title: 'GameStop Operating Income per Fiscal Year',
+        menuLabel: 'GameStop Operating Income per Fiscal Year',
       }
     }
   }
@@ -78,7 +78,7 @@ export class Fy24EarningsComponent {
         startYear: 2010,
         endYear: 2024,
         selectedProperty: EarningsChartPropertySelection.NET_INCOME,
-        title: 'GameStop Net Income per Fiscal Year',
+        menuLabel: 'GameStop Net Income per Fiscal Year',
       }
     }
   }

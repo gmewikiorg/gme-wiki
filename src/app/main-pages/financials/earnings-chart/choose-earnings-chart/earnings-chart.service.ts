@@ -17,11 +17,6 @@ export class FinancialChartService {
   public get chartConfig$(): Observable<EarningsChartConfig> { return this._chartConfig$.asObservable(); }
   public get chartConfig(): EarningsChartConfig { return this._chartConfig$.getValue(); }
 
-  public setChartTitle(title: string) {
-    this._earningsChartConfig.title = title;
-    this._chartConfig$.next(this._earningsChartConfig);
-  }
-
   /** startFy, endFy, both strings must be in the format of 'FY 2025' */
   public setChartTimeFrame(startFy: string, endFy: string) {
     this._earningsChartConfig.startYear = Number(startFy.slice(3));

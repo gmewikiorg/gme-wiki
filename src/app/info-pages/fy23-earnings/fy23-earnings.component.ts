@@ -46,7 +46,7 @@ export class Fy23EarningsComponent {
         startYear: 2016,
         endYear: 2023,
         selectedProperty: EarningsChartPropertySelection.REVENUE_VS_NET_INCOME,
-        title: "GameStop Revenue versus Net Income by Fiscal Year",
+        menuLabel: "GameStop Revenue versus Net Income by Fiscal Year",
       }
     }
   }
