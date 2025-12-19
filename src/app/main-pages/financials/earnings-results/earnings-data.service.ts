@@ -8,7 +8,7 @@ import { filings_10q_raw } from './10q_filings';
 @Injectable({
   providedIn: 'root'
 })
-export class Import10KDataService {
+export class EarningsDataService {
 
   constructor() { }
 

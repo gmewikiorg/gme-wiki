@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EarningsResult } from '../earnings-results/earnings-result.class';
-import { Import10KDataService } from '../earnings-results/import-10k-data.service';
+import { EarningsDataService } from '../earnings-results/earnings-data.service';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { aggregateEarningsResult } from './aggregate-earnings-result';
 })
 export class QuarterlyEarningsDataTableComponent implements OnInit {
   constructor(
-    private _importFinancialsService: Import10KDataService,
+    private _importFinancialsService: EarningsDataService,
     private _loadingService: LoadingService,
     private _screenService: ScreenService) {
   }

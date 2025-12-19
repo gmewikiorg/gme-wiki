@@ -1,36 +1,46 @@
 import { ChartConfiguration } from "chart.js";
 import { OwnershipHistoryItem } from "./ownership-history-item.interface";
-import { ownershipHistory } from "./ownership-history";
+import { ownershipHistory } from "./ownership-history_old_2025-12-18";
 import dayjs from "dayjs";
 
 export class OwnershipData {
     constructor() { }
 
     private _ownershipHistory: OwnershipHistoryItem[] = ownershipHistory;
-    private _recentOwnershipData: OwnershipHistoryItem = this._ownershipHistory[0];
 
-    public get registeredText(): string { return this._recentOwnershipData.registeredText; }
-    public get filingLink(): string { return this._recentOwnershipData.filingLink; }
-    public get formType(): '10Q' | '10K' { return this._recentOwnershipData.filingType; }
-    public get tso(): number { return this._recentOwnershipData.tso; }
-    public get lastUpdateYYYYMMDD(): string { return this._recentOwnershipData.dateYYYYMMDD; }
-    public get filingDateYYYYMMDD(): string { return this._recentOwnershipData.filingDateYYYYMMDD; }
+    /** The most recent ownership data is the first entry listed in the ownership history 
+     * _mroData = most recent ownership Data    */
+    private _mroData: OwnershipHistoryItem = this._ownershipHistory[0];
+
+    /** This value comes from the DRSGME.org June 2024 viewing of the stockholder list  
+        * https://www.drsgme.org/2024-stockholder-list-viewing */
+    private _drsVsDsppRatio2025: number = 0.813;
+    private _drsVsDsppRatio2024: number = 0.824;
+
+
+
+    public get registeredText(): string { return this._mroData.registeredText; }
+    public get filingLink(): string { return this._mroData.filingLink; }
+    public get formType(): '10Q' | '10K' { return this._mroData.filingType; }
+    public get tso(): number { return this._mroData.tso; }
+    public get lastUpdateYYYYMMDD(): string { return this._mroData.dateYYYYMMDD; }
+    public get filingDateYYYYMMDD(): string { return this._mroData.filingDateYYYYMMDD; }
     public get dateFormatted(): string { return dayjs(this.lastUpdateYYYYMMDD).format('MMMM D, YYYY'); }
     public get filingDateFormatted(): string { return dayjs(this.filingDateYYYYMMDD).format('MMMM D, YYYY'); }
-    public get totalCede(): number { return this._recentOwnershipData.heldByCede; }
-    public get totalRegistered(): number { return this._recentOwnershipData.heldByRegistered; }
-    public get drsShares(): number { return this._recentOwnershipData.registeredDRS; }
-    public get dsppShares(): number { return this._recentOwnershipData.registeredDSPP; }
-    public get rcShares(): number { return this._recentOwnershipData.insidersRyanCohen; }
-    public get insidersOtherShares(): number { return this._recentOwnershipData.insidersRemainder; }
-    public get totalInsiders(): number { return this._recentOwnershipData.totalInsiders; }
-    public get keithGillShares(): number { return this._recentOwnershipData.keithGill; }
-    public get vanguardShares(): number { return this._recentOwnershipData.instVanguard; }
-    public get blackrockShares(): number { return this._recentOwnershipData.instBlackrock; }
-    public get stateStreetShares(): number { return this._recentOwnershipData.instStateStreet; }
-    public get otherInstShares(): number { return this._recentOwnershipData.instAllOther; }
-    public get totalInstitutional(): number { return this._recentOwnershipData.instTotal; }
-    public get remainderTotal(): number { return this._recentOwnershipData.remainder; }
+    public get totalCede(): number { return this._mroData.heldByCede; }
+    public get totalRegistered(): number { return this._mroData.heldByRegistered; }
+    public get drsShares(): number { return this._mroData.heldByRegistered * this._drsVsDsppRatio2025; }
+    public get dsppShares(): number { return this._mroData.heldByRegistered * (1-this._drsVsDsppRatio2025); }
+    public get rcShares(): number { return this._mroData.insidersRyanCohen; }
+    public get insidersOtherShares(): number { return this._mroData.insidersRemainder; }
+    public get totalInsiders(): number { return this._mroData.insidersRemainder + this._mroData.insidersRyanCohen; }
+    public get keithGillShares(): number { return this._mroData.keithGill; }
+    public get vanguardShares(): number { return this._mroData.instVanguard; }
+    public get blackrockShares(): number { return this._mroData.instBlackrock; }
+    public get stateStreetShares(): number { return this._mroData.instStateStreet; }
+    public get otherInstShares(): number { return this._mroData.instTotal - (this._mroData.instVanguard + this._mroData.instBlackrock + this._mroData.instStateStreet); }
+    public get totalInstitutional(): number { return this._mroData.instTotal; }
+    public get remainderTotal(): number { return this._mroData.tso - (this._mroData.heldByRegistered + this.totalInsiders + this.keithGillShares + this.totalInstitutional); }
 
     public get labelLookup(): {
         label: string,

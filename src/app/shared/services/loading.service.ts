@@ -9,7 +9,7 @@ import { TimelineEvent } from '../../main-pages/timeline/timeline-items/timeline
 import { TimelineChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
 import { TimelineItemsService } from '../../main-pages/timeline/timeline-items/timeline-items.service';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
-import { Import10KDataService } from '../../main-pages/financials/earnings-results/import-10k-data.service';
+import { EarningsDataService } from '../../main-pages/financials/earnings-results/earnings-data.service';
 import { ImportEventsService } from './import-events.service';
 import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/timeline-items-builder.class';
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
@@ -26,7 +26,7 @@ export class LoadingService {
     private _gmeDataService: ImportGmeDataService,
     private _timelineItemsService: TimelineItemsService,
     private _settingsService: SettingsService,
-    private _import10KService: Import10KDataService,
+    private _import10KService: EarningsDataService,
     private _importEventsService: ImportEventsService,
     private _timelineControlsService: TimelineControlsService,
     private _screenService: ScreenService

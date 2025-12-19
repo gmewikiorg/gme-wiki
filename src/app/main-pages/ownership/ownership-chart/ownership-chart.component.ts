@@ -66,24 +66,43 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
     const ownershipData = this.ownershipData;
     const isDarkMode: boolean = this.isDarkMode;
     const showDataLabels: boolean = this.showHideButton === 'Hide Labels';
+
+    /**
+     * datasetIndex, dataIndex:
+     * 0, 0 - held by registered holders at Computershare
+     * 0, 1 - held by Cede & Co
+     * 1, 2 - DRS
+     * 1, 3 - DSPP
+     * 1, 4 - RC
+     * 1, 5 - RK
+     * 1, 6 - Vanguard
+     * 1, 7 - Blackrock
+     * 1, 8 - State Street
+     * 1, 9 - other inst
+     * 1, 10 - remainder
+     * 
+    */
     const options: ChartOptions<'pie'> = {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
       onClick: (event, elements, chart) => {
         if (!elements.length) return;
-        const { datasetIndex, index } = elements[0];
-        const label = chart.data.labels?.[index];
-        const value = chart.data.datasets[datasetIndex].data[index];
-        if (label === 'DRS' || label === 'Held by registered holders with Computershare') {
-          this._router.navigate(['/drs']);
-        } else if (label === 'DSPP') {
-          this._router.navigate(['/drs-vs-dspp']);
-        } else if (label === 'Ryan Cohen') {
-          this._router.navigate(['/ryan-cohen']);
-        } else if (label === 'Keith Gill *') {
-          this._router.navigate(['/keith-gill']);
+        if (!this.isMobile) {
+          const { datasetIndex, index } = elements[0];
+          const label = chart.data.labels?.[index];
+          const value = chart.data.datasets[datasetIndex].data[index];
+          if (label === 'DRS' || label === 'Held by registered holders with Computershare') {
+            this._router.navigate(['/drs']);
+          } else if (label === 'DSPP') {
+            this._router.navigate(['/drs-vs-dspp']);
+          } else if (label === 'Ryan Cohen') {
+            this._router.navigate(['/ryan-cohen']);
+          } else if (label === 'Keith Gill *') {
+            this._router.navigate(['/keith-gill']);
+          }
         }
+
       },
       onHover: (event, elements, chart) => {
         const canvas = event.native?.target as HTMLCanvasElement;

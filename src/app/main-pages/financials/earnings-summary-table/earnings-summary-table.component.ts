@@ -4,7 +4,7 @@ import { EarningsResult } from '../earnings-results/earnings-result.class';
 import { IconDefinition, faNoteSticky, faSquareMinus, faSquarePlus, faLink, faFile } from '@fortawesome/free-solid-svg-icons';
 import { EarningsResultInterface } from '../earnings-results/earnings-result.interface';
 import dayjs from 'dayjs';
-import { Import10KDataService } from '../earnings-results/import-10k-data.service';
+import { EarningsDataService } from '../earnings-results/earnings-data.service';
 import { releaseOverviews } from './release-overview/release-overviews';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
@@ -21,7 +21,7 @@ import { CustomDropdownMenu } from '../../../shared/components/custom-dropdown-m
 })
 export class EarningsTableComponent {
   constructor(
-    private _importFinancialsService: Import10KDataService,
+    private _importFinancialsService: EarningsDataService,
     private _loadingService: LoadingService,
     private _screenService: ScreenService) {
   }

@@ -4,7 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { EarningsResult } from '../earnings-results/earnings-result.class';
-import { Import10KDataService } from '../earnings-results/import-10k-data.service';
+import { EarningsDataService } from '../earnings-results/earnings-data.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { EarningsDatasetBuilder } from './earnings-datasets.class';
@@ -26,7 +26,7 @@ import { setChartOptions } from './earnings-chart-options';
 export class EarningsChartComponent implements OnInit, OnDestroy {
 
   private _datasetBuilder: EarningsDatasetBuilder;
-  constructor(private _screenService: ScreenService, private _chartService: FinancialChartService, private _financeService: Import10KDataService, private _loadingService: LoadingService) {
+  constructor(private _screenService: ScreenService, private _chartService: FinancialChartService, private _financeService: EarningsDataService, private _loadingService: LoadingService) {
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend);
     this._datasetBuilder = new EarningsDatasetBuilder(this._screenService);

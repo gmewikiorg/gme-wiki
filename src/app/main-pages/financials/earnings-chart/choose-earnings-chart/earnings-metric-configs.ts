@@ -273,7 +273,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 1,
         minYAnnual: -700,
         minYQuarter: -500,
-        value: r => r.netEPS,
+        value: r => r.netEPS*100,
     },
     [EarningsMetric.BOOK_VALUE_PER_SHARE]: {
         metric: EarningsMetric.BOOK_VALUE_PER_SHARE,

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
-import { Import10KDataService } from '../../../main-pages/financials/earnings-results/import-10k-data.service';
+import { EarningsDataService } from '../../../main-pages/financials/earnings-results/earnings-data.service';
 import { EarningsResult } from '../../../main-pages/financials/earnings-results/earnings-result.class';
 import { ColorPicker } from '../../../shared/color-picker.class';
 
@@ -17,7 +17,7 @@ export type TurnaroundTableRowProperty = 'STORE_COUNT' | 'REVENUE' | 'ASSETS' | 
 })
 export class TurnaroundTableComponent implements OnInit{
 
-  constructor(private _screenService: ScreenService, private _10kService: Import10KDataService) {
+  constructor(private _screenService: ScreenService, private _10kService: EarningsDataService) {
 
   }
   ngOnInit(): void {
