@@ -73,6 +73,7 @@ export class ColorPicker {
         return scale[valueScale];
     }
 
+    /** Provide a color and set an alpha on it */
     public static setAlpha(rgbaString: string, newAlpha: number): string {
         // This regex will match both rgb(...) and rgba(...).
         // Capturing groups:

@@ -1,5 +1,8 @@
-<div class="chart-container" id="chartContainer">
+<div class="" id="chartContainer" [ngClass]="isMobile ? 'chart-container-mobile': 'chart-container'">
     <canvas baseChart class="chart" id="chartCanvas" [type]="'pie'" [data]="pieChartData"
         [options]="pieChartOptions" [legend]="pieChartLegend">
     </canvas>
+</div>
+<div style="display: flex;flex-direction: row-reverse;">
+    <button class="show-data-button" (click)="onClickShowHide()">{{showHideButton}}</button>
 </div>

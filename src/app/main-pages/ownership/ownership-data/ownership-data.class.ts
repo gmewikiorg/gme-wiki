@@ -12,7 +12,7 @@ export class OwnershipData {
     public get registeredText(): string { return this._recentOwnershipData.registeredText; }
     public get filingLink(): string { return this._recentOwnershipData.filingLink; }
     public get formType(): '10Q' | '10K' { return this._recentOwnershipData.filingType; }
-    public get tso(): number { return  this._recentOwnershipData.tso; }
+    public get tso(): number { return this._recentOwnershipData.tso; }
     public get lastUpdateYYYYMMDD(): string { return this._recentOwnershipData.dateYYYYMMDD; }
     public get filingDateYYYYMMDD(): string { return this._recentOwnershipData.filingDateYYYYMMDD; }
     public get dateFormatted(): string { return dayjs(this.lastUpdateYYYYMMDD).format('MMMM D, YYYY'); }
@@ -39,18 +39,18 @@ export class OwnershipData {
         color: string,
     }[] {
         return [
-            { label: 'Held by registered holders with Computershare', value: this.totalRegistered, layer: 0, color: '#8f1795', },
-            { label: 'Held by Cede & Co on behalf of DTCC', value: this.totalCede, layer: 0, color: '#CCC', },
-            { label: 'DRS', value: this.drsShares, layer: 1, color: '#8f1795', },
-            { label: 'DSPP', value: this.dsppShares, layer: 1, color: '#97519bff', },
-            { label: 'Ryan Cohen', value: this.rcShares, layer: 1, color: '#0066ff', },
-            { label: 'All other insiders', value: this.insidersOtherShares, layer: 1, color: '#0066ff', },
-            { label: 'Keith Gill *', value: this.keithGillShares, layer: 1, color: '#ff0000', },
-            { label: 'Vanguard Group Inc', value: this.vanguardShares, layer: 1, color: '#ff9900', },
-            { label: 'Blackrock Inc', value: this.blackrockShares, layer: 1, color: '#ff9900', },
-            { label: 'State Street Corp', value: this.stateStreetShares, layer: 1, color: '#ff9900', },
-            { label: 'All other institutions (> 300) ', value: this.otherInstShares, layer: 1, color: 'rgb(255, 204, 129)', },
-            { label: 'Remainder', value: this.remainderTotal, layer: 1, color: '#EEE', },
+            { label: 'Held by registered holders with Computershare', value: this.totalRegistered, layer: 0, color: 'rgba(143, 23, 149, 1)', },
+            { label: 'Held by Cede & Co on behalf of DTCC', value: this.totalCede, layer: 0, color: 'rgba(204, 204, 204, 1)', },
+            { label: 'DRS', value: this.drsShares, layer: 1, color: 'rgba(143, 23, 149, 1)', },
+            { label: 'DSPP', value: this.dsppShares, layer: 1, color: 'rgba(151, 81, 155, 1)', },
+            { label: 'Ryan Cohen', value: this.rcShares, layer: 1, color: 'rgba(0, 102, 255, 1)', },
+            { label: 'All other insiders', value: this.insidersOtherShares, layer: 1, color: 'rgba(0, 102, 255, 1)', },
+            { label: 'Keith Gill *', value: this.keithGillShares, layer: 1, color: 'rgba(255, 0, 0, 1)', },
+            { label: 'Vanguard Group Inc', value: this.vanguardShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
+            { label: 'Blackrock Inc', value: this.blackrockShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
+            { label: 'State Street Corp', value: this.stateStreetShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
+            { label: 'All other institutions (> 300) ', value: this.otherInstShares, layer: 1, color: 'rgba(255, 204, 129, 1)', },
+            { label: 'Remainder', value: this.remainderTotal, layer: 1, color: 'rgba(238, 238, 238, 1)', },
         ];
     }
     public getLabel(value: number): string {
