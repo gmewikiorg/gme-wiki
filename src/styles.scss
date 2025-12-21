@@ -64,6 +64,20 @@ body {
 }
 
 
+.image-container{
+    max-width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image{
+    width: 100%; 
+    max-width: 550px; 
+    border-radius:10px;
+    align-self: center;
+    // border: 1px solid rgb(230, 230, 230);
+}
+
 .black-white-bg {
   background-color: rgba(255, 255, 255, 0.9);
 

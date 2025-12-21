@@ -22,7 +22,6 @@ import { FudComponent } from './info-pages/fud/fud.component';
 import { Fy23EarningsComponent } from './info-pages/fy23-earnings/fy23-earnings.component';
 import { Fy24EarningsComponent } from './info-pages/fy24-earnings/fy24-earnings.component';
 import { KeithGillComponent } from './info-pages/people/keith-gill/keith-gill.component';
-import { MediaComponent } from './info-pages/media/media.component';
 import { MediaOmitsDrsComponent } from './info-pages/drs/media-omits-drs/media-omits-drs.component';
 
 import { MoassComponent } from './info-pages/moass/moass.component';
@@ -121,11 +120,9 @@ export const routes: Routes = [
 
     { path: 'market-tactics', component: MarketTacticsComponent },
 
-    { path: 'media', component: MediaComponent },
     { path: 'media-vs-gme', component: MediaVsGmeComponent },
 
     { path: 'media-omits-drs', component: MediaOmitsDrsComponent },
-    { path: 'propaganda', component: MediaComponent },
 
 
     { path: 'meme-stock', component: MemeStockComponent },

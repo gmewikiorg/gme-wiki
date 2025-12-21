@@ -57,7 +57,7 @@ export class OwnershipData {
             { label: 'All other insiders', value: this.insidersOtherShares, layer: 1, color: 'rgba(0, 102, 255, 1)', },
             { label: 'Keith Gill *', value: this.keithGillShares, layer: 1, color: 'rgba(255, 0, 0, 1)', },
             { label: 'Vanguard Group Inc', value: this.vanguardShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
-            { label: 'Blackrock Inc', value: this.blackrockShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
+            { label: 'BlackRock Inc', value: this.blackrockShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
             { label: 'State Street Corp', value: this.stateStreetShares, layer: 1, color: 'rgba(255, 153, 0, 1)', },
             { label: 'All other institutions (> 300) ', value: this.otherInstShares, layer: 1, color: 'rgba(255, 204, 129, 1)', },
             { label: 'Remainder', value: this.remainderTotal, layer: 1, color: 'rgba(238, 238, 238, 1)', },

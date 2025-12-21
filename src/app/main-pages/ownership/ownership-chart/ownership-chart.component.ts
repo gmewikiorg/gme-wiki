@@ -100,6 +100,12 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
             this._router.navigate(['/ryan-cohen']);
           } else if (label === 'Keith Gill *') {
             this._router.navigate(['/keith-gill']);
+          } else if (label === 'Vanguard Group Inc') {
+            window.open('https://en.wikipedia.org/wiki/The_Vanguard_Group', '_blank', 'noopener');
+          } else if (label === 'BlackRock Inc') {
+            window.open('https://en.wikipedia.org/wiki/BlackRock', '_blank', 'noopener');
+          } else if (label === 'State Street Corp') {
+            window.open('https://en.wikipedia.org/wiki/State_Street_Corporation', '_blank', 'noopener');
           }
         }
 
@@ -114,7 +120,10 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
         const label = chart.data.labels?.[index] as string;
         const value = chart.data.datasets[datasetIndex].data[index];
         if (label) {
-          const isClickable = ['DRS', 'Held by registered holders with Computershare', 'DSPP', 'Ryan Cohen', 'Keith Gill *'].includes(label);
+          const isClickable = ['DRS', 'Held by registered holders with Computershare', 'DSPP', 
+            'Ryan Cohen', 'Keith Gill *',
+            'Vanguard Group Inc', 'BlackRock Inc', 'State Street Corp'
+          ].includes(label);
           canvas.style.cursor = isClickable ? 'pointer' : 'default';
         }
       },
