@@ -22,15 +22,14 @@
                     became the chairman, and eventually the CEO in 2023</li>
                 <li>The company continues to close <a [routerLink]="'/stores'">stores</a>, focusing on fewer, more
                     profitable locations</li>
-                <li>Although revenue is down significantly since its peak, GameStop achieved <a
-                        [routerLink]="'/fy23'">net
-                        profitability for the first time in six years</a> in fiscal year 2023, and <a
-                        [routerLink]="'/fy24'">significantly increased profitability in fiscal year 2024</a>
+                <li>Although revenue is down significantly since its peak, GameStop achieved net
+                    profitability for the first time in six years in <a [routerLink]="'/fy23'">fiscal year 2023</a>, and
+                    significantly increased profitability in <a [routerLink]="'/fy24'">fiscal year 2024</a>
                 </li>
                 <li>GameStop raised nearly <b>$3.5 billion</b> from <a [routerLink]="'/atms'">3 at-the-market offerings
                         in
                         2024</a>, and another <b>$4 billion</b> from <a [routerLink]="'/investment-policy'">2 private
-                        convertible senior note offerings</a></li>
+                        convertible senior note offerings</a> in 2025</li>
                 <li>GameStop is evolving its legacy business model; since 2024, GameStop has placed increased emphasis
                     on <a [routerLink]="'/trading-cards'">graded trading cards</a></li>
                 <li>Core <a [routerLink]="'/financials'">financial metrics</a> show significant improvements to the
@@ -45,7 +44,9 @@
                 </li>
             </ul>
 
-            <div class="quote-section-container">
+            <app-turnaround-table></app-turnaround-table>
+
+            <!-- <div class="quote-section-container">
                 <div class="quote-section">
                     <p>
                         Generally the business is much more efficient. It's gonna be a smaller — less stores — but more
@@ -70,7 +71,7 @@
                                 target="_blank" class="external-link" rel="nofollow">July 15, 2025</a></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="page-section">
@@ -212,6 +213,26 @@
                     investment policy</a> which gave Ryan Cohen the authority to manage the company's investment
                 portfolio.
             </p>
+
+            <p>In March 2024, the company reported <a [routerLink]="'/fy23'">fiscal year 2023 results</a>, showing
+                <b>full-year profitability for
+                    the first time in 6 years</b>.
+            </p>
+
+            <p>Subsequently, the company was able to complete <a [routerLink]="'/atms'">3 at-the-market equity offering
+                    programs</a> at relatively high stock prices, raising approximately <b>$3.5
+                    billion</b>.
+            </p>
+
+            <p>
+                GameStop continues to close more <a [routerLink]="'/stores'">stores</a> every year, a trend that began
+                before the initiation of the
+                company turnaround. As GameStop closes stores, <a [routerLink]="'/earnings'">revenue</a> has also been
+                in decline, but is showing signs of stabilizing.
+            </p>
+
+            <p>GameStop has generated $97M in operating profits so far in fiscal year 2025, and is well on track for
+                full-year operating profits for the first time in 8 years. </p>
         </div>
 
 
@@ -235,70 +256,8 @@
 
 
         <div class="page-section">
-            <div class="section-heading">Demonstrable Results</div>
-
-            <p>In March 2024, the company reported <a [routerLink]="'/fy23'">fiscal year 2023 results</a>, showing
-                <b>full-year profitability for
-                    the first time in 6 years</b>.
-            </p>
-
-            <p>Subsequently, the company was able to complete <a [routerLink]="'/atms'">3 at-the-market equity offering
-                    programs</a> at relatively high stock prices, raising approximately <b>$3.5
-                    billion</b>.
-            </p>
-
-            <p>A look at the core financial metrics shows significant improvements to the financial health of the
-                company since the turnaround efforts began.
-            </p>
-
-            <app-turnaround-table [isTurnaroundPage]="true"></app-turnaround-table>
-
-
-            <p>
-                GameStop continues to close more <a [routerLink]="'/stores'">stores</a> every year, a trend that began
-                before the initiation of the
-                company turnaround. As GameStop closes stores, <a [routerLink]="'/earnings'">revenue</a> has also been
-                in decline, but is showing signs of stabilizing.
-            </p>
-
-            <div class="quote-section-container">
-                <div class="quote-section">
-                    <p>
-                        With respect to retail operations, we plan to continue reducing costs and
-                        focusing on profitability ... This means <a [routerLink]="'/stores'">a smaller network of
-                            stores</a>
-                        with
-                        an expanded assortment of
-                        higher value items that fit into our trade-in model.
-                    </p>
-                    <div class="quote-attribution">
-                        GameStop CEO Ryan Cohen
-                    </div>
-                    <div class="quote-attribution-2">
-                        2024 Annual Meeting of Stockholders
-                    </div>
-                    <span class="quote-attribution-2">
-                        <a href="https://www.reddit.com/r/GME/comments/1di2uw9/ryan_cohens_statements_from_the_2024_shareholder/"
-                            target="_blank" class="external-link" rel="nofollow">June 17, 2024
-                        </a>
-                    </span>
-
-                </div>
-            </div>
-
-            <p>While operating income has seen significant improvement, it was still negative in fiscal year 2024.
-                GameStop has generated $97M in operating profits so far in fiscal year 2025, and is well on track for
-                full-year operating profits for the first time in 8 years. </p>
-
-        </div>
-
-
-
-
-
-        <div class="page-section">
             <div class="section-heading">Continued Transformation</div>
-            <p>There is growing evidence that beyond simply cutting costs and improving the efficiency of the legacy
+            <p>Beyond simply cutting costs and improving the efficiency of the legacy
                 business, GameStop is undergoing a transformation into a more modern,
                 technology-focused company.
             </p>
@@ -320,7 +279,7 @@
                         Nokia was a pulp mill?<br>
                         Samsung was a grocery trader?<br>
                         Marriott was a root beer stand?<br>
-                        Instagram was a check-in app?<br><br>
+                        Instagram was a check-in app?<br>
                     </p>
                     <p>
                         I don't - businesses evolve... Other examples?<br>

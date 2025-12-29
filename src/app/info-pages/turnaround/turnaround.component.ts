@@ -1,9 +1,9 @@
 import { Component,  OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../layout/footer/footer.component';
-import { TurnaroundTableComponent } from './turnaround-table/turnaround-table.component';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { TurnaroundTableComponent } from './turnaround-table/turnaround-table.component';
 
 @Component({
   selector: 'app-turnaround',

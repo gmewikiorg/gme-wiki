@@ -45,13 +45,15 @@ import { MediaVsGmeComponent } from './info-pages/media/media-vs-gme/media-vs-gm
 import { DirectoryComponent } from './info-pages/directory/directory.component';
 import { BbbyComponent } from './info-pages/bbby/bbby.component';
 import { TeddyComponent } from './info-pages/teddy/teddy.component';
-import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
+
+
 import { MemeStockComponent } from './info-pages/meme-stock/meme-stock.component';
 import { MarketTacticsComponent } from './info-pages/market-concepts/market-tactics/market-tactics.component';
 import { SuperstonkComponent } from './info-pages/reddit/superstonk/superstonk.component';
 import { MichaelBurryComponent } from './info-pages/people/michael-burry/michael-burry.component';
 import { BearFactionComponent } from './info-pages/conflict/bear-faction/bear-faction.component';
 import { BullFactionComponent } from './info-pages/conflict/bull-faction/bull-faction.component';
+import { ShortsNeverClosedComponent } from './info-pages/shorts-never-closed/shorts-never-closed.component';
 
 
 

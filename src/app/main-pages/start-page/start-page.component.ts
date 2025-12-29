@@ -10,7 +10,7 @@ import { TurnaroundTableComponent } from '../../info-pages/turnaround/turnaround
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [RouterModule, FooterComponent, CommonModule, TurnaroundTableComponent],
+  imports: [RouterModule, FooterComponent, CommonModule, TurnaroundTableComponent ],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })

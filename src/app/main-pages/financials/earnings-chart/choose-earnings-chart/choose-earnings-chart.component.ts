@@ -159,6 +159,8 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_PROFIT_MARGIN);
     } else if (menuLabel === 'Revenue vs Cost of Sales') {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_COST);
+    // } else if (menuLabel === 'Store Count') {
+    //   this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STORE_COUNT);
     } else if (menuLabel === 'Revenue vs Store Count') {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_STORES);
     } else if (menuLabel === 'Revenue per Store') {

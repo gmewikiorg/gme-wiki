@@ -40,6 +40,7 @@ export const SELECTION_TO_METRICS: Record<EarningsChartPropertySelection, Earnin
     [EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT]: [EarningsMetric.REVENUE, EarningsMetric.GROSS_PROFIT,],
     [EarningsChartPropertySelection.REVENUE_VS_STORES]: [EarningsMetric.REVENUE, EarningsMetric.STORE_COUNT],
     [EarningsChartPropertySelection.REVENUE_PER_STORES]: [EarningsMetric.REVENUE_PER_STORE,],
+    [EarningsChartPropertySelection.STORE_COUNT]: [EarningsMetric.REVENUE_PER_STORE,],
     [EarningsChartPropertySelection.REVENUE_TYPE]: [
         EarningsMetric.HARDWARE_REVENUE,
         EarningsMetric.SOFTWARE_REVENUE,

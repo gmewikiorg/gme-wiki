@@ -1,89 +1,60 @@
-<!-- <div class="table-controls-container">
-    <button class="table-control-button" [ngClass]="{'selected-option': optionIsFyVal === true}"
-        (click)="onClickOption('FY_VALUE')">Fiscal Year Value</button>
-    <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoY === true}"
-        (click)="onClickOption('YoY_CHANGE')">Year Over Year Change</button>
-    <button class="table-control-button" [ngClass]="{'selected-option': optionIsYoYPercentage === true}"
-        (click)="onClickOption('YoY_PERCENTAGE')">YoY Change Percentage</button>
-</div> -->
 <div class="table-container">
-    <table [ngClass]="isMobile ? 'table-mobile': ''">
-
+    <table class="table">
         <thead>
-            <tr style="font-size:0.8em;">
-                <td style="border-top: none; border-left: none; min-width:15%; background-color: rgba(255, 255, 255, 0);">
+            <tr>
+                <td style="border: none;"></td>
+                <td class="text-align-center" style="width: 35%;">
+                    <div>Pre-turnaround</div>
+                    <div style="font-size: 0.8em;">FY 2020</div>
                 </td>
-
-                <td style="min-width: 17%;" *ngFor="let year of yearsRange">
-                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2020">
-                        Pre turnaround <br><span style="font-size: 0.8em;">FY 2020</span>
-                    </a>
-                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2021">
-                        Turnaround beings <br>FY 2021
-                    </a>
-                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2022">
-                        FY 2022
-                    </a>
-                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2023">
-                        FY 2023
-                    </a>
-                    <a [href]="getTenKForm(year)" class="ten-k-link"  target="_blank" *ngIf="year === 2024">
-                        Status as of FY 2024 results
-                    </a>
+                <td class="text-align-center" style="width: 35%;">
+                    <div>Current Status</div>
+                    <div style="font-size: 0.8em;">TTM, as of December 2025</div>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="font-size: 0.9em;">Store Count</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('STORE_COUNT', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('STORE_COUNT', year) }}</td>
+                <td>Store Count</td>
+                <td class="text-align-center" style="color:rgba(128, 202, 0, 1)">4,816</td>
+                <td class="text-align-center" style="color:rgb(128, 156, 0)">3,203</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Revenue</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('REVENUE', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('REVENUE', year) }}</td>
+                <td>Revenue</td>
+                <td class="text-align-center" style="color:rgba(128, 202, 0, 1)">$5.1B</td>
+                <td class="text-align-center" style="color:rgb(128, 156, 0)">$3.8B</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Operating Income</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('OP_INCOME', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('OP_INCOME', year) }}</td>
+                <td>Operating Income</td>
+                <td class="text-align-center" style="color:red;">-$237M</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$177M</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Interest Income</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('INT_INCOME', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('INT_INCOME', year) }}</td>
+                <td>Interest Income</td>
+                <td class="text-align-center" style="color:red;">-$32M</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$241M</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Net Income</td> 
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('NET_INCOME', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('NET_INCOME', year) }}</td>
+                <td>Net Income</td>
+                <td class="text-align-center" style="color:red;">-$215M</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$422M</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Assets</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('ASSETS', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('ASSETS', year) }}</td>
+                <td>Earnings Per Share</td>
+                <td class="text-align-center" style="color:red;">-$3.31</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$0.94</td>
             </tr>
             <tr>
-                <td style="font-size: 0.9em;">Liabilities</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('LIABILITIES', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('LIABILITIES', year) }}</td>
+                <td>Stockholders' Equity</td>
+                <td class="text-align-center" style="color:rgba(141, 103, 0, 0.97)">$0.4B</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$5.3B</td>
             </tr>
+
             <tr>
-                <td style="font-size: 0.9em;">Stockholders' Equity</td>
-                <td *ngFor="let year of yearsRange" [style.color]="getColor('EQUITY', year)" style="min-width: 17%;"
-                    [style.fontWeight]="year === 2024 ? 'bold' : ''">{{ getValueString('EQUITY', year) }}</td>
+                <td>Book Value Per Share</td>
+                <td class="text-align-center" style="color:rgb(128, 156, 0)">$6.72</td>
+                <td class="text-align-center" style="color:rgba(0, 134, 11, 1)">$11.84</td>
             </tr>
         </tbody>
     </table>
-
-    <!-- <div class="bottom-bar">
-        <div style="width: 100px;"></div>
-        <div>Click on the top box of each column for a link to the 10K form</div> 
-        <div *ngIf="displayButton">
-            <button class="expand-button" (click)="onClickShowMore()" *ngIf="!showingMore">Show more</button>
-            <button class="expand-button" (click)="onClickShowMore()" *ngIf="showingMore">Show less</button>
-        </div>
-        <div *ngIf="!displayButton" style="width: 100px;"></div>
-    </div> -->
 </div>

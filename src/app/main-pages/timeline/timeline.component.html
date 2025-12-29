@@ -13,7 +13,7 @@
         <div class="page-section" [style.marginTop]="isMobile? '0px' : ''" [style.paddingTop]="isMobile? '0px' : ''">
 
             <div class="timeline-root ">
-                <app-timeline-controls class="timeline-controls" *ngIf="!isMobile"></app-timeline-controls>
+                <!-- <app-timeline-controls class="timeline-controls" *ngIf="!isMobile"></app-timeline-controls> -->
                 <div class="section-heading" [style.margin]="isMobile? '0px' : ''">{{chartTitle}}</div>
                 <div class="timeline-chart-grid">
                     <app-loading class="app-chart" *ngIf="!chartIsLoaded"></app-loading>

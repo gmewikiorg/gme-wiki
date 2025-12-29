@@ -15,6 +15,7 @@ import { EarningsChartPropertySelection } from './choose-earnings-chart/earnings
 import { EarningsChartConfig } from './choose-earnings-chart/earnings-chart-config.interface';
 import { defaultEarningsChartConfig } from './choose-earnings-chart/default-earnings-chart-config';
 import { setChartOptions } from './earnings-chart-options';
+import { SELECTION_TO_METRICS } from './choose-earnings-chart/earnings-metric-configs';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -97,15 +98,24 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
       results = this._financeService.quarterlyResults.filter(r => r.fiscalYear >= this.chartStartYear && r.fiscalYear <= this.chartEndYear)
       dataEntryCount = results.length;
     }
-
+    if (this._screenService.isMobile) {
+      const metrics = SELECTION_TO_METRICS[this.chartSelectedProperty] ?? [];
+      const propertyCount = metrics.length;
+      if (propertyCount > 1) {
+        let chartStartYear = Math.floor(this.chartStartYear + ((this.chartEndYear - this.chartStartYear) / 2));
+        if (this.chartPeriod === 'ANNUAL') {
+          results = this._financeService.annualResults.filter(r => r.fiscalYear >= chartStartYear && r.fiscalYear <= this.chartEndYear)
+          dataEntryCount = results.length;
+        } else if (this.chartPeriod === 'QUARTER') {
+          results = this._financeService.quarterlyResults.filter(r => r.fiscalYear >= chartStartYear && r.fiscalYear <= this.chartEndYear)
+          dataEntryCount = results.length;
+        }
+      }
+    }
     const chartLegendSettings = setEarningsChartLegend(this.chartSelectedProperty, this.chartPeriod);
     this.customLegendItems = chartLegendSettings.customLegendItems;
     this.showCustomLegend = chartLegendSettings.showCustomLegend;
-    if (this._screenService.isMobile) {
-      // dataEntryCount = EarningsDatasetBuilder.mobileItemCount;
-    } else {
-      // dataEntryCount = this._screenService.screenWidth
-    }
+
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartSelectedProperty, this.chartPeriod, dataEntryCount);
     const labels = this._datasetBuilder.getSubsetArray(dataEntryCount, this._xAxisLabels);

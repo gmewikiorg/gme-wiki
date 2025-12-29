@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TurnaroundTableComponent } from '../turnaround/turnaround-table/turnaround-table.component';
+import { TurnaroundTableOldComponent } from '../turnaround/turnaround-table-old/turnaround-table-old.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EarningsChartComponent } from '../../main-pages/financials/earnings-chart/earnings-chart.component';
@@ -11,7 +11,7 @@ import { EarningsChartConfig } from '../../main-pages/financials/earnings-chart/
 @Component({
   selector: 'app-fy24-earnings',
   standalone: true,
-  imports: [TurnaroundTableComponent, RouterModule, CommonModule, EarningsChartComponent, FooterComponent],
+  imports: [TurnaroundTableOldComponent, RouterModule, CommonModule, EarningsChartComponent, FooterComponent],
   templateUrl: './fy24-earnings.component.html',
   styleUrl: './fy24-earnings.component.scss'
 })
