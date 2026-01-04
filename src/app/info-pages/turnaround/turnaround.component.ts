@@ -23,8 +23,6 @@ export class TurnaroundComponent implements OnInit {
 
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
-  private _turnaroundDuration: string = '4 years';
-  public get turnaroundDuration(): string { return this._turnaroundDuration; }
 
   ngOnInit() {
 
