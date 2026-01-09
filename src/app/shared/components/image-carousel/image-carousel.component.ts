@@ -73,6 +73,9 @@ export class ImageCarouselComponent implements OnInit {
     if (index > this.items.length - 1) {
       index = 0;
     }
+    if(index < 0){
+      index = this.items.length-1;
+    }
     this._currentIndex = index;
     this._currentItem = this.items[this._currentIndex];
   }

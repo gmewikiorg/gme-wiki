@@ -11,6 +11,7 @@ export function setChartOptions(
     isDarkMode: boolean,
 ): ChartOptions<'bar'> {
 
+    const datasets = datasetBuilder.datasets;
     const tickScale: 1 | 100 | 1000 | 1000000 | 1000000000 = datasetBuilder.getTickScale(chartSelectedProperty, chartPeriod);
     type TickScale = 1 | 100 | 1000 | 1000000 | 1000000000;
     const TICK_LABELS: Record<TickScale, string> = {
@@ -49,13 +50,6 @@ export function setChartOptions(
         title: {},
         grid: {
             color: function (context: any) {
-                // if (context.tick.value === 0) {
-                //   if(darkMode){
-                //     return 'rgba(255,255,255,0.2)';
-                //   }else{
-                //     return 'rgba(0,0,0,0.2)';
-                //   }
-                // }
                 return color;
             },
         },
@@ -111,8 +105,28 @@ export function setChartOptions(
     const xScale = {
         grid: {
             color: function (context: any) {
+                // const xAxisLabel = xAxisLabels[context.index];
+                // if (xAxisLabel) {
+                //     if (xAxisLabel.startsWith("Q1")) {
+                //         if (isDarkMode) {
+                //             return 'rgba(255,255,255,0.3)';
+                //         }else{
+                //             return 'rgba(0,0,0,0.3)';
+                //         }
+                //     }
+                // }
+
                 return color;
             },
+            lineWidth: function (context: any) {
+                // const xAxisLabel = xAxisLabels[context.index];
+                // if (xAxisLabel) {
+                //     if (xAxisLabel.startsWith("Q1")) {
+                //         return 2;
+                //     }
+                // }
+                return 1;
+            }
         }
     }
 

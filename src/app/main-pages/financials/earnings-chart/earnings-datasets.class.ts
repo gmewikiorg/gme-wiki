@@ -11,11 +11,15 @@ import { EARNINGS_METRIC_CONFIGS, EarningsMetric, EarningsMetricConfig, SELECTIO
 export class EarningsDatasetBuilder {
     constructor(private _sizeService: ScreenService) { }
 
+    private _datasets: ChartDataset<"bar", any[]>[] = [];
+    public get datasets(): ChartDataset<"bar", any[]>[] { return this._datasets; }
+
     public updateDatasets(results: EarningsResult[], chartSelection: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER', dataEntryCount: number): ChartDataset<"bar", any[]>[] {
         const metrics = SELECTION_TO_METRICS[chartSelection] ?? [];
-        return metrics.map(metric => {
+        this._datasets = metrics.map(metric => {
             const config = EARNINGS_METRIC_CONFIGS[metric];
             const dataItems = results.map(config.value).reverse();
+
             return this._buildDataset(
                 config.metric,
                 chartPeriod,
@@ -24,6 +28,7 @@ export class EarningsDatasetBuilder {
                 chartSelection
             );
         });
+        return this._datasets;
     }
 
     public getTickScale(chartOption: EarningsChartPropertySelection, chartPeriod: 'ANNUAL' | 'QUARTER'): 100 | 1000 | 1000000 | 1000000000 | 1 {
@@ -83,7 +88,7 @@ export class EarningsDatasetBuilder {
                 return dataLabelColors[context.dataIndex]
             },
             listeners: {
-                enter() {}
+                enter() { }
             },
             display(context: Context) {
                 return (context.dataIndex >= context.dataset.data.length - 1) ? true : false;

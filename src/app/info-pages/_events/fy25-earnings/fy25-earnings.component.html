@@ -1,0 +1,243 @@
+<div class="component-root">
+    <div class="page-content">
+        <h1 class="page-title">
+            GameStop Fiscal Year 2025 Earnings Results: Most Profitable Year In Company History
+        </h1>
+        <h5 class="page-subtitle">
+            Operationally profitable, profit margin efficiency, climbing equity, turnaround successful
+        </h5>
+        <div class="page-date">
+            March 2026
+        </div>
+
+        <div class="page-section">
+            <div class="section-heading" style="color:orangered;">This post is currently using ESTIMATE values</div>
+            <p></p>
+        </div>
+
+        <!-- Summary -->
+        <div class="page-section">
+            <div class="section-heading">
+                Summary
+            </div>
+            <ul>
+                <li>GameStop reported a net income of ~$450M, the highest in company history</li>
+                <li>GameStop is operationally profitable for the first time in 8 years</li>
+                <li><a [routerLink]="'/trading-cards'">Trading cards segment</a> continues to demonstrate strength
+                    amidst shrinking legacy software sales</li>
+                <li>GameStop continues to increase stockholders' equity year over year and is more valuable now than
+                    ever</li>
+            </ul>
+
+            <div class="quote-section-container">
+                <div class="quote-section">
+                    <p>
+                        Generally the business is much more efficient. It's gonna be a smaller — less stores — but more
+                        profitable company.
+                    </p>
+                    <p>
+                        Most importantly, we're generating profits every single quarter now.
+                    </p>
+                    <p>
+                        Typically in the
+                        past GameStop has only made money in Q3 and Q4, and actually, when I joined the board and before
+                        I joined the board, GameStop was losing money every single year.
+                    </p>
+                    <p>
+                        It's hard to appreciate what a
+                        piece of crap the business was when I joined the board and what was going on in the boardroom
+                        and management. But, we're making progress.
+                    </p>
+                    <div class="quote-attribution">GameStop CEO Ryan Cohen
+                        <div style="margin-left: 10px;"><a
+                                href="https://www.reddit.com/r/Superstonk/comments/1m0pqqq/ryan_cohen_fox_business_interview_with_charles/"
+                                target="_blank" class="external-link" rel="nofollow">July 15, 2025</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Fiscal Year 2025 Earnings Overview</div>
+            <!-- <div style="width: 100%;text-align: center;font-weight: bold;">GameStop FY 24 Earnings Overview</div> -->
+            <div style="max-width: 100%; display:flex;flex-direction: column;align-items: center;">
+                <img src="assets/info-pages/fy25-earnings-sankey.png" alt="GameStop FY 2025 Earnings Overview"
+                    style="width: 1200px; max-width: 100%; border-radius:10px;">
+            </div>
+            <div style="margin-top:40px;">
+
+            </div>
+        </div>
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Revenue, Store Count: Decreasing</div>
+            <p>GameStop's legacy business continues to shrink.
+                GameStop continues to reduce its <a [routerLink]="'/stores'">store count</a>.
+                Revenue is down year over year, though is showing signs of
+                stabilizing. The release of the Nintendo Switch 2 in June 2025 provided a boost in revenue.</p>
+
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Revenue and Store Count by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="storesChartConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Operationally Profitable for the First Time in 8 Years</div>
+            <p>Despite a shrinking legacy business and reduced revenues, GameStop has reported operational profitability
+                for the first time in 8 years. This is the result of cutting of costs, and improving efficiency.</p>
+            <p>Demonstrating this positive operating income is a clear indicator that GameStop's <a
+                    [routerLink]="'/turnaround'">turnaround efforts</a> have been successful. While operating profits
+                are not as high
+                as they were in the heyday of the previous decade, GameStop is now a financially healthy business that
+                is no
+                longer losing money.</p>
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Operating Income by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="operatingIncomeConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Collectibles Segment: Increasing</div>
+            <p>As software sales have been in major decline, GameStop has increased its focus on <a
+                    [routerLink]="'/trading-cards'">trading cards</a>.</p>
+            <p>GameStop's move into trading cards is showing major promise thus far. The trading cards market is large
+                and growing, and
+                GameStop is strategically positioned with its partnership with PSA.</p>
+
+
+            <div class="quote-section-container">
+                <div class="quote-section">
+                    <p>
+                        We are focusing on trading cards as a natural extension of our existing business.
+
+                        The trading card market, whether it's sports, Pokémon, or collectibles, is aligned with our
+                        heritage.
+
+                        It fits our trade-in model, it appeals to our core customer base, and it is deeply embedded in
+                        physical
+                        retail.
+
+                        Unlike software, it's tactile.
+
+                        Unlike hardware, it has high margin potential.
+
+                        It's a logical expansion.
+                    </p>
+                    <div class="quote-attribution">GameStop CEO Ryan Cohen
+                        <div style="margin-left: 10px;"><a
+                                href="https://www.reddit.com/r/GME/comments/1l9ozu2/ryan_cohens_statements_from_the_gamestop_corp/"
+                                target="_blank" class="external-link" rel="nofollow">June 12, 2025</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Revenue by Segment</div>
+                <app-earnings-chart [componentConfig]="collectiblesConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+        <div class="page-section">
+            <div class="section-heading">Interest Income</div>
+            <p>In 2024, GameStop raised nearly $3.5B through <a [routerLink]="'/atms'">3
+                    at-the-market equity offering programs</a>. In 2025, GameStop raised an additional $4.2B from 2
+                private offerings of convertible senior notes.
+            </p>
+            <p>These cash raises have been used thus far mostly for earning interest income. In fiscal year 2025,
+                GameStop earned <b>about $270M</b> in interest income, representing the majority of all income for the
+                fiscal year.</p>
+
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Interest Income by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="interestIncomeChartConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Net Income: Highest in Company History</div>
+            <p>Prior to fiscal year 2025, GameStop's most profitable year ever was in fiscal year 2010, with a net
+                income of $408M. With a net income of <b>about $450M</b> in 2025, GameStop is now more profitable (<a
+                    href="https://en.wikipedia.org/wiki/Real_and_nominal_value" target="_blank" class="external-link"
+                    rel="nofollow">nominally</a>) than it has ever been.</p>
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Net Income by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="netIncomeChartConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Net Profit Margin: More Efficient than Ever</div>
+            <p>In recent years, GameStop has generated most of its income
+                from interest which significantly increases profit margin. Furthermore, GameStop's move into trading
+                cards and Power Packs is further improving its profit margin.
+            </p>
+
+
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Net Profit Margin by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="profitMarginChartConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Stockholders' Equity: Highest in Company History</div>
+            <p>In <a [routerLink]="'/fy24'">fiscal year 2024</a>, GameStop significantly raised stockholders' equity
+                with <a [routerLink]="'/atms'">at-the-market equity offering programs</a>.
+                Year over year, GameStop has continued to improve profitability, and stockholders' equity has increased
+                accordingly.</p>
+            <div *ngIf="isBrowser" class="chart-container">
+                <div class="chart-title">GameStop Stockholders' Equity by Fiscal Year</div>
+                <app-earnings-chart [componentConfig]="equityChartConfig" class="chart"></app-earnings-chart>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">Conclusion: Gamestop Is Financially Stronger than Ever; The Turnaround Has Been Successful</div>
+            <p></p>
+        </div>
+
+
+
+
+        <div class="page-section">
+            <div class="section-heading">See also</div>
+
+            <div>
+                <a [routerLink]="'/fy23'">Fiscal Year 2023 Results: Profitable for the First Time in Six Years</a>
+            </div>
+            <div>
+                <a [routerLink]="'/fy24'">Fiscal Year 2024 Results: Increasing Profitability and Value </a>
+            </div>
+        </div>
+
+    </div>
+    <div style="margin-top:50px;"></div>
+    <app-footer class="app-footer"></app-footer>
+</div>

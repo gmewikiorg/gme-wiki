@@ -80,8 +80,8 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
   ngAfterViewInit(): void { }
 
   private _updateChartDataAndOptions() {
-    this.barChartOptions = this._setChartOptions();
     this.barChartData = this._updateDatasets();
+    this.barChartOptions = this._setChartOptions();
   }
 
   private _xAxisLabels: string[] = [];
