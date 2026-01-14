@@ -9,6 +9,7 @@ export enum EarningsMetric {
 
     COST_OF_SALES = 'COST_OF_SALES',
     GROSS_PROFIT = 'GROSS_PROFIT',
+    GROSS_MARGIN = 'GROSS_MARGIN',
 
     STORE_COUNT = 'STORE_COUNT',
     REVENUE_PER_STORE = 'REVENUE_PER_STORE',
@@ -49,11 +50,16 @@ export const SELECTION_TO_METRICS: Record<EarningsChartPropertySelection, Earnin
         EarningsMetric.HARDWARE_REVENUE_PERCENTAGE,
         EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE,
         EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE,],
+    [EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES]: [
+        EarningsMetric.HARDWARE_REVENUE_PERCENTAGE,
+        EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE,
+        EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE,],
     [EarningsChartPropertySelection.NET_INCOME]: [EarningsMetric.NET_INCOME],
     [EarningsChartPropertySelection.INTEREST_INCOME]: [EarningsMetric.INTEREST_INCOME],
     [EarningsChartPropertySelection.STOCKHOLDERS_EQUITY]: [EarningsMetric.STOCKHOLDERS_EQUITY],
     [EarningsChartPropertySelection.OPERATING_INCOME]: [EarningsMetric.OPERATING_INCOME],
     [EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA]: [EarningsMetric.GROSS_PROFIT, EarningsMetric.SGA],
+    [EarningsChartPropertySelection.GROSS_MARGIN]: [EarningsMetric.GROSS_MARGIN],
     [EarningsChartPropertySelection.OPERATIONS_VS_SGA]: [EarningsMetric.OPERATING_INCOME, EarningsMetric.SGA],
     [EarningsChartPropertySelection.EPS]: [EarningsMetric.EPS],
     [EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE]: [EarningsMetric.BOOK_VALUE_PER_SHARE]
@@ -70,6 +76,7 @@ export type EarningsMetricConfig = {
     minYAnnual: number;
     minYQuarter: number;
     value: (r: EarningsResult) => number;
+    labelContext: (value: number) => string;
 }
 
 // Create a lookup, keyed by enum, returning the config
@@ -84,6 +91,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.revenue,
+        labelContext: val => "Revenue:  $" + numberWithCommas(val)
     },
     [EarningsMetric.NET_INCOME]: {
         metric: EarningsMetric.NET_INCOME,
@@ -95,6 +103,13 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: -1000000000,
         minYQuarter: -500000000,
         value: r => r.netEarnings,
+        labelContext: val => {
+            if (val >= 0) {
+                return "Net Income:  $" + numberWithCommas(val);
+            } else {
+                return "Net Loss:  $" + numberWithCommas(val);
+            }
+        }
     },
     [EarningsMetric.NET_PROFIT_MARGIN]: {
         metric: EarningsMetric.NET_PROFIT_MARGIN,
@@ -106,6 +121,13 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: -10,
         minYQuarter: -35,
         value: r => (r.netEarnings / r.revenue) * 100,
+        labelContext: val => {
+            if (val >= 0) {
+                return "Net Profit Margin: " + (val).toFixed(1) + " %";
+            } else {
+                return "Net Loss Margin: " + (val).toFixed(1) + " %";
+            }
+        }
     },
     [EarningsMetric.COST_OF_SALES]: {
         metric: EarningsMetric.COST_OF_SALES,
@@ -117,6 +139,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.costOfSales,
+        labelContext: val => "Cost of Sales:  $" + numberWithCommas(val)
     },
     [EarningsMetric.GROSS_PROFIT]: {
         metric: EarningsMetric.GROSS_PROFIT,
@@ -128,6 +151,19 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.grossProfit,
+        labelContext: val => "Gross Profit:  $" + numberWithCommas(val),
+    },
+    [EarningsMetric.GROSS_MARGIN]: {
+        metric: EarningsMetric.GROSS_MARGIN,
+        colorScheme: 'GREEN',
+        label: 'Gross Margin',
+        labelNegative: 'Gross Margin',
+        tickScaleAnnually: 100,
+        tickScaleQuarterly: 100,
+        minYAnnual: 0,
+        minYQuarter: 0,
+        value: r => (r.grossProfit / r.revenue) * 100,
+        labelContext: val => "Gross Margin: " + (val).toFixed(1) + " %",
     },
     [EarningsMetric.OPERATING_INCOME]: {
         metric: EarningsMetric.OPERATING_INCOME,
@@ -139,6 +175,13 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: -800000000,
         minYQuarter: -500000000,
         value: r => r.operatingIncome,
+        labelContext: val => {
+            if (val >= 0) {
+                return "Operating Income:  $" + numberWithCommas(val);
+            } else {
+                return "Operating Loss:  $" + numberWithCommas(val);
+            }
+        }
     },
     [EarningsMetric.SGA]: {
         metric: EarningsMetric.SGA,
@@ -150,6 +193,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.sga,
+        labelContext: val => "SG&A Expense:  $" + numberWithCommas(val),
     },
     [EarningsMetric.INTEREST_INCOME]: {
         metric: EarningsMetric.INTEREST_INCOME,
@@ -161,7 +205,13 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: -80000000,
         minYQuarter: -30000000,
         value: r => r.interestIncome,
-
+        labelContext: val => {
+            if (val >= 0) {
+                return "Interest Income:  $" + numberWithCommas(val);
+            } else {
+                return "Interest Expense:  $" + numberWithCommas(val);
+            }
+        }
     },
     [EarningsMetric.STOCKHOLDERS_EQUITY]: {
         metric: EarningsMetric.STOCKHOLDERS_EQUITY,
@@ -172,7 +222,8 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 1000000000,
         minYAnnual: 0,
         minYQuarter: 0,
-        value: r => r.stockholdersEquity
+        value: r => r.stockholdersEquity,
+        labelContext: val => "Stockholders' Equity:  $" + numberWithCommas(val),
     },
     [EarningsMetric.STORE_COUNT]: {
         metric: EarningsMetric.STORE_COUNT,
@@ -184,6 +235,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.storeCount,
+        labelContext: val => "Stores:  " + numberWithCommas(val),
     },
     [EarningsMetric.REVENUE_PER_STORE]: {
         metric: EarningsMetric.REVENUE_PER_STORE,
@@ -195,6 +247,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.revenue / r.storeCount,
+        labelContext: val => "Revenue per store: $" + (numberWithCommas(Number(val.toFixed(0)))),
     },
 
     [EarningsMetric.HARDWARE_REVENUE]: {
@@ -207,6 +260,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.hardwareRevenue,
+        labelContext: val => "Hardware:  $" + numberWithCommas(val),
     },
     [EarningsMetric.HARDWARE_REVENUE_PERCENTAGE]: {
         metric: EarningsMetric.HARDWARE_REVENUE_PERCENTAGE,
@@ -217,7 +271,8 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 100,
         minYAnnual: 0,
         minYQuarter: 0,
-        value: r => ((r.hardwareRevenue / r.revenue) * 100)
+        value: r => ((r.hardwareRevenue / r.revenue) * 100),
+        labelContext: val => "Hardware: " + (val).toFixed(1) + " %",
     },
 
     [EarningsMetric.SOFTWARE_REVENUE]: {
@@ -230,6 +285,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.softwareRevenue,
+        labelContext: val => "Software:  $" + numberWithCommas(val),
     },
     [EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE]: {
         metric: EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE,
@@ -240,7 +296,8 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 100,
         minYAnnual: 0,
         minYQuarter: 0,
-        value: r => ((r.softwareRevenue / r.revenue) * 100)
+        value: r => ((r.softwareRevenue / r.revenue) * 100),
+        labelContext: val => "Software: " + (val).toFixed(1) + " %",
     },
 
     [EarningsMetric.COLLECTIBLES_REVENUE]: {
@@ -253,6 +310,7 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYAnnual: 0,
         minYQuarter: 0,
         value: r => r.collectiblesRevenue,
+        labelContext: val => "Collectibles:  $" + numberWithCommas(val),
     },
     [EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE]: {
         metric: EarningsMetric.COLLECTIBLES_REVENUE_PERCENTAGE,
@@ -263,7 +321,8 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 100,
         minYAnnual: 0,
         minYQuarter: 0,
-        value: r => ((r.collectiblesRevenue / r.revenue) * 100)
+        value: r => ((r.collectiblesRevenue / r.revenue) * 100),
+        labelContext: val => "Collectibles: " + (val).toFixed(1) + " %",
     },
     [EarningsMetric.EPS]: {
         metric: EarningsMetric.EPS,
@@ -274,7 +333,14 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 1,
         minYAnnual: -700,
         minYQuarter: -500,
-        value: r => r.netEPS*100,
+        value: r => r.netEPS * 100,
+        labelContext: val => {
+            if (val >= 0) {
+                return "Earnings per Share: $" + (numberWithCommas(Number((val / 100).toFixed(2))));
+            } else {
+                return "Loss per Share: $" + (numberWithCommas(Number((val / 100).toFixed(2))));
+            }
+        }
     },
     [EarningsMetric.BOOK_VALUE_PER_SHARE]: {
         metric: EarningsMetric.BOOK_VALUE_PER_SHARE,
@@ -285,6 +351,12 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         tickScaleQuarterly: 1,
         minYAnnual: 0,
         minYQuarter: 0,
-        value: r => ((r.stockholdersEquity / r.weightedAverageSharesOutstanding) * 100)
+        value: r => ((r.stockholdersEquity / r.weightedAverageSharesOutstanding) * 100),
+        labelContext: val => 'Book value per Share: $' + (numberWithCommas(Number((val / 100).toFixed(2)))),
     },
 };
+
+
+function numberWithCommas(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

@@ -14,12 +14,13 @@ export function setEarningsChartLegend(chartOption: EarningsChartPropertySelecti
       showCustomLegend = true;
       // label = 'Revenue and Net Income ' + periodLabel;
     } else if (chartOption === EarningsChartPropertySelection.REVENUE_TYPE || chartOption === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE) {
-      customLegendItems = [
-        { title: 'Hardware Revenue', color: 'rgba(3, 90, 252, 0.9)' },
-        { title: 'Software Revenue', color: 'rgba(255, 165, 0, 0.9)' },
-        { title: 'Collectibles Revenue', color: 'rgba(7, 145, 7, 0.9)' },
-      ];
-      showCustomLegend = true;
+      // customLegendItems = [
+      //   { title: 'Hardware Revenue', color: 'rgba(3, 90, 252, 0.9)' },
+      //   { title: 'Software Revenue', color: 'rgba(255, 165, 0, 0.9)' },
+      //   { title: 'Collectibles Revenue', color: 'rgba(7, 145, 7, 0.9)' },
+      // ];
+      // showCustomLegend = true;
+      showCustomLegend = false;
     } else if (chartOption === EarningsChartPropertySelection.REVENUE_VS_COST) {
       customLegendItems = [
         { title: 'Revenue', color: 'rgba(3, 90, 252, 0.9)' },

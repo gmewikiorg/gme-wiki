@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
-import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 
@@ -86,7 +86,7 @@ export class Fy25EarningsComponent {
       period: 'QUARTER',
       startYear: 2020,
       endYear: 2025,
-      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE,
+      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES,
       menuLabel: 'Collectibles Revenue: Increasing',
     }
   }

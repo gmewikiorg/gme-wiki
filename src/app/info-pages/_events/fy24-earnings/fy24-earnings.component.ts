@@ -5,7 +5,7 @@ import { EarningsChartComponent } from '../../../main-pages/financials/earnings-
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
-import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 
 @Component({
   selector: 'app-fy24-earnings',

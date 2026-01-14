@@ -5,7 +5,7 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartComponent } from '../../../main-pages/financials/earnings-chart/earnings-chart.component';
-import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 
 @Component({
   selector: 'app-trading-cards',
@@ -30,8 +30,9 @@ export class TradingCardsComponent {
       period: 'QUARTER',
       startYear: 2020,
       endYear: 2025,
-      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE,
+      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES,
       menuLabel: 'Collectibles Revenue: Increasing',
+      showCustomLegend: false,
     }
   }
 }

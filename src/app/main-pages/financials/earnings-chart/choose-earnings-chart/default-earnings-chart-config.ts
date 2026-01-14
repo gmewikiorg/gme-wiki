@@ -1,4 +1,4 @@
-import { EarningsChartConfig } from "./earnings-chart-config.interface";
+import { EarningsChartConfig } from "../earnings-chart-config.interface";
 import { EarningsChartPropertySelection } from "./earnings-chart-property-selection.enum";
 
 export const defaultEarningsChartConfig: EarningsChartConfig = {

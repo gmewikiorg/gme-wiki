@@ -42,6 +42,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Earnings per Share',
     'Book Value per Share',
     'Revenue vs Cost of Sales',
+    'Gross Margin',
     'Revenue vs Store Count',
     'Revenue per Store',
     'Revenue by Category',
@@ -49,6 +50,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Revenue vs Gross Profit',
     'Operating Income vs SG&A Expense',
     'Gross Profit vs SG&A Expense',
+
   ]);
 
   private _endYear: number = defaultEarningsChartConfig.endYear;
@@ -159,8 +161,8 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_PROFIT_MARGIN);
     } else if (menuLabel === 'Revenue vs Cost of Sales') {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_COST);
-    // } else if (menuLabel === 'Store Count') {
-    //   this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STORE_COUNT);
+      // } else if (menuLabel === 'Store Count') {
+      //   this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STORE_COUNT);
     } else if (menuLabel === 'Revenue vs Store Count') {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_STORES);
     } else if (menuLabel === 'Revenue per Store') {
@@ -186,6 +188,8 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     }
     else if (menuLabel === "Book Value per Share") {
       this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE);
+    } else if (menuLabel === "Gross Margin") {
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.GROSS_MARGIN);
     }
   }
 

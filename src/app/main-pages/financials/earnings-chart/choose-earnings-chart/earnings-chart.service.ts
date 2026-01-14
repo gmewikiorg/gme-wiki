@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EarningsChartPropertySelection } from './earnings-chart-property-selection.enum';
-import { EarningsChartConfig } from './earnings-chart-config.interface';
+import { EarningsChartConfig } from '../earnings-chart-config.interface';
 import { defaultEarningsChartConfig } from './default-earnings-chart-config';
 
 @Injectable({

@@ -68,6 +68,13 @@ export class EarningsDatasetBuilder {
         // const datasetColors = this.getSubsetArray(datasetColorsFull.length, datasetColorsFull);
         const dataLabelColors = datasetColorsFull.map(color => this._setNewAlpha(color, 0.9));
 
+        let isHidden = false;
+        if(chartSelection === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES){
+            if(metric === EarningsMetric.HARDWARE_REVENUE_PERCENTAGE || metric === EarningsMetric.SOFTWARE_REVENUE_PERCENTAGE){
+                isHidden = true;
+            }
+        }
+
 
         let tickScale = config.tickScaleAnnually;
         if (period !== 'ANNUAL') {
@@ -148,6 +155,7 @@ export class EarningsDatasetBuilder {
             backgroundColor: this.getSubsetArray(dataEntryCount, datasetColorsFull),
             data: this.getSubsetArray(dataEntryCount, dataItems),
             borderRadius: 5,
+            hidden: isHidden
         }
         return dataset;
     }

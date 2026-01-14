@@ -5,7 +5,7 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { RouterModule } from '@angular/router';
-import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 
 @Component({
   selector: 'app-atms',

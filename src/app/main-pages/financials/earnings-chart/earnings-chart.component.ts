@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { setEarningsChartLegend } from './earnings-chart-set-legend';
 import { FinancialChartService } from './choose-earnings-chart/earnings-chart.service';
 import { EarningsChartPropertySelection } from './choose-earnings-chart/earnings-chart-property-selection.enum';
-import { EarningsChartConfig } from './choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from './earnings-chart-config.interface';
 import { defaultEarningsChartConfig } from './choose-earnings-chart/default-earnings-chart-config';
 import { setChartOptions } from './earnings-chart-options';
 import { SELECTION_TO_METRICS } from './choose-earnings-chart/earnings-metric-configs';
@@ -115,6 +115,12 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     const chartLegendSettings = setEarningsChartLegend(this.chartSelectedProperty, this.chartPeriod);
     this.customLegendItems = chartLegendSettings.customLegendItems;
     this.showCustomLegend = chartLegendSettings.showCustomLegend;
+
+    if(this.showCustomLegend === true){
+      this.barChartLegend = false;
+    }else{
+      this.barChartLegend = true;
+    }
 
     this._xAxisLabels = results.map(r => r.reportingPeriod + ' ' + String(r.fiscalYear).substring(2)).reverse().slice(-dataEntryCount);
     const datasets = this._datasetBuilder.updateDatasets(results, this.chartSelectedProperty, this.chartPeriod, dataEntryCount);

@@ -1,7 +1,8 @@
 import { ChartOptions, TooltipItem } from "chart.js";
 import { EarningsDatasetBuilder } from "./earnings-datasets.class";
 import { EarningsChartPropertySelection } from "./choose-earnings-chart/earnings-chart-property-selection.enum";
-import { earningsChartLabelContext } from "./earnings-chart-label-context";
+import { EARNINGS_METRIC_CONFIGS, SELECTION_TO_METRICS } from "./choose-earnings-chart/earnings-metric-configs";
+
 
 export function setChartOptions(
     datasetBuilder: EarningsDatasetBuilder,
@@ -29,8 +30,14 @@ export function setChartOptions(
     if (chartSelectedProperty === EarningsChartPropertySelection.STOCKHOLDERS_EQUITY) {
         maxY = 6000000000
     }
-    const isRevenueTypePercent = chartSelectedProperty === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE;
-    const isNetProfitMarginPercent = chartSelectedProperty === EarningsChartPropertySelection.NET_PROFIT_MARGIN;
+    const isPercentage = [
+        EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE, 
+        EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES, 
+        EarningsChartPropertySelection.NET_PROFIT_MARGIN,
+        EarningsChartPropertySelection.GROSS_MARGIN,
+    ].includes(chartSelectedProperty)
+
+
 
     const tooltipCallbacks = {
         label: (context: TooltipItem<"bar">) => { return labelContext(context, chartSelectedProperty) },
@@ -57,7 +64,7 @@ export function setChartOptions(
             backdropColor: 'black',
             // Include a dollar sign in the ticks
             callback: function (value: any, index: any, ticks: any) {
-                if (isRevenueTypePercent || isNetProfitMarginPercent) {
+                if (isPercentage) {
                     return Number(value) + "%";
                 } else {
                     const numVal = Number(value);
@@ -161,15 +168,14 @@ export function setChartOptions(
             datalabels: {
             },
             legend: {
-                onClick: (event, array) => {
-                },
+
                 position: 'top',
                 labels: {
                     padding: 20,
                     boxWidth: 12,
                     boxHeight: 12,
                 },
-                display: false,
+                display: true,
             },
             tooltip: {
                 callbacks: tooltipCallbacks
@@ -180,7 +186,11 @@ export function setChartOptions(
 }
 
 function labelContext(context: TooltipItem<"bar">, chartSelectedProperty: EarningsChartPropertySelection): string {
-    return earningsChartLabelContext(context, chartSelectedProperty);
+    const metrics = SELECTION_TO_METRICS[chartSelectedProperty] ?? [];
+    const index = context.datasetIndex;
+    const metric = metrics[index];
+    const metricConfig = EARNINGS_METRIC_CONFIGS[metric];
+    return metricConfig.labelContext(Number(context.raw))
 }
 function footerContext(context: TooltipItem<"bar">[]): string {
     const item = context[0];

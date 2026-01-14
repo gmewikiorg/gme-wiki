@@ -7,7 +7,7 @@ import { fy23NewsArticles } from './news-article/fy23-news-articles';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { EarningsChartComponent } from '../../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { Fy23MediaSentimentTableComponent } from './fy23-media-sentiment-table/fy23-media-sentiment-table.component';
-import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-config.interface';
+import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 
 @Component({
