@@ -39,7 +39,6 @@ import { ShortInterestComponent } from './info-pages/_concepts/short-interest/sh
 import { BearCaseComponent } from './info-pages/_concepts/conflict/bear-case/bear-case.component';
 import { BullCaseComponent } from './info-pages/_concepts/conflict/bull-case/bull-case.component';
 import { InvestmentPolicyComponent } from './info-pages/_corporate/investment-policy/investment-policy.component';
-import { CnbcVsGmeComponent } from './info-pages/media/cnbc-vs-gme/cnbc-vs-gme.component';
 import { EquityComponent } from './info-pages/_corporate/equity/equity.component';
 import { MediaVsGmeComponent } from './info-pages/media/media-vs-gme/media-vs-gme.component';
 import { DirectoryComponent } from './info-pages/_gmewiki/directory/directory.component';
@@ -56,13 +55,12 @@ import { BullFactionComponent } from './info-pages/_concepts/conflict/bull-facti
 import { ShortsNeverClosedComponent } from './info-pages/_concepts/shorts-never-closed/shorts-never-closed.component';
 import { Fy25EarningsComponent } from './info-pages/_events/fy25-earnings/fy25-earnings.component';
 import { ConvertibleNotesComponent } from './info-pages/_corporate/convertible-notes/convertible-notes.component';
+import { NftMarketplaceComponent } from './info-pages/_corporate/nft-marketplace/nft-marketplace.component';
 
 
 
 export const routes: Routes = [
 
-
-    // { path: '', component: StartPageComponent },
     { path: 'start', component: StartPageComponent },
     { path: 'timeline', component: TimelineComponent },
     { path: 'ownership', component: OwnershipComponent },
@@ -73,10 +71,11 @@ export const routes: Routes = [
 
 
     /** Info pages / articles  */
-    { path: 'atm', component: ATMsComponent },
+
     { path: 'atms', component: ATMsComponent },
-    { path: '2021-atms', component: ATMsComponent },
-    { path: '2024-atms', component: ATMsComponent },
+    { path: 'atm', redirectTo: 'atms' },
+    { path: '2021-atms', redirectTo: 'atms' },
+    { path: '2024-atms', redirectTo: 'atms' },
 
 
     { path: 'bear-case', component: BearCaseComponent },
@@ -97,7 +96,7 @@ export const routes: Routes = [
     { path: 'directory', component: DirectoryComponent },
 
     { path: 'downfall', component: DownfallEraComponent },
-    { path: 'downfall-era', component: DownfallEraComponent },
+    { path: 'downfall-era', redirectTo: 'downfall' },
 
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
@@ -106,24 +105,25 @@ export const routes: Routes = [
     { path: 'equity', component: EquityComponent },
 
     { path: 'fy23', component: Fy23EarningsComponent },
-    { path: 'FY23', component: Fy23EarningsComponent },
-    { path: 'fy23-earnings', component: Fy23EarningsComponent },
+    { path: 'FY23', redirectTo: 'fy23' },
+    { path: 'fy23-earnings', redirectTo: 'fy23' },
 
     { path: 'fy24', component: Fy24EarningsComponent },
-    { path: 'FY24', component: Fy24EarningsComponent },
-    { path: 'fy24-earnings', component: Fy24EarningsComponent },
+    { path: 'FY24', redirectTo: 'fy24' },
+    { path: 'fy24-earnings', redirectTo: 'fy24' },
 
     { path: 'fy25', component: Fy25EarningsComponent },
-    { path: 'FY25', component: Fy25EarningsComponent },
-    { path: 'fy25-earnings', component: Fy25EarningsComponent },
+    { path: 'FY25', redirectTo: 'fy25' },
+    { path: 'fy25-earnings', redirectTo: 'fy25' },
 
     { path: 'ftd', component: FtdComponent },
-    { path: 'ftds', component: FtdComponent },
-    { path: 'failure-to-deliver', component: FtdComponent },
+    { path: 'ftds', redirectTo: 'ftd' },
+    { path: 'failure-to-deliver', redirectTo: 'ftd' },
+
     { path: 'fud', component: FudComponent },
 
     { path: 'investment-policy', component: InvestmentPolicyComponent },
-    { path: 'bitcoin-policy', component: InvestmentPolicyComponent },
+    { path: 'bitcoin-policy', redirectTo: 'investment-policy' },
 
     { path: 'market-tactics', component: MarketTacticsComponent },
 
@@ -133,36 +133,38 @@ export const routes: Routes = [
 
 
     { path: 'meme-stock', component: MemeStockComponent },
-    { path: 'meme-stocks', component: MemeStockComponent },
+    { path: 'meme-stocks', redirectTo: 'meme-stock' },
 
     { path: 'moass', component: MoassComponent },
 
     { path: 'michael-burry', component: MichaelBurryComponent },
 
     { path: 'naked-short-selling', component: NakedShortSellingComponent },
-    { path: 'naked-shorts-cnbc', component: CNBCVsNakedShortsComponent },
-    { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
-    { path: 'cnbc-vs-gme', component: CnbcVsGmeComponent },
-    { path: 'media-vs-naked-shorts', component: CNBCVsNakedShortsComponent },
 
-    { path: 'rc-interview', component: RcInterview2022Component },
+    { path: 'cnbc-naked-shorts', component: CNBCVsNakedShortsComponent },
+    { path: 'naked-shorts-cnbc', redirectTo: 'cnbc-naked-shorts' },
+    { path: 'media-vs-naked-shorts', redirectTo: 'cnbc-naked-shorts' },
+
+    { path: 'nft-marketplace', component: NftMarketplaceComponent },
+    { path: 'nft', redirectTo: 'nft-marketplace' },
+    { path: 'nfts', redirectTo: 'nft-marketplace' },
+
+    { path: 'rc-interview', redirectTo: 'rc-interview-november-2022' },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
     { path: 'ryan-cohen', component: RyanCohenComponent },
-    { path: 'rc', component: RyanCohenComponent },
+    { path: 'rc', redirectTo: 'ryan-cohen' },
 
     { path: 'reddit', component: RedditComponent },
 
-    { path: 'DeepFuckingValue', component: KeithGillComponent },
-    { path: 'dfv', component: KeithGillComponent },
     { path: 'keith-gill', component: KeithGillComponent },
-    { path: 'roaring-kitty', component: KeithGillComponent },
+    { path: 'DeepFuckingValue', redirectTo: 'keith-gill' },
+    { path: 'dfv', redirectTo: 'keith-gill' },
+    { path: 'roaring-kitty', redirectTo: 'keith-gill' },
 
     { path: 'short-interest', component: ShortInterestComponent },
     { path: 'shorts-never-closed', component: ShortsNeverClosedComponent },
     { path: 'sneeze', component: SneezeComponent },
-    { path: 'squeeze', component: SneezeComponent },
-    { path: 'sneeze-january-2021', component: SneezeComponent },
-    { path: 'squeeze-january-2021', component: SneezeComponent },
+    { path: 'squeeze', redirectTo: 'sneeze' },
     { path: 'sneeze-vs-squeeze', component: SneezeVsSqueezeComponent },
 
     { path: 'stores', component: StoresComponent },
@@ -171,11 +173,12 @@ export const routes: Routes = [
     { path: 'teddy', component: TeddyComponent },
 
     { path: 'trading-cards', component: TradingCardsComponent },
+
     { path: 'turnaround', component: TurnaroundComponent },
-    { path: 'transformation', component: TurnaroundComponent },
+    { path: 'transformation', redirectTo: 'turnaround' },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
-    { path: 't-plus-thirty-five', component: TPlusThirtyFiveComponent },
+    { path: 't-plus-thirty-five', redirectTo: 't-plus-35' },
 
 
     {
