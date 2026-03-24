@@ -61,6 +61,7 @@ export class StoresChartComponent {
     2010: 2134, 2011: 2180, 2012: 2177, 2013: 2208, 2014: 2068,
     2015: 2068, 2016: 2069, 2017: 2035, 2018: 1984, 2019: 1867,
     2020: 1624, 2021: 1555, 2022: 1464, 2023: 1254, 2024: 878,
+    2025: 608,
   };
 
   private _getTechBrandCountForYear(year: number, defaultValue = 0): number {

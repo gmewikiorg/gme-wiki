@@ -18,9 +18,9 @@ export class Fy25EarningsComponent {
 
   constructor(private _screenService: ScreenService) {
     const title = 'GameStop FY 2025 Earnings Results | gmewiki.org';
-    const description = 'GameStop’s FY 2025 Earnings Results: Strongest financial position in company history';
+    const description = 'GameStop’s FY 2025 Earnings Results: The Turnaround Delivers';
     const url = 'https://gmewiki.org/fy25';
-    const image = 'https://gmewiki.org/assets/info-pages/fy25-earnings-sankey.png';
+    const image = 'https://gmewiki.org/assets/earnings-sankey/fy25-sankey.png';
     this._screenService.setPageInfo(title, description, url, image);
   }
 
