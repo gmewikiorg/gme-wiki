@@ -39,6 +39,26 @@
 
     <div class="page-content">
 
+        <div class="page-section menu-item" [routerLink]="'/fy25'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
+            <div class="section-heading">GameStop Fiscal Year 2025 Earnings Results: The Turnaround Delivers</div>
+            <div class="section-body">
+                <div>
+                    <p class="section-p">As of FY 2025 results, GameStop is now a company that is more profitable than
+                        it has ever been in its history. Stockholders' Equity is higher than it has ever been. </p>
+                    <!-- <p class="section-p">Core financial metrics show significant improvements to the company since the
+                        turnaround efforts began.</p> -->
+                    <p class="section-p">Showing strong full-year operational profits, it is clear: GameStop has turned itself around.  GameStop is not a company that is struggling financially; it is stronger than ever and improving continuously.
+                    </p>
+                    <div class="image-container">
+                        <img *ngIf="!isDarkMode" src="assets/earnings-sankey/fy25-sankey.png" alt="gme timeline"
+                            class="page-image">
+                        <img *ngIf="isDarkMode" src="assets/earnings-sankey/fy25-sankey.png" alt="gme timeline"
+                            class="page-image">
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="page-section menu-item" [routerLink]="'/turnaround'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
