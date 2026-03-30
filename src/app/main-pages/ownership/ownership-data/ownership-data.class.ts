@@ -1,6 +1,6 @@
 import { ChartConfiguration } from "chart.js";
 import { OwnershipHistoryItem } from "./ownership-history-item.interface";
-import { ownershipHistory } from "./ownership-history_old_2025-12-18";
+import { ownershipHistory } from "./ownership-history";
 import dayjs from "dayjs";
 
 export class OwnershipData {

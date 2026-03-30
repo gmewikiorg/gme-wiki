@@ -15,15 +15,15 @@
                     register
                     (also referred to as
                     the "ledger") and the investor is therefore known to the company.</li>
-                <li>However, of registered shares, DRS is the only form that provides both ownership <i> and possession
+                <li>However, of registered shares, <a [routerLink]="'/drs'">DRS</a> is the only form that provides both ownership <i> and possession
                     </i> of shares</li>
-                <li>Having shares in Computershare's Direct Stock Purchase Plan (DSPP) provides registered ownership
+                <li>Having shares in Computershare's <b>Direct Stock Purchase Plan (DSPP)</b> provides registered ownership
                     but not possession of shares</li>
             </ul>
         </div>
 
         <div class="page-section">
-            <div class="section-heading">Registered shares reported by GameStop</div>
+            <div class="section-heading">Registered Shares Reported by GameStop</div>
 
             <p>
                 GameStop reports the number of shares that are held by all registered holders in their 10-Q / 10-K
@@ -37,12 +37,14 @@
                 style="padding: 15px; border-radius: 5px; background-color: rgba(148, 148, 148, 0.137); font-size: 0.9em;">
                 {{recentDrsUpdate.registeredText}}
             </p>
-            <p>
-                This number reported by GameStop includes all registered shares held by registered holders with
-                GameStop's transfer agent Computershare.
-            </p>
+
+            <p>As of Q2, 2025, GameStop has provided some information distinguishing DRS and DSPP share counts.</p>
+
 
         </div>
+
+
+
 
 
         <div class="page-section">
@@ -54,7 +56,7 @@
 
             </p>
             <ol>
-                <li>Directly, in DRS form, with the
+                <li>Directly, <a [routerLink]="'/drs'">in DRS form</a>, with the
                     shares listed as type 'Book'</li>
                 <li>
                     In Computershare's plan service, often referred to as direct stock purchase plan or DSPP, with the
@@ -77,6 +79,7 @@
                     class="external-link" rel="nofollow">by terminating
                     their DirectStock Plan</a>.</p>
         </div>
+
 
 
         <div class="page-section">
@@ -133,6 +136,43 @@
                         alt="DRS Discord">
                     The DRS Discord</a>
             </div>
+        </div>
+
+
+        <div class="page-section">
+
+            <!-- https://discord.com/channels/1102309240145707049/1102309241026515069/1415554460863692903 -->
+
+            <div class="section-heading">DSPP Count Discrepancy</div>
+            <p>Prior to Q2 2025, GameStop did not provide information about DSPP share counts. Members of the DRSGME.org
+                group travelled to Grapevine Texas in the years 2023, 2024, and <a
+                    href="https://www.drsgme.org/2025-stockholder-list-viewing" target="_blank" class="external-link"
+                    rel="nofollow">2025</a> to view the Stockholder List
+                and collect data.</p>
+            <p>The information collected from that viewing corroborates numbers reported by GameStop in their quarterly
+                / annual reports.</p>
+            <p>However, there remains a count discrepancy between GameStop's official reporting and the number
+                calculated by the DRSGME.org group, based on a technical interpretation of DSPP holdings. </p>
+            <p>GameStop reports the true raw number of shares that are explicitly held
+                in DSPP form. </p>
+            <p
+                style="padding: 15px; border-radius: 5px; background-color: rgba(148, 148, 148, 0.137); font-size: 0.9em;">
+                Of the shares held by registered holders, approximately 3.3 million were held in our direct stock
+                purchase plan ("DSPP") including 0.2 million shares held in nominee form by Computershare at DTC, with
+                the remainder held directly in registered form with Computershare.
+            </p>
+            <p>The DRSGME.org group distinguishes a difference between that raw number and a larger
+                estimate. The larger estimate is based upon the technical understanding that any account with DSPP
+                enabled exposes all shares in the account, including DRS shares, to Computershare's DSPP holdings, as
+                stated by a document from Computershare's UK division. </p>
+            <div class="image-container">
+                <img src="assets/drs/dspp_uk.png" class="image" alt="computershare account">
+            </div>
+            <p><a href="https://discord.com/channels/1102309240145707049/1102309241026515069/1415678355327684718"
+                    target="_blank" rel="nofollow" class="external-link">
+                    "Although not the US, the UK disclosures provide
+                    insight that Computershare US refuses to admit nor deny."</a></p>
+
         </div>
 
 

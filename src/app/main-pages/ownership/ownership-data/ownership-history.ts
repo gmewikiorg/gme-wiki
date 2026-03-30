@@ -11,22 +11,51 @@ import { OwnershipHistoryItem } from "./ownership-history-item.interface";
 /**
     Insiders:
 
-    ROBINSON MARK HAYMOND  -  112,302
-    MOORE DANIEL WILLIAM - 112,620 
+    ROBINSON MARK HAYMOND  -  105,155 
+    MOORE DANIEL WILLIAM - 108,224 
     GRUBE JAMES - 29,439 
-    ATTAL ALAIN - 572,464
-    COHEN RYAN - 37,347,842 
-    CHENG LAWRENCE - 83,000 
+    ATTAL ALAIN - 596,464
+    COHEN RYAN - 42,082,626
+    CHENG LAWRENCE - 88,000 
 
-    Total non-RC:  909,825
-    Total:  38,198,395
+    Total non-RC:  927,282
+    Total:  43,009,908
  */
+
+
+
+/**
+
+Ryan Cohen:
+https://www.reddit.com/r/Superstonk/comments/1qcp3j7/ryan_cohen_13d/
+
+37.4m shares with 10% (3.7m) warrants taking him to 41m
+
+ */
+
 
 
 /**
  *  To do an update on the data, copy the most recent data object and add it to the top and make changes, it must be the first item in the array
  */
 export const ownershipHistory: OwnershipHistoryItem[] = [
+    {
+        dateYYYYMMDD: '2026-03-18',
+        registeredText: "... approximately 66.2 million shares (15%) were held by registered holders with our transfer agent, Computershare Limited (“Computershare”) ",
+        filingLink: "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000013/gme-20260131.htm",
+        filingType: '10K',
+        filingDateYYYYMMDD: '2026-03-24',
+        tso: 448400000,
+        heldByCede: 382400000,
+        heldByRegistered: 66200000,
+        insidersRyanCohen: 42082626,
+        insidersRemainder: 927282,
+        keithGill: 9001000,
+        instVanguard: 38195010,
+        instBlackrock: 35280269,
+        instStateStreet: 12469631,
+        instTotal: 160207712,
+    },
     {
         dateYYYYMMDD: '2025-12-05',
         registeredText: "... approximately 67.0 million shares (or approximately 15% of our outstanding shares) were held by registered holders with our transfer agent, Computershare Limited (“Computershare”) ",
