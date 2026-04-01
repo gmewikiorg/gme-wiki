@@ -82,6 +82,11 @@ export class RyanCohenComponent {
         imagePath: 'assets/ryan-cohen/rc_tylee.webp',
         imageUrl: '',
       },
+      {
+        description: 'Ryan Cohen in 2026',
+        imagePath: 'assets/ryan-cohen/rc_2026.jpg',
+        imageUrl: '',
+      },
     ].sort(() => Math.random() - 0.5);
     this._rcCarousel = new ImageCarousel(items);
     this._isBrowser = _screenService.isBrowser;
