@@ -48,6 +48,7 @@ export const ownershipHistory: OwnershipHistoryItem[] = [
         tso: 448400000,
         heldByCede: 382400000,
         heldByRegistered: 66200000,
+        dspp: 3300000,
         insidersRyanCohen: 42082626,
         insidersRemainder: 927282,
         keithGill: 9001000,

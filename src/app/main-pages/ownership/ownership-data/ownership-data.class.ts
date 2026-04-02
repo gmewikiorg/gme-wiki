@@ -29,8 +29,8 @@ export class OwnershipData {
     public get filingDateFormatted(): string { return dayjs(this.filingDateYYYYMMDD).format('MMMM D, YYYY'); }
     public get totalCede(): number { return this._mroData.heldByCede; }
     public get totalRegistered(): number { return this._mroData.heldByRegistered; }
-    public get drsShares(): number { return this._mroData.heldByRegistered * this._drsVsDsppRatio2025; }
-    public get dsppShares(): number { return this._mroData.heldByRegistered * (1-this._drsVsDsppRatio2025); }
+    public get drsShares(): number { return this._mroData.heldByRegistered - (this._mroData.dspp || 0); }
+    public get dsppShares(): number { return this._mroData.dspp || 0; }
     public get rcShares(): number { return this._mroData.insidersRyanCohen; }
     public get insidersOtherShares(): number { return this._mroData.insidersRemainder; }
     public get totalInsiders(): number { return this._mroData.insidersRemainder + this._mroData.insidersRyanCohen; }

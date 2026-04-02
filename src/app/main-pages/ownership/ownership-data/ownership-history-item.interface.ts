@@ -7,6 +7,8 @@ export interface OwnershipHistoryItem {
     tso: number;
     heldByCede: number;
     heldByRegistered: number;
+    drs?: number;
+    dspp?: number;
     insidersRyanCohen: number;
     insidersRemainder: number;  /** all non-RC insiders */
     keithGill: number;
