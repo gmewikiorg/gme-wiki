@@ -95,7 +95,7 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
           if (label === 'DRS' || label === 'Held by registered holders with Computershare') {
             this._router.navigate(['/drs']);
           } else if (label === 'DSPP') {
-            this._router.navigate(['/drs-vs-dspp']);
+            this._router.navigate(['/dspp']);
           } else if (label === 'Ryan Cohen') {
             this._router.navigate(['/ryan-cohen']);
           } else if (label === 'Keith Gill *') {

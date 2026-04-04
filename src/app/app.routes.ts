@@ -16,7 +16,7 @@ import { CompetitionComponent } from './info-pages/competition/competition.compo
 import { DownfallEraComponent } from './info-pages/_events/downfall-era/downfall-era.component';
 import { DrsComponent } from './info-pages/_concepts/drs/drs.component';
 import { DrsFullTimelineComponent } from './info-pages/_concepts/drs/drs-full-timeline/drs-full-timeline.component';
-import { DrsVsDsppComponent } from './info-pages/_concepts/drs/drs-vs-dspp/drs-vs-dspp.component';
+import { DsppComponent } from './info-pages/_concepts/drs/dspp/dspp.component';
 import { FtdComponent } from './info-pages/_concepts/ftd/ftd.component';
 import { FudComponent } from './info-pages/_concepts/fud/fud.component';
 import { Fy23EarningsComponent } from './info-pages/_events/fy23-earnings/fy23-earnings.component';
@@ -100,7 +100,8 @@ export const routes: Routes = [
 
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
-    { path: 'drs-vs-dspp', component: DrsVsDsppComponent },
+    { path: 'dspp', component: DsppComponent },
+        { path: 'drs-vs-dspp', redirectTo: 'dspp' },
 
     { path: 'equity', component: EquityComponent },
 

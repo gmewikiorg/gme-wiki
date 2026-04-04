@@ -5,7 +5,7 @@
 
 
 .item-title{
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
@@ -14,4 +14,18 @@
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 0.8em;
+}
+
+table, tr, td{
+    border-collapse: collapse;
+    border: none;
+}
+
+table{
+    width: 100%;
+}
+
+td{
+    padding: 15px;
+    vertical-align: top;
 }

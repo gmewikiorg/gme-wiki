@@ -5,23 +5,20 @@ import { FooterComponent } from '../../../../layout/footer/footer.component';
 import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-drs-vs-dspp',
+  selector: 'app-dspp',
   standalone: true,
   imports: [FooterComponent, RouterLink],
-  templateUrl: './drs-vs-dspp.component.html',
-  styleUrl: './drs-vs-dspp.component.scss'
+  templateUrl: './dspp.component.html',
+  styleUrl: './dspp.component.scss'
 })
-export class DrsVsDsppComponent {
+export class DsppComponent {
 
   constructor(private _screenService: ScreenService) {
-    const title = 'DRS vs DSPP | gmewiki.org';
-    const description = 'Explanation of the differences between DRS and DSPP.  Both are forms of registered shares, only DRS provides self-custody.';
-    const url = 'https://gmewiki.org/drs-vs-dspp';
+    const title = 'DSPP | gmewiki.org';
+    const description = 'DSPP (Direct Stock Purchase Plan) - registered shares held by Computershare';
+    const url = 'https://gmewiki.org/dspp';
     const image = '';
     this._screenService.setPageInfo(title, description, url, image);
-
-
-
   }
 
   private _recentDrsUpdate = new OwnershipData();
