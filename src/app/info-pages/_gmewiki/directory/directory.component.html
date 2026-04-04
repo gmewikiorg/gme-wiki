@@ -39,10 +39,10 @@
             <div class="section-heading">{{ listItem.title}}</div>
             <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
                 <table>
-                    <tr *ngFor="let pageItem of listItem.list ">
-                        <td>
+                    <tr *ngFor="let pageItem of listItem.list " >
+                        <td [routerLink]="pageItem.url" style="cursor: pointer;">
                             <span class="item-title">{{pageItem.title}}</span><br>
-                            <span class="item-url"><a [routerLink]="pageItem.url">gmewiki.org{{pageItem.url}}</a></span>
+                            <span class="item-url"><a >gmewiki.org{{pageItem.url}}</a></span>
                         </td>
                         <td class="item-description">
                             {{pageItem.description}}
