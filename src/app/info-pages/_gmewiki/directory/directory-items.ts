@@ -5,7 +5,11 @@ export interface DirectoryItem {
 }
 
 export const mainPageItems: DirectoryItem[] = [
-
+    {
+        title: 'Start Page',
+        description: 'gmewiki.org Start Page',
+        url: '/start'
+    },
     {
         title: 'Financial Statements',
         description: 'Earnings results and related company financial information',

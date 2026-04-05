@@ -21,7 +21,7 @@ export class DirectoryComponent {
     this._screenService.setPageInfo(title, description, url, image);
   }
 
-
+  public get isMobile(): boolean { return this._screenService.isMobile; }
 
   public get mainDirectoryItems(): DirectoryItem[] { return mainPageItems; }
   public get peopleDirectoryItems(): DirectoryItem[] { return peoplePageItems; }
@@ -56,6 +56,8 @@ export class DirectoryComponent {
       },
     ]
   }
+
+
 
 
 }
