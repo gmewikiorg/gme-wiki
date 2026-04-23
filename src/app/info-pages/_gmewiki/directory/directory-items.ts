@@ -45,6 +45,11 @@ export const gamestopPageItems: DirectoryItem[] = [
         url: '/atms'
     },
     {
+        title: 'Senior Convertible Notes',
+        description: 'In 2025, GameStop raised over $4B by completing 2 private offerings of convertible senior notes',
+        url: '/convertible-notes'
+    },
+    {
         title: 'GameStop Investment Policy',
         description: "As legacy retail contracts, GameStop evolves into a capital allocator with a growing focus on strategic investments",
         url: '/investment-policy'
@@ -70,6 +75,11 @@ export const gamestopPageItems: DirectoryItem[] = [
         title: 'GameStop Company Turnaround and Transformation',
         description: "Since 2021, GameStop has been undergoing a transformation: fewer stores, higher value, renewed profitability",
         url: '/turnaround'
+    },
+        {
+        title: 'Warrants',
+        description: "In 2025, GameStop issued a dividend of warrants with a $32 exercise price",
+        url: '/warrants'
     },
 ]
 

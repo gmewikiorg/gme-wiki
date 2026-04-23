@@ -56,6 +56,7 @@ import { ShortsNeverClosedComponent } from './info-pages/_concepts/shorts-never-
 import { Fy25EarningsComponent } from './info-pages/_events/fy25-earnings/fy25-earnings.component';
 import { ConvertibleNotesComponent } from './info-pages/_corporate/convertible-notes/convertible-notes.component';
 import { NftMarketplaceComponent } from './info-pages/_corporate/nft-marketplace/nft-marketplace.component';
+import { WarrantsComponent } from './info-pages/_corporate/warrants/warrants.component';
 
 
 
@@ -101,7 +102,7 @@ export const routes: Routes = [
     { path: 'drs', component: DrsComponent },
     { path: 'drs-timeline', component: DrsFullTimelineComponent },
     { path: 'dspp', component: DsppComponent },
-        { path: 'drs-vs-dspp', redirectTo: 'dspp' },
+    { path: 'drs-vs-dspp', redirectTo: 'dspp' },
 
     { path: 'equity', component: EquityComponent },
 
@@ -180,6 +181,8 @@ export const routes: Routes = [
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
     { path: 't-plus-thirty-five', redirectTo: 't-plus-35' },
+
+    { path: 'warrants', component: WarrantsComponent },
 
 
     {

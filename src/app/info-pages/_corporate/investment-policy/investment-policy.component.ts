@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-investment-policy',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, RouterLink],
   templateUrl: './investment-policy.component.html',
   styleUrl: './investment-policy.component.scss'
 })
