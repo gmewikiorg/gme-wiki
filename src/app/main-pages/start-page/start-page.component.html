@@ -1,9 +1,6 @@
 <div class="component-root gamestop-background" [ngStyle]="backgroundNgStyle">
     <div class="page-top-bar" [ngClass]="isDarkMode? 'page-top-bar-dark': 'page-top-bar'" *ngIf="!isMobile">
         <div class="top-bar-content">
-            <!-- <div class="top-bar-section" *ngIf="screenWidth >= 1200">
-                
-            </div> -->
             <div class="title-container">
                 <div class="welcome-page-title">Welcome to gmewiki.org</div>
                 <div class="welcome-page-subtitle" [ngStyle]="subtitleNgStyle">An information website all about GME and
@@ -38,17 +35,16 @@
 
 
     <div class="page-content">
-
         <div class="page-section menu-item" [routerLink]="'/fy25'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Fiscal Year 2025 Earnings Results: The Turnaround Delivers</div>
             <div class="section-body">
                 <div>
-                    <p class="section-p">As of FY 2025 results, GameStop is now a company that is more profitable than
-                        it has ever been in its history. Stockholders' Equity is higher than it has ever been. </p>
-                    <!-- <p class="section-p">Core financial metrics show significant improvements to the company since the
-                        turnaround efforts began.</p> -->
-                    <p class="section-p">Showing strong full-year operational profits, it is clear: GameStop has turned itself around.  GameStop is not a company that is struggling financially; it is stronger than ever and improving continuously.
+                    <p class="section-p">As of fiscal year 2025 results, GameStop has reported its highest net income in company history. 
+                        Stockholders' equity is higher than it has ever been. </p>
+                    <p class="section-p">Showing strong full-year operational profits, it is clear: GameStop has turned
+                        itself around. GameStop is not a company that is struggling financially; it is stronger than
+                        ever and improving continuously.
                     </p>
                     <div class="image-container">
                         <img *ngIf="!isDarkMode" src="assets/earnings-sankey/fy25-sankey.png" alt="gme timeline"
@@ -64,25 +60,14 @@
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Company Turnaround</div>
             <div class="section-body">
-                <!-- <div style="max-width: 650px;">
-                    <img *ngIf="!isDarkMode" src="assets/main-pages/turnaround.png" alt="GameStop Turnaround"
-                        class="page-image">
-                    <img *ngIf="isDarkMode" src="assets/main-pages/turnaround-dark.png" alt="GameStop Turnaround"
-                        class="page-image">
-                </div> -->
-                <!-- <app-turnaround-table [isTurnaroundPage]="true" style="width: 100%;"></app-turnaround-table> -->
-
                 <div>
-                    <p class="section-p">Since 2021, GameStop has been undergoing a transformation: new leadership,
-                        fewer stores, higher
-                        value, renewed
-                        profitability.</p>
-                    <!-- <p class="section-p">Core financial metrics show significant improvements to the company since the
-                        turnaround efforts began.</p> -->
-                    <p class="section-p">GameStop went from a situation where it was losing hundreds of millions of
-                        dollars per year, facing real risk of bankruptcy, to now having the highest stockholders' equity
-                        in company history, operational profitability, and on track for its most profitable year ever.
+                    <p class="section-p">Starting in 2021, GameStop began an unprecedented turnaround.</p>
+                    <p class="section-p">GameStop was losing hundreds of millions of
+                        dollars per year, and facing real risk of bankruptcy.
+                        As of fiscal year 2025 results, GameStop reported its most profitable year ever, and now has the highest stockholders' equity
+                        in company history.
                     </p>
+                    <p class="section-p">The turnaround has been successful.</p>
                     <app-turnaround-table></app-turnaround-table>
                 </div>
             </div>
@@ -113,15 +98,12 @@
                 <img *ngIf="isDarkMode" src="assets/main-pages/earnings-dark.png" alt="gme earnings" class="page-image">
                 <div>
                     <p class="section-p">View the status and history of GameStop revenue, net
-                        earnings, stockholders' equity, and related
-                        information</p>
+                        earnings, stockholders' equity, and more</p>
                     <p class="section-p">As of fiscal year 2025 results, GameStop had revenue
-                        of $3.6 billion, and net income of $416 million — the most profitable year in the history of the company.</p>
+                        of $3.6 billion, and net income of $416 million — the most profitable year in the history of the
+                        company.</p>
                 </div>
-
-
             </div>
-
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/ownership'"
@@ -155,17 +137,12 @@
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Investment Policy</div>
 
-            <p class="section-p">As the legacy business contracts, GameStop is evolving into a capital allocator with a
-                growing focus on
-                strategic investments. </p>
+            <p class="section-p">As the legacy business has contracted, GameStop is evolving into a capital allocator with a
+                growing focus on strategic investments. </p>
             <div class="section-p">
-                GameStop has made significant changes to its Investment Policy, giving Ryan Cohen discretion over
+                GameStop has made significant changes to its Investment Policy, giving CEO Ryan Cohen discretion over
                 investments.
             </div>
-            <p class="section-p">GameStop has raised over <b>$4 billion</b> through private offerings of convertible
-                senior notes, and has
-                used some of that money to buy 4,710 bitcoin.</p>
-
         </div>
 
 
