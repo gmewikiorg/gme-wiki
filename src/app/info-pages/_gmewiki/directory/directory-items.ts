@@ -59,6 +59,11 @@ export const gamestopPageItems: DirectoryItem[] = [
         description: "From 2022 to 2024, GameStop operated a beta NFT marketplace which never left beta stage",
         url: '/nft-marketplace'
     },
+    {
+        title: 'Retro',
+        description: "In 2026, GameStop launched Retro sections in all U.S. stores",
+        url: '/retro'
+    },
 
     {
         title: 'GameStop Stores',

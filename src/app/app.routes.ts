@@ -57,6 +57,7 @@ import { Fy25EarningsComponent } from './info-pages/_events/fy25-earnings/fy25-e
 import { ConvertibleNotesComponent } from './info-pages/_corporate/convertible-notes/convertible-notes.component';
 import { NftMarketplaceComponent } from './info-pages/_corporate/nft-marketplace/nft-marketplace.component';
 import { WarrantsComponent } from './info-pages/_corporate/warrants/warrants.component';
+import { RetroComponent } from './info-pages/_corporate/retro/retro.component';
 
 
 
@@ -150,6 +151,8 @@ export const routes: Routes = [
     { path: 'nft-marketplace', component: NftMarketplaceComponent },
     { path: 'nft', redirectTo: 'nft-marketplace' },
     { path: 'nfts', redirectTo: 'nft-marketplace' },
+
+    { path: 'retro', component: RetroComponent },
 
     { path: 'rc-interview', redirectTo: 'rc-interview-november-2022' },
     { path: 'rc-interview-november-2022', component: RcInterview2022Component },
