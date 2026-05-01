@@ -55,9 +55,19 @@ export const gamestopPageItems: DirectoryItem[] = [
         url: '/investment-policy'
     },
     {
+        title: 'Mergers and Acquisitions',
+        description: "“It’s gonna be really big. Really big. Very, very, very big.”",
+        url: '/m&a'
+    },
+    {
         title: 'NFT Marketplace',
         description: "From 2022 to 2024, GameStop operated a beta NFT marketplace which never left beta stage",
         url: '/nft-marketplace'
+    },
+    {
+        title: 'Reinvention of GameStop',
+        description: "GameStop is preparing for a transformation and reinvention into something bigger",
+        url: '/reinvention'
     },
     {
         title: 'Retro',
@@ -81,7 +91,7 @@ export const gamestopPageItems: DirectoryItem[] = [
         description: "Since 2021, GameStop has been undergoing a transformation: fewer stores, higher value, renewed profitability",
         url: '/turnaround'
     },
-        {
+    {
         title: 'Warrants',
         description: "In 2025, GameStop issued a dividend of warrants with a $32 exercise price",
         url: '/warrants'

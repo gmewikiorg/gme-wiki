@@ -58,6 +58,8 @@ import { ConvertibleNotesComponent } from './info-pages/_corporate/convertible-n
 import { NftMarketplaceComponent } from './info-pages/_corporate/nft-marketplace/nft-marketplace.component';
 import { WarrantsComponent } from './info-pages/_corporate/warrants/warrants.component';
 import { RetroComponent } from './info-pages/_corporate/retro/retro.component';
+import { MergersAcquisitionsComponent } from './info-pages/_corporate/mergers-acquisitions/mergers-acquisitions.component';
+import { ReinventionComponent } from './info-pages/_corporate/reinvention/reinvention.component';
 
 
 
@@ -148,9 +150,19 @@ export const routes: Routes = [
     { path: 'naked-shorts-cnbc', redirectTo: 'cnbc-naked-shorts' },
     { path: 'media-vs-naked-shorts', redirectTo: 'cnbc-naked-shorts' },
 
+    { path: 'm&a', component: MergersAcquisitionsComponent },
+    { path: 'mergers', redirectTo: 'm&a' },
+    { path: 'acquisitions', redirectTo: 'm&a' },
+    { path: 'm-and-a', redirectTo: 'm&a' },
+    { path: 'mergers-and-acquisitions', redirectTo: 'm&a' },
+
     { path: 'nft-marketplace', component: NftMarketplaceComponent },
     { path: 'nft', redirectTo: 'nft-marketplace' },
     { path: 'nfts', redirectTo: 'nft-marketplace' },
+
+    { path: 'reinvention', component: ReinventionComponent },
+    { path: 'metamorphosis', redirectTo: 'reinvention' },
+    { path: 'transformation', redirectTo: 'reinvention' },
 
     { path: 'retro', component: RetroComponent },
 
@@ -180,7 +192,6 @@ export const routes: Routes = [
     { path: 'trading-cards', component: TradingCardsComponent },
 
     { path: 'turnaround', component: TurnaroundComponent },
-    { path: 'transformation', redirectTo: 'turnaround' },
 
     { path: 't-plus-35', component: TPlusThirtyFiveComponent },
     { path: 't-plus-thirty-five', redirectTo: 't-plus-35' },
