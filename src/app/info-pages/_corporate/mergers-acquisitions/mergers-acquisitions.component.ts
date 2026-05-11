@@ -18,8 +18,5 @@ export class MergersAcquisitionsComponent {
     const url = 'https://gmewiki.org/m&a';
     const image = '';
     this._screenService.setPageInfo(title, description, url, image);
-
-
-
   }
 }

@@ -60,6 +60,7 @@ import { WarrantsComponent } from './info-pages/_corporate/warrants/warrants.com
 import { RetroComponent } from './info-pages/_corporate/retro/retro.component';
 import { MergersAcquisitionsComponent } from './info-pages/_corporate/mergers-acquisitions/mergers-acquisitions.component';
 import { ReinventionComponent } from './info-pages/_corporate/reinvention/reinvention.component';
+import { EbayComponent } from './info-pages/_corporate/mergers-acquisitions/ebay/ebay.component';
 
 
 
@@ -150,11 +151,20 @@ export const routes: Routes = [
     { path: 'naked-shorts-cnbc', redirectTo: 'cnbc-naked-shorts' },
     { path: 'media-vs-naked-shorts', redirectTo: 'cnbc-naked-shorts' },
 
+
+    /** Mergers, Acquisitions */
+
     { path: 'm&a', component: MergersAcquisitionsComponent },
     { path: 'mergers', redirectTo: 'm&a' },
     { path: 'acquisitions', redirectTo: 'm&a' },
     { path: 'm-and-a', redirectTo: 'm&a' },
     { path: 'mergers-and-acquisitions', redirectTo: 'm&a' },
+
+    { path: 'ebay', component: EbayComponent },
+
+
+
+
 
     { path: 'nft-marketplace', component: NftMarketplaceComponent },
     { path: 'nft', redirectTo: 'nft-marketplace' },
