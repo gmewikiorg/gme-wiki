@@ -50,6 +50,11 @@ export const gamestopPageItems: DirectoryItem[] = [
         url: '/convertible-notes'
     },
     {
+        title: 'Proposal to Acquire eBay',
+        description: 'In May 2026, GameStop formally proposed an acquisition of eBay',
+        url: '/ebay'
+    },
+    {
         title: 'GameStop Investment Policy',
         description: "As legacy retail contracts, GameStop evolves into a capital allocator with a growing focus on strategic investments",
         url: '/investment-policy'
