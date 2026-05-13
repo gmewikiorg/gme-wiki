@@ -28,19 +28,51 @@
         <div style="font-size: 0.8em;color:white; text-align: center;">An information website
             all about GME and GameStop</div>
     </div>
-
-
-
     <div class="page-content" [ngStyle]="gapSectionNgStyle"></div>
 
 
     <div class="page-content">
+
+
+        <div class="page-section menu-item" [routerLink]="'/ebay'"
+            [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
+            <div class="section-heading">GameStop's Proposed Acquisition of eBay</div>
+
+            <p>
+                On May 3, 2026, GameStop formally proposed to purchase eBay for approximately <b>$56 billion</b>
+                <br>
+                On May 12, 2026, eBay formally rejected the proposal, calling it ‘<b>neither credible nor
+                    attractive</b>.’
+            </p>
+
+
+
+            <div class="quote-section-container">
+                <div class="quote-section">
+
+                    <p>“The more [eBay] fights me, the more . . . I’m not going to take no for an answer. I’m not going
+                        away. I’m a pain in the ass.”</p>
+
+                    <div class="quote-attribution">GameStop CEO Ryan Cohen</div>
+                    <div class="quote-attribution-2">
+                        <div style="margin-left: 10px;"><a href="https://archive.is/4NNjI" target="_blank"
+                                class="external-link" rel="nofollow">May 8, 2026 comments with the Financial Times</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="page-section menu-item" [routerLink]="'/fy25'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Fiscal Year 2025 Earnings Results: The Turnaround Delivers</div>
             <div class="section-body">
                 <div>
-                    <p class="section-p">As of fiscal year 2025 results, GameStop has reported its highest net income in company history. 
+                    <p class="section-p">As of fiscal year 2025 results, GameStop has reported its highest net income in
+                        company history.
                         Stockholders' equity is higher than it has ever been. </p>
                     <p class="section-p">Showing strong full-year operational profits, it is clear: GameStop has turned
                         itself around. GameStop is not a company that is struggling financially; it is stronger than
@@ -61,7 +93,8 @@
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Investment Policy</div>
 
-            <p class="section-p">As the legacy business has contracted, GameStop is evolving into a capital allocator with a
+            <p class="section-p">As the legacy business has contracted, GameStop is evolving into a capital allocator
+                with a
                 growing focus on strategic investments. </p>
             <div class="section-p">
                 GameStop has made significant changes to its Investment Policy, giving CEO Ryan Cohen discretion over
@@ -69,7 +102,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="page-section menu-item" [routerLink]="'/turnaround'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
@@ -79,7 +112,8 @@
                     <p class="section-p">Starting in 2021, GameStop began an unprecedented turnaround.</p>
                     <p class="section-p">GameStop was losing hundreds of millions of
                         dollars per year, and facing real risk of bankruptcy.
-                        As of fiscal year 2025 results, GameStop reported its most profitable year ever, and now has the highest stockholders' equity
+                        As of fiscal year 2025 results, GameStop reported its most profitable year ever, and now has the
+                        highest stockholders' equity
                         in company history.
                     </p>
                     <p class="section-p">The turnaround has been successful.</p>

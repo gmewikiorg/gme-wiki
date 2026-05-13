@@ -160,7 +160,8 @@ export const routes: Routes = [
     { path: 'm-and-a', redirectTo: 'm&a' },
     { path: 'mergers-and-acquisitions', redirectTo: 'm&a' },
 
-    { path: 'ebay', component: EbayComponent },
+    { path: 'ebay', component: EbayComponent, },
+    { path: 'eBay', redirectTo: 'ebay', },
 
 
 
