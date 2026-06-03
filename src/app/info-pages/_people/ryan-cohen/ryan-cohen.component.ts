@@ -92,7 +92,7 @@ export class RyanCohenComponent {
     this._isBrowser = _screenService.isBrowser;
 
     const title = 'Ryan Cohen: GameStop CEO and Chairman | gmewiki.org';
-    const description = 'Ryan Cohen: GameStop CEO and Chairman, largest individual GME shareholder, receives no compensation';
+    const description = 'Ryan Cohen: GameStop CEO and Chairman, largest individual GME shareholder';
     const url = 'https://gmewiki.org/ryan-cohen';
     const image = '';
     this._screenService.setPageInfo(title, description, url, image);
