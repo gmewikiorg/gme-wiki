@@ -7,9 +7,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     filingDateYYYYMMDD: "2026-06-02",
     reportDateYYYYMMDD: "2026-05-02",
     revenue: 835300000,
-    revenueHardware: 0,
-    revenueSoftware: 0,
-    revenueCollectibles: 0,
+    revenueHardware: 333700000,
+    revenueSoftware: 152700000,
+    revenueCollectibles: 348900000,
     revenueOther: 0,
     costOfSales: 495000000,
     grossProfit: 340300000,
@@ -25,9 +25,9 @@ export const filings_10q_raw: EarningsResultInterface[] = [
     totalDebt: 4166100000,
     totalLiabilities: 5132200000,
     stockholdersEquity: 5842100000,
-    drs: 0,
+    drs: 65000000,
     storeCount: 2206,
-    url: ""
+    url: "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001326380/000132638026000025/gme-20260502.htm"
   },
   {
     fiscalYear: 2025,

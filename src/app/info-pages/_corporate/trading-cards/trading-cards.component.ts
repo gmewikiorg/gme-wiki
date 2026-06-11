@@ -29,7 +29,7 @@ export class TradingCardsComponent {
     return {
       period: 'QUARTER',
       startYear: 2020,
-      endYear: 2025,
+      endYear: 2026,
       selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES,
       menuLabel: 'Collectibles Revenue: Increasing',
       showCustomLegend: false,
