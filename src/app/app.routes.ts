@@ -61,6 +61,7 @@ import { RetroComponent } from './info-pages/_corporate/retro/retro.component';
 import { MergersAcquisitionsComponent } from './info-pages/_corporate/mergers-acquisitions/mergers-acquisitions.component';
 import { ReinventionComponent } from './info-pages/_corporate/reinvention/reinvention.component';
 import { EbayComponent } from './info-pages/_corporate/mergers-acquisitions/ebay/ebay.component';
+import { RcInterview20260623Component } from './info-pages/_corporate/mergers-acquisitions/ebay/rc-interview-2026-06-23/rc-interview-2026-06-23.component';
 
 
 
@@ -163,8 +164,8 @@ export const routes: Routes = [
     { path: 'ebay', component: EbayComponent, },
     { path: 'eBay', redirectTo: 'ebay', },
 
-
-
+    { path: 'rc-interview-2026-06-23', component: RcInterview20260623Component, },
+    { path: 'rc-interview-all-in', redirectTo: 'rc-interview-2026-06-23', },
 
 
     { path: 'nft-marketplace', component: NftMarketplaceComponent },
