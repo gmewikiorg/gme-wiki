@@ -1,11 +1,11 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { BarController, BarElement, CategoryScale, Chart, ChartConfiguration, ChartOptions, Legend, LinearScale, Tooltip, TooltipItem } from 'chart.js';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { BaseChartDirective } from 'ng2-charts';
 import { EarningsDataService } from '../../../../main-pages/financials/earnings-results/earnings-data.service';
 import { EarningsResult } from '../../../../main-pages/financials/earnings-results/earnings-result.class';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-drs-gme-chart',
@@ -15,7 +15,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './drs-gme-chart.component.scss'
 })
 export class DrsGmeChartComponent implements AfterViewInit {
-  constructor(private _sizeService: ScreenService, private _earningsService: EarningsDataService) {
+  constructor(private _sizeService: ScreenService, private _earningsService: EarningsDataService, @Inject(PLATFORM_ID) private platformId: Object,) {
+    this._isBrowser = isPlatformBrowser(this.platformId);
     Chart.unregister(ChartDataLabels);
     Chart.register(ChartDataLabels, LinearScale, BarController, CategoryScale, BarElement, Tooltip, Legend);
     this.barChartData = this._setData();
@@ -28,6 +29,9 @@ export class DrsGmeChartComponent implements AfterViewInit {
 
   public get isMobile(): boolean { return this._sizeService.isMobile; }
   private _isPercentage: boolean = false;
+
+    private _isBrowser: boolean = false;
+  public get isBrowser(): boolean { return this._isBrowser; }
 
   ngAfterViewInit(): void {
     this._sizeService.screenDimensions$.subscribe((change) => {
@@ -188,9 +192,10 @@ export class DrsGmeChartComponent implements AfterViewInit {
 
   private _setOptions(): ChartOptions<'bar'> {
     const isPercentage = this._isPercentage;
-    let maxY = 100000000;
+    let maxY = 80000000;
     if (isPercentage) {
-      maxY = 100
+      // Use 30 as the max, since th
+      maxY = 30;
     }
     return {
       responsive: true,
@@ -245,7 +250,10 @@ export class DrsGmeChartComponent implements AfterViewInit {
   }
 
   private _titleContext(context: any[]) {
-    // return '';
+    const label = context[0].label;
+    const fiscalQuarter = label.substring(0, 2);
+    const year = '20' + label.substring(3);
+    return fiscalQuarter + ' ' + year;
   }
 
   private _footerContext(context: TooltipItem<"bar">[]) {

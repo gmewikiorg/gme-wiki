@@ -22,6 +22,7 @@ export class DirectoryComponent {
   }
 
   public get isMobile(): boolean { return this._screenService.isMobile; }
+  public get isTouchDevice(): boolean { return this._screenService.isTouchDevice; }
 
   public get mainDirectoryItems(): DirectoryItem[] { return mainPageItems; }
   public get peopleDirectoryItems(): DirectoryItem[] { return peoplePageItems; }

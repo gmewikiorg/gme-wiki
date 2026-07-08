@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { TurnaroundTableComponent } from '../../_corporate/turnaround/turnaround-table/turnaround-table.component';
+import { DrsGmeChartComponent } from '../drs/drs-gme-chart/drs-gme-chart.component';
 
 @Component({
   selector: 'app-conflict',
   standalone: true,
-  imports: [RouterModule, CommonModule, FooterComponent],
+  imports: [RouterModule, CommonModule, FooterComponent, TurnaroundTableComponent, DrsGmeChartComponent],
   templateUrl: './conflict.component.html',
   styleUrl: './conflict.component.scss'
 })

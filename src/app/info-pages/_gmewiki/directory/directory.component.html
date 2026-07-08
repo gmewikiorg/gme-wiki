@@ -7,7 +7,7 @@
             List of pages on gmewiki.org
         </h5>
 
-        <div *ngIf="!isMobile">
+        <div *ngIf="!isMobile && !isTouchDevice">
             <div class="page-section" *ngFor="let listItem of allLists">
                 <div class="section-heading">{{ listItem.title}}</div>
                 <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
