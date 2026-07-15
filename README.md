@@ -8,7 +8,6 @@ A community-driven website for tracking fundamental information pertaining to GM
 ## Information
 
 gmewiki.org aims to provide information that is accurate, organized, unambiguous, and helpful to curious people that want to understand the content.  
-In general, the target audience of this website is people that don't necessarily know very much about GME, but want to learn more about it.
 
 
 ## Contribution and Bias

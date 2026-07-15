@@ -6,11 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { StartPageService } from './start-page.service';
 import { TurnaroundTableComponent } from '../../info-pages/_corporate/turnaround/turnaround-table/turnaround-table.component';
+import { EarningsChartConfig } from '../financials/earnings-chart/earnings-chart-config.interface';
+import { EarningsChartPropertySelection } from '../financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
+import { EarningsChartComponent } from '../financials/earnings-chart/earnings-chart.component';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [RouterModule, FooterComponent, CommonModule, TurnaroundTableComponent ],
+  imports: [RouterModule, FooterComponent, CommonModule, TurnaroundTableComponent, EarningsChartComponent],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })
@@ -98,13 +101,14 @@ export class StartPageComponent implements OnInit, AfterViewInit {
       this._backgroundNgStyle = {
         'background-position': 'center calc(0px - 75px)',
       }
-    } else if(width <= 600){
+    } else if (width <= 600) {
       this._backgroundNgStyle = {
         'background-position': 'center calc(0px + 75px)',
       }
     }
   }
 
+    public get isBrowser(): boolean { return this._screenService.isBrowser; }
   public get screenWidth(): number { return this._screenService.screenWidth; }
 
   public get gapSectionNgStyle(): any { return this._gapSectionNgStyle; }
@@ -113,5 +117,17 @@ export class StartPageComponent implements OnInit, AfterViewInit {
 
   public onMouseEnterMainMenu() {
     this._startPageService.onMouseEnterMainMenu();
+  }
+
+
+  public get collectiblesConfig(): EarningsChartConfig {
+    return {
+      period: 'QUARTER',
+      startYear: 2020,
+      endYear: 2026,
+      selectedProperty: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES,
+      menuLabel: 'Collectibles Revenue: Increasing',
+      showCustomLegend: false,
+    }
   }
 }

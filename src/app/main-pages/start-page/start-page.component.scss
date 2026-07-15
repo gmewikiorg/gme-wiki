@@ -142,17 +142,21 @@
     margin-top: 0px;
 }
 
-.image-container {
+.image-container,
+.chart-container {
     width: 100%;
     max-width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.page-image {
+.page-image,
+.page-chart {
     border-radius: 10px;
     max-width: 90%;
+    max-width: 800px;
 }
 
 // @media (max-width:1300px) {

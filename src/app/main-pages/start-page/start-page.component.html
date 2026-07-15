@@ -54,12 +54,17 @@
 
                     <div class="quote-attribution">GameStop CEO Ryan Cohen</div>
                     <div class="quote-attribution-2">
-                        <div style="margin-left: 10px;"><a href="https://archive.is/4NNjI" target="_blank"
-                                class="external-link" rel="nofollow">May 8, 2026 comments with the Financial Times</a>
-                        </div>
+                        <span>Comments with the Financial Times, <i>Ryan Cohen, GameStop’s rebel CEO</i></span>
+
+                    </div>
+                    <div class="quote-attribution-2">
+                        
+                            May 8, 2026
+
                     </div>
                 </div>
             </div>
+
         </div>
 
 
@@ -95,6 +100,9 @@
                 In April 2026, GameStop publicly launched Power Packs — "an innovative digital experience from PSA and
                 GameStop." </p>
             <p class="section-p">GameStop's collectibles segment has shown noticeable growth since 2024.</p>
+            <div *ngIf="isBrowser" class="chart-container">
+                <app-earnings-chart [componentConfig]="collectiblesConfig" class="page-chart"></app-earnings-chart>
+            </div>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/investment-policy'"
@@ -125,8 +133,31 @@
                         in company history.
                     </p>
                     <p class="section-p">The turnaround has been successful.</p>
+
+                    <div class="quote-section-container">
+                        <div class="quote-section">
+                            <p>
+                                “GameStop is a very different company than it was five years ago. Five years ago,
+                                GameStop was a
+                                dying brick and mortar retailer.
+                                Hardware is cyclical, software went digital, and all the skeptics believed GameStop was
+                                dead.
+                                GameStop was on the verge of bankruptcy. Since then, we have rebuilt the company.”
+                            </p>
+                            <div class="quote-attribution">GameStop CEO Ryan Cohen
+                            </div>
+                            <div class="quote-attribution-2">2026 Annual Meeting of Stockholders
+                            </div>
+                            <div class="quote-attribution-2">
+                                July 7, 2026
+                            </div>
+                        </div>
+                    </div>
+
+
                     <app-turnaround-table></app-turnaround-table>
                 </div>
+
             </div>
         </div>
 
@@ -191,7 +222,9 @@
         <div class="page-section menu-item" [routerLink]="'/stores'"
             [ngClass]="{ 'menu-item-dark': isDarkMode, '': !isDarkMode, 'menu-item-mobile': isMobile, 'menu-item': !isMobile}">
             <div class="section-heading">GameStop Stores</div>
-            <p class="section-p">GameStop has been reducing its total number of stores since 2016.  While there are significantly fewer than before, the physical locations remain an important component of GameStop's business.</p>
+            <p class="section-p">GameStop has been reducing its total number of stores since 2016. While there are
+                significantly fewer than before, the physical locations remain an important component of GameStop's
+                business.</p>
         </div>
 
         <div class="page-section menu-item" [routerLink]="'/social-media'"
