@@ -7,7 +7,7 @@
             List of pages on gmewiki.org
         </h5>
 
-        <div *ngIf="!isMobile || isTouchDevice">
+        <div *ngIf="!isMobile">
             <div class="page-section" *ngFor="let listItem of allLists">
                 <div class="section-heading">{{ listItem.title}}</div>
                 <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
@@ -37,103 +37,28 @@
 
 
 
-
-
         <div *ngIf="isMobile">
-            <div class="page-section">
-                <div class="section-heading">Main Pages</div>
+            <div class="page-section" *ngFor="let listItem of allLists">
+                <div class="section-heading">{{ listItem.title}}</div>
                 <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
-                    <table>
-                        <tr *ngFor="let pageItem of mainDirectoryItems">
-                            <td>
-                                <span class="item-title">{{pageItem.title}}</span><br>
-                                <a [routerLink]="pageItem.url">
-                                    <span class="item-url">gmewiki.org{{pageItem.url}}</span>
-                                </a>
-                            </td>
-                            <td class="item-description">
-                                {{pageItem.description}}
-                            </td>
-                        </tr>
-                    </table>
+                    <div *ngFor="let pageItem of listItem.list" style="margin-bottom: 12px;">
+                        <div>
+                            <span class="item-title">{{pageItem.title}}</span><br>
+                        </div>
+
+                        <div>
+                            {{pageItem.description}}
+                        </div>
+                        <div>
+                            <a [routerLink]='pageItem.url' class="item-url">
+                                gmewiki.org{{pageItem.url}}</a>
+                        </div>
+                    </div>
+                
                 </div>
+
                 <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
-            </div>
-            <div class="page-section">
-                <div class="section-heading">GameStop Information Pages</div>
-                <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
-                    <table>
-                        <tr *ngFor="let pageItem of gameStopDirectoryItems">
-                            <td>
-                                <span class="item-title">{{pageItem.title}}</span><br>
-                                <a [routerLink]="pageItem.url">
-                                    <span class="item-url">gmewiki.org{{pageItem.url}}</span>
-                                </a>
-                            </td>
-                            <td class="item-description">
-                                {{pageItem.description}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
-            </div>
-            <div class="page-section">
-                <div class="section-heading">People Pages</div>
-                <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
-                    <table>
-                        <tr *ngFor="let pageItem of peopleDirectoryItems">
-                            <td>
-                                <span class="item-title">{{pageItem.title}}</span><br>
-                                <a [routerLink]="pageItem.url">
-                                    <span class="item-url">gmewiki.org{{pageItem.url}}</span>
-                                </a>
-                            </td>
-                            <td class="item-description">
-                                {{pageItem.description}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
-            </div>
-            <div class="page-section">
-                <div class="section-heading">Events Pages</div>
-                <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
-                    <table>
-                        <tr *ngFor="let pageItem of eventsDirectoryItems">
-                            <td>
-                                <span class="item-title">{{pageItem.title}}</span><br>
-                                <a [routerLink]="pageItem.url">
-                                    <span class="item-url">gmewiki.org{{pageItem.url}}</span>
-                                </a>
-                            </td>
-                            <td class="item-description">
-                                {{pageItem.description}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
-            </div>
-            <div class="page-section">
-                <div class="section-heading">Concepts and Other Information Pages</div>
-                <div style="display:flex;flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
-                    <table>
-                        <tr *ngFor="let pageItem of conceptsDirectoryItems">
-                            <td>
-                                <span class="item-title">{{pageItem.title}}</span><br>
-                                <a [routerLink]="pageItem.url">
-                                    <span class="item-url">gmewiki.org{{pageItem.url}}</span>
-                                </a>
-                            </td>
-                            <td class="item-description">
-                                {{pageItem.description}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="height:1px;width: 100%;border-top:1px solid gray"></div>
+
             </div>
         </div>
 

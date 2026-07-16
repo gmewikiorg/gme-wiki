@@ -18,7 +18,6 @@ export class AppComponent {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private _sizeService: ScreenService,
     private _settingsService: SettingsService,
     private _router: Router,
     private _loadingService: LoadingService,
@@ -34,18 +33,18 @@ export class AppComponent {
   onResize(event: any) {
     const width: number = event.target.innerWidth;
     const height: number = event.target.innerHeight;
-    this._sizeService.updateScreenSize(width, height);
+    this._screenService.updateScreenSize(width, height);
   }
 
-  @HostListener('touchstart', ['$event'])
-  onTouchStart(event: TouchEvent): void {
-    this._screenService.setIsTouchDevice(true);
-  }
+  // @HostListener('touchstart', ['$event'])
+  // onTouchStart(event: TouchEvent): void {
+  //   // this._screenService.setIsTouchDevice(true);
+  // }
 
-  @HostListener('touchmove', ['$event'])
-  onTouchMove(event: TouchEvent): void {
-    this._screenService.setIsTouchDevice(true);
-  }
+  // @HostListener('touchmove', ['$event'])
+  // onTouchMove(event: TouchEvent): void {
+  //   // this._screenService.setIsTouchDevice(true);
+  // }
 
 
   async ngOnInit() {

@@ -5,6 +5,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { conceptPageItems, DirectoryItem, eventPageItems, gamestopPageItems, mainPageItems, peoplePageItems } from './directory-items';
 
+
 @Component({
   selector: 'app-directory',
   standalone: true,
@@ -21,8 +22,8 @@ export class DirectoryComponent {
     this._screenService.setPageInfo(title, description, url, image);
   }
 
-  public get isMobile(): boolean { return this._screenService.isMobile; }
-  public get isTouchDevice(): boolean { return this._screenService.isTouchDevice; }
+  public get isMobile(): boolean { return this._screenService.screenWidth < 1200; }
+  // public get isTouchDevice(): boolean { return this._screenService.isTouchDevice; }
 
   public get mainDirectoryItems(): DirectoryItem[] { return mainPageItems; }
   public get peopleDirectoryItems(): DirectoryItem[] { return peoplePageItems; }
