@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../../layout/footer/footer.component';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-mergers-acquisitions',
@@ -10,13 +11,18 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
   templateUrl: './mergers-acquisitions.component.html',
   styleUrl: './mergers-acquisitions.component.scss'
 })
-export class MergersAcquisitionsComponent {
-  constructor(private _screenService: ScreenService) {
+export class MergersAcquisitionsComponent implements InfoPage {
 
-    const description = 'Mergers and Acquisitions with GameStop';
-    const title = 'Mergers and Acquisitions | gmewiki.org'
-    const url = 'https://gmewiki.org/m&a';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+  infoPageProperties: InfoPageProperties = {
+    title: 'Mergers and Acquisitions with GameStop',
+    description: 'Mergers and Acquisitions | gmewiki.org',
+    url: 'https://gmewiki.org/m&a',
+    image: '',
+    githubPageUrl: 'info-pages/_corporate/mergers-acquisitions/mergers-acquisitions.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 }

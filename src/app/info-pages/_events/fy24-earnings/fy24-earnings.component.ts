@@ -6,6 +6,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-fy24-earnings',
@@ -14,15 +15,20 @@ import { EarningsChartConfig } from '../../../main-pages/financials/earnings-cha
   templateUrl: './fy24-earnings.component.html',
   styleUrl: './fy24-earnings.component.scss'
 })
-export class Fy24EarningsComponent {
+export class Fy24EarningsComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop FY 2024 Earnings Results | gmewiki.org',
+    description: 'GameStop’s FY 2024 Earnings Results: Reduced revenue and stores, increasing profitability and equity',
+    url: 'https://gmewiki.org/fy24',
+    image: 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png',
+    githubPageUrl: 'info-pages/_events/fy24-earnings/fy24-earnings.component.html',
+  }
 
   constructor(private _screenService: ScreenService) {
-    const title = 'GameStop FY 2024 Earnings Results | gmewiki.org';
-    const description = 'GameStop’s FY 2024 Earnings Results: Reduced revenue and stores, increasing profitability and equity';
-    const url = 'https://gmewiki.org/fy24';
-    const image = 'https://gmewiki.org/assets/info-pages/fy24-earnings-sankey.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
+
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
 

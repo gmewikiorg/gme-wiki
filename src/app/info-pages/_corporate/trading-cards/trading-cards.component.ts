@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartComponent } from '../../../main-pages/financials/earnings-chart/earnings-chart.component';
 import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-trading-cards',
@@ -14,14 +15,20 @@ import { EarningsChartConfig } from '../../../main-pages/financials/earnings-cha
   templateUrl: './trading-cards.component.html',
   styleUrl: './trading-cards.component.scss'
 })
-export class TradingCardsComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'Graded Trading Cards at GameStop | gmewiki.org';
-    const description = 'Starting in 2024, GameStop has made efforts to expand into the market of graded trading cards ';
-    const url = 'https://gmewiki.org/trading-cards';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class TradingCardsComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'Graded Trading Cards at GameStop | gmewiki.org',
+    description: 'Starting in 2024, GameStop has made efforts to expand into the market of graded trading cards',
+    url: 'https://gmewiki.org/trading-cards',
+    image: '',
+    githubPageUrl: 'info-pages/_corporate/trading-cards/trading-cards.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
   // public get collectiblesConfig():  { article: 'FY24' | 'ATMs' | 'collectibles', chart: EarningsChartPropertySelection, } { return { article: 'collectibles', chart: EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE } }

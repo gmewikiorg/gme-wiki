@@ -5,6 +5,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { OwnershipData } from '../../../main-pages/ownership/ownership-data/ownership-data.class';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-drs',
@@ -13,7 +14,17 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
   templateUrl: './drs.component.html',
   styleUrl: './drs.component.scss'
 })
-export class DrsComponent {
+export class DrsComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'DRS - Direct Registration System | gmewiki.org',
+    description: 'DRS - Direct Registration System: information pertaining to DRS and GME, the history of DRS by GME investors, the distinction between DRS and DSPP',
+    url: 'https://gmewiki.org/drs',
+    image: '',
+    githubPageUrl: 'info-pages/_concepts/drs/drs.component.html',
+  }
+
+
 
   private _ownershipData: OwnershipData = new OwnershipData();
   private _drsPercent = (this._ownershipData.drsShares / this._ownershipData.tso) * 100;
@@ -23,11 +34,7 @@ export class DrsComponent {
 
   constructor(private _screenService: ScreenService, @Inject(PLATFORM_ID) private platformId: Object,) {
     this._isBrowser = isPlatformBrowser(this.platformId);
-    const title = 'DRS - Direct Registration System | gmewiki.org';
-    const description = 'DRS - Direct Registration System: information pertaining to DRS and GME, the history of DRS by GME investors, the distinction between DRS and DSPP';
-    const url = 'https://gmewiki.org/drs';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
 
   private _isBrowser: boolean = false;

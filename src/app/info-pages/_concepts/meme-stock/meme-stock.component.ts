@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { RouterLink } from "@angular/router";
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-meme-stock',
@@ -10,13 +11,18 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
   templateUrl: './meme-stock.component.html',
   styleUrl: './meme-stock.component.scss'
 })
-export class MemeStockComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = "Meme Stock | gmewiki.org";
-    const description = 'What is a meme stock? | gmewiki.org';
-    const url = 'https://gmewiki.org/meme-stock';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class MemeStockComponent implements InfoPage {
 
+  infoPageProperties: InfoPageProperties = {
+    title: "Meme Stock | gmewiki.org",
+    description: 'What is a meme stock? | gmewiki.org',
+    url: 'https://gmewiki.org/meme-stock',
+    image: '',
+    githubPageUrl: 'info-pages/_concepts/meme-stock/meme-stock.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 }

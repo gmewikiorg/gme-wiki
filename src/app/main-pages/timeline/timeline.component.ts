@@ -10,6 +10,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 import { TimelineAnnotationBoxComponent } from './timeline-annotation-box/timeline-annotation-box.component';
 import { TimelineControlsService } from './timeline-controls/timeline-controls.service';
 import { TimelineEvent } from './timeline-items/timeline-item/timeline-event.class';
+import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 
 @Component({
@@ -22,17 +23,22 @@ import { TimelineEvent } from './timeline-items/timeline-item/timeline-event.cla
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss'
 })
-export class TimelineComponent {
+export class TimelineComponent implements InfoPage {
+
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop Interactive Timeline | gmewiki.org',
+    description: 'GME interactive annotated timeline and chart tools',
+    url: 'https://gmewiki.org/timeline',
+    image: 'https://gmewiki.org/assets/main-pages/timeline.png',
+    githubPageUrl: 'main-pages/timeline/timeline.component.html',
+  }
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private _screenService: ScreenService,
     private _loadingService: LoadingService,
     private _controlsService: TimelineControlsService,) {
-    const title = 'GameStop Interactive Timeline | gmewiki.org';
-    const description = 'GME interactive annotated timeline and chart tools';
-    const url = 'https://gmewiki.org/timeline';
-    const image = 'https://gmewiki.org/assets/main-pages/timeline.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
     this._isBrowser = isPlatformBrowser(this.platformId);
   }
 

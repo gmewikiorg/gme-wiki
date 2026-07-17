@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../shared/services/screen-size.service';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-social-media',
@@ -11,15 +12,20 @@ import { FooterComponent } from '../../layout/footer/footer.component';
   templateUrl: './social-media.component.html',
   styleUrl: './social-media.component.scss'
 })
-export class SocialMediaComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'Social Media for GME Shareholders | gmewiki.org';
-    const description = 'Directory of places for GME shareholders on X, Reddit, Discord, BlueSky, Github'
-    const url = 'https://gmewiki.org/social-media';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class SocialMediaComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'Social Media for GME Shareholders | gmewiki.org',
+    description: 'Directory of places for GME shareholders on X, Reddit, Discord, BlueSky, Github',
+    url: 'https://gmewiki.org/social-media',
+    image: '',
+    githubPageUrl: 'main-pages/social-media/social-media.component.html',
   }
-  // apple-podcasts-icon.png
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 
   private _xSpacesAccounts: string[] = [
     'DSquadRadio'
@@ -32,16 +38,3 @@ export class SocialMediaComponent {
 
 }
 
-
-/**
- * 
- * function shuffleArray(array: string[]): string[] {
-    return array.sort(() => Math.random() - 0.5);
-}
-
-const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
-const shuffledNames = shuffleArray(names);
-
-console.log(shuffledNames);
-
- */

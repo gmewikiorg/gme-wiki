@@ -6,6 +6,7 @@ import { EarningsChartComponent } from '../../../main-pages/financials/earnings-
 import { EarningsChartPropertySelection } from '../../../main-pages/financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { RouterModule } from '@angular/router';
 import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-atms',
@@ -14,14 +15,20 @@ import { EarningsChartConfig } from '../../../main-pages/financials/earnings-cha
   templateUrl: './atms.component.html',
   styleUrl: './atms.component.scss'
 })
-export class ATMsComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'GameStop raised cash with ATMs | gmewiki.org';
-    const description = 'GameStop raised nearly $3.5 B in 2024 via ATM equity offerings, and $1.6 B in 2021';
-    const url = 'https://gmewiki.org/atms';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class ATMsComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop raised cash with ATMs | gmewiki.org',
+    description: 'GameStop raised nearly $3.5 B in 2024 via ATM equity offerings, and $1.7 B in 2021',
+    url: 'https://gmewiki.org/atms',
+    image: '',
+    githubPageUrl: 'info-pages/_corporate/atms/atms.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
   public get isMobile(): boolean { return this._screenService.isMobile; }

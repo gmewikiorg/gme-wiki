@@ -9,6 +9,7 @@ import { TurnaroundTableComponent } from '../../info-pages/_corporate/turnaround
 import { EarningsChartConfig } from '../financials/earnings-chart/earnings-chart-config.interface';
 import { EarningsChartPropertySelection } from '../financials/earnings-chart/choose-earnings-chart/earnings-chart-property-selection.enum';
 import { EarningsChartComponent } from '../financials/earnings-chart/earnings-chart.component';
+import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-start-page',
@@ -17,13 +18,19 @@ import { EarningsChartComponent } from '../financials/earnings-chart/earnings-ch
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })
-export class StartPageComponent implements OnInit, AfterViewInit {
+export class StartPageComponent implements OnInit, AfterViewInit, InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'Welcome to gmewiki.org - an information tool all about GME and GameStop',
+    description: 'gmewiki.org - a community-driven information tool all about GME and GameStop',
+    url: 'https://gmewiki.org/start',
+    image: 'https://gmewiki.org/assets/main-pages/gamestop-background.png',
+    githubPageUrl: 'main-pages/start-page/start-page.component.html',
+  }
+
+
   constructor(private _screenService: ScreenService, private _startPageService: StartPageService) {
-    const title = 'Welcome to gmewiki.org - an information tool all about GME and GameStop';
-    const description = 'gmewiki.org - a community-driven information tool all about GME and GameStop';
-    const url = 'https://gmewiki.org/start';
-    const image = 'https://gmewiki.org/assets/main-pages/gamestop-background.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
 
   private _ownershipData: OwnershipData = new OwnershipData();
@@ -108,7 +115,7 @@ export class StartPageComponent implements OnInit, AfterViewInit {
     }
   }
 
-    public get isBrowser(): boolean { return this._screenService.isBrowser; }
+  public get isBrowser(): boolean { return this._screenService.isBrowser; }
   public get screenWidth(): number { return this._screenService.screenWidth; }
 
   public get gapSectionNgStyle(): any { return this._gapSectionNgStyle; }

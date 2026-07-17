@@ -3,6 +3,7 @@ import { Inject, Injectable, isSignal, PLATFORM_ID } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
+import { InfoPage, InfoPageProperties } from '../components/information-page.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +26,14 @@ export class ScreenService {
     this._setDarkMode(this._settingsService.getDarkMode());
   }
 
-  public setPageInfo(title: string, description: string, url: string, image: string){
-    this.titleService.setTitle(title)
+
+  public setPageInfo(page: InfoPageProperties) {
+    this.titleService.setTitle(page.title)
     const metaTags = this.meta.getTags('name');
+    this._updateGitHubUrl(page.githubPageUrl);
     metaTags.forEach(tag => this.meta.removeTagElement(tag));
     this.meta.addTags([
-      { name: 'description', content: description, },
+      { name: 'description', content: page.description, },
       { name: 'keywords', content: 'GameStop, GME, gmewiki, gme wiki, gmewiki.org, wiki' },
       { name: 'author', content: 'GME shareholder' },
       { name: 'robots', content: 'index, follow' },
@@ -38,19 +41,27 @@ export class ScreenService {
       { charset: 'UTF-8' }
     ]);
     this.meta.addTags([
-      { property: 'og:title', content: title, },
-      { property: 'og:description', content: description, },
-      { property: 'og:image', content: image}, 
-      { property: 'og:url', content: url },
+      { property: 'og:title', content: page.title, },
+      { property: 'og:description', content: page.description, },
+      { property: 'og:image', content: page.image },
+      { property: 'og:url', content: page.url },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' }, // Optimized Twitter card format
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: image}, 
+      { name: 'twitter:title', content: page.title },
+      { name: 'twitter:description', content: page.description },
+      { name: 'twitter:image', content: page.image },
     ]);
   }
 
+  private _updateGitHubUrl(gitHubUrl: string) {
+    const baseUrl = 'https://github.com/gmewikiorg/gme-wiki/blob/main/src/app/';
+    const fullUrl = baseUrl + gitHubUrl;
+    this._gitHubUrl$.next(fullUrl);
+  }
 
+  private _gitHubUrl$: BehaviorSubject<string> = new BehaviorSubject<string>('https://github.com/gmewikiorg/gme-wiki');
+  public get gitHubUrl$(): Observable<string> { return this._gitHubUrl$.asObservable(); }
+  public get gitHubUrl(): string { return this._gitHubUrl$.getValue(); }
 
   private _isBrowser: boolean;
   private _isMobile$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -64,7 +75,7 @@ export class ScreenService {
   public get isTouchDevice(): boolean { return this._isTouchDevice$.getValue(); }
   public get isTouchDevice$(): Observable<boolean> { return this._isTouchDevice$.asObservable(); }
   public get isBrowser(): boolean { return this._isBrowser; }
-  public get changedScreenFromToMobile$(): Observable<boolean> { return this._changedScreenFromToMobile$.asObservable();}
+  public get changedScreenFromToMobile$(): Observable<boolean> { return this._changedScreenFromToMobile$.asObservable(); }
 
 
 
@@ -72,23 +83,23 @@ export class ScreenService {
     const wasMobile: boolean = this.isMobile;
     const mobileCutoff = 480;
     this._screenDimensions$.next({ width: width, height: height });
-    
-    if(width < mobileCutoff){
+
+    if (width < mobileCutoff) {
       // is now mobile
-      if(!wasMobile){
+      if (!wasMobile) {
         this._changedScreenFromToMobile$.next(true);
       }
 
       this._isMobile$.next(true);
-    }else{
+    } else {
       // is now not mobile
-      if(wasMobile){
+      if (wasMobile) {
         this._changedScreenFromToMobile$.next(true);
       }
       this._isMobile$.next(false);
     }
   }
-  public setIsTouchDevice(isTouchDevice: boolean){
+  public setIsTouchDevice(isTouchDevice: boolean) {
     this._isTouchDevice$.next(isTouchDevice);
   }
 
@@ -107,14 +118,14 @@ export class ScreenService {
     return this._browser.includes('AppleWebKit') && this._browser.includes('Safari') && !this._browser.includes('Chrome');
   }
 
-  private _setDarkMode(isDarkMode: boolean){
-    if(isDarkMode){
+  private _setDarkMode(isDarkMode: boolean) {
+    if (isDarkMode) {
       this._pageTitleNgClass = ['dark-mode'];
       this._pageContentNgClass = ['dark-mode'];
       this._pageSectionNgClass = ['dark-mode'];
       this._pageSectionHeadingNgClass = ['dark-mode'];
       this.meta.updateTag({ name: 'theme-color', content: '#121212' });
-    }else{
+    } else {
       this._pageTitleNgClass = ['light-mode'];
       this._pageContentNgClass = ['light-mode'];
       this._pageSectionNgClass = ['light-mode'];
@@ -128,17 +139,17 @@ export class ScreenService {
   private _isDarkMode$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public get isDarkMode(): boolean { return this._isDarkMode$.getValue(); }
   public get isDarkMode$(): Observable<boolean> { return this._isDarkMode$.asObservable(); }
-  public onClickDarkMode() { 
+  public onClickDarkMode() {
     this._setDarkMode(true);
   }
-  public onClickLightMode(){
+  public onClickLightMode() {
     this._setDarkMode(false);
   }
-  public refreshDarkMode(){
+  public refreshDarkMode() {
     this._setDarkMode(this.isDarkMode)
   }
 
-  
+
 
 
   private _pageTitleNgClass: string[] = ['light-mode'];
@@ -149,7 +160,7 @@ export class ScreenService {
   public get pageTitleNgClass(): string[] { return this._pageTitleNgClass; }
   public get pageContentNgClass(): string[] { return this._pageContentNgClass; }
   public get pageSectionNgClass(): string[] { return this._pageSectionNgClass; }
-  public get pageSectionHeadingNgClass(): string[] { return this._pageSectionHeadingNgClass; }  
+  public get pageSectionHeadingNgClass(): string[] { return this._pageSectionHeadingNgClass; }
 
 
 }

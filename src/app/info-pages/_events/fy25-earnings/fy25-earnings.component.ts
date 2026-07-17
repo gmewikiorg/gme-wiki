@@ -6,6 +6,7 @@ import { EarningsChartPropertySelection } from '../../../main-pages/financials/e
 import { EarningsChartConfig } from '../../../main-pages/financials/earnings-chart/earnings-chart-config.interface';
 import { CommonModule } from '@angular/common';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-fy25-earnings',
@@ -14,15 +15,21 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
   templateUrl: './fy25-earnings.component.html',
   styleUrl: './fy25-earnings.component.scss'
 })
-export class Fy25EarningsComponent {
+export class Fy25EarningsComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop FY 2025 Earnings Results | gmewiki.org',
+    description: 'GameStop’s FY 2025 Earnings Results: The Turnaround Delivers',
+    url: 'https://gmewiki.org/fy25',
+    image: 'https://gmewiki.org/assets/earnings-sankey/fy25-sankey.png',
+    githubPageUrl: 'info-pages/_events/fy25-earnings/fy25-earnings.component.html',
+  }
 
   constructor(private _screenService: ScreenService) {
-    const title = 'GameStop FY 2025 Earnings Results | gmewiki.org';
-    const description = 'GameStop’s FY 2025 Earnings Results: The Turnaround Delivers';
-    const url = 'https://gmewiki.org/fy25';
-    const image = 'https://gmewiki.org/assets/earnings-sankey/fy25-sankey.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
+
+
 
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
 

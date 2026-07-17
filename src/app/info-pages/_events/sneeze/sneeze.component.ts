@@ -9,6 +9,7 @@ import { TimelineChartDataManagerService } from '../../../main-pages/timeline/ti
 import { TimelineControlsService } from '../../../main-pages/timeline/timeline-controls/timeline-controls.service';
 import { TimelineEvent } from '../../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
 import { SneezeChartComponent } from './sneeze-chart/sneeze-chart.component';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-sneeze',
@@ -17,18 +18,23 @@ import { SneezeChartComponent } from './sneeze-chart/sneeze-chart.component';
   templateUrl: './sneeze.component.html',
   styleUrl: './sneeze.component.scss'
 })
-export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy, InfoPage {
+
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop Sneeze of January 2021 | gmewiki.org',
+    description: 'Something unprecendented happened. Wall Street responded drastically.',
+    url: 'https://gmewiki.org/sneeze',
+    image: '',
+    githubPageUrl: 'info-pages/_events/sneeze/sneeze.component.html',
+  }
   constructor(
     private _loadingService: LoadingService,
     private _screenService: ScreenService,
     private _chartDataService: TimelineChartDataManagerService,
     private _controlsService: TimelineControlsService,) {
 
-    const title = 'GameStop Sneeze of January 2021 | gmewiki.org';
-    const description = 'Something unprecendented happened. Wall Street responded drastically.'
-    const url = 'https://gmewiki.org/sneeze';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
   ngOnDestroy(): void {
     this._chartDataService.stopAnimation();

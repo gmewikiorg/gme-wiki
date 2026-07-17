@@ -7,6 +7,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 import { ChooseEarningsChartComponent } from './earnings-chart/choose-earnings-chart/choose-earnings-chart.component';
 import { QuarterlyEarningsDataTableComponent } from './quarterly-earnings-data-table/quarterly-earnings-data-table.component';
 import { EarningsTableComponent } from './earnings-summary-table/earnings-summary-table.component';
+import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-financials',
@@ -15,17 +16,20 @@ import { EarningsTableComponent } from './earnings-summary-table/earnings-summar
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })
-export class FinancialsComponent {
+export class FinancialsComponent implements InfoPage {
 
-  constructor(private _screenService: ScreenService) {
-    const title = 'GameStop Earnings and Financial Information | gmewiki.org';
-    const description = 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings';
-    const url = 'https://gmewiki.org/earnings';
-    const image = 'https://gmewiki.org/assets/main-pages/earnings.png';
-    this._screenService.setPageInfo(title, description, url, image);
-    this._isBrowser = this._screenService.isBrowser;
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop Earnings and Financial Information | gmewiki.org',
+    description: 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings',
+    url: 'https://gmewiki.org/earnings',
+    image: 'https://gmewiki.org/assets/main-pages/earnings.png',
+    githubPageUrl: 'main-pages/financials/financials.component.html',
   }
 
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+    this._isBrowser = this._screenService.isBrowser;
+  }
 
 
   public get isMobile(): boolean { return this._screenService.isMobile; }

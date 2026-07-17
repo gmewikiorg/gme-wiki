@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 import { FooterComponent } from '../../../../layout/footer/footer.component';
 import { RouterLink } from "@angular/router";
+import { InfoPage, InfoPageProperties } from '../../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-bear-case',
@@ -10,13 +11,18 @@ import { RouterLink } from "@angular/router";
   templateUrl: './bear-case.component.html',
   styleUrl: './bear-case.component.scss'
 })
-export class BearCaseComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'GME Bear Case | gmewiki.org';
-    const description = 'GME Bear Case - Information and arguments for why GME might be seen as an unfavorable investment';
-    const url = 'https://gmewiki.org/bear-case';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class BearCaseComponent  implements InfoPage {
 
+  infoPageProperties: InfoPageProperties = {
+    title:'GME Bear Case | gmewiki.org',
+    description: 'GME Bear Case - Information and arguments for why GME might be seen as an unfavorable investment',
+    url: 'https://gmewiki.org/bear-case',
+    image: '',
+    githubPageUrl: 'info-pages/_concepts/conflict/bear-case/bear-case.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 }

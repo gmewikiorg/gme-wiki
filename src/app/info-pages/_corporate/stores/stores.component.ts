@@ -4,6 +4,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-stores',
@@ -12,17 +13,21 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
   templateUrl: './stores.component.html',
   styleUrl: './stores.component.scss'
 })
-export class StoresComponent {
+export class StoresComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop Store Count | gmewiki.org',
+    description: 'GameStop continues to reduce its store count.  See charts and more information about GameStop stores',
+    url: 'https://gmewiki.org/stores',
+    image: 'https://gmewiki.org/assets/info-pages/stores-page.png',
+    githubPageUrl: 'info-pages/_corporate/stores/stores.component.html',
+  }
 
   constructor(private _screenService: ScreenService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this._isBrowser = isPlatformBrowser(this.platformId);
-    const title = 'GameStop Store Count | gmewiki.org';
-    const description = 'GameStop continues to reduce its store count.  See charts and more information about GameStop stores'
-    const url = 'https://gmewiki.org/stores';
-    const image = 'https://gmewiki.org/assets/info-pages/stores-page.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
   }
 
   private _isBrowser: boolean = false;

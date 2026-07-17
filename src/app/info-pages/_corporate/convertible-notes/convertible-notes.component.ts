@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-convertible-notes',
@@ -10,12 +11,18 @@ import { RouterModule } from '@angular/router';
   templateUrl: './convertible-notes.component.html',
   styleUrl: './convertible-notes.component.scss'
 })
-export class ConvertibleNotesComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'Convertible Senior Notes | gmewiki.org';
-    const description = 'In 2025, GameStop raised over $4B by completing 2 private offerings of convertible senior notes';
-    const url = 'https://gmewiki.org/convertible-notes';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class ConvertibleNotesComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'Convertible Senior Notes | gmewiki.org',
+    description: 'In 2025, GameStop raised over $4B by completing 2 private offerings of convertible senior notes',
+    url: 'https://gmewiki.org/convertible-notes',
+    image: '',
+    githubPageUrl: 'info-pages/_corporate/convertible-notes/convertible-notes.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 }

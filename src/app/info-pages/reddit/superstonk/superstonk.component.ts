@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-superstonk',
@@ -11,12 +12,18 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
   templateUrl: './superstonk.component.html',
   styleUrl: './superstonk.component.scss'
 })
-export class SuperstonkComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'r/superstonk | gmewiki.org';
-    const description = 'The largest GME subreddit';
-    const url = 'https://gmewiki.org/superstonk';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class SuperstonkComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: "r/superstonk | gmewiki.org",
+    description: 'The largest GME subreddit',
+    url: 'https://gmewiki.org/superstonk',
+    image: '',
+    githubPageUrl: 'info-pages/reddit/superstonk/superstonk.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 }

@@ -8,6 +8,7 @@ import { GmePriceEntry } from '../../../shared/services/gme-price-entry.interfac
 import { LoadingService } from '../../../shared/services/loading.service';
 import dayjs from 'dayjs';
 import { BurpChartComponent } from './burp-chart/burp-chart.component';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-burp',
@@ -16,15 +17,20 @@ import { BurpChartComponent } from './burp-chart/burp-chart.component';
   templateUrl: './burp.component.html',
   styleUrl: './burp.component.scss'
 })
-export class BurpComponent implements OnInit {
+export class BurpComponent implements OnInit, InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GME Burp of 2024 | gmewiki.org',
+    description: 'In May and June of 2024, GME experienced some major turbulence.  Why?',
+    url: 'https://gmewiki.org/burp',
+    image: 'https://gmewiki.org/assets/info-pages/burp.png',
+    githubPageUrl: 'info-pages/_events/burp/burp.component.html',
+  }
+
   constructor(private _screenService: ScreenService, private _gmeDataService: ImportGmeDataService, private _loadingService: LoadingService) {
-    const title = 'GME Burp of 2024 | gmewiki.org';
-    const description = 'In May and June of 2024, GME experienced some major turbulence.  Why?';
-    const url = 'https://gmewiki.org/burp';
-    const image = 'https://gmewiki.org/assets/info-pages/burp.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
     this._isBrowser = this._screenService.isBrowser;
-  } 
+  }
 
 
   private _isBrowser: boolean;

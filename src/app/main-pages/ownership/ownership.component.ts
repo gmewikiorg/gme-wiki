@@ -7,6 +7,7 @@ import { OwnershipTableComponent } from './ownership-table/ownership-table.compo
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { ScreenService } from '../../shared/services/screen-size.service';
+import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 @Component({
   selector: 'app-ownership',
@@ -15,14 +16,18 @@ import { ScreenService } from '../../shared/services/screen-size.service';
   templateUrl: './ownership.component.html',
   styleUrl: './ownership.component.scss'
 })
-export class OwnershipComponent {
+export class OwnershipComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'GameStop ownership (as of ' + this.lastUpdated + ') | gmewiki.org',
+    description: 'Chart and table with data sources providing a breakdown of GME ownership',
+    url: 'https://gmewiki.org/ownership',
+    image: 'https://gmewiki.org/assets/main-pages/ownership.png',
+    githubPageUrl: 'main-pages/ownership/ownership.component.html',
+  }
 
   constructor(private _screenService: ScreenService) {
-    const title = 'GameStop ownership (as of ' + this.lastUpdated + ') | gmewiki.org';
-    const description = 'Chart and table with data sources providing a breakdown of GME ownership';
-    const url = 'https://gmewiki.org/ownership';
-    const image = 'https://gmewiki.org/assets/main-pages/ownership.png';
-    this._screenService.setPageInfo(title, description, url, image);
+    this._screenService.setPageInfo(this.infoPageProperties);
     this._isBrowser = this._screenService.isBrowser;
   }
 

@@ -4,6 +4,7 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { conceptPageItems, DirectoryItem, eventPageItems, gamestopPageItems, mainPageItems, peoplePageItems } from './directory-items';
+import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
 
 @Component({
@@ -13,14 +14,20 @@ import { conceptPageItems, DirectoryItem, eventPageItems, gamestopPageItems, mai
   templateUrl: './directory.component.html',
   styleUrl: './directory.component.scss'
 })
-export class DirectoryComponent {
-  constructor(private _screenService: ScreenService) {
-    const title = 'gmewiki.org Directory | gmewiki.org';
-    const description = 'List of pages on gmewiki.org ';
-    const url = 'https://gmewiki.org/directory';
-    const image = '';
-    this._screenService.setPageInfo(title, description, url, image);
+export class DirectoryComponent implements InfoPage {
+
+  infoPageProperties: InfoPageProperties = {
+    title: 'gmewiki.org Directory | gmewiki.org',
+    description: 'List of pages on gmewiki.org',
+    url: 'https://gmewiki.org/directory',
+    image: '',
+    githubPageUrl: 'info-pages/_gmewiki/directory/directory.component.html',
   }
+
+  constructor(private _screenService: ScreenService) {
+    this._screenService.setPageInfo(this.infoPageProperties);
+  }
+
 
   public get isMobile(): boolean { return this._screenService.screenWidth < 1200; }
   // public get isTouchDevice(): boolean { return this._screenService.isTouchDevice; }
