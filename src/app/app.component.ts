@@ -31,8 +31,8 @@ export class AppComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    const width: number = event.target.innerWidth;
-    const height: number = event.target.innerHeight;
+    const width: number = event.target.width;
+    const height: number = event.target.height;
     this._screenService.updateScreenSize(width, height);
   }
 

@@ -161,7 +161,8 @@ export function setChartOptions(
         scales: scales,
         layout: {
             padding: {
-                right: 10
+                right: 20,
+                top: 20,
             }
         },
         plugins: {

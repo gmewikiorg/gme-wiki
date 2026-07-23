@@ -29,7 +29,8 @@ export class FinancialChartService {
     this._chartConfig$.next(this._earningsChartConfig);
   }
 
-  public setChartPropertySelection(selection: EarningsChartPropertySelection) {
+  public setChartPropertySelection(selection: EarningsChartPropertySelection, label: string) {
+    this._earningsChartConfig.menuLabel = label;
     this._earningsChartConfig.selectedProperty = selection;
     this._chartConfig$.next(this._earningsChartConfig);
   }

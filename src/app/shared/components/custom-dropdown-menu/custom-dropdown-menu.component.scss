@@ -3,6 +3,8 @@
     flex-direction: column;
     margin-right: 6px;
     margin-left: 6px;
+    position: relative;
+    z-index: 10;
 }
 
 .title-row {
@@ -48,6 +50,7 @@
     padding: 10px;
     font-size: small;
     border: 1px solid rgba(128, 128, 128, 0.5);
+    width: 300px;
 }
 
 .dropdown-menu-mobile {

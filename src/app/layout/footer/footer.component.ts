@@ -11,7 +11,8 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  constructor(private _screenService: ScreenService, private angularRouter: Router){}
+  constructor(private _screenService: ScreenService, private angularRouter: Router){
+  }
 
   public get isMobile(): boolean { return this._screenService.isMobile;}
   public get gitHubUrl(): string { return this._screenService.gitHubUrl; }

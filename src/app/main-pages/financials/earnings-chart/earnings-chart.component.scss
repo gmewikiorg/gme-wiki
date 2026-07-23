@@ -15,33 +15,14 @@
 }
 
 @media (max-width:500px) {
-    .chart, .chart-container {
+
+    .chart,
+    .chart-container {
         max-height: 450px;
-    
+
     }
 }
 
-
-// @media (max-width:400px) {
-//     .chart {
-//         min-height: 400px;
-//         height: 400px;
-//         max-height: 450px;
-//         max-width: 100%;
-
-//     }
-//     .chart-container{
-//         min-height: 400px;
-//         height: 400px;
-//         max-height: 450px;
-//         max-width: 100%;
-//     }
-// }
-
-// .page-section{
-//     padding-left:0px;
-//     padding-right: 0px;
-// }
 
 .custom-legend {
     height: 25px;

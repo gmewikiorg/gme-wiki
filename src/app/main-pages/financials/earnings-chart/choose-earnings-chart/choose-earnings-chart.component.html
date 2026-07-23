@@ -1,50 +1,28 @@
 <div class="choose-chart-root">
 
-    <div class="section-heading" *ngIf="!isMobile && !menuIsHidden">
-        <span>GameStop</span>
-        <!-- <span>{{ chartTitle }}</span> -->
+
+    <div class="dropdown-menus">
         <app-custom-dropdown-menu [menu]="chartMenu"
             (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
         <span>by</span>
         <app-custom-dropdown-menu [menu]="periodMenu"
             (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
-        <!-- <span>from</span>
-        <app-custom-dropdown-menu [menu]="timeframeStartMenu"
-            (menuItemSelected)="onSelectTimeperiodStart($event)"></app-custom-dropdown-menu>
-        <span>to</span>
-        <app-custom-dropdown-menu [menu]="timeframeEndMenu"
-            (menuItemSelected)="onSelectTimeperiodEnd($event)"></app-custom-dropdown-menu> -->
-    </div>
-    <div class="section-heading-mobile" *ngIf="isMobile && !menuIsHidden">
-        <span>
-            GameStop
-            <app-custom-dropdown-menu [menu]="chartMenu"
-                (menuItemSelected)="onSelectChartMenuItem($event)"></app-custom-dropdown-menu>
-        </span>
-        <div class="heading-row">
-            by
-            <app-custom-dropdown-menu [menu]="periodMenu"
-                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
-        </div>
-        <!-- <div class="heading-row">
-            from
-            <app-custom-dropdown-menu [menu]="timeframeStartMenu"
-                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
-        </div>
-        <div class="heading-row">
-            to
-            <app-custom-dropdown-menu [menu]="timeframeEndMenu"
-                (menuItemSelected)="onSelectPeriod($event)"></app-custom-dropdown-menu>
-        </div> -->
-    </div>
-    <div class="section-heading" *ngIf="menuIsHidden">
-        GameStop {{ chartMenu.currentMenuItem }} by {{ periodMenu.currentMenuItem }} 
-        <!-- from {{ timeframeStartMenu.currentMenuItem }} to {{ timeframeEndMenu.currentMenuItem}} -->
     </div>
 
-    <!-- <div *ngIf="isLoading && isBrowser" style="height: 650px; background-color: rgba(255, 255, 255, 0); width: 100%;" ></div> -->
-    <app-earnings-chart class="earnings-chart-container" *ngIf="!isLoading && isBrowser"></app-earnings-chart>
-    <div class="options-button-container">
-        <button class="options-button" (click)="onClickHideChartMenus()">{{hideShowMenus}} Chart Menus</button>
-    </div>
+
+
+
+    <app-chart-export>
+        <div class="section-heading" chart-title>
+            {{ chartTitle }}
+        </div>
+
+        <div chart-container class="earnings-chart-container">
+            <app-earnings-chart *ngIf="!isLoading && isBrowser"></app-earnings-chart>
+            <div class="watermark no-select">
+                gmewiki.org
+            </div>
+        </div>
+    </app-chart-export>
+
 </div>

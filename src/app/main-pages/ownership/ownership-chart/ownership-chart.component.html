@@ -1,8 +1,29 @@
-<div class="" id="chartContainer" [ngClass]="isMobile ? 'chart-container-mobile': 'chart-container'">
-    <canvas baseChart class="chart" id="chartCanvas" [type]="'pie'" [data]="pieChartData"
-        [options]="pieChartOptions" [legend]="pieChartLegend">
-    </canvas>
-</div>
-<div style="display: flex;flex-direction: row-reverse;">
-    <button class="show-data-button" (click)="onClickShowHide()">{{showHideButton}}</button>
-</div>
+<app-chart-export class="component-root">
+
+
+    <div chart-title class="chart-title">
+        <h1 class="page-title">
+            GameStop Company Ownership
+        </h1>
+        <h5 class="page-subtitle">
+            As of {{ lastUpdated }}
+        </h5>
+    </div>
+
+
+
+    <div class="chart-container" chart-container>
+        <canvas baseChart class="chart" id="chartCanvas" [type]="'pie'" [data]="pieChartData"
+            [options]="pieChartOptions" [legend]="pieChartLegend">
+        </canvas>
+        <div class="watermark no-select">
+            gmewiki.org
+        </div>
+    </div>
+
+
+    <div style="display: flex;flex-direction: row-reverse;" chart-buttons>
+        <button class="show-data-button" (click)="onClickShowHide()">{{showHideButton}}</button>
+    </div>
+
+</app-chart-export>

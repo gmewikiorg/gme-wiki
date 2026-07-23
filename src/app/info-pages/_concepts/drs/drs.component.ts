@@ -35,6 +35,8 @@ export class DrsComponent implements InfoPage {
   constructor(private _screenService: ScreenService, @Inject(PLATFORM_ID) private platformId: Object,) {
     this._isBrowser = isPlatformBrowser(this.platformId);
     this._screenService.setPageInfo(this.infoPageProperties);
+
+    console.log("IS MOBILE?, ", this._screenService.isMobile)
   }
 
   private _isBrowser: boolean = false;

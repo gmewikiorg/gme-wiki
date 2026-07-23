@@ -1,0 +1,27 @@
+<div class="chart-export-root">
+
+    <div class="export-content" #exportContent>
+        <ng-content select="[chart-title]"></ng-content>
+        <ng-content select="[chart-container]"></ng-content>
+    </div>
+
+
+    <div class="chart-actions">
+
+        <button type="button" class="button" (click)="copyChart()">
+            {{ copied ? 'Copied!' : 'Copy' }}
+        </button>
+
+        <button type="button" class="button" (click)="downloadChart()">
+            Download PNG
+        </button>
+        <ng-content select="[chart-buttons]"></ng-content>
+
+
+
+    </div>
+
+
+
+
+</div>

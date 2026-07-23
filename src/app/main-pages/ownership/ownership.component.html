@@ -1,19 +1,18 @@
 <div class="component-root" *ngIf="!isLoading">
-    <h1 class="page-title">
+    <!-- <h1 class="page-title">
         GameStop Company Ownership
     </h1>
     <h5 class="page-subtitle">
         As of {{ lastUpdated }}
-    </h5>
+    </h5> -->
 
 
     <div class="page-content" style="width: 100%;">
 
-
+        <!-- <div class="section-heading" chart-content>
+            GME Ownership Pie Chart
+        </div> -->
         <div class="page-section" style="padding:0px; width: 100%; height: 100%;">
-            <div class="section-heading">
-                GME Ownership Pie Chart
-            </div>
             <!-- <div style="font-size:0.9em; color: gray">in millions of shares</div> -->
             <app-ownership-chart
                 style="width: 100%;display:flex;flex-direction:column;align-items: center; flex-grow: 2;"
@@ -21,13 +20,9 @@
             <div style="width: 100%; height: auto; max-width: 650px; height: 650px;" *ngIf="!isBrowser"></div>
         </div>
 
-
-
-
         <div class="page-section" style="padding:0px;">
             <app-ownership-table style="max-width: 100%; margin-top: 30px; width: 100%;"></app-ownership-table>
         </div>
-
 
         <div class="page-section">
             <div class="section-heading">Held by Registered Holders at Computershare</div>

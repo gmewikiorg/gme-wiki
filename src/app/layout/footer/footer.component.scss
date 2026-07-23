@@ -1,6 +1,6 @@
 .footer-root {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -9,8 +9,11 @@
 }
 
 
+
+
+
 .footer-root-mobile {
-    display: flex;
+    // display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
@@ -18,9 +21,19 @@
     margin-bottom: 15px;
 }
 
+
 .title {
     font-size: 0.8em;
     color: gray;
+}
+
+
+.socials {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .icons {
@@ -44,19 +57,86 @@
     border-radius: 30px;
 }
 
-.directory{
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+.directory {
+    width: 100%;
+    min-width: 260px;
+    max-width: 300px;
     text-align: left;
     // padding: 5px;
+    flex-grow: 2;
 }
 
-.edit-page-link{
-        // width: 200px;
-    min-width: 200px;
+.edit-page-link {
+    width: 100%;
+    min-width: 260px;
     max-width: 300px;
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // text-align: right;
     font-size: 0.8em;
     font-weight: normal;
+    flex-grow: 2;
+}
+
+
+@media (min-width: 460px) {
+    .footer-root {
+        display: flex;
+        flex-direction: column;
+
+        .directory {
+            order: 1;
+            text-align: center;
+        }
+
+        .socials {
+            order: 3;
+        }
+
+        .edit-page-link {
+            order: 2;
+            margin: 15px;
+            // text-align: center;
+        }
+    }
+
+    .footer-root-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    .footer-root {
+        display: flex;
+        flex-direction: row;
+
+        .directory {
+            order: 1;
+            text-align: left;
+        }
+
+        .socials {
+            order: 2;
+        }
+
+        .edit-page-link {
+            order: 3;
+            text-align: right;
+            align-items: flex-end;
+            margin:0px;
+        }
+    }
+
+
+}
+
+@media (max-width: 459px) {
+    .footer-root {
+        display: none;
+    }
+
+    .footer-root-mobile {
+        display: flex;
+    }
 }

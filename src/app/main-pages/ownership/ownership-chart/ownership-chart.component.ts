@@ -8,12 +8,14 @@ import { ImportGmeDataService } from '../../../shared/services/import-gme-data.s
 import { ColorPicker } from '../../../shared/color-picker.class';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { Router, RouterModule } from '@angular/router';
+import { ChartExportComponent } from '../../../shared/components/export-chart/chart-export.component';
+import dayjs from 'dayjs';
 
 
 @Component({
   selector: 'app-ownership-chart',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule, RouterModule],
+  imports: [BaseChartDirective, CommonModule, RouterModule, ChartExportComponent],
   templateUrl: './ownership-chart.component.html',
   styleUrl: './ownership-chart.component.scss'
 })
@@ -40,6 +42,11 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
 
   private _ownershipData: OwnershipData;
   public get ownershipData(): OwnershipData { return this._ownershipData; }
+
+  public get lastUpdated(): string {
+    return dayjs((new OwnershipData()).lastUpdateYYYYMMDD).format('MMMM D, YYYY')
+  }
+
 
   public onClickShowHide() {
     if (this._showHideButton === 'Hide Labels') {
@@ -86,6 +93,7 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      // devicePixelRatio: window.devicePixelRatio,
       onClick: (event, elements, chart) => {
         if (!elements.length) return;
         if (!this.isMobile) {
@@ -120,7 +128,7 @@ export class OwnershipChartComponent implements OnInit, AfterViewInit {
         const label = chart.data.labels?.[index] as string;
         const value = chart.data.datasets[datasetIndex].data[index];
         if (label) {
-          const isClickable = ['DRS', 'Held by registered holders with Computershare', 'DSPP', 
+          const isClickable = ['DRS', 'Held by registered holders with Computershare', 'DSPP',
             'Ryan Cohen', 'Keith Gill *',
             'Vanguard Group Inc', 'BlackRock Inc', 'State Street Corp'
           ].includes(label);

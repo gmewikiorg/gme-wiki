@@ -155,6 +155,7 @@ export class DrsGmeChartComponent implements AfterViewInit {
               return 'rgba(0,0,255,0.1)';
             },
             borderWidth: 1,
+            
             formatter: function (value, context) {
               if (isPercentage) {
                 if (isMobile) {
@@ -172,14 +173,14 @@ export class DrsGmeChartComponent implements AfterViewInit {
             font: {
               weight: 'bold',
             },
-            padding: 2,
+            padding: 0,
 
           },
           backgroundColor: [
-            'rgba(205, 134, 209, 0.4)',
+            'rgb(205, 134, 209)',
           ],
           borderColor: [
-            'rgba(143, 23, 149, 1.0)',
+            'rgba(255, 255, 255, 1.0)',
           ],
           borderRadius: 5,
           borderWidth: 1,
@@ -223,6 +224,11 @@ export class DrsGmeChartComponent implements AfterViewInit {
           },
         },
 
+      },
+      layout: {
+        padding: {
+          right: 30,
+        }
       },
       plugins: {
         datalabels: {

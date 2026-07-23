@@ -8,11 +8,13 @@ import { ChooseEarningsChartComponent } from './earnings-chart/choose-earnings-c
 import { QuarterlyEarningsDataTableComponent } from './quarterly-earnings-data-table/quarterly-earnings-data-table.component';
 import { EarningsTableComponent } from './earnings-summary-table/earnings-summary-table.component';
 import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
+import { AssetsCompositionComponent } from './assets-composition/assets-composition.component';
 
 @Component({
   selector: 'app-financials',
   standalone: true,
-  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, FontAwesomeModule, FooterComponent, QuarterlyEarningsDataTableComponent],
+  imports: [ChooseEarningsChartComponent, EarningsTableComponent, CommonModule, RouterModule, 
+    FontAwesomeModule, FooterComponent, QuarterlyEarningsDataTableComponent, AssetsCompositionComponent],
   templateUrl: './financials.component.html',
   styleUrl: './financials.component.scss'
 })

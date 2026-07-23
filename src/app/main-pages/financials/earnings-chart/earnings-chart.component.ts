@@ -16,6 +16,7 @@ import { EarningsChartConfig } from './earnings-chart-config.interface';
 import { defaultEarningsChartConfig } from './choose-earnings-chart/default-earnings-chart-config';
 import { setChartOptions } from './earnings-chart-options';
 import { SELECTION_TO_METRICS } from './choose-earnings-chart/earnings-metric-configs';
+import { ChartExportComponent } from '../../../shared/components/export-chart/chart-export.component';
 
 @Component({
   selector: 'app-earnings-chart',
@@ -116,9 +117,10 @@ export class EarningsChartComponent implements OnInit, OnDestroy {
     this.customLegendItems = chartLegendSettings.customLegendItems;
     this.showCustomLegend = chartLegendSettings.showCustomLegend;
 
-    if(this.showCustomLegend === true){
-      this.barChartLegend = false;
-    }else{
+    this.barChartLegend = false;
+    if (this.chartSelectedProperty === EarningsChartPropertySelection.REVENUE_TYPE
+      || this.chartSelectedProperty === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE
+      || this.chartSelectedProperty === EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE_COLLECTIBLES) {
       this.barChartLegend = true;
     }
 

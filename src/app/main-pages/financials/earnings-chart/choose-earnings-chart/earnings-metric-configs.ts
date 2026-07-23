@@ -18,7 +18,10 @@ export enum EarningsMetric {
     SGA = 'SGA',
 
     INTEREST_INCOME = 'INTEREST_INCOME',
+    INTEREST_INCOME_2 = 'INTEREST_INCOME_2',
     STOCKHOLDERS_EQUITY = 'STOCKHOLDERS_EQUITY',
+    ASSETS = 'ASSETS',
+    LIABILITIES = 'LIABILITIES',
 
     HARDWARE_REVENUE = 'HARDWARE_REVENUE',
     SOFTWARE_REVENUE = 'SOFTWARE_REVENUE',
@@ -58,11 +61,13 @@ export const SELECTION_TO_METRICS: Record<EarningsChartPropertySelection, Earnin
     [EarningsChartPropertySelection.INTEREST_INCOME]: [EarningsMetric.INTEREST_INCOME],
     [EarningsChartPropertySelection.STOCKHOLDERS_EQUITY]: [EarningsMetric.STOCKHOLDERS_EQUITY],
     [EarningsChartPropertySelection.OPERATING_INCOME]: [EarningsMetric.OPERATING_INCOME],
+    [EarningsChartPropertySelection.OPERATING_INCOME_VS_INTEREST_INCOME]: [EarningsMetric.OPERATING_INCOME, EarningsMetric.INTEREST_INCOME_2],
     [EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA]: [EarningsMetric.GROSS_PROFIT, EarningsMetric.SGA],
     [EarningsChartPropertySelection.GROSS_MARGIN]: [EarningsMetric.GROSS_MARGIN],
     [EarningsChartPropertySelection.OPERATIONS_VS_SGA]: [EarningsMetric.OPERATING_INCOME, EarningsMetric.SGA],
     [EarningsChartPropertySelection.EPS]: [EarningsMetric.EPS],
-    [EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE]: [EarningsMetric.BOOK_VALUE_PER_SHARE]
+    [EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE]: [EarningsMetric.BOOK_VALUE_PER_SHARE],
+    [EarningsChartPropertySelection.ASSETS_VS_LIABILITIES]: [EarningsMetric.ASSETS, EarningsMetric.LIABILITIES],
 };
 
 
@@ -213,6 +218,24 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
             }
         }
     },
+    [EarningsMetric.INTEREST_INCOME_2]: {
+        metric: EarningsMetric.INTEREST_INCOME_2,
+        colorScheme: 'BLUE',
+        label: 'Interest Income',
+        labelNegative: 'Interest Expense',
+        tickScaleAnnually: 1000000,
+        tickScaleQuarterly: 1000000,
+        minYAnnual: -80000000,
+        minYQuarter: -30000000,
+        value: r => r.interestIncome,
+        labelContext: val => {
+            if (val >= 0) {
+                return "Interest Income:  $" + numberWithCommas(val);
+            } else {
+                return "Interest Expense:  $" + numberWithCommas(val);
+            }
+        }
+    },
     [EarningsMetric.STOCKHOLDERS_EQUITY]: {
         metric: EarningsMetric.STOCKHOLDERS_EQUITY,
         colorScheme: 'BLUE',
@@ -224,6 +247,30 @@ export const EARNINGS_METRIC_CONFIGS: Record<EarningsMetric, EarningsMetricConfi
         minYQuarter: 0,
         value: r => r.stockholdersEquity,
         labelContext: val => "Stockholders' Equity:  $" + numberWithCommas(val),
+    },
+    [EarningsMetric.ASSETS]: {
+        metric: EarningsMetric.ASSETS,
+        colorScheme: 'BLUE',
+        label: "Assets",
+        labelNegative: "Assets",
+        tickScaleAnnually: 1000000000,
+        tickScaleQuarterly: 1000000000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+        value: r => r.totalAssets,
+        labelContext: val => "Assets:  $" + numberWithCommas(val),
+    },
+    [EarningsMetric.LIABILITIES]: {
+        metric: EarningsMetric.LIABILITIES,
+        colorScheme: 'ORANGE',
+        label: "Liabilities",
+        labelNegative: "Liabilities",
+        tickScaleAnnually: 1000000000,
+        tickScaleQuarterly: 1000000000,
+        minYAnnual: 0,
+        minYQuarter: 0,
+        value: r => r.totalLiabilities,
+        labelContext: val => "Liabilities:  $" + numberWithCommas(val),
     },
     [EarningsMetric.STORE_COUNT]: {
         metric: EarningsMetric.STORE_COUNT,

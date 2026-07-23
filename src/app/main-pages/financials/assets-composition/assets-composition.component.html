@@ -1,0 +1,19 @@
+<div class="component-root">
+
+    <app-chart-export>
+
+        <div chart-title>
+            <div class="section-heading">
+                Composition of GameStop's Assets and Liabilities
+            </div>
+            <div class="page-subtitle" style="padding: 0px;">Estimate as of July 17, 2026</div>
+        </div>
+
+        <div chart-container class="chart-container" *ngIf="isBrowser">
+            <canvas baseChart class="chart" id="chartCanvas" [type]="'pie'" [data]="pieChartData"
+                [options]="pieChartOptions" [legend]="pieChartLegend">
+            </canvas>
+        </div>
+
+    </app-chart-export>
+</div>

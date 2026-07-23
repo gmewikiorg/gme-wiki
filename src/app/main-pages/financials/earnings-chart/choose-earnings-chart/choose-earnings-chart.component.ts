@@ -10,12 +10,14 @@ import { CustomDropdownMenu } from '../../../../shared/components/custom-dropdow
 import { CustomDropdownMenuComponent } from '../../../../shared/components/custom-dropdown-menu/custom-dropdown-menu.component';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 import { defaultEarningsChartConfig } from './default-earnings-chart-config';
+import { ChartExportComponent } from '../../../../shared/components/export-chart/chart-export.component';
+import { EarningsChartConfig } from '../earnings-chart-config.interface';
 
 
 @Component({
   selector: 'app-choose-earnings-chart',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, EarningsChartComponent, CustomDropdownMenuComponent],
+  imports: [CommonModule, FontAwesomeModule, EarningsChartComponent, CustomDropdownMenuComponent, ChartExportComponent],
   templateUrl: './choose-earnings-chart.component.html',
   styleUrl: './choose-earnings-chart.component.scss'
 })
@@ -38,7 +40,9 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Net Profit Margin',
     'Operating Income',
     'Interest Income',
+    // 'Operating Income vs Interest Income',
     "Stockholders' Equity",
+    'Assets vs Liabilities',
     'Earnings per Share',
     'Book Value per Share',
     'Revenue vs Cost of Sales',
@@ -48,9 +52,7 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     'Revenue by Category',
     'Revenue by Category as Percent of Total',
     'Revenue vs Gross Profit',
-    'Operating Income vs SG&A Expense',
     'Gross Profit vs SG&A Expense',
-
   ]);
 
   private _endYear: number = defaultEarningsChartConfig.endYear;
@@ -81,14 +83,14 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   private _isLoading: boolean = false;
   public get isBrowser(): boolean { return this._isBrowser; }
 
-  private _chartTitle: string = defaultEarningsChartConfig.menuLabel;
+  private _chartTitle: string = this._setChartTitle(defaultEarningsChartConfig);
   public get chartTitle(): string { return this._chartTitle; }
   public get isLoading(): boolean { return this._isLoading; }
 
   private _subscription: Subscription | null = null;
 
   ngOnInit() {
-    this._chartTitle = this._financialsService.chartConfig.menuLabel;
+    this._setChartTitle(this._financialsService.chartConfig)
     this._timeframeStartMenu.setMenuItem('FY ' + defaultEarningsChartConfig.startYear);
     this._timeframeEndMenu.setMenuItem('FY ' + defaultEarningsChartConfig.endYear);
     if (this.isMobile) {
@@ -102,9 +104,16 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
     timer(0).subscribe(() => {
       this._isLoading = false;
       this._subscription = this._financialsService.chartConfig$.subscribe((config) => {
-        this._chartTitle = config.menuLabel;
+        this._setChartTitle(config);
       })
     })
+  }
+
+
+  private _setChartTitle(config: EarningsChartConfig): string{
+    const period: string = config.period === 'QUARTER' ? 'Fiscal Quarter' : 'Fiscal Year';
+    this._chartTitle = 'GameStop ' + config.menuLabel + ' by ' + period;
+    return this._chartTitle;
   }
 
   ngOnDestroy() {
@@ -152,44 +161,51 @@ export class ChooseEarningsChartComponent implements OnInit, OnDestroy {
   }
   public onSelectChartMenuItem(menuLabel: string) {
     if (menuLabel === 'Revenue') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE, menuLabel);
     } else if (menuLabel === 'Revenue and Net Income') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_NET_INCOME);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_NET_INCOME, menuLabel);
     } else if (menuLabel === 'Net Income') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_INCOME);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_INCOME, menuLabel);
     } else if (menuLabel === 'Net Profit Margin') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_PROFIT_MARGIN);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.NET_PROFIT_MARGIN, menuLabel);
     } else if (menuLabel === 'Revenue vs Cost of Sales') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_COST);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_COST, menuLabel);
       // } else if (menuLabel === 'Store Count') {
       //   this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STORE_COUNT);
+    } else if (menuLabel === 'Assets vs Liabilities') {
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.ASSETS_VS_LIABILITIES, menuLabel);
     } else if (menuLabel === 'Revenue vs Store Count') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_STORES);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_STORES, menuLabel);
     } else if (menuLabel === 'Revenue per Store') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_PER_STORES);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_PER_STORES, menuLabel);
     } else if (menuLabel === 'Revenue by Category') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_TYPE);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_TYPE, menuLabel);
     } else if (menuLabel === 'Revenue by Category as Percent of Total') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_TYPE_PERCENTAGE, menuLabel);
     } else if (menuLabel === 'Revenue vs Gross Profit') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.REVENUE_VS_GROSS_PROFIT, menuLabel);
     } else if (menuLabel === 'Operating Income') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.OPERATING_INCOME);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.OPERATING_INCOME, menuLabel);
+    } else if (menuLabel === 'Operating Income vs Interest Income') {
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.OPERATING_INCOME_VS_INTEREST_INCOME, menuLabel);
+    
+
+
     } else if (menuLabel === 'Operating Income vs SG&A Expense') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.OPERATIONS_VS_SGA);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.OPERATIONS_VS_SGA, menuLabel);
     } else if (menuLabel === 'Gross Profit vs SG&A Expense') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.GROSS_PROFIT_VS_SGA, menuLabel);
     } else if (menuLabel === 'Interest Income') {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.INTEREST_INCOME);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.INTEREST_INCOME, menuLabel);
     } else if (menuLabel === "Stockholders' Equity") {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STOCKHOLDERS_EQUITY);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.STOCKHOLDERS_EQUITY, menuLabel);
     } else if (menuLabel === "Earnings per Share") {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.EPS);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.EPS, menuLabel);
     }
     else if (menuLabel === "Book Value per Share") {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.BOOK_VALUE_PER_SHARE, menuLabel);
     } else if (menuLabel === "Gross Margin") {
-      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.GROSS_MARGIN);
+      this._financialsService.setChartPropertySelection(EarningsChartPropertySelection.GROSS_MARGIN, menuLabel);
     }
   }
 
