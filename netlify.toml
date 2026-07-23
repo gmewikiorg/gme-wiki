@@ -1,2 +1,0 @@
-[build]
-  publish = "dist/gme-timeline-3/browser" # or your Angular output directory
