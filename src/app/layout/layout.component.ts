@@ -20,8 +20,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private _sizeService: ScreenService, 
-    private _loadingService: LoadingService, 
+    private _sizeService: ScreenService,
+    private _loadingService: LoadingService,
     private router: Router,
     private _screenService: ScreenService) {
     if (isPlatformBrowser(this.platformId)) {
@@ -64,17 +64,19 @@ export class LayoutComponent implements OnInit, AfterViewInit {
        * behaving as if it is both true and false for a brief moment in time
        */
       timer(100).subscribe(() => {
-
-        if (window.innerWidth < 480) {
-          this._isMobile = true;
-        } else {
-          this._isMobile = false;
+        this._isMobile = false;
+        if (isPlatformBrowser(this.platformId)) {
+          const width = window.innerWidth;
+          if (width < 480) {
+            this._isMobile = true;
+          }
         }
+
         this._isLoading = false;
       });
       this._sizeService.screenDimensions$.subscribe({
-        next: () => {
-          if (window.innerWidth < 480) {
+        next: (dimensions) => {
+          if (dimensions.width < 480) {
             this._isMobile = true;
           } else {
             this._isMobile = false;
@@ -97,7 +99,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   }
 
   public areaOutSideClicked$: Subject<boolean> = new Subject();
-  public onClickRouterOutlet(){
+  public onClickRouterOutlet() {
     this.areaOutSideClicked$.next(true);
   }
 }
