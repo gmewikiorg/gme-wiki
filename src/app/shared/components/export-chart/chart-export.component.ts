@@ -2,11 +2,13 @@ import {
   Component,
   ElementRef,
   Input,
-  ViewChild
+  ViewChild,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 
-// import html2canvas from 'html2canvas';
 import { ScreenService } from '../../services/screen-size.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-chart-export',
@@ -15,10 +17,9 @@ import { ScreenService } from '../../services/screen-size.service';
   styleUrl: './chart-export.component.scss'
 })
 export class ChartExportComponent {
-
-  constructor(private _screenService: ScreenService) {
-
-  }
+  constructor(private _screenService: ScreenService,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) { }
 
   @Input() filename = 'chart';
 
@@ -35,82 +36,72 @@ export class ChartExportComponent {
 
 
   async copyChart(): Promise<void> {
-
-    // try {
-
-    //   const canvas = await this.createCanvas();
-
-    //   const blob = await this.canvasToBlob(canvas);
-
-    //   await navigator.clipboard.write([
-    //     new ClipboardItem({
-    //       'image/png': blob
-    //     })
-    //   ]);
-
-    //   this.copied = true;
-
-    //   setTimeout(() => {
-    //     this.copied = false;
-    //   }, 2000);
-
-    // } catch (error) {
-
-    //   console.error('Could not copy chart:', error);
-
-    // }
-
+    try {
+      const canvas = await this.createCanvas();
+      if (canvas) {
+        const blob = await this.canvasToBlob(canvas);
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob
+          })
+        ]);
+        this.copied = true;
+        setTimeout(() => {
+          this.copied = false;
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Could not copy chart:', error);
+    }
   }
 
 
   async downloadChart(): Promise<void> {
-
-    // try {
-
-    //   const canvas = await this.createCanvas();
-
-    //   const link = document.createElement('a');
-
-    //   link.download = `${this.filename}.png`;
-
-    //   link.href = canvas.toDataURL('image/png');
-
-    //   link.click();
-
-    // } catch (error) {
-
-    //   console.error('Could not download chart:', error);
-
-    // }
-
+    try {
+      const canvas = await this.createCanvas();
+      if (canvas) {
+        const link = document.createElement('a');
+        link.download = `${this.filename}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+    } catch (error) {
+      console.error('Could not download chart:', error);
+    }
   }
 
 
-  // private async createCanvas(): Promise<HTMLCanvasElement> {
+  private async createCanvas(): Promise<HTMLCanvasElement | undefined> {
 
-  //   let backGroundColor = '#ffffff';
-  //   if (this._screenService.isDarkMode) {
-  //     backGroundColor = '#121212de'
-  //   }
-  //   // Capture the chart HTML
-    
-  //   const canvas = await html2canvas(
-  //     this.exportContent.nativeElement,
-  //     {
-  //       backgroundColor: backGroundColor,
-  //       scale: this.captureScale,
-  //       useCORS: true,
-  //       logging: false
-  //     }
-  //   );
+    let backGroundColor = '#ffffff';
+    if (this._screenService.isDarkMode) {
+      backGroundColor = '#121212de'
+    }
 
-  //   // Add watermark
-  //   // this.addWatermark(canvas);
-  //   // console.log("Watermark added")
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
-  //   return canvas;
+    const html2canvas = (await import('html2canvas')).default;
 
-  // }
+    // Capture the chart HTML
+    const canvas = await html2canvas(
+      this.exportContent.nativeElement,
+      {
+        backgroundColor: backGroundColor,
+        scale: this.captureScale,
+        useCORS: true,
+        logging: false
+      }
+    );
+
+    // Add watermark
+    // this.addWatermark(canvas);
+    // console.log("Watermark added")
+
+    return canvas;
+
+  }
 
   private readonly captureScale = 1;
 
