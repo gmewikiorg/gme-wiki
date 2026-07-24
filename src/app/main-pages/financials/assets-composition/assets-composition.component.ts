@@ -36,6 +36,14 @@ export class AssetsCompositionComponent {
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
 
+  public get totalAssets(): string { 
+    return this._assetData.totalAssets;
+  }
+
+    public get totalLiabilities(): string { 
+    return this._assetData.totalLiabilities;
+  }
+
   private _setPieChartData(): ChartConfiguration<'pie'>['data'] {
     const assetData = this._assetData;
     const pieChartData: ChartConfiguration<'pie'>['data'] = {

@@ -2,20 +2,6 @@ import { faCircleInfo, faInfoCircle, faTableList } from "@fortawesome/free-solid
 import { MobileMenuItem } from "./mobile-menu-item.class";
 
 export const mobileMenuItems: MobileMenuItem[] = [
-    //     new MobileMenuItem(
-    //     'IMAGE',
-    //     null,
-    //     '/research',
-    //     'assets/flaticon/search-1.png',
-    //     'Research'
-    // ),
-    // new MobileMenuItem(
-    //     'IMAGE',
-    //     null,
-    //     '/calendar',
-    //     'assets/flaticon/calendar.png',
-    //     'Calendar'
-    // ),
     new MobileMenuItem(
         'IMAGE',
         null,
@@ -23,19 +9,13 @@ export const mobileMenuItems: MobileMenuItem[] = [
         'assets/nav-icons/start.png',
         'Start'
     ),
+
     new MobileMenuItem(
         'IMAGE',
         null,
-        '/timeline',
-        'assets/nav-icons/timeline-icon.png',
-        'Timeline'
-    ),
-    new MobileMenuItem(
-        'IMAGE',
-        null,
-        '/earnings',
+        '/financials',
         'assets/nav-icons/bar-chart-3.png',
-        'Earnings'
+        'GameStop Financials'
     ),
     new MobileMenuItem(
         'IMAGE',
@@ -47,15 +27,22 @@ export const mobileMenuItems: MobileMenuItem[] = [
     new MobileMenuItem(
         'IMAGE',
         null,
+        '/timeline',
+        'assets/nav-icons/timeline-icon.png',
+        'GME Timeline'
+    ),
+    new MobileMenuItem(
+        'IMAGE',
+        null,
         '/social-media',
         'assets/nav-icons/social-media.png',
-        'Social Media'
+        'GME Social Media'
     ),
     new MobileMenuItem(
         'ICON',
         faCircleInfo,
         '/about',
         '',
-        'About'
+        'About gmewiki.org'
     ),
 ];

@@ -51,6 +51,7 @@
     font-size: small;
     border: 1px solid rgba(128, 128, 128, 0.5);
     width: 300px;
+    z-index: 20;
 }
 
 .dropdown-menu-mobile {
@@ -63,6 +64,7 @@
     padding: 10px;
     font-size: small;
     border: 1px solid rgba(128, 128, 128, 0.5);
+    z-index: 20;
 }
 
 .dropdown-menu-item {

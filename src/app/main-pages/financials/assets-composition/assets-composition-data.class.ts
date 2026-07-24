@@ -26,6 +26,16 @@ export class AssetsCompisitionData {
         ];
     }
 
+    public get totalAssets(): string {
+        const assetsValue = this.dataLookup.filter(item => item.layer === 0).reduce((sum, item) => sum += item.value, 0);
+        return `$${(assetsValue / 1_000_000_000).toFixed(1)} billion`;
+    }
+
+    public get totalLiabilities(): string {
+        const assetsValue = this.dataLookup.filter(item => item.layer === 1 && item.label !== 'HIDDEN').reduce((sum, item) => sum += item.value, 0);
+        return `$${(assetsValue / 1_000_000_000).toFixed(1)} billion`;
+    }
+
     public getLabel(layer: number, index: number): string {
         const layerItems = this.dataLookup.filter(d => d.layer === layer);
         if (layerItems.length > index) {

@@ -38,22 +38,13 @@
                         Start
                     </div>
                 </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'"
-                    [routerLinkActive]="'active-link'">
-                    <div class="sidebar-item-icon">
-                        <app-timeline-icon style="width: 30px;height:30px;"></app-timeline-icon>
-                    </div>
-                    <div class="sidebar-item-title">
-                        Timeline
-                    </div>
-                </div>
-                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/earnings'"
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/financials'"
                     [routerLinkActive]="'active-link'">
                     <div class="sidebar-item-icon">
                         <app-earnings-icon style="width: 30px;height:30px;"></app-earnings-icon>
                     </div>
                     <div class="sidebar-item-title">
-                        Earnings
+                        GameStop Financials
                     </div>
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/ownership'"
@@ -63,7 +54,16 @@
 
                     </div>
                     <div class="sidebar-item-title">
-                        Company Ownership
+                        GameStop Ownership
+                    </div>
+                </div>
+                <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/timeline'"
+                    [routerLinkActive]="'active-link'">
+                    <div class="sidebar-item-icon">
+                        <app-timeline-icon style="width: 30px;height:30px;"></app-timeline-icon>
+                    </div>
+                    <div class="sidebar-item-title">
+                        GME Timeline
                     </div>
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/social-media'"
@@ -72,7 +72,7 @@
                         <app-social-media-icon style="width: 30px;height:30px;"></app-social-media-icon>
                     </div>
                     <div class="sidebar-item-title">
-                        Social Media
+                        GME Social Media
                     </div>
                 </div>
                 <div class="sidebar-item" [ngClass]="{ 'sidebar-item-dark': isDarkMode }" [routerLink]="'/about'"
@@ -82,7 +82,7 @@
                             style="width: 30px; height: 30px; font-size:1.7em; color:rgb(155, 155, 155);"></fa-icon>
                     </div>
                     <div class="sidebar-item-title">
-                        About
+                        About gmewiki.org
                     </div>
                 </div>
             </div>

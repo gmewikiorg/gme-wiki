@@ -23,7 +23,7 @@ export class FinancialsComponent implements InfoPage {
   infoPageProperties: InfoPageProperties = {
     title: 'GameStop Earnings and Financial Information | gmewiki.org',
     description: 'Interactive chart of GameStop quarterly and annual earnings information; information pertaining to GameStop raising cash via ATM equity offerings',
-    url: 'https://gmewiki.org/earnings',
+    url: 'https://gmewiki.org/financials',
     image: 'https://gmewiki.org/assets/main-pages/earnings.png',
     githubPageUrl: 'main-pages/financials/financials.component.html',
   }
