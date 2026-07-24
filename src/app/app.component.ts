@@ -29,12 +29,13 @@ export class AppComponent {
 
   private _isBrowser: boolean;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    const width: number = event.target.width;
-    const height: number = event.target.height;
-    this._screenService.updateScreenSize(width, height);
-  }
+  // netlify-branch
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: any) {
+  //   const width: number = event.target.width;
+  //   const height: number = event.target.height;
+  //   this._screenService.updateScreenSize(width, height);
+  // }
 
   // @HostListener('touchstart', ['$event'])
   // onTouchStart(event: TouchEvent): void {
