@@ -4,11 +4,12 @@ import { FooterComponent } from '../../../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { EbayInterviewsComponent } from './ebay-interviews/ebay-interviews.component';
 import { InfoPage, InfoPageProperties } from '../../../../shared/components/information-page.interface';
+import { AssetsCompositionComponent } from '../../../../main-pages/financials/assets-composition/assets-composition.component';
 
 @Component({
   selector: 'app-ebay',
   standalone: true,
-  imports: [FooterComponent, RouterModule, EbayInterviewsComponent],
+  imports: [FooterComponent, RouterModule, EbayInterviewsComponent, AssetsCompositionComponent],
   templateUrl: './ebay.component.html',
   styleUrl: './ebay.component.scss'
 })

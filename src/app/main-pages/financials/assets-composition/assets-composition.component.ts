@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { ColorPicker } from '../../../shared/color-picker.class';
 import { AssetsCompisitionData } from './assets-composition-data.class';
 import { ChartExportComponent } from '../../../shared/components/export-chart/chart-export.component';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-assets',
+  selector: 'app-assets-composition',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule, ChartExportComponent],
+  imports: [BaseChartDirective, CommonModule, ChartExportComponent, RouterModule],
   templateUrl: './assets-composition.component.html',
   styleUrl: './assets-composition.component.scss'
 })
@@ -19,6 +20,7 @@ export class AssetsCompositionComponent {
 
   constructor(
     private _screenService: ScreenService,
+    private _router: Router
   ) {
     Chart.unregister(ChartDataLabels);
     Chart.register(PieController, ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -36,11 +38,11 @@ export class AssetsCompositionComponent {
   public get isDarkMode(): boolean { return this._screenService.isDarkMode; }
   public get isBrowser(): boolean { return this._screenService.isBrowser; }
 
-  public get totalAssets(): string { 
+  public get totalAssets(): string {
     return this._assetData.totalAssets;
   }
 
-    public get totalLiabilities(): string { 
+  public get totalLiabilities(): string {
     return this._assetData.totalLiabilities;
   }
 
@@ -154,6 +156,32 @@ export class AssetsCompositionComponent {
             title: (context) => { return this._titleContext(context) }
           },
         },
+      },
+      onClick: (event, elements, chart) => {
+        if (!elements.length) return;
+        if (!this.isMobile) {
+          const { datasetIndex, index } = elements[0];
+          const label = this._assetData.getLabel(datasetIndex, index);
+          if (label === 'eBay Stock') {
+            this._router.navigate(['/ebay']);
+          } else if (label === 'Long-term debt') {
+            this._router.navigate(['/convertible-notes']);
+          }
+        }
+
+      },
+      onHover: (event, elements, chart) => {
+        const canvas = event.native?.target as HTMLCanvasElement;
+        if (!elements.length) {
+          canvas.style.cursor = 'default';
+          return;
+        }
+        const { datasetIndex, index } = elements[0];
+        const label = this._assetData.getLabel(datasetIndex, index);
+        if (label) {
+          const isClickable = ['eBay Stock', 'Long-term debt'].includes(label);
+          canvas.style.cursor = isClickable ? 'pointer' : 'default';
+        }
       },
     }
     return options;

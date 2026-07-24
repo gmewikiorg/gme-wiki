@@ -3,11 +3,12 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 import { FooterComponent } from '../../../layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
+import { AssetsCompositionComponent } from '../../../main-pages/financials/assets-composition/assets-composition.component';
 
 @Component({
   selector: 'app-convertible-notes',
   standalone: true,
-  imports: [FooterComponent, RouterModule],
+  imports: [FooterComponent, RouterModule, AssetsCompositionComponent],
   templateUrl: './convertible-notes.component.html',
   styleUrl: './convertible-notes.component.scss'
 })
