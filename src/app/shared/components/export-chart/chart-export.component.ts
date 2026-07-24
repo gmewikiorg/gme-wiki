@@ -69,13 +69,13 @@ export class ChartExportComponent {
 
       const canvas = await this.createCanvas();
 
-      const link = document.createElement('a');
+      // const link = document.createElement('a');
 
-      link.download = `${this.filename}.png`;
+      // link.download = `${this.filename}.png`;
 
-      link.href = canvas.toDataURL('image/png');
+      // link.href = canvas.toDataURL('image/png');
 
-      link.click();
+      // link.click();
 
     } catch (error) {
 

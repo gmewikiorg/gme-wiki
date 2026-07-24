@@ -66,11 +66,10 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       timer(100).subscribe(() => {
         this._isMobile = false;
         if (isPlatformBrowser(this.platformId)) {
-          // const width = window.innerWidth;
-          // if (width < 480) {
-          //   this._isMobile = true;
-          // }
-            // netlify-branch
+          const width = window.innerWidth;
+          if (width < 480) {
+            this._isMobile = true;
+          }
         }
 
         this._isLoading = false;

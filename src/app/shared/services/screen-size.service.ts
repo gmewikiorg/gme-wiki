@@ -12,14 +12,12 @@ export class ScreenService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private _settingsService: SettingsService, private titleService: Title, private meta: Meta) {
     if (isPlatformBrowser(this.platformId)) {
-        // netlify-branch
-      // this._screenDimensions$ = new BehaviorSubject({ width: window.innerWidth, height: window.innerHeight });
-      // this._browser = window.navigator.userAgent;
+      this._screenDimensions$ = new BehaviorSubject({ width: window.innerWidth, height: window.innerHeight });
+      this._browser = window.navigator.userAgent;
       this._isBrowser = true;
-      // if (window.innerWidth < 480) {
-      //   this._isMobile$.next(true);
-      // }
-      this._screenDimensions$ = new BehaviorSubject({ width: 800, height: 600 });
+      if (window.innerWidth < 480) {
+        this._isMobile$.next(true);
+      }
     } else {
       this._isBrowser = false;
       this._isMobile$.next(false);
