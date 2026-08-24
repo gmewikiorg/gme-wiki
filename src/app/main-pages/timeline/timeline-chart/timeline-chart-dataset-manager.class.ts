@@ -1,6 +1,6 @@
-import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
+import { GmePriceEntrySimple } from "../../../shared/services/gme-price-entry.interface";
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
-import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.class";
+import { TimelineEventOLD } from "../timeline-items/timeline-item/timeline-event.class";
 import { DatasetConfig } from "./timeline-chart-dataset-config.class";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ChartDataItemBuilder } from "./timeline-chart-data-item-builder.class";
@@ -12,11 +12,11 @@ import { TimelineChartMetric } from "../timeline-controls/chart-options/timeline
 
 export class ChartDataSetManager {
 
-  private _allPriceEntries: GmePriceEntry[] = [];
+  private _allPriceEntries: GmePriceEntrySimple[] = [];
   private _datasets$: BehaviorSubject<any[]> = new BehaviorSubject<any>([]);
   private _chartLabels: string[] = [];
   private _datasetConfigs: DatasetConfig[] = [];
-  private _timelineEvents: TimelineEvent[] = [];
+  private _timelineEvents: TimelineEventOLD[] = [];
 
 
   /** No data available for GME prior to 2002-02-13 */
@@ -53,8 +53,8 @@ export class ChartDataSetManager {
    * @param categories 
    * @param significanceValue 
    */
-  constructor(startDateYYYYMMDD: string, endDateYYYYMMDD: string, priceEntries: GmePriceEntry[],
-    timelineItems: TimelineEvent[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean, isMobile: boolean) {
+  constructor(startDateYYYYMMDD: string, endDateYYYYMMDD: string, priceEntries: GmePriceEntrySimple[],
+    timelineItems: TimelineEventOLD[], categories: TimelineEventType[], significanceValue: number, isDarkMode: boolean, isMobile: boolean) {
     this._startDateYYYYMMDD = startDateYYYYMMDD;
     this._endDateYYYYMMDD = endDateYYYYMMDD
     this._allPriceEntries = priceEntries;
@@ -98,7 +98,7 @@ export class ChartDataSetManager {
     this.getAndUpdateDatasets();
   }
 
-  public updateDisplayedEvents(events: TimelineEvent[]) {
+  public updateDisplayedEvents(events: TimelineEventOLD[]) {
     this._timelineEvents = events;
     this._signifianceValue = 0;
     this._timelineCategories = [TimelineEventType.DRS,
@@ -109,7 +109,7 @@ export class ChartDataSetManager {
     TimelineEventType.OTHER];
     this.getAndUpdateDatasets();
   }
-  public clearSearchResults(significance: number, categories: TimelineEventType[], allEvents: TimelineEvent[]) {
+  public clearSearchResults(significance: number, categories: TimelineEventType[], allEvents: TimelineEventOLD[]) {
     this._signifianceValue = significance;
     this._timelineCategories = categories;
     this._timelineEvents = Object.assign([], allEvents);
@@ -149,7 +149,7 @@ export class ChartDataSetManager {
   }
 
 
-  public lookupIndexByTimelineItem(timelineItem: TimelineEvent): { datasetIndex: number, itemIndex: number } {
+  public lookupIndexByTimelineItem(timelineItem: TimelineEventOLD): { datasetIndex: number, itemIndex: number } {
     const indexValue = {
       datasetIndex: -1, itemIndex: -1,
     }
@@ -165,7 +165,7 @@ export class ChartDataSetManager {
 
   public lookupTimelineItemByIndex(datasetIndex: number, index: number) {
     const config = this._datasetConfigs[datasetIndex - 1];
-    const timelineItem: TimelineEvent | null = config.timelineItems[index];
+    const timelineItem: TimelineEventOLD | null = config.timelineItems[index];
     if (timelineItem !== null) {
       if (timelineItem.gmePriceEntry) {
         const event = this._lookupEvent(timelineItem.gmePriceEntry.dateYYYYMMDD, config.itemType, config.significance, config.view);
@@ -177,7 +177,7 @@ export class ChartDataSetManager {
   public lookupEventByDate(dateYYYYMMDD: string){
     return this._timelineEvents.find(event => event.dateYYYYMMDD === dateYYYYMMDD)
   }
-  public lookupEventsByViewType(eventType: TimelineEventViewType): TimelineEvent[]{
+  public lookupEventsByViewType(eventType: TimelineEventViewType): TimelineEventOLD[]{
     return this._timelineEvents.filter(event => event.specificViews.includes(eventType));
   }
 
@@ -186,7 +186,7 @@ export class ChartDataSetManager {
     return config;
   }
 
-  private _lookupEvent(dateYYYYMMDD: string, type: TimelineEventType, significance: number, view: TimelineEventViewType): TimelineEvent | undefined {
+  private _lookupEvent(dateYYYYMMDD: string, type: TimelineEventType, significance: number, view: TimelineEventViewType): TimelineEventOLD | undefined {
     const foundItem = this._timelineEvents.find(item => (item.dateYYYYMMDD === dateYYYYMMDD) && (item.types.indexOf(type) > -1) && item.significance === significance && item.specificViews.includes(view));
     return foundItem;
   }

@@ -1,6 +1,6 @@
-import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.class";
+import { TimelineEventOLD } from "../timeline-items/timeline-item/timeline-event.class";
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
-import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
+import { GmePriceEntrySimple } from "../../../shared/services/gme-price-entry.interface";
 import dayjs from "dayjs";
 import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 
@@ -12,7 +12,7 @@ export class ChartDataItem {
      *  this class is to manage the data (GME price values, events) as items associated with dates to be usable for the chart.
      * 
      */
-    constructor(dateYYYYMMDD: string, gmePriceEntries: GmePriceEntry[], events: TimelineEvent[], highestGmeHighValue?: number, finalClose?: number) {
+    constructor(dateYYYYMMDD: string, gmePriceEntries: GmePriceEntrySimple[], events: TimelineEventOLD[], highestGmeHighValue?: number, finalClose?: number) {
         this._dateYYYYMMDD = dateYYYYMMDD;
         this._gmePriceEntries = gmePriceEntries;
         this._events = events;
@@ -25,26 +25,26 @@ export class ChartDataItem {
         if(this._gmePriceEntries.length > 0){
             const finalItem = this._gmePriceEntries[this._gmePriceEntries.length-1];
             this._finalClose = finalItem.close;
-            this._tso = finalItem.tso;
-            this._trailingSales = finalItem.trailingSales;
-            this._equity = finalItem.equity;
-            this._pToS = (finalItem.close * finalItem.tso) / finalItem.trailingSales;
-            this._pToB = (finalItem.close * finalItem.tso) / finalItem.equity;
-            this._pToE = (finalItem.close * finalItem.tso) / finalItem.trailingEarnings;
-            if(finalItem.dateYYYYMMDD < '2022-07-22'){
-                //acounting for the stock split which occurred end of July 21, start of July 22
-                this._pToS = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingSales;
-                this._pToB = ((finalItem.close*4) * finalItem.tso) / finalItem.equity;
-                this._pToE = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingEarnings;
-            }
-            this._volume = finalItem.volume;
-            this._ftds = finalItem.ftds;
+            // this._tso = finalItem.tso;
+            // this._trailingSales = finalItem.trailingSales;
+            // this._equity = finalItem.equity;
+            // this._pToS = (finalItem.close * finalItem.tso) / finalItem.trailingSales;
+            // this._pToB = (finalItem.close * finalItem.tso) / finalItem.equity;
+            // this._pToE = (finalItem.close * finalItem.tso) / finalItem.trailingEarnings;
+            // if(finalItem.dateYYYYMMDD < '2022-07-22'){
+            //     //acounting for the stock split which occurred end of July 21, start of July 22
+            //     this._pToS = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingSales;
+            //     this._pToB = ((finalItem.close*4) * finalItem.tso) / finalItem.equity;
+            //     this._pToE = ((finalItem.close*4) * finalItem.tso) / finalItem.trailingEarnings;
+            // }
+            // this._volume = finalItem.volume;
+            // this._ftds = finalItem.ftds;
         }
     }
 
     private _dateYYYYMMDD: string;
-    private _gmePriceEntries: GmePriceEntry[];
-    private _events: TimelineEvent[];
+    private _gmePriceEntries: GmePriceEntrySimple[];
+    private _events: TimelineEventOLD[];
     private _highPriceValue: number = -1;
     private _finalClose: number = -1;
     private _tso: number = -1;
@@ -58,8 +58,8 @@ export class ChartDataItem {
 
     public get date(): dayjs.Dayjs { return dayjs(this._dateYYYYMMDD); }
     public get dateYYYYMMDD(): string { return this._dateYYYYMMDD; }
-    public get gmePriceEntries(): GmePriceEntry[] { return this._gmePriceEntries; }
-    public get events(): TimelineEvent[] { return this._events; }
+    public get gmePriceEntries(): GmePriceEntrySimple[] { return this._gmePriceEntries; }
+    public get events(): TimelineEventOLD[] { return this._events; }
     public get highPriceValue(): number { return this._highPriceValue; }
     public get finalClose(): number { return this._finalClose; }
     public get tso(): number { return this._tso; }
@@ -72,7 +72,7 @@ export class ChartDataItem {
     public get ftds(): number { return this._ftds; }
 
     public getPriorityEvent(allSignificances: number[], currentCategoriesValue: TimelineEventType[], currentView: TimelineEventViewType): {
-        event: TimelineEvent | null,
+        event: TimelineEventOLD | null,
         type: TimelineEventType,
         significance: number
     } {
@@ -127,7 +127,7 @@ export class ChartDataItem {
         TimelineEventType.OTHER];
     }
 
-    private _getPriorityType(event: TimelineEvent, currentCategoriesValue: TimelineEventType[]): TimelineEventType{
+    private _getPriorityType(event: TimelineEventOLD, currentCategoriesValue: TimelineEventType[]): TimelineEventType{
         let foundPriorityType: TimelineEventType = event.mainType;
         if (!currentCategoriesValue.includes(foundPriorityType)) {
             let availableTypes = this.priorityTypes.filter(type => currentCategoriesValue.includes(type));
@@ -140,12 +140,12 @@ export class ChartDataItem {
         }
         return foundPriorityType;
     }
-    private _getPriorityTypeIndex(event: TimelineEvent, currentCategoriesValue: TimelineEventType[]): number{
+    private _getPriorityTypeIndex(event: TimelineEventOLD, currentCategoriesValue: TimelineEventType[]): number{
         const index = this.priorityTypes.indexOf(this._getPriorityType(event, currentCategoriesValue));
         return index;
     }
 
-    private _getHigherPriorityEvent(events: TimelineEvent[], currentCategoriesValue: TimelineEventType[]): TimelineEvent{
+    private _getHigherPriorityEvent(events: TimelineEventOLD[], currentCategoriesValue: TimelineEventType[]): TimelineEventOLD{
         let prioritizedEvents = events.sort((event1, event2)=>{
             let priorityType1index = this._getPriorityTypeIndex(event1, currentCategoriesValue);
             let priorityType2index = this._getPriorityTypeIndex(event2, currentCategoriesValue);

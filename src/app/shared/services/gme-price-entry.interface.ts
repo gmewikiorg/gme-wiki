@@ -1,5 +1,11 @@
 import * as dayjs from 'dayjs';
-export interface GmePriceEntry{
+export interface GmePriceEntrySimple{
+    dateYYYYMMDD: string,
+    close: number,
+    volume: number,
+}
+
+export interface GmePriceEntryFull{
     dateYYYYMMDD: string,
     close: number,
     volume: number,

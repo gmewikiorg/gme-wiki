@@ -106,9 +106,10 @@ export class AssetsCompositionComponent {
           borderWidth: 1,
           formatter: function (value, context) {
             const layer = context.datasetIndex;
-            const item = context.dataIndex;
-            const label = assetData.getLabel(layer, item);
-            if (label === 'HIDDEN') {
+            const index = context.dataIndex;
+            const item = assetData.getitem(layer, index);
+            const label = assetData.getLabel(layer, index);
+            if (item?.isHidden) {
               return '';
             }
             return label;
@@ -132,9 +133,9 @@ export class AssetsCompositionComponent {
           borderWidth: 1,
           filter: (tooltipItem) => {
             const layer = tooltipItem.datasetIndex;
-            const item = tooltipItem.dataIndex;
-            const label = this._assetData.getLabel(layer, item);
-            if (label === 'HIDDEN') {
+            const index = tooltipItem.dataIndex;
+            const item = assetData.getitem(layer, index);
+            if (item?.isHidden) {
               return false;
             }
             return true;
@@ -188,9 +189,9 @@ export class AssetsCompositionComponent {
   }
   private _labelContext(context: TooltipItem<"pie">) {
     const layer = context.datasetIndex;
-    const item = context.dataIndex;
-    const label = this._assetData.getLabel(layer, item);
-    if (label === 'HIDDEN') {
+    const index = context.dataIndex;
+    const item = this._assetData.getitem(layer, index);
+    if (item?.isHidden) {
       return '';
     }
     const millions = Number(context.raw) / 1_000_000;
@@ -201,9 +202,10 @@ export class AssetsCompositionComponent {
   private _titleContext(context: TooltipItem<"pie">[]) {
     if (context.length > 0) {
       const layer = context[0].datasetIndex;
-      const item = context[0].dataIndex;
-      const label = this._assetData.getLabel(layer, item);
-      if (label === 'HIDDEN') {
+      const index = context[0].dataIndex;
+      const label = this._assetData.getLabel(layer, index);
+      const item = this._assetData.getitem(layer, index);
+      if (item?.isHidden) {
         return '';
       }
       return label;

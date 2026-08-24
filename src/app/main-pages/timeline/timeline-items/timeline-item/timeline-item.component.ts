@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { TimelineEvent } from './timeline-event.class';
+import { TimelineEventOLD } from './timeline-event.class';
 import { TimelineEventType } from './timeline-event-type.enum';
 import { ScreenService } from '../../../../shared/services/screen-size.service';
 import { TimelineChartDataManagerService } from '../../timeline-chart/timeline-chart-data-manager-service';
 import dayjs from 'dayjs';
-import { TimelineEventUrlSrc } from './timeline-event-url.interface';
+import { TimelineEventURL, TimelineEventUrlSrc } from './timeline-event-url.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,16 +19,17 @@ export class TimelineItemComponent {
   constructor(
     private _router: Router, private _chartDataService: TimelineChartDataManagerService, private _sizeService: ScreenService) { }
 
-  private _item: TimelineEvent = new TimelineEvent({
+  private _item: TimelineEventOLD = new TimelineEventOLD({
     title: '',
+    shortTitle: '',
     dateYYYYMMDD: '',
     urls: [],
     description: '',
     types: [TimelineEventType.OTHER],
-    significance: 0, tags: [], expandedUrls: [], specificViews: [],
+    significance: 0, tags: [], showInViews: [],
   }, undefined, -1)
-  @Input('item') public set item(item: TimelineEvent) { this._item = item; }
-  public get item(): TimelineEvent { return this._item; }
+  @Input('item') public set item(item: TimelineEventOLD) { this._item = item; }
+  public get item(): TimelineEventOLD { return this._item; }
 
   public get isMobile(): boolean { return this._sizeService.isMobile; }
 
@@ -54,11 +55,17 @@ export class TimelineItemComponent {
     return dayjs(dateYYYYMMDD).format('MMMM D, YYYY')
   }
 
-  public linkTypeIsOther(linkType: TimelineEventUrlSrc) {
-    if (linkType !== 'LEMMY' && linkType !== 'REDDIT' && linkType !== 'WIKIPEDIA'
-      && linkType !== 'YOUTUBE' && linkType !== 'NEWS' && linkType !== 'DOCUMENT'
-      && linkType !== 'GAMESTOP' && linkType !== 'X-TWITTER') {
-      return true;
+  public linkTypeIsOther(link: TimelineEventURL) {
+    const linkType = link.type;
+    if (linkType) {
+      if(linkType === 'OTHER'){
+        return true; 
+      }
+      if (linkType !== 'LEMMY' && linkType !== 'REDDIT' && linkType !== 'WIKIPEDIA'
+        && linkType !== 'YOUTUBE' && linkType !== 'NEWS' && linkType !== 'DOCUMENT'
+        && linkType !== 'GAMESTOP' && linkType !== 'X-TWITTER') {
+        return true;
+      }
     }
     return false;
   }
@@ -70,24 +77,24 @@ export class TimelineItemComponent {
   public onClickClose() {
   }
 
-  public onClickItem(item: TimelineEvent) {
+  public onClickItem(item: TimelineEventOLD) {
   }
 
   public get ngStyle() {
     if (this.item.isSelected) {
       if (this.isMobile) {
         return { // if is selected and is mobile
-          'background-color': TimelineEvent.getTypeColor(this.item.mainType, 0.9),
-          'border-left': '3px solid ' + TimelineEvent.getTypeColor(this.item.mainType, 1),
-          'border-right': '3px solid ' + TimelineEvent.getTypeColor(this.item.mainType, 1),
+          'background-color': TimelineEventOLD.getTypeColor(this.item.mainType, 0.9),
+          'border-left': '3px solid ' + TimelineEventOLD.getTypeColor(this.item.mainType, 1),
+          'border-right': '3px solid ' + TimelineEventOLD.getTypeColor(this.item.mainType, 1),
           'color': 'white',
           'padding-top': '15px',
           'padding-bottom': '15px',
         }
       } else {
         return { // if is selected and is not mobile
-          'background-color': TimelineEvent.getTypeColor(this.item.mainType, 0.9),
-          'border': '3px solid ' + TimelineEvent.getTypeColor(this.item.mainType, 1),
+          'background-color': TimelineEventOLD.getTypeColor(this.item.mainType, 0.9),
+          'border': '3px solid ' + TimelineEventOLD.getTypeColor(this.item.mainType, 1),
           'color': 'white',
         }
       }
@@ -105,7 +112,7 @@ export class TimelineItemComponent {
           }
         } else {
           return {
-            'background-color': TimelineEvent.getTypeColor(this.item.mainType, 0.05),
+            'background-color': TimelineEventOLD.getTypeColor(this.item.mainType, 0.05),
             // 'border-left': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
             // 'border-right': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
             'padding-top': '15px',
@@ -115,7 +122,7 @@ export class TimelineItemComponent {
 
       } else {
         return { // if not mobile and not selected
-          'background-color': TimelineEvent.getTypeColor(this.item.mainType, 0.05),
+          'background-color': TimelineEventOLD.getTypeColor(this.item.mainType, 0.05),
           // 'border': '1px solid ' + this._chartDataService.getTypeColor(this.item.mainType, 0.5),
         }
       }

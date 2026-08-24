@@ -12,10 +12,16 @@
         </div>
 
         <div chart-container class="chart-container" *ngIf="isBrowser">
+            <div class="watermark no-select">
+                gmewiki.org
+            </div>
             <canvas baseChart class="chart" id="chartCanvas" [type]="'pie'" [data]="pieChartData"
                 [options]="pieChartOptions" [legend]="pieChartLegend">
             </canvas>
+
         </div>
+
+
 
     </app-chart-export>
 </div>

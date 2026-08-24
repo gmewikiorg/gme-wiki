@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { ChartDataSetManager } from './timeline-chart-dataset-manager.class';
 import { TimelineEventType } from '../timeline-items/timeline-item/timeline-event-type.enum';
-import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
+import { TimelineEventOLD } from '../timeline-items/timeline-item/timeline-event.class';
 import { ChartDataset, ScatterDataPoint } from 'chart.js';
 import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 import { TimelineChartMetric } from '../timeline-controls/chart-options/timeline-chart-metric';
@@ -55,7 +55,7 @@ export class TimelineChartDataManagerService {
   public updateCategories(categories: TimelineEventType[]) {
     this._dataManager.updateCategories(categories);
   }
-  public updateDisplayedEvents(events: TimelineEvent[]) {
+  public updateDisplayedEvents(events: TimelineEventOLD[]) {
     this._dataManager.updateDisplayedEvents(events);
   }
   public updatePeriod(period: TimelineEventViewType, startDateYYYYMMDD: string, endDateYYYYMMDD: string) {
@@ -63,11 +63,9 @@ export class TimelineChartDataManagerService {
   }
 
 
-  public sneezeAnimation$: EventEmitter<boolean> = new EventEmitter();
   private _currentlyAnimating$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public initiateSneezeAnimation() {
     this._currentlyAnimating$.next(true);
-    this.sneezeAnimation$.emit(true);
   }
   public stopAnimation(){
     this._currentlyAnimating$.next(false);
@@ -91,7 +89,7 @@ export class TimelineChartDataManagerService {
 
 
 
-  public clearSearchResults(significance: number, categories: TimelineEventType[], allEvents: TimelineEvent[]) {
+  public clearSearchResults(significance: number, categories: TimelineEventType[], allEvents: TimelineEventOLD[]) {
     this._dataManager.clearSearchResults(significance, categories, allEvents);
   }
 
@@ -101,13 +99,13 @@ export class TimelineChartDataManagerService {
   public lookupDataset(datasetIndex: number) {
     return this._dataManager.lookupDataset(datasetIndex);
   }
-  public lookupIndexByEvent(event: TimelineEvent): { datasetIndex: number, itemIndex: number } {
+  public lookupIndexByEvent(event: TimelineEventOLD): { datasetIndex: number, itemIndex: number } {
     return this._dataManager.lookupIndexByTimelineItem(event);
   }
   public lookupEventByDate(dateYYYYMMDD: string){
     return this._dataManager.lookupEventByDate(dateYYYYMMDD);
   }
-  public lookupEventsByViewType(eventType: TimelineEventViewType): TimelineEvent[]{
+  public lookupEventsByViewType(eventType: TimelineEventViewType): TimelineEventOLD[]{
     return this._dataManager.lookupEventsByViewType(eventType);
   }
 

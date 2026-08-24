@@ -1,9 +1,9 @@
 import { ChartDataItem } from "./timeline-chart-data-item.class";
 import { TimelineEventType } from "../timeline-items/timeline-item/timeline-event-type.enum";
-import { TimelineEvent } from "../timeline-items/timeline-item/timeline-event.class";
+import { TimelineEventOLD } from "../timeline-items/timeline-item/timeline-event.class";
 import { DatasetConfig } from "./timeline-chart-dataset-config.class";
 import { ChartDataset, ScatterDataPoint } from "chart.js";
-import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
+import { GmePriceEntrySimple } from "../../../shared/services/gme-price-entry.interface";
 import dayjs from "dayjs";
 import { TimelineEventViewType } from "../timeline-items/timeline-item/timeline-event-url.interface";
 import { TimelineChartMetric } from "../timeline-controls/chart-options/timeline-chart-metric";
@@ -18,8 +18,8 @@ export class ChartDataItemBuilder {
         endDateYYYYMMDD: string,
         metric: TimelineChartMetric,
         period: TimelineEventViewType,
-        gmePriceEntries: GmePriceEntry[],
-        timelineEvents: TimelineEvent[],
+        gmePriceEntries: GmePriceEntrySimple[],
+        timelineEvents: TimelineEventOLD[],
         currentSignificanceValue: number,
         currentCategoriesValue: TimelineEventType[],
         specificView: TimelineEventViewType,
@@ -256,8 +256,8 @@ export class ChartDataItemBuilder {
         let highestGmeHighValue: number = 0;
         itemsToMerge.forEach(item => {
             item.gmePriceEntries.forEach(priceEntry => {
-                if (priceEntry.high > highestGmeHighValue) {
-                    highestGmeHighValue = priceEntry.high;
+                if (priceEntry.close > highestGmeHighValue) {
+                    highestGmeHighValue = priceEntry.close;
                 }
             });
         });
@@ -283,7 +283,7 @@ export class ChartDataItemBuilder {
         const datapointSets: {
             type: TimelineEventType,
             significance: number,
-            datapoints: (TimelineEvent | null)[]
+            datapoints: (TimelineEventOLD | null)[]
         }[] = [];
         const allSignificances: number[] = this._getSignificances(currentSignificanceValue);
         currentCategoriesValue.forEach(eventType => {
@@ -339,7 +339,7 @@ export class ChartDataItemBuilder {
             setIndex++;
         }
         const configs = datapointSets.map(set => {
-            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEvent.getTypeColor(set.type, 0.5), TimelineEvent.getTypeBorderColor(isDarkMode, set.type), set.significance, metric, specificView);
+            return new DatasetConfig(set.datapoints, set.type, set.type, TimelineEventOLD.getTypeColor(set.type, 0.5), TimelineEventOLD.getTypeBorderColor(isDarkMode, set.type), set.significance, metric, specificView);
         });
         return configs
     }

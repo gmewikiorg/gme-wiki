@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import { ImportGmeDataService } from './import-gme-data.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SettingsService } from './settings.service';
-import { GmePriceEntry } from './gme-price-entry.interface';
+import { GmePriceEntrySimple } from './gme-price-entry.interface';
 import { EarningsResult } from '../../main-pages/financials/earnings-results/earnings-result.class';
-import { TimelineEvent } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
+import { TimelineEventOLD } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
 import { TimelineChartDataManagerService } from '../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
 import { TimelineItemsService } from '../../main-pages/timeline/timeline-items/timeline-items.service';
 import { TimelineEventConfig } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-config.interface';
@@ -15,6 +15,7 @@ import { TimelineItemsBuilder } from '../../main-pages/timeline/timeline-items/t
 import { ChartDataSetManager } from '../../main-pages/timeline/timeline-chart/timeline-chart-dataset-manager.class';
 import { TimelineControlsService } from '../../main-pages/timeline/timeline-controls/timeline-controls.service';
 import { ScreenService } from './screen-size.service';
+import { timelineEventConfigs } from '../../main-pages/timeline/timeline-chart/timeline-events';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class LoadingService {
 
 
   private _allEventConfigs: TimelineEventConfig[] = [];
-  private _priceEntries: GmePriceEntry[] = [];
+  private _priceEntries: GmePriceEntrySimple[] = [];
   private _quarterlyResults: EarningsResult[] = [];
 
   private _dataIsLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -82,7 +83,8 @@ export class LoadingService {
         needsUpdate = false;
       }
     }
-    this._allEventConfigs = await this._importEventsService.importEventsFromCSV$();
+    // this._allEventConfigs = await this._importEventsService.importEventsFromCSV$();
+    this._allEventConfigs = timelineEventConfigs;
     if (needsUpdate) {
       // this._allEventConfigs = await this._importEventsService.importEventsFromCSV$();
       this._settingsService.setLastEventsCheckedDate();
@@ -109,7 +111,7 @@ export class LoadingService {
 
   private async _updateChartData$() {
     this._loadingMessage = 'Building chart...';
-    const timelineItems: TimelineEvent[] = TimelineItemsBuilder.getTimelineItems(this._allEventConfigs, this._priceEntries);
+    const timelineItems: TimelineEventOLD[] = TimelineItemsBuilder.getTimelineItems(this._allEventConfigs, this._priceEntries);
     this._timelineItemsService.setAllTimelineEvents(timelineItems);
     this._timelineItemsService.updateSignificanceValue(this._settingsService.significanceValue);
     this._timelineItemsService.updateCategories(this._settingsService.categories);

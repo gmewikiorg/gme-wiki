@@ -1,9 +1,9 @@
-import { GmePriceEntry } from "../../../shared/services/gme-price-entry.interface";
+import { GmePriceEntryFull, GmePriceEntrySimple } from "../../../shared/services/gme-price-entry.interface";
 import { TimelineEventConfig } from "./timeline-item/timeline-event-config.interface";
-import { TimelineEvent } from "./timeline-item/timeline-event.class";
+import { TimelineEventOLD } from "./timeline-item/timeline-event.class";
 
 export class TimelineItemsBuilder{
-    public static getTimelineItems(configs :TimelineEventConfig[], gmeData: GmePriceEntry[]): TimelineEvent[] {
+    public static getTimelineItems(configs :TimelineEventConfig[], gmeData: GmePriceEntrySimple[]): TimelineEventOLD[] {
         let allItemConfigs: TimelineEventConfig[] = [];
         allItemConfigs = configs.sort((item1, item2)=>{
             if(item1.dateYYYYMMDD < item2.dateYYYYMMDD){
@@ -16,8 +16,8 @@ export class TimelineItemsBuilder{
         });
         let itemIndex: number = 0;
         const items = allItemConfigs.map(config => {
-            const gmePriceEntry: GmePriceEntry | undefined = gmeData.find(entry => entry.dateYYYYMMDD === config.dateYYYYMMDD);
-            const event: TimelineEvent = new TimelineEvent(config, gmePriceEntry, itemIndex);
+            const gmePriceEntry: GmePriceEntrySimple | undefined = gmeData.find(entry => entry.dateYYYYMMDD === config.dateYYYYMMDD);
+            const event: TimelineEventOLD = new TimelineEventOLD(config, gmePriceEntry, itemIndex);
             itemIndex++;
             return event;
             

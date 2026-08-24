@@ -9,7 +9,7 @@ import { TimelineContentComponent } from './timeline-content/timeline-content.co
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { TimelineAnnotationBoxComponent } from './timeline-annotation-box/timeline-annotation-box.component';
 import { TimelineControlsService } from './timeline-controls/timeline-controls.service';
-import { TimelineEvent } from './timeline-items/timeline-item/timeline-event.class';
+import { TimelineEventOLD } from './timeline-items/timeline-item/timeline-event.class';
 import { InfoPage, InfoPageProperties } from '../../shared/components/information-page.interface';
 
 
@@ -88,7 +88,7 @@ export class TimelineComponent implements InfoPage {
     } else {
       // console.log("Not browser")
     }
-    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null | undefined) => {
+    this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEventOLD | null | undefined) => {
       if (timelineEvent !== null && timelineEvent !== undefined) {
         this._showAnnotationBox = true;
       } else {

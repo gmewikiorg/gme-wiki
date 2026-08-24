@@ -33,7 +33,7 @@
     <div class="link" *ngIf="item.localArticle !== null" style="margin-top:10px;">
         <div class="link-container">
             <img src="assets/icons/newspaper-icon.png" class="logo" alt="Document">
-            <a [routerLink]="item.localArticle.url" style="font-size:1.5em;">{{ item.localArticle.label}}</a>
+            <a [routerLink]="item.localArticle.url" style="font-size:1.5em;">{{ item.localArticle.title}}</a>
         </div>
     </div>
 
@@ -49,7 +49,7 @@
 
     <div *ngIf="item.urls.length > 0">
         <div *ngFor="let link of item.urls" class="link">
-            <div *ngIf="!linkTypeIsOther(link.type)" class="link-container">
+            <div *ngIf="!linkTypeIsOther(link)" class="link-container">
                 <img *ngIf="link.type === 'LEMMY'" src="assets/icons/lemmy-icon.png" class="logo" alt="Lemmy discussion">
                 <img *ngIf="link.type === 'REDDIT'" src="assets/icons/reddit-icon.png" class="logo" alt="Reddit">
                 <img *ngIf="link.type === 'WIKIPEDIA'" src="assets/icons/wikipedia-logo.png" class="logo" alt="Wikipedia">
@@ -58,17 +58,17 @@
                 <img *ngIf="link.type === 'NEWS'" src="assets/icons/newspaper-icon.png" class="logo" alt="News">
                 <img *ngIf="link.type === 'GAMESTOP'" src="assets/icons/gs-logo.png" class="logo" alt="GameStop">
                 <img *ngIf="link.type === 'X-TWITTER'" src="assets/icons/x-twitter-logo.png" class="logo" alt="X-TWITTER">
-                <a [href]="link.url" *ngIf="link.type !== 'LEMMY'" target="_blank">{{link.label}}</a>
-                <a [href]="link.url" *ngIf="link.type === 'LEMMY' && link.label === ''" target="_blank">Thread on Lemmy</a>
-                <a [href]="link.url" *ngIf="link.type === 'LEMMY'" target="_blank">{{link.label}}</a>
+                <a [href]="link.url" *ngIf="link.type !== 'LEMMY'" target="_blank">{{link.title}}</a>
+                <a [href]="link.url" *ngIf="link.type === 'LEMMY' && link.title === ''" target="_blank">Thread on Lemmy</a>
+                <a [href]="link.url" *ngIf="link.type === 'LEMMY'" target="_blank">{{link.title}}</a>
             </div>
-            <div *ngIf="linkTypeIsOther(link.type)" class="link-container">
-                <a [href]="link.url" target="_blank">{{link.label}}</a>
+            <div *ngIf="linkTypeIsOther(link)" class="link-container">
+                <a [href]="link.url" target="_blank">{{link.title}}</a>
             </div>
         </div>
     </div>
     
-    <div *ngIf="item.hasImg" class="image-container">
-        <img [src]="item.imgSrc" class="image">
+    <div *ngIf="item.hasImage" class="image-container">
+        <img [src]="item.imagePath" class="image">
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { GmePriceEntry } from './gme-price-entry.interface';
+import { GmePriceEntrySimple } from './gme-price-entry.interface';
 import { TimelineEventType } from '../../main-pages/timeline/timeline-items/timeline-item/timeline-event-type.enum';
 import { EarningsResult } from '../../main-pages/financials/earnings-results/earnings-result.class';
 import { EarningsResultInterface } from '../../main-pages/financials/earnings-results/earnings-result.interface';
@@ -34,7 +34,7 @@ export class SettingsService {
   private _latestEarningsDateYYYYMMDD: string | null = null;
   private _lastEventsCheckedDateYYYYMMDD: string | null = null;
 
-  private _gmeData: GmePriceEntry[] = [];
+  private _gmeData: GmePriceEntrySimple[] = [];
   private _eventConfigs: TimelineEventConfig[] = [];
 
 
@@ -42,7 +42,7 @@ export class SettingsService {
   public get significanceValue(): number { return this._significanceValue; }
   public get quarterlyEarnings(): EarningsResult[] { return this._quarterlyEarnings; }
   public get annualEarnings(): EarningsResult[] { return this._annualEarnings; }
-  public get gmeData(): GmePriceEntry[] { return this._gmeData; }
+  public get gmeData(): GmePriceEntrySimple[] { return this._gmeData; }
   public get eventConfigs(): TimelineEventConfig[] { return this._eventConfigs; }
 
   public get latestEarningsDateYYYYMMDD(): string | null { return this._latestEarningsDateYYYYMMDD; }
@@ -133,11 +133,11 @@ export class SettingsService {
     }
   }
 
-  private _loadGmeDataFromLS(): GmePriceEntry[] {
+  private _loadGmeDataFromLS(): GmePriceEntrySimple[] {
     if(this._localStorage){
       let storageValue = this._localStorage.getItem('gme_data');
       if (storageValue !== null) {
-        let priceEntries: GmePriceEntry[] = JSON.parse(storageValue);
+        let priceEntries: GmePriceEntrySimple[] = JSON.parse(storageValue);
         return priceEntries;
       }
     }
@@ -185,7 +185,7 @@ export class SettingsService {
     this._localStorage?.setItem('quarterly_earnings', JSON.stringify(quarterlyResults.map(item => item.data)));
     this._localStorage?.setItem('annual_earnings', JSON.stringify(annualResults.map(item => item.data)));
   }
-  public setGmeData(gmeData: GmePriceEntry[]) {
+  public setGmeData(gmeData: GmePriceEntrySimple[]) {
     this._localStorage?.setItem('gme_data', JSON.stringify(gmeData));
   }
   public setEventsData(events: TimelineEventConfig[]) {

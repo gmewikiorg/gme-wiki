@@ -1,75 +1,77 @@
-import { GmePriceEntry } from "../../../../shared/services/gme-price-entry.interface";
+import { GmePriceEntryFull, GmePriceEntrySimple } from "../../../../shared/services/gme-price-entry.interface";
 import { TimelineEventConfig } from "./timeline-event-config.interface";
 import { TimelineEventType } from "./timeline-event-type.enum";
 import { TimelineEventURL, TimelineEventViewType } from "./timeline-event-url.interface";
 import { EarningsResult } from "../../../financials/earnings-results/earnings-result.class";
 import dayjs from "dayjs";
 
-export class TimelineEvent {
+export class TimelineEventOLD {
 
+
+    private _config: TimelineEventConfig;
     private _title: string;
     private _shortTitle: string = '';
     private _dateYYYYMMDD: string;
     private _urls: TimelineEventURL[];
-    private _expandedUrls: TimelineEventURL[];
     private _description: string;
     private _types: TimelineEventType[];
     private _significance: number;
-    private _imgSrc: string = '';
+    private _imagePath: string = '';
     private _tags: string[] = [];
-    private _specificViews: TimelineEventViewType[] = [];
+    private _showInViews: TimelineEventViewType[] = [];
 
     private _isSelected: boolean = false;
-    private _gmePriceEntry: GmePriceEntry | undefined;
+    private _gmePriceEntry: GmePriceEntrySimple | undefined;
     private _gmePrice: number = -1;
     private _gmePricePreSplit: string = '';
-    private _specialIdentifier: string = '';
     private _itemIndex: number = -1;
     private _localArticle: TimelineEventURL | null = null;
 
     private _quarterlyFinancialResult: EarningsResult | null = null;
 
-    public get title(): string { return this._title; }
-    public get shortTitle(): string { return this._shortTitle; }
+
+    public get title(): string { return this._config.title; }
+    public get shortTitle(): string { return this._config.shortTitle; }
+    public get description(): string { return this._config.description; }
+    public get dateYYYYMMDD(): string { return this._config.dateYYYYMMDD; }
+    public get significance(): number { return this._config.significance; }
+    public get types(): TimelineEventType[] { return this._config.types; }
+    public get showInViews(): string[] { return this._config.showInViews; }
+    public get urls(): TimelineEventURL[] { return this._config.urls ?? []; }
+    public get imagePath(): string { return this._config.imagePath ?? ''; }
+    public get tags(): string[] { return this._config.tags ?? []; }
+
+
     public get hasShortTitle(): boolean { return this._shortTitle !== '' && this._shortTitle !== null && this._shortTitle !== undefined; }
-    public get dateYYYYMMDD(): string { return this._dateYYYYMMDD; }
     public get dateMMMDDYYYY(): string { return dayjs(this.dateYYYYMMDD).format('MMM DD, YYYY'); }
-    public get urls(): TimelineEventURL[] { return this._urls; }
-    public get expandedUrls(): TimelineEventURL[] { return this._expandedUrls; }
-    public get description(): string { return this._description; }
     public get mainType(): TimelineEventType { return this._types[0]; }
-    public get types(): TimelineEventType[] { return this._types; }
-    public get significance(): number { return this._significance; }
-    public get imgSrc(): string { return this._imgSrc; }
-    public get tags(): string[] { return this._tags; }
     public get localArticle(): TimelineEventURL | null { return this._localArticle; }
-    public get specificViews(): TimelineEventViewType[] { return this._specificViews; }
+    public get specificViews(): TimelineEventViewType[] { return this._showInViews; }
 
     public get isSelected(): boolean { return this._isSelected; }
-    public get hasImg(): boolean { return this._imgSrc !== ''; }
+    public get hasImage(): boolean { return this._imagePath !== ''; }
     public get hasLocalArticle(): boolean { return this._localArticle !== null; }
     public get hasUrls(): boolean { return this._urls.length > 0; }
 
-    public get gmePriceEntry(): GmePriceEntry | undefined { return this._gmePriceEntry; }
+    public get gmePriceEntry(): GmePriceEntrySimple | undefined { return this._gmePriceEntry; }
     public get gmePrice(): number { return this._gmePrice; }
     public get gmePricePreSplit(): string { return this._gmePricePreSplit; }
-    public get specialIdentifier(): string { return this._specialIdentifier; }
     public get itemIndex(): number { return this._itemIndex; }
 
     public get quarterlyFinancialResult(): EarningsResult | null { return this._quarterlyFinancialResult; }
 
-    constructor(config: TimelineEventConfig, gmePriceEntry: GmePriceEntry | undefined, index: number) {
+    constructor(config: TimelineEventConfig, gmePriceEntry: GmePriceEntrySimple | undefined, index: number) {
+        this._config = config;
         this._title = config.title;
         this._shortTitle = config.shortTitle;
         this._dateYYYYMMDD = config.dateYYYYMMDD;
-        this._urls = config.urls;
-        this._expandedUrls = config.expandedUrls;
-        this._types = config.types;
+        this._urls = config.urls ?? [];
+        this._types = config.types
         this._significance = config.significance
         this._description = config.description;
-        this._specificViews = config.specificViews;
-        if (config.imgSrc) {
-            this._imgSrc = config.imgSrc;
+        this._showInViews = config.showInViews;
+        if (config.imagePath) {
+            this._imagePath = config.imagePath;
         }
         this._gmePriceEntry = gmePriceEntry;
         if (this._gmePriceEntry !== undefined) {
@@ -80,15 +82,13 @@ export class TimelineEvent {
             }
         } else {
         }
-        if (config.specialIdentifier === 'STOCK-SPLIT') {
-            this._specialIdentifier = config.specialIdentifier;
-        }
         this._itemIndex = index;
         if (config.tags) {
             this._tags = config.tags;
         }
-        if (config.localArticle) {
-            this._localArticle = config.localArticle;
+        const localUrls = this._urls.filter(item => item.isLocal === true);
+        if (localUrls.length > 0) {
+            this._localArticle = localUrls[0];
         }
     }
 

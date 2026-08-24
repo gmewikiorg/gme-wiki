@@ -7,7 +7,7 @@ import { ScreenService } from '../../../shared/services/screen-size.service';
 import { Subscription } from 'rxjs';
 import { TimelineChartDataManagerService } from '../../../main-pages/timeline/timeline-chart/timeline-chart-data-manager-service';
 import { TimelineControlsService } from '../../../main-pages/timeline/timeline-controls/timeline-controls.service';
-import { TimelineEvent } from '../../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
+import { TimelineEventOLD } from '../../../main-pages/timeline/timeline-items/timeline-item/timeline-event.class';
 import { SneezeChartComponent } from './sneeze-chart/sneeze-chart.component';
 import { InfoPage, InfoPageProperties } from '../../../shared/components/information-page.interface';
 
@@ -60,7 +60,7 @@ export class SneezeComponent implements OnInit, AfterViewInit, OnDestroy, InfoPa
       this._chartIsLoaded = true;
 
     }
-    this._controlsSubscription = this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEvent | null | undefined) => {
+    this._controlsSubscription = this._controlsService.timelineItemAnnotation$.subscribe((timelineEvent: TimelineEventOLD | null | undefined) => {
       if (timelineEvent !== null && timelineEvent !== undefined) {
         this._showAnnotationBox = true;
       } else {

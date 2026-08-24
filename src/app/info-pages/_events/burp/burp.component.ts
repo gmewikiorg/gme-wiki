@@ -4,7 +4,7 @@ import { FooterComponent } from '../../../layout/footer/footer.component';
 import { ScreenService } from '../../../shared/services/screen-size.service';
 import { CommonModule } from '@angular/common';
 import { ImportGmeDataService } from '../../../shared/services/import-gme-data.service';
-import { GmePriceEntry } from '../../../shared/services/gme-price-entry.interface';
+import { GmePriceEntrySimple } from '../../../shared/services/gme-price-entry.interface';
 import { LoadingService } from '../../../shared/services/loading.service';
 import dayjs from 'dayjs';
 import { BurpChartComponent } from './burp-chart/burp-chart.component';
@@ -36,10 +36,10 @@ export class BurpComponent implements OnInit, InfoPage {
   private _isBrowser: boolean;
   private _chartIsLoaded: boolean = false;
   public get chartIsLoaded(): boolean { return this._chartIsLoaded; }
-  private _burpPriceEntries: GmePriceEntry[] = [];
-  private _gmePriceEntries: GmePriceEntry[] = [];
-  public get burpPriceEntries(): GmePriceEntry[] { return this._burpPriceEntries; }
-  public get gmePriceEntries(): GmePriceEntry[] { return this._gmePriceEntries; }
+  private _burpPriceEntries: GmePriceEntrySimple[] = [];
+  private _gmePriceEntries: GmePriceEntrySimple[] = [];
+  public get burpPriceEntries(): GmePriceEntrySimple[] { return this._burpPriceEntries; }
+  public get gmePriceEntries(): GmePriceEntrySimple[] { return this._gmePriceEntries; }
 
   async ngOnInit() {
     await this._loadingService.loadData$();

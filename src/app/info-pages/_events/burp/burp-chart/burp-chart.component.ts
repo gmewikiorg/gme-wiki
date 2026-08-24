@@ -35,7 +35,7 @@ export class BurpChartComponent {
         },
         {
           type: 'line',
-          data: gmeData.map(item => item.high),
+          data: gmeData.map(item => item.close),
           label: 'GME price $ ',
           fill: true,
           tension: 0.5,

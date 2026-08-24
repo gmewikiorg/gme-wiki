@@ -18,59 +18,59 @@ export class ImportEventsService {
    * The .csv document is picky, must remove the last empty line.
    * separated by ">"
    */
-  public async importEventsFromCSV$() {
-    const eventsSubject: Subject<TimelineEventConfig[]> = new Subject();
-    const eventConfigs: TimelineEventConfig[] = [];
+  // public async importEventsFromCSV$(): Promise<TimelineEventConfig[]> {
+  //   const eventsSubject: Subject<TimelineEventConfig[]> = new Subject();
+  //   const eventConfigs: TimelineEventConfig[] = [];
 
-    const eventsFilename = 'assets/data/timeline-events.csv';
+  //   const eventsFilename = 'assets/data/timeline-events.csv';
 
-    return await lastValueFrom(this.httpClient.get(eventsFilename, { responseType: 'text' },)
-      .pipe(
-        map(data => this._buildEventConfigs(data)),
-        // catchError(error => of([]))
-      ))
-  }
+  //   return await lastValueFrom(this.httpClient.get(eventsFilename, { responseType: 'text' },)
+  //     .pipe(
+  //       map(data => this._buildEventConfigs(data)),
+  //       // catchError(error => of([]))
+  //     ))
+  // }
 
-  private _buildEventConfigs(response: string): TimelineEventConfig[] {
+  // private _buildEventConfigs(response: string): TimelineEventConfig[] {
 
-    const eventConfigs: TimelineEventConfig[] = [];
-    let lines = response.split('\n');
-    lines = lines.slice(1);
-    lines.forEach(line => {
-      if (line.length > 0) {
-        let commaSplitLine = line.split('>');
-        const title = commaSplitLine[0];
-        const shortTitle = commaSplitLine[1];
-        const description = commaSplitLine[2];
-        const dateYYYYMMDD = commaSplitLine[3];
-        const significance = Number(commaSplitLine[4]);
-        const imgSrc = commaSplitLine[5];
-        const tags: string[] = this._getTagsFromSource(commaSplitLine[6]);
-        const urls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[7]);
-        const types: TimelineEventType[] = this._getEventTypes(commaSplitLine[8]);
-        const localArticle: TimelineEventURL | null = this._getLocalArticle(commaSplitLine[9]);
-        const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[10]);
-        const specificView: TimelineEventViewType[] = this._getViewType(commaSplitLine[11]);
-        const eventConfig: TimelineEventConfig = {
-          title: title,
-          shortTitle: shortTitle,
-          dateYYYYMMDD: dateYYYYMMDD,
-          urls: urls,
-          description: description,
-          types: types,
-          significance: significance,
-          imgSrc: imgSrc,
-          tags: tags,
-          localArticle: localArticle,
-          expandedUrls: expandedUrls,
-          specificViews: specificView,
-        }
-        eventConfigs.push(eventConfig);
-      }
+  //   const eventConfigs: TimelineEventConfig[] = [];
+  //   let lines = response.split('\n');
+  //   lines = lines.slice(1);
+  //   lines.forEach(line => {
+  //     if (line.length > 0) {
+  //       let commaSplitLine = line.split('>');
+  //       const title = commaSplitLine[0];
+  //       const shortTitle = commaSplitLine[1];
+  //       const description = commaSplitLine[2];
+  //       const dateYYYYMMDD = commaSplitLine[3];
+  //       const significance = Number(commaSplitLine[4]);
+  //       const imgSrc = commaSplitLine[5];
+  //       const tags: string[] = this._getTagsFromSource(commaSplitLine[6]);
+  //       const urls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[7]);
+  //       const types: TimelineEventType[] = this._getEventTypes(commaSplitLine[8]);
+  //       const localArticle: TimelineEventURL | null = this._getLocalArticle(commaSplitLine[9]);
+  //       const expandedUrls: TimelineEventURL[] = this._getUrlsFromSource(commaSplitLine[10]);
+  //       const specificView: TimelineEventViewType[] = this._getViewType(commaSplitLine[11]);
+  //       const eventConfig: TimelineEventConfig = {
+  //         title: title,
+  //         shortTitle: shortTitle,
+  //         dateYYYYMMDD: dateYYYYMMDD,
+  //         urls: urls,
+  //         description: description,
+  //         types: types,
+  //         significance: significance,
+  //         imgSrc: imgSrc,
+  //         tags: tags,
+  //         localArticle: localArticle,
+  //         expandedUrls: expandedUrls,
+  //         specificViews: specificView,
+  //       }
+  //       eventConfigs.push(eventConfig);
+  //     }
 
-    });
-    return eventConfigs;
-  }
+  //   });
+  //   return eventConfigs;
+  // }
 
   private _getViewType(sourceValue: string): TimelineEventViewType[] {
     const viewTypes: TimelineEventViewType[] = [];
@@ -115,7 +115,8 @@ export class ImportEventsService {
       const eventUrl: TimelineEventURL = {
         url: url,
         type: 'NEWS',
-        label: label,
+        title: label,
+        isLocal: true,
       };
       return eventUrl;
     }
@@ -165,8 +166,8 @@ export class ImportEventsService {
           const newUrl: TimelineEventURL = {
             url: splitSource[0],
             type: this._getUrlType(splitSource[0]),
-            label: splitSource[1],
-            archiveLink: '',
+            title: splitSource[1],
+            isLocal: false,
           }
           urls.push(newUrl);
         });

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import dayjs from 'dayjs';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TimelineEvent } from '../timeline-items/timeline-item/timeline-event.class';
+import { TimelineEventOLD } from '../timeline-items/timeline-item/timeline-event.class';
 import { TimelineEventViewType } from '../timeline-items/timeline-item/timeline-event-url.interface';
 import { TimelineChartMetric } from './chart-options/timeline-chart-metric';
 
@@ -65,10 +65,10 @@ export class TimelineControlsService {
 
 
   
-  private _timelineItemAnnotation$: BehaviorSubject<TimelineEvent | null | undefined> = new BehaviorSubject<TimelineEvent | null | undefined>(null);
-  public get timelineItemAnnotation$(): Observable<TimelineEvent | null | undefined> { return this._timelineItemAnnotation$.asObservable(); }
+  private _timelineItemAnnotation$: BehaviorSubject<TimelineEventOLD | null | undefined> = new BehaviorSubject<TimelineEventOLD | null | undefined>(null);
+  public get timelineItemAnnotation$(): Observable<TimelineEventOLD | null | undefined> { return this._timelineItemAnnotation$.asObservable(); }
 
-  public setTimelineAnnotation(timelineItem: TimelineEvent | null | undefined){
+  public setTimelineAnnotation(timelineItem: TimelineEventOLD | null | undefined){
     this._timelineItemAnnotation$.next(timelineItem);
   }
 
